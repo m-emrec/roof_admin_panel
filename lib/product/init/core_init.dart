@@ -24,7 +24,9 @@ class _CoreInit {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     final remoteConfig = FirebaseRemoteConfig.instance;
     await remoteConfig.ensureInitialized();
     await remoteConfig.fetchAndActivate();

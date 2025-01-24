@@ -100,7 +100,13 @@ class TextStyles {
     headlineSmall: _font(
       color: AppColors.darkTextColors[70],
     ),
-
+    displayLarge: _font(),
+    displayMedium: _font(
+      color: AppColors.darkTextColors[70],
+    ),
+    displaySmall: _font(
+      color: AppColors.darkTextColors[70],
+    ),
     titleLarge: _font(
       color: AppColors.darkTextColors[70],
     ),

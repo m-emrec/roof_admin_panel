@@ -26,7 +26,9 @@ class ValidatorMethods {
   ///
   /// Returns `null` if the password is at least 6 characters long, otherwise returns 'Password must be at least 6 characters'.
   String? get validatePassword {
-    return (text?.length ?? 0) >= 6
+    return RegExp(
+                r"^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?':{}|<>])[A-Za-z\d!@#$%^&*(),.?':{}|<>]{6,}$")
+            .hasMatch(text ?? '')
         ? null
         : tr(LocaleKeys.errors_weak_password);
   }

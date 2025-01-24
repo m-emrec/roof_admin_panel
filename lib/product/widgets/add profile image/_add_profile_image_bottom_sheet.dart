@@ -33,7 +33,7 @@ class _AddProfilePageBottomSheetState extends State<AddProfilePageBottomSheet>
           ListTile(
             leading: const Icon(Icons.camera_alt),
             title: Text(
-              LocaleKeys.createProfile_takeAPicture.tr(),
+              " LocaleKeys.createProfile_takeAPicture.tr()",
             ),
             onTap: () {
               CustomBottomSheet.hide(context);
@@ -43,7 +43,7 @@ class _AddProfilePageBottomSheetState extends State<AddProfilePageBottomSheet>
           ListTile(
             leading: const Icon(Icons.photo),
             title: Text(
-              LocaleKeys.createProfile_chooseFromGallery.tr(),
+              "  LocaleKeys.createProfile_chooseFromGallery.tr()",
             ),
             onTap: () {
               CustomBottomSheet.hide(context);

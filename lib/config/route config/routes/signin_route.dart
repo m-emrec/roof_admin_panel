@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/authentication_based_redirect.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
+import 'package:roof_admin_panel/features/auth/presentation/pages/sign_in_page.dart';
 
 /// The sign-in route.
 /// This route is used to navigate to the sign-in screen.

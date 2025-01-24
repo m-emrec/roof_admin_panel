@@ -18,7 +18,7 @@
         "email_already_in_use": "Bu e-posta adresi zaten başka bir hesap tarafından kullanılıyor.",
         "invalid_email": "E-posta adresi geçerli değil.",
         "operation_not_allowed": "Bu işlem izin verilmiyor. Yönetici ile iletişime geçin.",
-        "weak_password": "Şifre en az 6 karakter uzunluğunda olmalıdır.",
+        "weak_password": "Şifre en az 6 karakter uzunluğunda olmalı, en az bir büyük harf ve bir sembol içermelidir.",
         "provider_already_linked": "Bu sağlayıcı zaten kullanıcıya bağlı.",
         "credential_already_in_use": "Bu kimlik bilgisi zaten başka bir kullanıcı hesabıyla ilişkilendirilmiş.",
         "requires_recent_login": "Bu işlem hassastır ve yakın zamanda kimlik doğrulaması gerektirir. Lütfen yeniden giriş yapın.",
@@ -114,165 +114,22 @@
             "length": "Bu alan en az {} karakter olmalıdır."
         }
     },
-    "forceUpdate": {
-        "title": "Yeni bir güncelleme mevcut!",
-        "message": "Uygulamayı kullanmaya devam etmek için güncellemeyi yüklemeniz gerekmektedir.",
-        "update": "Güncelle"
-    },
+   
     "auth": {
         "signin": {
             "pageTitle": "Giriş Yap",
-            "phoneNumber": "Telefon Numarası",
-            "validPhoneNumberError": "Lütfen geçerli bir telefon numarası girin.",
-            "dontHaveAnAccount": "Hala, Roof üyesi değil misin? O zaman hemen",
-            "createOne": " aramıza katıl!",
             "successfullySignedIn": "Başarıyla giriş yapıldı.",
-            "verification": {
-                "timeRemaining": "Doğrulama kodunun geçerlilik süresi : {}",
-                "pageTitle": "Doğrulama Kodu",
-                "verificationCode": "Doğrulama Kodu",
-                "validVerificationCodeError": "Lütfen geçerli bir doğrulama kodu girin.",
-                "resendCode": "Kodu Tekrar Gönder",
-                "successfullyVerified": "Başarıyla doğrulandı.",
-                "pleaseWriteVerificationCode": "Lütfen telefonunuza gönderilen doğrulama kodunu girin.",
-                "verificationCodeSent": "Doğrulama kodu telefonunuza gönderildi.",
-                "timeOut": "Doğrulama kodunun süresi doldu. Lütfen tekrar giriş yapın.",
-                "verify": "Doğrula"
+            "email": "E-posta",
+            "password": "Şifre",
+            "forgotPassword": "Şifremi Unuttum",
+            "showPassword": "Şifreyi Göster",
+            "validationError": {
+                "email": "Geçerli bir e-posta adresi girin.",
+                "password": "Şifre en az 6 karakter olmalıdır."
             }
+
+           
         }
-    },
-    "createProfile": {
-        "pageTitle": "Seni Tanıyalım",
-        "addProfilePictureText": "Profil Fotoğrafı Ekle",
-        "name": "İsim",
-        "about": "Hakkında",
-        "aboutPlaceholder": "Bize biraz kendini anlat: hobilerin, favori aktivitelerin ya da hayatından küçük detaylar...",
-        "birthDate": "Doğum Tarihin",
-        "gender": "Cinsiyetin",
-        "whereYouLive": "Nerede Yaşıyorsun?",
-        "whereYouWork": "Nerede Çalışıyorsun? / Okuyorsun?",
-        "yourOccupation": "Mesleğin / Okuduğun Bölüm",
-        "yourInterests": "Katılmayı Sevdiğin Etkinlik Türleri",
-        "yourHobbies": "Hobilerin",
-        "yourHobbiesHint": "Eklemek istediğin hobiyi yaz.",
-        "openCalendar": "Takvimi Aç",
-        "takeAPicture": "Fotoğraf Çek",
-        "chooseFromGallery": "Galeriden Seç",
-        "crop": "Kırp",
-        "validation": {
-            "nameLengthValidationError": "İsim en az {} karakter olmalıdır.",
-            "aboutMeValidationError": "Hakkımda kısmı en az {} karakter olmalıdır.",
-            "validationError": "Bu alan boş bırakılamaz.",
-            "ageRestrictionError": "18 yaşından küçükler Roof'a üye olamaz.",
-            "yourInterestsValidationError": "En az {} kategori seçmelisin."
-        }
-    
-    
-    
-    },
-    "profile":{
-        "memberShipInfo": {
-            "title": "Üyelik Bilgisi",
-            "memberShipStartDate": "Üyelik Başlangıcı",
-            "memberShipEndDate": "Üyelik Bitişi",
-            "memberNumber": "Üye Numarası"
-        },
-        "aboutMe": "Hakkımda",
-        "myCity":{
-            "title":"Semtim",
-            "live": "Yaşıyorum",
-            "work": "Çalışıyorum"
-        },
-        "options": {
-            "editProfile": "Profili Düzenle",
-            "logOut": "Çıkış Yap",
-            "notifications": "Bildirimler",
-            "settings": "Ayarlar"
-        },
-        "admin":{
-            "addMember": "Üye Ekle",
-            "addEvent": "Etkinlik Ekle",
-            "memberAdded": "Üye başarıyla eklendi.",
-            "gender"    : "Cinsiyet",
-            "adminButtonTooltip": "Admin Menüsünü Aç"
-        },
-        "sendMessageTo": "{} üzerinden mesaj gönder",
-        "occupation": "Meslek",
-        "hoobies": "Hobilerim",
-        "interests": "Takip Ettiğim Etkinlik Türleri",
-       "complaint":"Şikayet Bildir",
-       "mentor":{
-        "myMembers": "Üyelerim"
-       }
-    },
-    "editProfile": {
-        "pageTitle": "Profili Düzenle",
-        "saveChanges": "Değişiklikleri Kaydet",
-        "success": "Değişiklikler başarıyla kaydedildi.",
-        "removeProfilePicture": "Profil Fotoğrafını Kaldır"
-    },
-   "feedback": {
-        "pageTitle": "Geri Bildirim",
-        "subtitle":"Aşağıdaki seçeneklerden birini seçerek geri bildirimde bulunabilirsin.",
-        "yourFeedback": "Geri Bildirimin",
-        "yourFeedbackPlaceholder": "Bize ne hakkında geri bildirimde bulunmak istediğini söyle.",
-        "reportedPerson": "Kimi şikayet etmek istiyorsun?",
-        "reportedPersonPlaceholder": "Şikayet etmek istediğin kişinin telefon numarasını yaz" ,
-        "addImage":"Görüntü Ekle",
-        "successFeedback":"Geri bildiriminiz için teşekkür ederiz. En kısa sürede inceleyeceğiz.",
-        "doYouWantToShareYourInfo":"Kim olduğunu paylaşmak ister misin?",
-        "doYouWantToShareYourInfoHelp":"Geri bildirimler anonimdir. İstersen kutucuğu işaretleyerek kim olduğunu paylaşabilirsin.",
-        "feedbackHistory": {
-            "title": "Geri Bildirim Geçmişi",
-            "noFeedback": "Henüz geri bildirimin yok.",
-            "noResponse": "Henüz yanıtlanmamış.",
-            "areYouSureYouWantToDelete":{
-                "hasResponse":"Bu geri bildirimi silmek istediğine emin misin?",
-                "noResponse":"Bu geri bildirim için henüz yanıt verilmedi. Silmek istediğine emin misin? Eğer silersen geri bildirimini göremeyeceğiz."
-            }   
-        },
-       
-        "aboutPerson": {
-        "title": "Kişilerle İlgili",
-        "aboutAMember": "Bir üye hakkında şikayet",
-        "aboutAnAdmin": "Bir admin/moderatör hakkında şikayet",
-        "inappropriateBehavior": "Taciz veya uygunsuz davranış"
-        },
-        "aboutApp": {
-        "title": "Uygulama Hakkında",
-        "bugReport": "Hata Bildir",
-        "featureRequest": "Özellik İsteği",
-        "performanceIssue": "Performans Sorunu",
-        "other": "Diğer"
-        },
-        "aboutEvent": {
-        "title": "Etkinlik Hakkında",
-        "poorOrganization": "Kötü organizasyon",
-        "cancellation": "İptal veya gecikme",
-        "misinformation": "Yanlış bilgi paylaşımı",
-        "other": "Diğer"
-        },
-        "privacyAndSecurity": {
-        "title": "Gizlilik ve Güvenlik",
-        "dataLeak": "Veri sızıntısı şüphesi",
-        "unauthorizedAccess": "Yetkisiz erişim",
-        "accountBreach": "Hesap güvenliği ihlali"
-        },
-        "paymentIssues": {
-        "title": "Ödeme ve Faturalandırma Sorunları",
-        "incorrectCharge": "Yanlış ücretlendirme",
-        "failedTransaction": "Başarısız işlem",
-        "refundRequest": "İade talebi"
-        },
-        "aboutCommunity": {
-        "title": "Topluluk Kuralları İhlali",
-        "spam": "Spam veya sahte hesaplar",
-        "offensiveContent": "Hakaret veya uygunsuz içerik",
-        "threats": "Tehdit veya hakaret"
-        },
-        "general": {
-        "title": "Genel Şikayetler",
-        "another": "Diğer"
-        }
-  }
+    }
+   
 }

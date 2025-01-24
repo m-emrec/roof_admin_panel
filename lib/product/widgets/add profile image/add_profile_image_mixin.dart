@@ -16,7 +16,7 @@ import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 mixin AddProfileImageMixin<T extends StatefulWidget> on State<T> {
   /// The text for the add profile picture button.
   final addPRofilePictureText =
-      tr(LocaleKeys.createProfile_addProfilePictureText);
+      "tr(LocaleKeys.createProfile_addProfilePictureText)";
 
   /// The theme for the add profile picture widget.
   late final AddProfilePictureTheme? theme;
@@ -92,7 +92,7 @@ mixin AddProfileImageMixin<T extends StatefulWidget> on State<T> {
           AndroidUiSettings(
             activeControlsWidgetColor: AppColors.primaryColor,
             hideBottomControls: true,
-            toolbarTitle: LocaleKeys.createProfile_crop.tr(),
+            toolbarTitle: "LocaleKeys.createProfile_crop.tr()",
             toolbarColor: AppColors.backgroundColor[50],
             toolbarWidgetColor: AppColors.primaryColor,
             cropStyle: CropStyle.circle,
@@ -107,7 +107,7 @@ mixin AddProfileImageMixin<T extends StatefulWidget> on State<T> {
             doneButtonTitle: LocaleKeys.common_okay.tr(),
             cropStyle: CropStyle.circle,
             aspectRatioLockEnabled: true,
-            title: LocaleKeys.createProfile_crop.tr(),
+            title: "LocaleKeys.createProfile_crop.tr()",
             aspectRatioPresets: [
               CropAspectRatioPreset.square,
             ],
