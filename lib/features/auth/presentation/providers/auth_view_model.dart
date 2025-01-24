@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/auth/data/models/auth_model.dart';
 import 'package:roof_admin_panel/features/auth/domain/usecases/sign_in_with_email_and_password_use_case.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
@@ -10,10 +12,7 @@ import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 class AuthViewModel extends ChangeNotifier {
   /// Creates an instance of [AuthViewModel].
   ///
-  /// The [authService] parameter is required to handle
-  /// authentication operations
-  /// The [signInWithPhoneNumberUsecase] parameter is required to sign in a user with phone number
-  /// The [verifyCodeUsecase] parameter is required to verify the code sent to the user's phone number
+
   AuthViewModel({
     required SignInWithEmailAndPasswordUseCase
         signInWithEmailAndPasswordUseCase,
@@ -22,9 +21,11 @@ class AuthViewModel extends ChangeNotifier {
 
   final SignInWithEmailAndPasswordUseCase _signInWithEmailAndPasswordUseCase;
 
+  /// Sign in with email and password.
   Future<void> signInWithEmailAndPassword(AuthModel credentials) async {
     await Toast.toastDataStateMessageWrapper(
       dataState: await _signInWithEmailAndPasswordUseCase(credentials),
+      successMessage: LocaleKeys.auth_signin_successfullySignedIn.tr(),
     );
     notifyListeners();
   }

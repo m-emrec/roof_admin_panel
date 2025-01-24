@@ -23,9 +23,7 @@ final _signInWithEmailAndPasswordProvider =
   );
 });
 
-/// Providers
-///
-
+/// ViewModel
 final authViewModelProvider =
     ChangeNotifierProvider.autoDispose<AuthViewModel>((ref) {
   Log.debug('authServiceViewModelProvider initialized');

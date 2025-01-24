@@ -3,7 +3,10 @@ import 'package:roof_admin_panel/features/auth/presentation/widgets/sign_in_form
 import 'package:roof_admin_panel/product/utility/constants/app_paddings.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 
+///
+/// SignIn page
 class SignIn extends StatefulWidget {
+  /// SignIn page
   const SignIn({super.key});
 
   @override
@@ -14,15 +17,13 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // title:
-          ),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
           padding: const AppPadding.verticalLSymmetric() +
               const AppPadding.horizontalLSymmetric(),
           child: Container(
+            // background image
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(

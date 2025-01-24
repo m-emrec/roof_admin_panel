@@ -14,7 +14,21 @@ import 'package:roof_admin_panel/product/widgets/buttons/buttons_import.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/password_field.dart';
 
+/// SignInForm widget
+///
+/// This widget is used to display the sign in form.
+///
+/// It has a form with two fields: email and password.
+///
+/// And a button to sign in.
 class SignInForm extends ConsumerStatefulWidget {
+  /// SignInForm widget
+  ///
+  /// This widget is used to display the sign in form.
+  ///
+  /// It has a form with two fields: email and password.
+  ///
+  /// And a button to sign in.
   const SignInForm({
     super.key,
   });
