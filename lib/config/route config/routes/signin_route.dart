@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/authentication_based_redirect.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
@@ -23,4 +24,14 @@ final class SignInRoute extends BaseRouteClass {
         path: "/sign-in",
         builder: (context, state) => const SignIn(),
       );
+
+  @override
+  String get name => "signIn";
+
+  @override
+  Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
+      (context, state) => const SignIn();
+
+  @override
+  String get path => "/sign-in";
 }
