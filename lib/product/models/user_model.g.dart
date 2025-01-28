@@ -46,12 +46,13 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       phoneNumber: json['phoneNumber'] as String?,
       mentors:
           (json['mentors'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      memberNumber: json['memberNumber'] as String?,
+      memberNumber:
+          UserModel.convertIntToString((json['memberNumber'] as num).toInt()),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'uid': instance.uid,
-      'memberNumber': instance.memberNumber,
+      'memberNumber': UserModel.convertStringToInteger(instance.memberNumber),
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'about': instance.about,

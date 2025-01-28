@@ -3,7 +3,8 @@ part of "../app_theme.dart";
 final class _FeedbackTileTheme {
   _FeedbackTileTheme._();
 
-  static final FeedbackTileTheme feedbackTileTheme = FeedbackTileTheme(
+  static final FeedbackTileThemeExtension feedbackTileTheme =
+      FeedbackTileThemeExtension(
     selectedTextColor: AppColors.backgroundColor[50],
     selectedTileColor: AppColors.primaryColor,
     subTitleTextStyle: TextStyles().textTheme.bodySmall,

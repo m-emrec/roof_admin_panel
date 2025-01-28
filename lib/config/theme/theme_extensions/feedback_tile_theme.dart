@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-final class FeedbackTileTheme extends ThemeExtension<FeedbackTileTheme> {
-  FeedbackTileTheme({
+final class FeedbackTileThemeExtension
+    extends ThemeExtension<FeedbackTileThemeExtension> {
+  FeedbackTileThemeExtension({
     this.selectedTextColor,
     this.selectedTileColor,
     this.subTitleTextStyle,
@@ -35,7 +36,7 @@ final class FeedbackTileTheme extends ThemeExtension<FeedbackTileTheme> {
   final ShapeBorder? shape;
 
   @override
-  ThemeExtension<FeedbackTileTheme> copyWith({
+  ThemeExtension<FeedbackTileThemeExtension> copyWith({
     Color? selectedColor,
     Color? selectedTileColor,
     TextStyle? subTitleTextStyle,
@@ -45,7 +46,7 @@ final class FeedbackTileTheme extends ThemeExtension<FeedbackTileTheme> {
     ShapeBorder? shape,
     TextStyle? selectedSubTitleStyle,
   }) {
-    return FeedbackTileTheme(
+    return FeedbackTileThemeExtension(
       selectedSubTitleStyle:
           selectedSubTitleStyle ?? this.selectedSubTitleStyle,
       selectedTextColor: selectedColor ?? this.selectedTextColor,
@@ -60,12 +61,12 @@ final class FeedbackTileTheme extends ThemeExtension<FeedbackTileTheme> {
   }
 
   @override
-  ThemeExtension<FeedbackTileTheme> lerp(
-    covariant ThemeExtension<FeedbackTileTheme>? other,
+  ThemeExtension<FeedbackTileThemeExtension> lerp(
+    covariant ThemeExtension<FeedbackTileThemeExtension>? other,
     double t,
   ) {
-    if (other is! FeedbackTileTheme) return this;
-    return FeedbackTileTheme(
+    if (other is! FeedbackTileThemeExtension) return this;
+    return FeedbackTileThemeExtension(
       selectedTextColor:
           Color.lerp(selectedTextColor, other.selectedTextColor, t),
       selectedTileColor:

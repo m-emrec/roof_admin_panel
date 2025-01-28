@@ -114,7 +114,6 @@
             "length": "Bu alan en az {} karakter olmalıdır."
         }
     },
-   
     "auth": {
         "signin": {
             "pageTitle": "Giriş Yap",
@@ -127,9 +126,30 @@
                 "email": "Geçerli bir e-posta adresi girin.",
                 "password": "Şifre en az 6 karakter olmalıdır."
             }
-
-           
         }
-    }
+    },
+
+    "membersView":{
+        "pageTitle": "Üyeler",
+        "memberCount": "{} Üye",
+        "addMember": "Üye Ekle",
+        "tableColumnLabels": {
+            "memberNumber": "Üye Numarası",
+            "name": "İsim",
+            "membershipEndDate": "Üyelik Bitiş Tarihi",
+            "phoneNumber": "Telefon Numarası",
+            "role": "Rol",
+            "age": "Yaş",
+            "memberShipDuration": "Ne Zamandır Üye"
+        }
+    },
+
+"sidebar": {
+    "members": "Üyerler",
+    "feedback": "Geri Bildirimler",
+    "settings": "Ayarlar",
+    "logout": "Çıkış Yap",
+    "accountSettings": "Hesap Ayarları"
+}
    
 }

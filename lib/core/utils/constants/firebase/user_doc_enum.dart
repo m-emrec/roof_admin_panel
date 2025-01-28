@@ -5,7 +5,9 @@ enum UserDocEnum {
   /// user's phone number
   phoneNumber,
   role,
+  uid,
   birthDate,
   gender,
   feedbacks,
+  memberNumber,
 }

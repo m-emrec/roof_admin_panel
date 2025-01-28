@@ -52,6 +52,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/editImage_icon.svg
   String get editImageIcon => 'assets/icons/editImage_icon.svg';
 
+  /// File path: assets/icons/filter_icon.svg
+  String get filterIcon => 'assets/icons/filter_icon.svg';
+
   /// File path: assets/icons/logout_icon.svg
   String get logoutIcon => 'assets/icons/logout_icon.svg';
 
@@ -61,6 +64,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/roof_logo.png
   AssetGenImage get roofLogo =>
       const AssetGenImage('assets/icons/roof_logo.png');
+
+  /// File path: assets/icons/sort_icon.svg
+  String get sortIcon => 'assets/icons/sort_icon.svg';
 
   /// File path: assets/icons/whatsapp_icon.svg
   String get whatsappIcon => 'assets/icons/whatsapp_icon.svg';
@@ -75,9 +81,11 @@ class $AssetsIconsGen {
         calendarIcon,
         complaintIcon,
         editImageIcon,
+        filterIcon,
         logoutIcon,
         phoneIcon,
         roofLogo,
+        sortIcon,
         whatsappIcon
       ];
 }

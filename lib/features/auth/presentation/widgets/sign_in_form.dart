@@ -4,8 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/auth/data/models/auth_model.dart';
-import 'package:roof_admin_panel/features/auth/presentation/providers/provider.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/sign_in_form_mixin.dart';
 import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 import 'package:roof_admin_panel/product/utility/constants/app_paddings.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
@@ -37,21 +36,11 @@ class SignInForm extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _SignInFormState();
 }
 
-class _SignInFormState extends ConsumerState<SignInForm> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
+class _SignInFormState extends ConsumerState<SignInForm> with SignInFormMixin {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Card(
         elevation: 0,
         clipBehavior: Clip.antiAlias,
@@ -62,38 +51,28 @@ class _SignInFormState extends ConsumerState<SignInForm> {
             padding: const AppPadding.horizontalxLSymmetric() +
                 const AppPadding.verticalxLSymmetric(),
             child: SizedBox(
-              width: 300,
+              width: inputFieldWidth,
               child: Column(
                 spacing: SpacingSizes.large,
                 children: [
                   CustomTextField(
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) =>
-                        ValidatorMethods(text: _emailController.text)
-                            .emptyField,
-                    controller: _emailController,
+                        ValidatorMethods(text: emailController.text).emptyField,
+                    controller: emailController,
                     label: LocaleKeys.auth_signin_email.tr(),
                   ),
                   PasswordField(
+                    signIn: signIn,
                     validator: (value) =>
-                        ValidatorMethods(text: _emailController.text)
+                        ValidatorMethods(text: passwordController.text)
                             .emptyField,
-                    passwordController: _passwordController,
+                    passwordController: passwordController,
                   ),
                   Row(
                     children: [
                       ResponsiveElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            ref
-                                .read(authViewModelProvider)
-                                .signInWithEmailAndPassword(
-                                  AuthModel(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                          }
-                        },
+                        onPressed: signIn,
                         child: Text(
                           LocaleKeys.auth_signin_pageTitle.tr(),
                         ),

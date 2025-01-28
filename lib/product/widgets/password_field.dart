@@ -7,9 +7,11 @@ class PasswordField extends StatefulWidget {
   const PasswordField({
     super.key,
     this.validator,
+    required this.signIn,
     required TextEditingController passwordController,
   }) : _passwordController = passwordController;
   final String? Function(String?)? validator;
+  final Future<void> Function() signIn;
   final TextEditingController _passwordController;
 
   @override
@@ -23,6 +25,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return Column(
       children: [
         CustomTextField(
+          onFieldSubmitted: (_) => widget.signIn(),
           validator: widget.validator,
           obscured: !_showPassword,
           controller: widget._passwordController,

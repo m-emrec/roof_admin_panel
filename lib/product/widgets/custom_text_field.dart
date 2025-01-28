@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/core/extensions/context_extension.dart';
+import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 
 import '../utility/constants/app_colors.dart';
 import '../utility/constants/text_styles.dart';
@@ -53,6 +54,7 @@ class CustomTextField extends TextFormField {
     this.focusNode,
     this.prefixIcon,
     this.color,
+    this.onFieldSubmitted,
     this.unfocusOnTapOutside = false,
     this.maxLength,
   });
@@ -69,7 +71,7 @@ class CustomTextField extends TextFormField {
   Widget? suffix;
   final bool unfocusOnTapOutside;
   final int? maxLength;
-
+  void Function(String)? onFieldSubmitted;
   @override
   FormFieldBuilder<String> get builder => (state) {
         assert(
@@ -84,6 +86,7 @@ class CustomTextField extends TextFormField {
               unfocusOnTapOutside ? focusNode?.unfocus() : null,
           focusNode: focusNode,
           validator: validator,
+          onFieldSubmitted: onFieldSubmitted,
           style: TextStyles().textTheme.bodyLarge,
           textCapitalization: textCapitalization,
           controller: controller,

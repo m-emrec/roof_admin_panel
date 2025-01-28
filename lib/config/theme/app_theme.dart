@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_bottom_sheet_them.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/verification_code_card_theme.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../../../product/utility/constants/app_colors.dart';
 import '../../../product/utility/constants/border_radiuses.dart';
@@ -32,6 +36,8 @@ part 'widget_themes/_text_selection_theme.dart';
 part 'widget_themes/_menu_button_theme.dart';
 part 'widget_themes/_feedback_tile_theme.dart';
 part 'widget_themes/_expansion_tile_theme.dart';
+part 'widget_themes/_side_bar_theme.dart';
+part 'widget_themes/custom_data_table_theme.dart.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -96,7 +102,9 @@ class AppTheme {
     datePickerTheme: _DatePickerTheme.datePickerTheme,
     tooltipTheme: _TooltipTheme.tooltipTheme,
     chipTheme: _ChipTheme.chipTheme,
-
+    dataTableTheme: const DataTableThemeData(
+      headingRowAlignment: MainAxisAlignment.start,
+    ),
     iconButtonTheme: _IconButtonTheme.iconButtonTheme,
   );
 
@@ -109,5 +117,7 @@ class AppTheme {
     _InlineTextButtonTheme.inlineTextButtonTheme,
     _CustomBottomSheetTheme.customBottomSheetTheme,
     _FeedbackTileTheme.feedbackTileTheme,
+    _SideBarTheme.sideBarTheme,
+    _CustomDataTableTheme.theme,
   ];
 }

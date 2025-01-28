@@ -34,6 +34,10 @@ final class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
   final String? uid;
+  @JsonKey(
+    fromJson: convertIntToString,
+    toJson: convertStringToInteger,
+  )
   final String? memberNumber;
   final String? imageUrl;
   final String? name;
@@ -116,6 +120,9 @@ final class UserModel {
       memberNumber: memberNumber ?? this.memberNumber,
     );
   }
+
+  static String? convertIntToString(int e) => e.toString();
+  static int convertStringToInteger(String? e) => int.tryParse(e ?? '') ?? 0;
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
   static Map<String, dynamic>? _cityToJson(City? city) => city?.toJson();

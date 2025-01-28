@@ -119,5 +119,23 @@ abstract class  LocaleKeys {
   static const auth_signin_validationError = 'auth.signin.validationError';
   static const auth_signin = 'auth.signin';
   static const auth = 'auth';
+  static const membersView_pageTitle = 'membersView.pageTitle';
+  static const membersView_memberCount = 'membersView.memberCount';
+  static const membersView_addMember = 'membersView.addMember';
+  static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
+  static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
+  static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';
+  static const membersView_tableColumnLabels_phoneNumber = 'membersView.tableColumnLabels.phoneNumber';
+  static const membersView_tableColumnLabels_role = 'membersView.tableColumnLabels.role';
+  static const membersView_tableColumnLabels_age = 'membersView.tableColumnLabels.age';
+  static const membersView_tableColumnLabels_memberShipDuration = 'membersView.tableColumnLabels.memberShipDuration';
+  static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
+  static const membersView = 'membersView';
+  static const sidebar_members = 'sidebar.members';
+  static const sidebar_feedback = 'sidebar.feedback';
+  static const sidebar_settings = 'sidebar.settings';
+  static const sidebar_logout = 'sidebar.logout';
+  static const sidebar_accountSettings = 'sidebar.accountSettings';
+  static const sidebar = 'sidebar';
 
 }
