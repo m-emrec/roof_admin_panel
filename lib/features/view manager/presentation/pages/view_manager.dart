@@ -1,4 +1,3 @@
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/constants/app_paddings.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';

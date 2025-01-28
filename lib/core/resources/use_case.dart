@@ -18,4 +18,9 @@ abstract class UseCase<Type, Params> {
 /// A class representing an absence of parameters.
 ///
 /// This class is used when a use case does not require any parameters.
-class NoParams {}
+class NoParams {
+  /// A class representing an absence of parameters.
+  ///
+  /// This class is used when a use case does not require any parameters.
+  const NoParams();
+}

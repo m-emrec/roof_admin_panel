@@ -12,16 +12,32 @@ import 'package:roof_admin_panel/product/widgets/table/table_row_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/user_avatar_item.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+/// This is the data source for the members table.
+/// It provides the data to the table.
+///
+/// It also handles the data related operations like sorting, filtering, and loading more data.
 class MembersTableDataSource extends DataGridSource {
-  List<DataGridRow> _dataGridRows = [];
-  final Ref ref;
+  /// This is the data source for the members table.
+  /// It provides the data to the table.
+  ///
+  /// It also handles the data related operations like sorting, filtering, and loading more data.
   MembersTableDataSource({
     required List<UserModel> users,
     required this.ref,
   }) {
     buildDataGridRows(users);
   }
+  List<DataGridRow> _dataGridRows = [];
 
+  /// The reference to the provider container.
+  ///
+  /// This is necessary because I need to call the [membersViewModelProvider]
+  /// to fetch the next 20 users.
+  final Ref ref;
+
+  /// Builds the data grid rows from the [users].
+  ///
+  /// This method is called when the data source is initialized.
   void buildDataGridRows(List<UserModel> users) {
     _dataGridRows = users
         .map<DataGridRow>(
@@ -74,10 +90,10 @@ class MembersTableDataSource extends DataGridSource {
 
   @override
   Future<void> handleLoadMoreRows() async {
-    final _users = ref.read(membersViewModelProvider);
+    final users = ref.read(membersViewModelProvider);
 
     await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
-          _users.value?.last.uid ?? '',
+          users.value?.last.uid ?? '',
         );
 
     buildDataGridRows(
@@ -100,59 +116,68 @@ class MembersTableDataSource extends DataGridSource {
     );
   }
 
+  /// Builds the cell widget based on the [columnName] and [value].
+  Widget _dataGridCellBuilder(TableNamesEnum columnName, dynamic value) {
+    if (value == null) {
+      return buildCell(
+        const TableNullItem(),
+      );
+    }
+    switch (columnName) {
+      case TableNamesEnum.membershipEndDate:
+        if (value is DateTime) {
+          return buildCell(
+            TableDateItem(date: value),
+          );
+        }
+      case TableNamesEnum.age:
+        return buildCell(
+          TableRowItem(
+            label: ConstantValues.getAge(value as DateTime).toString(),
+          ),
+        );
+
+      case TableNamesEnum.role:
+        value as List<String?>;
+        return buildCell(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (final role in value) TableRowItem(label: role.toString()),
+            ],
+          ),
+        );
+
+      case TableNamesEnum.memberName:
+        value as List<String?>;
+        return buildCell(
+          TableUserAvatar(
+            userName: value[0].toString(),
+            phoneNumber: value[1].toString(),
+          ),
+        );
+
+      /// I use default case here because rest of the fields are
+      /// [TableRowItem]
+      // ignore: no_default_cases
+      default:
+        return buildCell(
+          TableRowItem(label: value.toString()),
+        );
+    }
+    return Container(
+      alignment: Alignment.center,
+      child: Text(value.toString()),
+    );
+  }
+
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((dataGridCell) {
-        if (dataGridCell.value == null) {
-          return buildCell(
-            const TableNullItem(),
-          );
-        }
-        switch (dataGridCell.columnName.toTableNamesEnum()) {
-          case TableNamesEnum.membershipEndDate:
-            if (dataGridCell.value is DateTime) {
-              return buildCell(
-                TableDateItem(date: dataGridCell.value as DateTime),
-              );
-            }
-          case TableNamesEnum.age:
-            return buildCell(
-              TableRowItem(
-                label: ConstantValues.getAge(dataGridCell.value as DateTime)
-                    .toString(),
-              ),
-            );
-
-          case TableNamesEnum.role:
-            dataGridCell.value as List<String?>;
-            return buildCell(
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (final role in dataGridCell.value as List<String?>)
-                    TableRowItem(label: role.toString()),
-                ],
-              ),
-            );
-
-          case TableNamesEnum.memberName:
-            return buildCell(
-              TableUserAvatar(
-                userName: dataGridCell.value[0].toString(),
-                phoneNumber: dataGridCell.value[1].toString(),
-              ),
-            );
-          // ignore: no_default_cases
-          default:
-            return buildCell(
-              TableRowItem(label: dataGridCell.value.toString()),
-            );
-        }
-
-        return Container(
-          alignment: Alignment.center,
-          child: Text(dataGridCell.value.toString()),
+        return _dataGridCellBuilder(
+          dataGridCell.columnName.toTableNamesEnum(),
+          dataGridCell.value,
         );
       }).toList(),
     );

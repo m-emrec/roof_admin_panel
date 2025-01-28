@@ -8,7 +8,7 @@ import 'package:roof_admin_panel/product/models/user_model.dart';
 ///
 /// [fetchNext20Members] is responsible for fetching the next 20 members.
 ///
-/// [addMember] is responsible for adding a new member.
+/// [fetchTotalUsers] is responsible for fetching the total number of members.
 ///
 /// [MembersRepository] is implemented in [MembersRepositoryImpl].
 abstract class MembersRepository {
@@ -29,7 +29,4 @@ abstract class MembersRepository {
   ///
   /// It requires the [lastUserId] of the last member fetched in the previous call.
   Future<DataState<List<UserModel>>> fetchNext20Users(String lastUserId);
-
-  /// Add a new member.
-  // Future<DataState<void>> addUser(UserModel userModel);
 }

@@ -9,20 +9,24 @@ import 'package:roof_admin_panel/product/widgets/table/custom_table.dart';
 import 'package:roof_admin_panel/product/widgets/table/header_item.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-/// MembersTable is a widget that displays a table of members.
+/// [MembersTable] is a widget that displays a table of members.
 ///
-/// it mainly used on the MembersView page.
+/// it mainly used on the [MembersView] page.
 class MembersTable extends ConsumerWidget {
+  /// [MembersTable] is a widget that displays a table of members.
+  ///
+  /// it mainly used on the [MembersView] page.
   const MembersTable({
-    super.key,
     required this.members,
+    super.key,
   });
 
+  /// The list of members to display in the table.
   final List<UserModel> members;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final DataGridController controller = DataGridController();
+    final controller = DataGridController();
     return CustomTable(
       controller: controller,
       source: ref.watch(membersTableSourceProvider),

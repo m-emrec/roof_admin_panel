@@ -7,13 +7,24 @@ import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
+/// This is the title of the members table.
+///
+/// It displays the title and the total number of members.
+///
+/// It also contains a button to add a new member.
 class MembersTableTitle extends ConsumerWidget {
+  /// This is the title of the members table.
+  ///
+  /// It displays the title and the total number of members.
+  ///
+  /// It also contains a button to add a new member.
   const MembersTableTitle({
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final totalMembersCount = ref.watch(totalMembersCountProvider);
     return Row(
       spacing: SpacingSizes.medium,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -25,9 +36,10 @@ class MembersTableTitle extends ConsumerWidget {
             TitleWidget(
               title: LocaleKeys.membersView_pageTitle.tr(),
             ),
+            // Total members count
             Text(
               LocaleKeys.membersView_memberCount.tr(
-                args: [ref.watch(totalMembersCountProvider).value.toString()],
+                args: [totalMembersCount.value.toString()],
               ),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.darkTextColors[30],
@@ -35,6 +47,7 @@ class MembersTableTitle extends ConsumerWidget {
             ),
           ],
         ),
+        // Add member button
         ElevatedButton(
           onPressed: () {},
           child: Text(LocaleKeys.membersView_addMember.tr()),

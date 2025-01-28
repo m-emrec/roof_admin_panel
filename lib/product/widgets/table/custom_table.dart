@@ -46,7 +46,6 @@ class _CustomTableState extends State<CustomTable> {
               return FutureBuilder(
                 future: loadMoreRows(),
                 builder: (context, snapshot) {
-                  Log.debug("waiting");
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
                       height: 48,

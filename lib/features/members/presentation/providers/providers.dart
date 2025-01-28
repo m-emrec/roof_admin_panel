@@ -1,14 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/core/resources/data_state.dart';
+import 'package:roof_admin_panel/core/resources/use_case.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
+import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
 
+/// This provider is used to provide the [MembersDatabaseService] instance.
 final _membersDataBaseServiceProvider = Provider<MembersDatabaseService>((ref) {
   return MembersDatabaseService();
 });
@@ -16,6 +19,14 @@ final _membersDataBaseServiceProvider = Provider<MembersDatabaseService>((ref) {
 final _membersRepositoryProvider = Provider<MembersRepository>((ref) {
   return MembersRepositoryImpl(
     membersDatabaseService: ref.read(_membersDataBaseServiceProvider),
+  );
+});
+
+/////// UseCase providers
+final _fetchTotalUsersCountUseCaseProvider =
+    Provider<FetchTotalUsersCountUseCase>((ref) {
+  return FetchTotalUsersCountUseCase(
+    repository: ref.read(_membersRepositoryProvider),
   );
 });
 
@@ -31,8 +42,14 @@ final _fetchFirst20UsersUseCaseProvider =
   return FetchFirst20UsersUseCase(ref.read(_membersRepositoryProvider));
 });
 
+/// Providers
+
+/// This provider is used to get the total number of members in the database.
 final totalMembersCountProvider = FutureProvider<int>((ref) async {
-  return ref.read(_membersRepositoryProvider).fetchTotalUsers().then((value) {
+  return ref
+      .read(_fetchTotalUsersCountUseCaseProvider)
+      .call(const NoParams())
+      .then((value) {
     if (value is DataSuccess) {
       return value.resultData ?? 0;
     } else {
@@ -41,6 +58,7 @@ final totalMembersCountProvider = FutureProvider<int>((ref) async {
   });
 });
 
+/// This provider is used to provide the [MembersTableDataSource] instance.
 final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   return MembersTableDataSource(
     users: [],
@@ -48,6 +66,7 @@ final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   );
 });
 
+/// This provider is used to provide the [MembersViewModel] instance.
 final membersViewModelProvider =
     StateNotifierProvider<MembersViewModel, AsyncValue<List<UserModel>?>>(
         (ref) {

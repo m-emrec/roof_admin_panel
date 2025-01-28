@@ -3,9 +3,17 @@ import 'package:roof_admin_panel/features/members/data/services/members_database
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
 
+/// [MembersRepositoryImpl] is a concrete implementation of [MembersRepository]
+/// which is responsible for fetching users from the database.
 class MembersRepositoryImpl extends MembersRepository {
-  MembersRepositoryImpl({required this.membersDatabaseService});
+  /// [MembersRepositoryImpl] is a concrete implementation of [MembersRepository]
+  /// which is responsible for fetching users from the database.
+  MembersRepositoryImpl({
+    required this.membersDatabaseService,
+  });
 
+  /// [membersDatabaseService] is an instance of [MembersDatabaseService] which is
+  /// responsible for communicating with the database.
   final MembersDatabaseService membersDatabaseService;
 
   @override

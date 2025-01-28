@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_title.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
 import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 
+/// This is the view that displays the members table and member related actions.
 class MembersView extends ConsumerStatefulWidget {
+  /// This is the view that displays the members table and member related actions.
   const MembersView({super.key});
 
   @override
@@ -16,11 +19,6 @@ class MembersView extends ConsumerStatefulWidget {
 }
 
 class _MembersViewState extends ConsumerState<MembersView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return ref.watch(membersViewModelProvider).when(
@@ -30,18 +28,7 @@ class _MembersViewState extends ConsumerState<MembersView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const MembersTableTitle(),
-            Row(
-              spacing: SpacingSizes.medium,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SvgPicture.asset(
-                  Assets.icons.filterIcon,
-                ),
-                SvgPicture.asset(
-                  Assets.icons.sortIcon,
-                ),
-              ],
-            ),
+            const FilterAndSortRow(),
             Expanded(
               child: MembersTable(members: users ?? []),
             ),

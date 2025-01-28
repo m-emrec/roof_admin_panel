@@ -5,10 +5,13 @@ import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
-import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
+/// This is the view model that provides the members data to the view.
+/// It fetches the data from the use case and provides it to the view.
 class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
+  /// This is the view model that provides the members data to the view.
+  /// It fetches the data from the use case and provides it to the view.
   MembersViewModel(
     MembersTableDataSource membersTableDataSource,
     FetchFirst20UsersUseCase fetchFirst20UsersUseCase,
@@ -19,38 +22,35 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
         super(
           const AsyncLoading(),
         ) {
+    // initially call the fetchFirst20Users
     fetchFirst20Users();
   }
   final MembersTableDataSource _membersTableDataSource;
   final FetchFirst20UsersUseCase _fetchFirst20UsersUseCase;
   final FetchNext20UsersUseCase _fetchNext20UsersUseCase;
 
+  /// This method fetches the first 20 users from the use case.
+  /// It updates the state based on the result.
   Future<void> fetchFirst20Users() async {
     state = const AsyncLoading();
     final result = await _fetchFirst20UsersUseCase(NoParams());
     if (result is DataSuccess) {
-      // result.resultData?.sort(
-      //   (a, b) => int.parse(a.memberNumber ?? "  ")
-      //       .compareTo(int.parse(b.memberNumber ?? "")),
-      // );
       state = AsyncData(result.resultData);
-
       _membersTableDataSource.buildDataGridRows(result.resultData!);
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);
     }
   }
 
+  /// This method fetches the next 20 users from the use case.
+  /// It updates the state based on the result.
+  /// [lastUserId] is the id of the last user in the current list.
+  ///
+  /// This method is called when the user scrolls to the end of the list.
   Future<void> fetchNext20Users(String lastUserId) async {
     final result = await _fetchNext20UsersUseCase(lastUserId);
     if (result is DataSuccess) {
-      // result.resultData?.sort(
-      //   (a, b) => int.parse(a.memberNumber ?? "  ")
-      //       .compareTo(int.parse(b.memberNumber ?? "")),
-      // );
       state = AsyncData([...state.value!, ...result.resultData!]);
-      // Log.debug(state);
-      // _membersTableDataSource.buildDataGridRows(state!);
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);
     }
