@@ -5,6 +5,7 @@ import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
+import 'package:roof_admin_panel/features/members/domain/usecases/add_new_user_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
@@ -30,6 +31,11 @@ final _fetchTotalUsersCountUseCaseProvider =
   return FetchTotalUsersCountUseCase(
     repository: ref.read(_membersRepositoryProvider),
   );
+});
+
+final _addNewUserUseCaseProvider = Provider<AddNewUserUseCase>((ref) {
+  return AddNewUserUseCase(
+      membersRepository: ref.read(_membersRepositoryProvider));
 });
 
 final _fetchNext20UserUseCaseProvider =
@@ -84,6 +90,7 @@ final membersViewModelProvider =
   return MembersViewModel(
     ref.read(membersTableSourceProvider),
     ref.read(_fetchFirst20UsersUseCaseProvider),
+    ref.read(_addNewUserUseCaseProvider),
     ref.read(_fetchNext20UserUseCaseProvider),
   );
 });

@@ -1,4 +1,5 @@
 import 'package:roof_admin_panel/core/resources/data_state.dart';
+import 'package:roof_admin_panel/core/resources/id_generator.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
@@ -36,6 +37,18 @@ class MembersRepositoryImpl extends MembersRepository {
   Future<DataState<int>> fetchTotalUsers() {
     return DataState.handleDataState(() async {
       return membersDatabaseService.fetchTotalUsersCount();
+    });
+  }
+
+  @override
+  Future<DataState<UserModel>> addNewUser(UserModel userModel) {
+    return DataState.handleDataState(() async {
+      await membersDatabaseService.addNewUser(
+        userModel.copyWith(
+          uid: IDGenerator.generateId(userModel.phoneNumber ?? ""),
+        ),
+      );
+      return userModel;
     });
   }
 }

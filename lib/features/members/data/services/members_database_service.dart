@@ -2,6 +2,7 @@ import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_ut
 import 'package:roof_admin_panel/core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:roof_admin_panel/core/utils/constants/firebase/collection_enums.dart';
 import 'package:roof_admin_panel/core/utils/constants/firebase/user_doc_enum.dart';
+import 'package:roof_admin_panel/product/models/user_model.dart';
 
 /// [MembersDatabaseService] is a class that is responsible for communicating
 /// with the database to fetch users.
@@ -12,6 +13,15 @@ import 'package:roof_admin_panel/core/utils/constants/firebase/user_doc_enum.dar
 ///
 ///
 class MembersDatabaseService extends FirebaseUtils with FirestoreUtils {
+  /// Add a new user to the database.
+  Future<void> addNewUser(UserModel user) async {
+    await addDocumentToCollectionWithCustomId(
+      collection: CollectionEnum.users,
+      docId: user.uid ?? "",
+      data: user.toJson(),
+    );
+  }
+
   /// Get the total number of users in the database.
   /// This function returns the total number of users in the database.
   ///
