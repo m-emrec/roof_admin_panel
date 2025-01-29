@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_title.dart';
-import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
 import 'package:roof_admin_panel/product/utility/logger/logger.dart';
+import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 
 /// This is the view that displays the members table and member related actions.
 class MembersView extends ConsumerStatefulWidget {
@@ -37,13 +36,13 @@ class _MembersViewState extends ConsumerState<MembersView> {
       },
       loading: () {
         return const Center(
-          child: CircularProgressIndicator(),
+          child: LoadingIndicator(),
         );
       },
       error: (error, stackTrace) {
         Log.error(error.toString());
-        return const Center(
-          child: Text('Error'),
+        return Center(
+          child: Card(child: Text(error.toString())),
         );
       },
     );

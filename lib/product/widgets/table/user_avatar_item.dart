@@ -4,16 +4,28 @@ import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 import 'package:roof_admin_panel/core/utils/widgets/user_avatar.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
 
+/// This widget displays the user avatar,name and phone number in a cell.
+///
+/// Use it when you want to display the user avatar, name and phone number in a cell.
 class TableUserAvatar extends StatelessWidget {
-  final String userName;
-  final String phoneNumber;
-  final String? imageUrl;
+  /// This widget displays the user avatar,name and phone number in a cell.
+  ///
+  /// Use it when you want to display the user avatar, name and phone number in a cell.
   const TableUserAvatar({
-    super.key,
-    required this.userName,
     required this.phoneNumber,
+    required this.userName,
+    super.key,
     this.imageUrl,
   });
+
+  /// The name of the user.
+  final String userName;
+
+  /// The phone number of the user.
+  final String phoneNumber;
+
+  /// The image url of the user.
+  final String? imageUrl;
 
   @override
   Widget build(BuildContext context) {

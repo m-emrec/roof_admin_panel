@@ -27,28 +27,44 @@ abstract class Log {
   /// Logs a debug message.
   ///
   /// [message] The message to log.
-  static void debug(dynamic message) {
-    _logger.d(message.toString());
+  static void debug(dynamic message, [StackTrace? stackTrace]) {
+    _logger.d(
+      message.toString(),
+      stackTrace: stackTrace ?? StackTrace.current,
+      time: DateTime.now(),
+    );
   }
 
   /// Logs an info message.
   ///
   /// [message] The message to log.
-  static void info(String message) {
-    _logger.i(message);
+  static void info(dynamic message, [StackTrace? stackTrace]) {
+    _logger.i(
+      message.toString(),
+      time: DateTime.now(),
+      stackTrace: stackTrace ?? StackTrace.current,
+    );
   }
 
   /// Logs a warning message.
   ///
   /// [message] The message to log.
-  static void warning(String message) {
-    _logger.w(message);
+  static void warning(dynamic message) {
+    _logger.w(
+      message.toString(),
+      stackTrace: StackTrace.current,
+      time: DateTime.now(),
+    );
   }
 
   /// Logs an error message.
   ///
   /// [message] The message to log.
-  static void error(String message) {
-    _logger.e(message);
+  static void error(dynamic message, [StackTrace? stackTrace]) {
+    _logger.e(
+      message.toString(),
+      time: DateTime.now(),
+      stackTrace: stackTrace ?? StackTrace.current,
+    );
   }
 }

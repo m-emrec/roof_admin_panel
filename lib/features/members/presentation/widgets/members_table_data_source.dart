@@ -4,7 +4,7 @@ import 'package:roof_admin_panel/core/constants/enums/roles.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
-import 'package:roof_admin_panel/product/utility/constants/constant_values.dart';
+import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_null_item.dart';
@@ -25,7 +25,7 @@ class MembersTableDataSource extends DataGridSource {
     required List<UserModel> users,
     required this.ref,
   }) {
-    buildDataGridRows(users);
+    generateUserDataGridRows(users);
   }
   List<DataGridRow> _dataGridRows = [];
 
@@ -38,33 +38,33 @@ class MembersTableDataSource extends DataGridSource {
   /// Builds the data grid rows from the [users].
   ///
   /// This method is called when the data source is initialized.
-  void buildDataGridRows(List<UserModel> users) {
+  void generateUserDataGridRows(List<UserModel> users) {
     _dataGridRows = users
         .map<DataGridRow>(
           (e) => DataGridRow(
             cells: [
               DataGridCell<String>(
-                columnName: TableNamesEnum.memberNumber.name,
+                columnName: MemberTableNames.memberNumber.name,
                 value: e.memberNumber,
               ),
               DataGridCell<List<String?>>(
-                columnName: TableNamesEnum.memberName.name,
+                columnName: MemberTableNames.memberName.name,
                 value: [e.name, e.phoneNumber],
               ),
               DataGridCell<DateTime>(
-                columnName: TableNamesEnum.membershipEndDate.name,
+                columnName: MemberTableNames.membershipEndDate.name,
                 value: e.membershipEndDate,
               ),
               DataGridCell<List<String?>>(
-                columnName: TableNamesEnum.role.name,
+                columnName: MemberTableNames.role.name,
                 value: e.role?.map((e) => e?.text()).toList(),
               ),
-              DataGridCell<DateTime>(
-                columnName: TableNamesEnum.age.name,
-                value: e.birthDate,
+              DataGridCell<int>(
+                columnName: MemberTableNames.age.name,
+                value: e.birthDate?.getAge(),
               ),
               DataGridCell<String>(
-                columnName: TableNamesEnum.membershipDuration.name,
+                columnName: MemberTableNames.membershipDuration.name,
                 value: DateTime.now()
                     .difference(e.membershipStartDate ?? DateTime.now())
                     .inDays
@@ -78,6 +78,7 @@ class MembersTableDataSource extends DataGridSource {
 
   @override
   List<DataGridRow> get rows => _dataGridRows;
+
   @override
   bool onCellBeginEdit(
     DataGridRow dataGridRow,
@@ -96,7 +97,7 @@ class MembersTableDataSource extends DataGridSource {
           users.value?.last.uid ?? '',
         );
 
-    buildDataGridRows(
+    generateUserDataGridRows(
       ref.read(membersViewModelProvider).value ?? [],
     );
     notifyListeners();
@@ -109,48 +110,48 @@ class MembersTableDataSource extends DataGridSource {
   }
 
   /// Builds the cell widget
-  Container buildCell(Widget child) {
+  Container cell(Widget child) {
     return Container(
       alignment: Alignment.center,
       child: child,
     );
   }
 
-  /// Builds the cell widget based on the [columnName] and [value].
-  Widget _dataGridCellBuilder(TableNamesEnum columnName, dynamic value) {
+  /// Builds the cell widget based on the [columnName] and given [value].
+  Widget _cellBuilder(MemberTableNames columnName, dynamic value) {
     if (value == null) {
-      return buildCell(
+      return cell(
         const TableNullItem(),
       );
     }
     switch (columnName) {
-      case TableNamesEnum.membershipEndDate:
+      case MemberTableNames.membershipEndDate:
         if (value is DateTime) {
-          return buildCell(
+          return cell(
             TableDateItem(date: value),
           );
         }
-      case TableNamesEnum.age:
-        return buildCell(
-          TableRowItem(
-            label: ConstantValues.getAge(value as DateTime).toString(),
+      case MemberTableNames.age:
+        return cell(
+          TableCellItem(
+            label: value.toString(),
           ),
         );
 
-      case TableNamesEnum.role:
+      case MemberTableNames.role:
         value as List<String?>;
-        return buildCell(
+        return cell(
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              for (final role in value) TableRowItem(label: role.toString()),
+              for (final role in value) TableCellItem(label: role.toString()),
             ],
           ),
         );
 
-      case TableNamesEnum.memberName:
+      case MemberTableNames.memberName:
         value as List<String?>;
-        return buildCell(
+        return cell(
           TableUserAvatar(
             userName: value[0].toString(),
             phoneNumber: value[1].toString(),
@@ -161,8 +162,8 @@ class MembersTableDataSource extends DataGridSource {
       /// [TableRowItem]
       // ignore: no_default_cases
       default:
-        return buildCell(
-          TableRowItem(label: value.toString()),
+        return cell(
+          TableCellItem(label: value.toString()),
         );
     }
     return Container(
@@ -175,7 +176,7 @@ class MembersTableDataSource extends DataGridSource {
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((dataGridCell) {
-        return _dataGridCellBuilder(
+        return _cellBuilder(
           dataGridCell.columnName.toTableNamesEnum(),
           dataGridCell.value,
         );

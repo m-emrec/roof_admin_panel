@@ -1,12 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/core/resources/data_state.dart';
 import 'package:roof_admin_panel/core/resources/use_case.dart';
+import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
+import 'package:roof_admin_panel/features/members/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
@@ -58,11 +60,20 @@ final totalMembersCountProvider = FutureProvider<int>((ref) async {
   });
 });
 
+/// This provider is used to provide the list of filter conditions for the given column.
+
 /// This provider is used to provide the [MembersTableDataSource] instance.
 final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   return MembersTableDataSource(
     users: [],
     ref: ref,
+  );
+});
+
+final filterNotifierProvider =
+    StateNotifierProvider<FilterNotifier, List<FilterModel>>((ref) {
+  return FilterNotifier(
+    ref.watch(membersTableSourceProvider),
   );
 });
 

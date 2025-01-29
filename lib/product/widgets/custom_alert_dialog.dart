@@ -19,7 +19,7 @@ class CustomAlertDialog extends StatefulWidget {
 
   static Future<void> showAlertDialog({
     required BuildContext context,
-    Widget? content,
+    required Widget content,
     Widget? title,
     List<Widget>? actions,
     bool barrierDismissible = false,
@@ -29,14 +29,14 @@ class CustomAlertDialog extends StatefulWidget {
       await showDialog<Widget>(
         barrierDismissible: barrierDismissible,
         context: context,
-        builder: (context) => PopScope(
-          canPop: barrierDismissible,
-          child: CustomAlertDialog(
-            title: title,
-            content: content,
-            actions: actions,
-          ),
-        ),
+        builder: (context) =>
+            PopScope(canPop: barrierDismissible, child: content
+                //  CustomAlertDialog(
+                //   title: title,
+                //   content: content,
+                //   actions: actions,
+                // ),
+                ),
       );
     }
   }

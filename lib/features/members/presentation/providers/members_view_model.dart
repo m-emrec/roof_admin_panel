@@ -29,14 +29,25 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   final FetchFirst20UsersUseCase _fetchFirst20UsersUseCase;
   final FetchNext20UsersUseCase _fetchNext20UsersUseCase;
 
+  /// This is the list of users that is displayed
+  /// Purpose of this list is to store the users data.
+  /// When the user apply filters or sort the data, state will be updated
+  /// but this list will remain the same.
+  ///
+  /// When the user clears the filters or sort, this list will be used to
+  /// display the original data.
+  // List<UserModel>? users;
+
   /// This method fetches the first 20 users from the use case.
   /// It updates the state based on the result.
   Future<void> fetchFirst20Users() async {
     state = const AsyncLoading();
-    final result = await _fetchFirst20UsersUseCase(NoParams());
+
+    final result = await _fetchFirst20UsersUseCase(const NoParams());
     if (result is DataSuccess) {
       state = AsyncData(result.resultData);
-      _membersTableDataSource.buildDataGridRows(result.resultData!);
+      // users = state.value;
+      _membersTableDataSource.generateUserDataGridRows(result.resultData!);
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);
     }
@@ -51,6 +62,7 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
     final result = await _fetchNext20UsersUseCase(lastUserId);
     if (result is DataSuccess) {
       state = AsyncData([...state.value!, ...result.resultData!]);
+      // users = state.value;
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);
     }

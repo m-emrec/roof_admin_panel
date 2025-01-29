@@ -32,42 +32,42 @@ class MembersTable extends ConsumerWidget {
       source: ref.watch(membersTableSourceProvider),
       columns: <GridColumn>[
         GridColumn(
-          columnName: TableNamesEnum.memberNumber.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.memberNumber.name,
+          label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_memberNumber.tr(),
           ),
           filterIconPosition: ColumnHeaderIconPosition.start,
         ),
         GridColumn(
-          columnName: TableNamesEnum.memberName.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.memberName.name,
+          label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_name.tr(),
           ),
           columnWidthMode: ColumnWidthMode.auto,
           allowEditing: false,
         ),
         GridColumn(
-          columnName: TableNamesEnum.membershipEndDate.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.membershipEndDate.name,
+          label: ColumnTitle(
             title:
                 LocaleKeys.membersView_tableColumnLabels_membershipEndDate.tr(),
           ),
         ),
         GridColumn(
-          columnName: TableNamesEnum.role.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.role.name,
+          label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_role.tr(),
           ),
         ),
         GridColumn(
-          columnName: TableNamesEnum.age.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.age.name,
+          label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_age.tr(),
           ),
         ),
         GridColumn(
-          columnName: TableNamesEnum.membershipDuration.name,
-          label: HeaderItem(
+          columnName: MemberTableNames.membershipDuration.name,
+          label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_memberShipDuration
                 .tr(),
           ),

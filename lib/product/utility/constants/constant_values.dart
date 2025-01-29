@@ -54,19 +54,6 @@ class ConstantValues {
     return diff < MEMBERSHIP_EXPIRE_WARNING_THRESHOLD;
   }
 
-  /// getAge method calculates the age of the user based on the birth date.
-  static int getAge(DateTime birthDate) {
-    final now = DateTime.now();
-    final age = now.year - birthDate.year;
-
-    if (now.month < birthDate.month ||
-        (now.month == birthDate.month && now.day < birthDate.day)) {
-      return age - 1;
-    }
-
-    return age;
-  }
-
   /// DateTime formatter for the application.
   /// Formats the date in the format " dd MMM yyyy".
   /// Locale is set to the current locale of the application.

@@ -3,6 +3,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table
 import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 import 'package:roof_admin_panel/product/utility/constants/constant_values.dart';
+import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 
 /// TableDateItem is a widget that shows the date in a table cell.
 /// It is used in the [CustomDataTable] widget.
@@ -29,13 +30,13 @@ class TableDateItem extends StatelessWidget {
   ///
   ///  ```
   ///
-  const TableDateItem({super.key, required this.date});
+  const TableDateItem({required this.date, super.key});
   final DateTime date;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      ConstantValues.formattedDate(context, date),
+      date.formatDate(context),
       style: context.theme
           .extension<CustomDataTableThemeExtension>()
           ?.rowItemTextStyle

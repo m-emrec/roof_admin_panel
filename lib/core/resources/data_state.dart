@@ -33,11 +33,11 @@ abstract class DataState<T> {
       final data = await func();
 
       return DataSuccess(data);
-    } on FirebaseException catch (e) {
-      Log.error(e.code);
+    } on FirebaseException catch (e, stackTrace) {
+      Log.error(e.code, stackTrace);
       return DataFailed(e.code);
-    } catch (e) {
-      Log.error(e.toString());
+    } catch (e, stackTrace) {
+      Log.error(e.toString(), stackTrace);
       return DataFailed(e.toString());
     }
   }
