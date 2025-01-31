@@ -85,6 +85,7 @@ abstract class  LocaleKeys {
   static const common_cancel = 'common.cancel';
   static const common_selectAll = 'common.selectAll';
   static const common_cut = 'common.cut';
+  static const common_retry = 'common.retry';
   static const common_copy = 'common.copy';
   static const common_paste = 'common.paste';
   static const common_undo = 'common.undo';
@@ -122,6 +123,12 @@ abstract class  LocaleKeys {
   static const membersView_pageTitle = 'membersView.pageTitle';
   static const membersView_memberCount = 'membersView.memberCount';
   static const membersView_addMember = 'membersView.addMember';
+  static const membersView_addUserDialog_title = 'membersView.addUserDialog.title';
+  static const membersView_addUserDialog_name = 'membersView.addUserDialog.name';
+  static const membersView_addUserDialog_phoneNumber = 'membersView.addUserDialog.phoneNumber';
+  static const membersView_addUserDialog_role = 'membersView.addUserDialog.role';
+  static const membersView_addUserDialog_gender = 'membersView.addUserDialog.gender';
+  static const membersView_addUserDialog = 'membersView.addUserDialog';
   static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
   static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
   static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';

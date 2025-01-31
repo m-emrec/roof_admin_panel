@@ -61,7 +61,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog.adaptive(
+    return AlertDialog(
       backgroundColor: AppColors.backgroundColor,
       actionsAlignment: MainAxisAlignment.end,
       actions: widget.actions ??

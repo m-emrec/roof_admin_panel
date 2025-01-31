@@ -25,10 +25,7 @@ enum Role {
   /// A custom role that is not defined in the enum.
   other,
   ;
-}
 
-/// An extension that provides utility methods for the [Role] enum.
-extension RoleExtension on Role {
   /// Returns the localized text for the role.
   String text([String? otherRole]) {
     switch (this) {
@@ -55,6 +52,35 @@ extension RoleExtension on Role {
     }
   }
 }
+
+// /// An extension that provides utility methods for the [Role] enum.
+// extension RoleExtension on Role {
+//   /// Returns the localized text for the role.
+//   String text([String? otherRole]) {
+//     switch (this) {
+//       case Role.admin:
+//         return tr(LocaleKeys.roles_admin);
+//       case Role.member:
+//         return tr(LocaleKeys.roles_member);
+//       case Role.guest:
+//         return tr(LocaleKeys.roles_guest);
+//       case Role.approvedGuest:
+//         return tr(LocaleKeys.roles_approvedGuest);
+//       // if it is [other] role, that means the role is not defined in the enum.
+//       // and it will be received from the database directly
+//       case Role.other:
+//         assert(
+//           this == Role.other && otherRole != null,
+//           'otherRole must not be null',
+//         );
+//         return otherRole ?? "";
+//       case Role.mentat:
+//         return tr(LocaleKeys.roles_mentat);
+//       case Role.mentor:
+//         return tr(LocaleKeys.roles_mentor);
+//     }
+//   }
+// }
 
 /// An extension that provides utility methods for the [String] class.
 extension RoleStringExtension on String {

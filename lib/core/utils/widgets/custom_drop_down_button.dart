@@ -35,10 +35,12 @@ class _CustomDropDownButtonState<T> extends State<CustomDropDownButton<T>> {
     super.initState();
   }
 
+  FocusNode focusNode = FocusNode();
   T? selected;
   @override
   Widget build(BuildContext context) {
     return DropdownButton<T>(
+      focusNode: focusNode,
       borderRadius: const AppBorderRadius.medium(),
       dropdownColor: AppColors.backgroundColor[80],
       selectedItemBuilder: (context) => widget.items
@@ -56,6 +58,7 @@ class _CustomDropDownButtonState<T> extends State<CustomDropDownButton<T>> {
       onChanged: (T? value) {
         selected = value;
         widget.onChanged(value);
+        focusNode.unfocus();
         setState(() {});
       },
       value: selected,

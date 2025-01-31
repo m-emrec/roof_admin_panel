@@ -86,6 +86,7 @@
         "cancel": "İptal",
         "selectAll": "Tümünü Seç",
         "cut": "Kes",
+        "retry": "Tekrar Dene",
         "copy": "Kopyala",
         "paste": "Yapıştır",
         "undo": "Geri Al",
@@ -133,6 +134,14 @@
         "pageTitle": "Üyeler",
         "memberCount": "{} Üye",
         "addMember": "Üye Ekle",
+        "addUserDialog":{
+            "title": "Üye Ekle",
+            "name": "İsim",
+            "phoneNumber": "Telefon Numarası",
+            "role": "Hangi Rolde Eklemek İstersin?",
+            "gender":"Cinsiyet"
+        },
+
         "tableColumnLabels": {
             "memberNumber": "Üye Numarası",
             "name": "İsim",

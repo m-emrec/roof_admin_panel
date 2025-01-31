@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/add%20new%20user/add_new_user_dialog.dart';
 import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
+import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// This is the title of the members table.
@@ -49,7 +51,10 @@ class MembersTableTitle extends ConsumerWidget {
         ),
         // Add member button
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => CustomAlertDialog.showAlertDialog(
+            context: context,
+            content: AddNewUserDialog(),
+          ),
           child: Text(LocaleKeys.membersView_addMember.tr()),
         ),
       ],
