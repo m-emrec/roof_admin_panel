@@ -60,6 +60,7 @@ final class UserModel {
   final String? mentatId;
   final List<String>? mentors;
   final List<String>? members;
+
   final List<Role?>? role;
   final String? phoneNumber;
   @JsonKey(
