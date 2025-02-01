@@ -45,8 +45,8 @@ class MembersRepositoryImpl extends MembersRepository {
     return DataState.handleDataState(() async {
       await membersDatabaseService.addNewUser(
         userModel.copyWith(
-          uid: IDGenerator.generateId(userModel.phoneNumber ?? ""),
-        ),
+            // uid: IDGenerator.generateId(userModel.phoneNumber ?? ""),
+            ),
       );
       return userModel;
     });

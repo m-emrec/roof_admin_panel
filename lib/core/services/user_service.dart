@@ -16,13 +16,13 @@ class UserService extends FirebaseUtils with FirestoreUtils {
   List<String>? _userRole;
 
   /// Returns the role of the user with the specified UID.
-  Future<List<String>?>? getCurrentUserRole(String phoneNumber) async {
+  Future<List<String>?>? getCurrentUserRole() async {
     if (_userRole != null) {
       return _userRole!;
     } else {
       try {
         // ignore: join_return_with_assignment
-        _userRole = await _checkRole(phoneNumber);
+        _userRole = await _checkRole(uid ?? "");
         return _userRole;
       } catch (e) {
         Log.error('Error getting user role: $e');
@@ -32,10 +32,10 @@ class UserService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// Returns the role of the user with the given phone number.
-  Future<List<String>?>? getUserRole(String phoneNumber) async {
+  Future<List<String>?>? getUserRole(String id) async {
     try {
       // ignore: join_return_with_assignment
-      final role = await _checkRole(phoneNumber);
+      final role = await _checkRole(id);
       return role;
     } catch (e) {
       Log.error('Error getting user role: $e');
@@ -44,10 +44,10 @@ class UserService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// Checks the role of the user with the specified UID.
-  Future<List<String>> _checkRole(String phoneNumber) async {
+  Future<List<String>> _checkRole(String id) async {
     final user = await getDocumentRef(
       collection: CollectionEnum.users,
-      docId: IDGenerator.generateId(phoneNumber),
+      docId: id,
     ).get();
 
     final role = await user.get(UserDocEnum.role.name);
@@ -66,7 +66,7 @@ class UserService extends FirebaseUtils with FirestoreUtils {
     try {
       final user = await getDocumentRef(
         collection: CollectionEnum.users,
-        docId: id ?? '',
+        docId: uid ?? '',
       ).get();
 
       final hasProfile = await user.get(UserDocEnum.birthDate.name) != null;

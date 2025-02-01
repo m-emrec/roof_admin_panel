@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../id_generator.dart';
 
 /// A utility class that provides Firebase services.
 /// This class contains instances of Firebase services like Firestore, Auth,
@@ -23,7 +22,7 @@ import '../id_generator.dart';
 ///
 /// - [authStateChanges] - A stream that emits authentication state changes.
 ///
-/// - [id] - The ID of the currently authenticated user based on their phone number.
+/// - [uid] - The ID of the currently authenticated user based on their phone number.
 ///
 /// This class is used in the Firebase utility classes.
 abstract class FirebaseUtils {
@@ -53,5 +52,5 @@ abstract class FirebaseUtils {
   // String? get uid => auth.currentUser?.uid;
 
   /// The ID of the currently authenticated user based on their phone number,
-  String? get id => IDGenerator.generateId(currentUser?.phoneNumber ?? '');
+  String? get uid => currentUser?.uid;
 }

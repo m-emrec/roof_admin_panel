@@ -153,7 +153,7 @@ mixin FirestoreUtils on FirebaseUtils {
   /// This method retrieves the document reference for the current user's
   ///  document in the Firestore collection specified by [CollectionEnum.users].
   Future<DocumentReference<Map<String, dynamic>>> getUserDocRef() async =>
-      getCollectionRef(CollectionEnum.users).doc(id);
+      getCollectionRef(CollectionEnum.users).doc(uid);
 
   /// Updates the current user's data in Firestore.
   /// This method updates the user data in Firestore with the provided data.
