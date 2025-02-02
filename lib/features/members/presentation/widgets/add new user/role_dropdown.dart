@@ -4,6 +4,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/core/constants/enums/roles.dart';
 import 'package:roof_admin_panel/core/utils/widgets/custom_drop_down_button.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
+import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 
 class RoleDropdown extends StatelessWidget {
   final TextEditingController controller;
@@ -14,16 +15,21 @@ class RoleDropdown extends StatelessWidget {
     return Section(
       required: true,
       title: LocaleKeys.membersView_addUserDialog_role.tr(),
-      child: CustomDropDownButton(
-        items: Role.values
-            .map(
-              (e) => e.text(""),
-            )
-            .toList(),
-        initialValue: Role.guest.text(),
-        onChanged: (value) {
-          controller.text = value.toString();
-        },
+      child: ValidationWrapper(
+        validator: (p0) => controller.text.isEmpty
+            ? LocaleKeys.common_validationError_required.tr()
+            : null,
+        child: CustomDropDownButton(
+          items: Role.values
+              .map(
+                (e) => e.localizedText(""),
+              )
+              .toList(),
+          initialValue: controller.text,
+          onChanged: (value) {
+            controller.text = value.toString();
+          },
+        ),
       ),
     );
   }

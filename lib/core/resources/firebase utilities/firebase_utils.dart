@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -49,8 +50,9 @@ abstract class FirebaseUtils {
 
   /// The UID of the currently authenticated user, or null if no user is
   /// signed in.
-  // String? get uid => auth.currentUser?.uid;
-
-  /// The ID of the currently authenticated user based on their phone number,
   String? get uid => currentUser?.uid;
+
+  /// An instance of [FirebaseFunctions] for interacting with Firebase Functions.
+  FirebaseFunctions get functions =>
+      FirebaseFunctions.instanceFor(region: 'europe-west1');
 }

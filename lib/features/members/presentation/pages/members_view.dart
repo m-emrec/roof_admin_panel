@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +29,18 @@ class _MembersViewState extends ConsumerState<MembersView> {
           spacing: SpacingSizes.extraSmall,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ElevatedButton(
+              onPressed: () async {
+                final result =
+                    await FirebaseFunctions.instanceFor(region: "europe-west1")
+                        .httpsCallable("canUserAuthenticate")
+                        .call({
+                  "phoneNumber": "+905250282812",
+                });
+                Log.info(result.data);
+              },
+              child: Text("Test"),
+            ),
             const MembersTableTitle(),
             const FilterAndSortRow(),
             Expanded(

@@ -1,8 +1,10 @@
+import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_cloud_functions_utils.dart';
 import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:roof_admin_panel/core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:roof_admin_panel/core/utils/constants/firebase/collection_enums.dart';
 import 'package:roof_admin_panel/core/utils/constants/firebase/user_doc_enum.dart';
 import 'package:roof_admin_panel/product/models/user_model.dart';
+import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 
 /// [MembersDatabaseService] is a class that is responsible for communicating
 /// with the database to fetch users.
@@ -12,11 +14,30 @@ import 'package:roof_admin_panel/product/models/user_model.dart';
 /// This class uses [FirebaseUtils] and [FirestoreUtils] to communicate with the database.
 ///
 ///
-class MembersDatabaseService extends FirebaseUtils with FirestoreUtils {
-  /// Add a new user to the database.
-  Future<void> addNewUser(UserModel user) async {
+class MembersDatabaseService extends FirebaseUtils
+    with FirestoreUtils, FirebaseCloudFunctionsUtils {
+  /// Add a new member to the database.
+  ///
+  /// This function add a new user to [CollectionEnum.users] collection.
+  Future<void> addNewMember(UserModel user) async {
+    final response = await createUserWithPhoneNumber(
+      user: user.toJson(),
+    );
+    Log.debug(response.data);
+    if (getResponseSuccess(response) == false) {
+      throw Exception(getErrorCode(response));
+    }
+  }
+
+  /// Add a new guest to the database.
+  ///
+  /// This function adds a new guest to the database.
+  ///
+  /// The guest is added to the [CollectionEnum.guests] collection.
+  ///
+  Future<void> addNewGuest(UserModel user) async {
     await addDocumentToCollectionWithCustomId(
-      collection: CollectionEnum.users,
+      collection: CollectionEnum.guests,
       docId: user.uid ?? "",
       data: user.toJson(),
     );

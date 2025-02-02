@@ -14,7 +14,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
           ? DateTime.now()
           : FirebaseTimeParser.datetimeFromTimestamp(
               json['birthDate'] as Timestamp?),
-      gender: json['gender'] as String?,
+      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       livingCity: json['livingCity'] == null
           ? null
           : City.fromJson(json['livingCity'] as Map<String, dynamic>),
@@ -57,7 +57,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'name': instance.name,
       'about': instance.about,
       'birthDate': FirebaseTimeParser.dateTimeToTimestamp(instance.birthDate),
-      'gender': instance.gender,
+      'gender': _$GenderEnumMap[instance.gender],
       'livingCity': UserModel._cityToJson(instance.livingCity),
       'workCity': UserModel._cityToJson(instance.workCity),
       'occupation': instance.occupation,
@@ -74,6 +74,11 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'membershipEndDate':
           FirebaseTimeParser.dateTimeToTimestamp(instance.membershipEndDate),
     };
+
+const _$GenderEnumMap = {
+  Gender.female: 'female',
+  Gender.male: 'male',
+};
 
 const _$RoleEnumMap = {
   Role.admin: 'admin',

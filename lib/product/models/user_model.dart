@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:roof_admin_panel/core/constants/enums/gender.dart';
 import 'package:roof_admin_panel/core/constants/enums/roles.dart';
 import 'package:roof_admin_panel/core/utils/constants/firebase/time_parser.dart';
 import 'package:roof_admin_panel/product/models/city_model.dart';
@@ -48,7 +49,7 @@ final class UserModel {
     defaultValue: DateTime.now,
   )
   final DateTime? birthDate;
-  final String? gender;
+  final Gender? gender;
   @JsonKey(toJson: _cityToJson)
   final City? livingCity;
   @JsonKey(toJson: _cityToJson)
@@ -82,7 +83,7 @@ final class UserModel {
     String? name,
     String? about,
     DateTime? birthDate,
-    String? gender,
+    Gender? gender,
     City? livingCity,
     City? workCity,
     String? occupation,

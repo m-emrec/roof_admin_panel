@@ -57,7 +57,7 @@ class MembersTableDataSource extends DataGridSource {
               ),
               DataGridCell<List<String?>>(
                 columnName: MemberTableNames.role.name,
-                value: e.role?.map((e) => e?.text()).toList(),
+                value: e.role?.map((e) => e?.localizedText()).toList(),
               ),
               DataGridCell<int>(
                 columnName: MemberTableNames.age.name,

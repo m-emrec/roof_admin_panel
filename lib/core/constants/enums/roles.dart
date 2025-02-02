@@ -27,7 +27,7 @@ enum Role {
   ;
 
   /// Returns the localized text for the role.
-  String text([String? otherRole]) {
+  String localizedText([String? otherRole]) {
     switch (this) {
       case Role.admin:
         return tr(LocaleKeys.roles_admin);
@@ -53,35 +53,6 @@ enum Role {
   }
 }
 
-// /// An extension that provides utility methods for the [Role] enum.
-// extension RoleExtension on Role {
-//   /// Returns the localized text for the role.
-//   String text([String? otherRole]) {
-//     switch (this) {
-//       case Role.admin:
-//         return tr(LocaleKeys.roles_admin);
-//       case Role.member:
-//         return tr(LocaleKeys.roles_member);
-//       case Role.guest:
-//         return tr(LocaleKeys.roles_guest);
-//       case Role.approvedGuest:
-//         return tr(LocaleKeys.roles_approvedGuest);
-//       // if it is [other] role, that means the role is not defined in the enum.
-//       // and it will be received from the database directly
-//       case Role.other:
-//         assert(
-//           this == Role.other && otherRole != null,
-//           'otherRole must not be null',
-//         );
-//         return otherRole ?? "";
-//       case Role.mentat:
-//         return tr(LocaleKeys.roles_mentat);
-//       case Role.mentor:
-//         return tr(LocaleKeys.roles_mentor);
-//     }
-//   }
-// }
-
 /// An extension that provides utility methods for the [String] class.
 extension RoleStringExtension on String {
   /// Converts a string to a [Role] enum.
@@ -102,5 +73,33 @@ extension RoleStringExtension on String {
       default:
         return Role.other;
     }
+  }
+
+  /// Converts a string to a [Role] enum.
+  ///
+  /// Use this method when you want to convert a localized string to a [Role] enum.
+  ///
+  /// For example, if you have a string that is localized and you want to convert it to a [Role] enum,
+  /// you can use this method.
+  Role fromLocalizedStringToRoleEnum() {
+    if (this == Role.admin.localizedText()) {
+      return Role.admin;
+    }
+    if (this == Role.member.localizedText()) {
+      return Role.member;
+    }
+    if (this == Role.guest.localizedText()) {
+      return Role.guest;
+    }
+    if (this == Role.approvedGuest.localizedText()) {
+      return Role.approvedGuest;
+    }
+    if (this == Role.mentat.localizedText()) {
+      return Role.mentat;
+    }
+    if (this == Role.mentor.localizedText()) {
+      return Role.mentor;
+    }
+    return Role.other;
   }
 }
