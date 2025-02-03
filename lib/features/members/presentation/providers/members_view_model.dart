@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/core/resources/data_state.dart';
 import 'package:roof_admin_panel/core/resources/use_case.dart';
-import 'package:roof_admin_panel/features/members/domain/usecases/add_new_user_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
@@ -16,10 +15,8 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   MembersViewModel(
     MembersTableDataSource membersTableDataSource,
     FetchFirst20UsersUseCase fetchFirst20UsersUseCase,
-    AddNewUserUseCase addNewUserUseCase,
     FetchNext20UsersUseCase fetchNext20UsersUseCase,
   )   : _fetchFirst20UsersUseCase = fetchFirst20UsersUseCase,
-        _addNewUserUseCase = addNewUserUseCase,
         _fetchNext20UsersUseCase = fetchNext20UsersUseCase,
         _membersTableDataSource = membersTableDataSource,
         super(
@@ -28,7 +25,6 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
     // initially call the fetchFirst20Users
     fetchFirst20Users();
   }
-  final AddNewUserUseCase _addNewUserUseCase;
   final MembersTableDataSource _membersTableDataSource;
   final FetchFirst20UsersUseCase _fetchFirst20UsersUseCase;
   final FetchNext20UsersUseCase _fetchNext20UsersUseCase;
@@ -66,18 +62,6 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
     final result = await _fetchNext20UsersUseCase(lastUserId);
     if (result is DataSuccess) {
       state = AsyncData([...state.value!, ...result.resultData!]);
-      // users = state.value;
-    } else if (result is DataFailed) {
-      Toast.showErrorToast(desc: result.errorMessage);
-    }
-  }
-
-  Future<void> addNewUser(UserModel userModel) async {
-    final result = await _addNewUserUseCase(userModel);
-    if (result is DataSuccess) {
-      state = AsyncData([...state.value!, result.resultData!]);
-      _membersTableDataSource.generateUserDataGridRows(state.value ?? []);
-
       // users = state.value;
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);

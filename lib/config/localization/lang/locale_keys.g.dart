@@ -123,12 +123,6 @@ abstract class  LocaleKeys {
   static const membersView_pageTitle = 'membersView.pageTitle';
   static const membersView_memberCount = 'membersView.memberCount';
   static const membersView_addMember = 'membersView.addMember';
-  static const membersView_addUserDialog_title = 'membersView.addUserDialog.title';
-  static const membersView_addUserDialog_name = 'membersView.addUserDialog.name';
-  static const membersView_addUserDialog_phoneNumber = 'membersView.addUserDialog.phoneNumber';
-  static const membersView_addUserDialog_role = 'membersView.addUserDialog.role';
-  static const membersView_addUserDialog_gender = 'membersView.addUserDialog.gender';
-  static const membersView_addUserDialog = 'membersView.addUserDialog';
   static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
   static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
   static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';
@@ -138,6 +132,12 @@ abstract class  LocaleKeys {
   static const membersView_tableColumnLabels_memberShipDuration = 'membersView.tableColumnLabels.memberShipDuration';
   static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
   static const membersView = 'membersView';
+  static const addMember_pageTitle = 'addMember.pageTitle';
+  static const addMember_name = 'addMember.name';
+  static const addMember_phoneNumber = 'addMember.phoneNumber';
+  static const addMember_role = 'addMember.role';
+  static const addMember_gender = 'addMember.gender';
+  static const addMember = 'addMember';
   static const sidebar_members = 'sidebar.members';
   static const sidebar_feedback = 'sidebar.feedback';
   static const sidebar_settings = 'sidebar.settings';

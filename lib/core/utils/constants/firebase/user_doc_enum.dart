@@ -10,4 +10,5 @@ enum UserDocEnum {
   gender,
   feedbacks,
   memberNumber,
+  mentorId,
 }

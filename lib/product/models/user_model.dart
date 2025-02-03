@@ -123,7 +123,7 @@ final class UserModel {
     );
   }
 
-  static String? convertIntToString(int e) => e.toString();
+  static String? convertIntToString(int? e) => e.toString();
   static int convertStringToInteger(String? e) => int.tryParse(e ?? '') ?? 0;
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);

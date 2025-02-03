@@ -29,7 +29,7 @@ class PhoneField extends StatelessWidget {
           phoneCodeController.text = value.split(" ")[1].toString();
         },
       ),
-      label: LocaleKeys.membersView_addUserDialog_phoneNumber.tr(),
+      label: LocaleKeys.addMember_phoneNumber.tr(),
     );
   }
 }

@@ -29,10 +29,4 @@ abstract class MembersRepository {
   ///
   /// It requires the [lastUserId] of the last member fetched in the previous call.
   Future<DataState<List<UserModel>>> fetchNext20Users(String lastUserId);
-
-  /// Add a new member.
-  ///
-  /// Returns [DataState<UserModel>]
-  ///
-  Future<DataState<UserModel>> addNewUser(UserModel userModel);
 }

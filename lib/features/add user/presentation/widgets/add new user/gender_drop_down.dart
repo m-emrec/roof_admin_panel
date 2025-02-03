@@ -13,7 +13,7 @@ class GenderDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Section(
       required: true,
-      title: LocaleKeys.membersView_addUserDialog_role.tr(),
+      title: LocaleKeys.addMember_gender.tr(),
       child: CustomDropDownButton(
         items: Gender.values
             .map(
