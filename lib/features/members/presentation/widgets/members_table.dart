@@ -1,10 +1,10 @@
+import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 import 'package:roof_admin_panel/product/widgets/table/custom_table.dart';
 import 'package:roof_admin_panel/product/widgets/table/header_item.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';

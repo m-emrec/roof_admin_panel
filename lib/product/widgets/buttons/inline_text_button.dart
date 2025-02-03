@@ -1,7 +1,7 @@
+import 'package:core/core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/inline_text_button_theme.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 
 /// It is made for using a Clickable text in TextSpan widget.
 ///

@@ -1,7 +1,7 @@
-import 'package:roof_admin_panel/core/resources/data_state.dart';
+import 'package:core/resources/data_state.dart';
+import 'package:core/utils/models/user_model.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 
 /// [MembersRepositoryImpl] is a concrete implementation of [MembersRepository]
 /// which is responsible for fetching users from the database.

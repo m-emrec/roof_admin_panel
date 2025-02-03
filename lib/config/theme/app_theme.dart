@@ -1,3 +1,7 @@
+import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/border_radiuses.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
+import 'package:core/utils/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
@@ -9,10 +13,6 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/verification_code
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-import '../../../product/utility/constants/app_colors.dart';
-import '../../../product/utility/constants/border_radiuses.dart';
-import '../../../product/utility/constants/spacing_sizes.dart';
-import '../../../product/utility/constants/text_styles.dart';
 import 'theme_extensions/inline_text_button_theme.dart';
 
 part 'widget_themes/_date_picker_theme.dart';

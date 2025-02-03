@@ -1,11 +1,10 @@
+import 'package:core/utils/logger/logger.dart';
+import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/core/constants/enums/roles.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
-import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_null_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_row_item.dart';

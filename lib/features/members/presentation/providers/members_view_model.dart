@@ -1,10 +1,10 @@
+import 'package:core/resources/data_state.dart';
+import 'package:core/resources/use_case.dart';
+import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/core/resources/data_state.dart';
-import 'package:roof_admin_panel/core/resources/use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 /// This is the view model that provides the members data to the view.

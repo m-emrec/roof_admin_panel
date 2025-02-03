@@ -1,6 +1,5 @@
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:gap/gap.dart';
-
-import '../utility/constants/spacing_sizes.dart';
 
 ///
 class EmptyBox extends Gap {

@@ -1,9 +1,9 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 import 'package:roof_admin_panel/features/auth/domain/repositories/auth_repository.dart';
 import 'package:roof_admin_panel/features/auth/domain/usecases/sign_in_with_email_and_password_use_case.dart';
-import 'package:roof_admin_panel/product/utility/logger/logger.dart';
 
 import 'auth_view_model.dart';
 

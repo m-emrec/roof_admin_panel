@@ -1,14 +1,12 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:core/core.dart';
+import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
-import 'package:roof_admin_panel/product/utility/logger/logger.dart';
-
-import '../utility/constants/app_colors.dart';
-import '../utility/constants/text_styles.dart';
 
 ///
 // ignore: must_be_immutable

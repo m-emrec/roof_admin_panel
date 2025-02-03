@@ -1,5 +1,5 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 
 /// A widget that displays a section title.
 class SectionTitle extends StatelessWidget {

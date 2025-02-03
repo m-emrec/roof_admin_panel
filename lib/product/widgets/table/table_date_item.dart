@@ -1,8 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
-import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
-import 'package:roof_admin_panel/product/utility/constants/constant_values.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 
 /// TableDateItem is a widget that shows the date in a table cell.

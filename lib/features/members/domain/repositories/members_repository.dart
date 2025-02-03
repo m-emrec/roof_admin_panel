@@ -1,5 +1,5 @@
-import 'package:roof_admin_panel/core/resources/data_state.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
+import 'package:core/resources/data_state.dart';
+import 'package:core/utils/models/user_model.dart';
 
 /// Abstract class [MembersRepository] is responsible for providing the
 /// required data from the data sources.

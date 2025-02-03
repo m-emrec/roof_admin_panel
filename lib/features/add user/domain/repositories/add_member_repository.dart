@@ -1,5 +1,5 @@
-import 'package:roof_admin_panel/core/resources/data_state.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
+import 'package:core/resources/data_state.dart';
+import 'package:core/utils/models/user_model.dart';
 
 /// [AddMemberRepository] is an abstract class that defines the methods that must be implemented by the concrete implementation of this class.
 abstract class AddMemberRepository {

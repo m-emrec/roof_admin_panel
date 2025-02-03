@@ -1,5 +1,5 @@
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/product/utility/constants/spacing_sizes.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_title.dart';
 
 /// A widget that displays a section with a title and a child widget.

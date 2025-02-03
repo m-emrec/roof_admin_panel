@@ -1,6 +1,5 @@
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../utility/constants/app_colors.dart';
 
 /// This mixin helps you to manage the color state of a TextField's border and
 ///  prefixIcon based on different states.

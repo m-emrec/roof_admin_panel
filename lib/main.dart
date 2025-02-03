@@ -1,3 +1,5 @@
+import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/enums/locale_enum.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -7,10 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/route%20config/router.dart';
 import 'package:roof_admin_panel/config/theme/app_theme.dart';
 import 'package:roof_admin_panel/firebase_options.dart';
-import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 import 'package:toastification/toastification.dart';
 
-import 'core/constants/enums/locale_enum.dart';
 part 'product/init/core_init.dart';
 part 'product/init/localization_init.dart';
 

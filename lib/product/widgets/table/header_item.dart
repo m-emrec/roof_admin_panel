@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 
 /// A widget that represents a header item in a table.
 /// It can be used to display a title or a widget in the header of a table.

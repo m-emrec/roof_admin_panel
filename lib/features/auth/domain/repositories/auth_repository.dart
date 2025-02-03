@@ -1,4 +1,4 @@
-import 'package:roof_admin_panel/core/resources/data_state.dart';
+import 'package:core/resources/data_state.dart';
 import 'package:roof_admin_panel/features/auth/domain/entities/auth_entity.dart';
 
 /// Abstract class [AuthRepository] is used to define the methods that will be used to interact with the data sources.

@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
-import 'package:roof_admin_panel/core/extensions/context_extension.dart';
 
 /// A container for the profile image.
 ///

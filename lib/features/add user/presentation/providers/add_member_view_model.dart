@@ -1,12 +1,12 @@
+import 'package:core/resources/data_state.dart';
+import 'package:core/resources/use_case.dart';
+import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/core/constants/enums/roles.dart';
-import 'package:roof_admin_panel/core/resources/data_state.dart';
-import 'package:roof_admin_panel/core/resources/use_case.dart';
+
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_members_without_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 class AddMemberViewModel extends ChangeNotifier {

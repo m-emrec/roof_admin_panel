@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 
 class SideBarThemeExtension extends ThemeExtension<SideBarThemeExtension> {
   final double expandedWidth;

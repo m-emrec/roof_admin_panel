@@ -13,7 +13,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  core:
+      git:
+        url: git@github.com:m-emrec/roof-core.git
+        ref: main
 
     ### Firebase
   # For Firebase initialization. -> https://pub.dev/packages/firebase_core

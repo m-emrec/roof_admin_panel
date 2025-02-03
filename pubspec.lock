@@ -270,6 +270,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  core:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: c59ed12f41d8b59a2077240cabe54c4b7ad8d44c
+      url: "git@github.com:m-emrec/roof-core.git"
+    source: git
+    version: "0.0.1"
   cross_file:
     dependency: transitive
     description:

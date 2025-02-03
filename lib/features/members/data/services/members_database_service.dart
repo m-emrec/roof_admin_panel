@@ -1,9 +1,4 @@
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_cloud_functions_utils.dart';
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_utils.dart';
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firestore_utils.dart';
-import 'package:roof_admin_panel/core/utils/constants/firebase/collection_enums.dart';
-import 'package:roof_admin_panel/core/utils/constants/firebase/user_doc_enum.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
+import 'package:core/core.dart';
 
 /// [MembersDatabaseService] is a class that is responsible for communicating
 /// with the database to fetch users.

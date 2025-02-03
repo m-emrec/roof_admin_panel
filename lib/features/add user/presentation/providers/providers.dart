@@ -6,7 +6,6 @@ import 'package:roof_admin_panel/features/add%20user/domain/usecases/add_new_mem
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_members_without_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/providers/add_member_view_model.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 
 final _addMemberServiceProvider = Provider<AddMemberService>((ref) {
   return AddMemberService();

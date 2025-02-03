@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/authentication_based_redirect.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
-import 'package:roof_admin_panel/product/utility/constants/app_colors.dart';
 
 /// The initial route.
 /// here user will be redirected to the appropriate route based on their

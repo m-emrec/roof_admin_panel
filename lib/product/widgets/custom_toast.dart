@@ -1,11 +1,10 @@
 import 'dart:async';
 
+import 'package:core/resources/data_state.dart';
+import 'package:core/resources/error_manager.dart';
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
-
-import '/core/resources/data_state.dart';
-import '/core/resources/error_manager.dart';
-import '../utility/constants/app_colors.dart';
 
 /// A class that represents a custom toast message.
 ///

@@ -1,10 +1,8 @@
+import 'package:core/core.dart';
+import 'package:core/utils/constants/enums/roles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/core/constants/enums/roles.dart';
-import 'package:roof_admin_panel/core/extensions/media_query_extension.dart';
-import 'package:roof_admin_panel/core/utils/widgets/user_avatar.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';

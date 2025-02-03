@@ -1,10 +1,9 @@
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_cloud_functions_utils.dart';
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firebase_utils.dart';
-import 'package:roof_admin_panel/core/resources/firebase%20utilities/firestore_utils.dart';
-import 'package:roof_admin_panel/core/utils/constants/firebase/collection_enums.dart';
-import 'package:roof_admin_panel/core/utils/constants/firebase/user_doc_enum.dart';
-import 'package:roof_admin_panel/product/models/user_model.dart';
-import 'package:roof_admin_panel/product/utility/logger/logger.dart';
+// ignore_for_file: unnecessary_import
+
+import 'package:core/core.dart';
+import 'package:core/resources/firebase%20utilities/firebase_cloud_functions_utils.dart';
+import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
+import 'package:core/utils/logger/logger.dart';
 
 class AddMemberService extends FirebaseUtils
     with FirestoreUtils, FirebaseCloudFunctionsUtils {
