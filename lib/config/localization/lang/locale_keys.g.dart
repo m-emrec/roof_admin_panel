@@ -104,9 +104,18 @@ abstract class  LocaleKeys {
   static const common_search = 'common.search';
   static const common_close = 'common.close';
   static const common_giveUp = 'common.giveUp';
+  static const common_date_today = 'common.date.today';
+  static const common_date_yesterday = 'common.date.yesterday';
+  static const common_date_tomorrow = 'common.date.tomorrow';
+  static const common_date_day = 'common.date.day';
+  static const common_date_week = 'common.date.week';
+  static const common_date_month = 'common.date.month';
+  static const common_date_year = 'common.date.year';
+  static const common_date = 'common.date';
   static const common_gender = 'common.gender';
   static const common_validationError_required = 'common.validationError.required';
   static const common_validationError_length = 'common.validationError.length';
+  static const common_validationError_invalid = 'common.validationError.invalid';
   static const common_validationError = 'common.validationError';
   static const common = 'common';
   static const auth_signin_pageTitle = 'auth.signin.pageTitle';
@@ -137,7 +146,7 @@ abstract class  LocaleKeys {
   static const addMember_phoneNumber = 'addMember.phoneNumber';
   static const addMember_role = 'addMember.role';
   static const addMember_gender = 'addMember.gender';
-  static const addMember_membershipEndDate = 'addMember.membershipEndDate';
+  static const addMember_memberShipDuration = 'addMember.memberShipDuration';
   static const addMember_memberShipStartDate = 'addMember.memberShipStartDate';
   static const addMember_memberNumber = 'addMember.memberNumber';
   static const addMember_addMentorToMember = 'addMember.addMentorToMember';

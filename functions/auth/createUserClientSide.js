@@ -33,7 +33,8 @@ const {phoneNumber, gender , name , role , memberNumber , membershipStartDate,me
     );
     
     return { success: true , uid: userRecord.uid};
-} catch (error) {
+    } catch (error) {
+        console.log("Error creating user:", error);
     return { success: false , error: error};
    
 }

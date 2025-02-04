@@ -1,4 +1,4 @@
-part of select_users_grid_dialog;
+part of "select_users_grid_dialog.dart";
 
 /// This is a grid view of users to select
 ///

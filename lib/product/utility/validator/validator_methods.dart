@@ -22,6 +22,18 @@ class ValidatorMethods {
         : tr(LocaleKeys.errors_invalid_email);
   }
 
+  /// Validates the input to contain only numbers.
+  /// Returns `null` if the input contains only numbers, otherwise returns 'Invalid input'.
+  String? get numberOnlyValidator {
+    if (text == null || (text?.isEmpty ?? true)) {
+      return LocaleKeys.common_validationError_required.tr();
+    }
+    if (!RegExp(r'^\d+$').hasMatch(text ?? "")) {
+      return LocaleKeys.common_validationError_invalid.tr();
+    }
+    return null;
+  }
+
   /// Validates the password length.
   ///
   /// Returns `null` if the password is at least 6 characters long, otherwise returns 'Password must be at least 6 characters'.

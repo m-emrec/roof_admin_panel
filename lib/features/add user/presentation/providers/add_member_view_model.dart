@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -65,22 +68,23 @@ class AddMemberViewModel extends ChangeNotifier {
   void roleBasedAction(List<String> value) {
     switch (roleBasedActionName) {
       case RoleBasedActionNames.setMentorId:
-        user = UserModel(
-          mentorId: value.first,
-        );
+        user = UserModel(mentorId: value.first, role: user.role);
 
       case RoleBasedActionNames.setMentatId:
         user = UserModel(
+          role: user.role,
           mentatId: value.first,
         );
 
       case RoleBasedActionNames.setMembers:
         user = UserModel(
+          role: user.role,
           members: value,
         );
 
       case RoleBasedActionNames.setMentors:
         user = UserModel(
+          role: user.role,
           mentors: value,
         );
     }
@@ -130,7 +134,20 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Adds a new user
   Future<void> addNewUser(UserModel userModel) async {
-    final dataState = await _addNewUserUseCase(userModel);
+    user = user.copyWith(
+      name: userModel.name,
+      phoneNumber: userModel.phoneNumber,
+      gender: userModel.gender,
+      memberNumber: userModel.memberNumber,
+      membershipStartDate: userModel.membershipStartDate,
+      membershipEndDate: userModel.membershipEndDate,
+    );
+    try {
+      Log.debug(user.toJson());
+    } catch (e) {
+      Log.error(e.toString());
+    }
+    final dataState = await _addNewUserUseCase(user);
 
     if (dataState is DataSuccess) {
       user = dataState.resultData ?? UserModel();

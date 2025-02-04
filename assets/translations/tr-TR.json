@@ -105,6 +105,15 @@
         "search": "Ara",
         "close": "Kapat",
         "giveUp": "Vazgeç",
+        "date":{
+            "today": "Bugün",
+            "yesterday": "Dün",
+            "tomorrow": "Yarın",
+            "day": "Gün",
+            "week": "Hafta",
+            "month": "Ay",
+            "year": "Yıl"
+        },
         "gender": {
             "male": "Erkek",
             "female": "Kadın",
@@ -112,7 +121,8 @@
         },
         "validationError":{
             "required": "Bu alan boş bırakılamaz.",
-            "length": "Bu alan en az {} karakter olmalıdır."
+            "length": "Bu alan en az {} karakter olmalıdır.",
+            "invalid": "Geçersiz değer."
         }
     },
     "auth": {
@@ -150,7 +160,7 @@
         "phoneNumber": "Telefon Numarası",
         "role": "Rol",
         "gender":"Cinsiyet",
-        "membershipEndDate": "Üyelik Bitiş Tarihi",
+        "memberShipDuration": "Üyelik Süresi",
         "memberShipStartDate": "Üyelik Başlangıç Tarihi",
         "memberNumber": "Üye Numarası",
         "addMentorToMember": "Mentör Ekle",

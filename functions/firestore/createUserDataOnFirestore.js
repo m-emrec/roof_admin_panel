@@ -14,8 +14,8 @@ const createUserDataOnFireStore = async (userRecord) => {
         [DOCUMENT.user.gender]: gender,
         [DOCUMENT.user.name]: name,
         [DOCUMENT.user.memberNumber]: memberNumber,
-        [DOCUMENT.user.membershipStartDate]: membershipStartDate,
-        [DOCUMENT.user.membershipEndDate]: membershipEndDate,
+        [DOCUMENT.user.membershipStartDate]: new Date( membershipStartDate),
+        [DOCUMENT.user.membershipEndDate]:new Date(membershipEndDate),
         [DOCUMENT.user.members]: members,
         [DOCUMENT.user.mentorId]: mentorId,
     });

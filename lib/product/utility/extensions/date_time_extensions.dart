@@ -15,6 +15,20 @@ extension DateTimeExtensions on DateTime {
     return DateTime.now().difference(this).inDays ~/ 365;
   }
 
+  DateTime addMonth(int monthsToAdd) {
+    int month = this.month;
+    int year = this.year;
+
+    month += monthsToAdd;
+
+    if (month > 12) {
+      month -= 12;
+      year++;
+    }
+
+    return DateTime(year, month, day);
+  }
+
   /// DateTime formatter for the application.
   ///
   /// Formats the date in the format " dd MMM yyyy".
