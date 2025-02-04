@@ -13,7 +13,9 @@ import 'package:roof_admin_panel/product/utility/validator/validator_methods.dar
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
+/// AddMemberPage
 class AddMemberPage extends StatefulWidget {
+  /// AddMemberPage constructor
   const AddMemberPage({super.key});
 
   @override
@@ -52,10 +54,13 @@ class _AddMemberPageState extends State<AddMemberPage> with AddMemberPageMixin {
               ),
               Consumer(
                 builder: (context, ref, child) => ElevatedButton(
-                    onPressed: () {
-                      Log.debug(ref.read(addMemberProvider).user);
-                    },
-                    child: Text("Save")),
+                  onPressed: () {
+                    Log.debug(ref.read(addMemberProvider).user);
+                  },
+                  child: Text(
+                    LocaleKeys.common_add.tr(),
+                  ),
+                ),
               ),
             ],
           ),

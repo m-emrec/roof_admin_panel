@@ -12,7 +12,7 @@ class RoleDropDown extends ConsumerStatefulWidget {
 }
 
 class _RoleDropDownState extends ConsumerState<RoleDropDown> {
-  final List<Role> roles = [];
+  final List<Role> selectableRoles = [];
   Role selectedRole = Role.member;
   @override
   void initState() {
@@ -20,7 +20,7 @@ class _RoleDropDownState extends ConsumerState<RoleDropDown> {
       if (element != Role.other &&
           element != Role.guest &&
           element != Role.approvedGuest) {
-        roles.add(element);
+        selectableRoles.add(element);
       }
     }
     super.initState();
@@ -29,7 +29,7 @@ class _RoleDropDownState extends ConsumerState<RoleDropDown> {
   @override
   Widget build(BuildContext context) {
     return CustomDropDownButton(
-      items: roles
+      items: selectableRoles
           .map(
             (e) => e.localizedText(),
           )

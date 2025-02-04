@@ -1,10 +1,13 @@
-// ignore_for_file: unnecessary_import
-
-import 'package:core/core.dart';
 import 'package:core/resources/firebase%20utilities/firebase_cloud_functions_utils.dart';
+import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
+import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/constants/firebase/collection_enums.dart';
+import 'package:core/utils/constants/firebase/user_doc_enum.dart';
 import 'package:core/utils/logger/logger.dart';
+import 'package:core/utils/models/user_model.dart';
 
+/// Service class to communicate with the Database.
 class AddMemberService extends FirebaseUtils
     with FirestoreUtils, FirebaseCloudFunctionsUtils {
   /// Add a new member to the database.
@@ -20,6 +23,7 @@ class AddMemberService extends FirebaseUtils
     }
   }
 
+  /// Fetch all the mentors from the database.
   Future<List<Map<String, dynamic>>> fetchMentors() async {
     final snapshot = await getCollectionRef(CollectionEnum.users)
         .where(
@@ -32,6 +36,7 @@ class AddMemberService extends FirebaseUtils
     return mentors;
   }
 
+  /// Fetch all the mentats from the database.
   Future<List<Map<String, dynamic>>> fetchMentats() async {
     final snapshot = await getCollectionRef(CollectionEnum.users)
         .where(
@@ -44,6 +49,7 @@ class AddMemberService extends FirebaseUtils
     return mentats;
   }
 
+  /// Fetch the mentors who doesn't have a mentat.
   Future<List<Map<String, dynamic>>> fetchMentorsWithOutMentat() async {
     return getCollectionRef(CollectionEnum.users)
         .where(
@@ -59,6 +65,7 @@ class AddMemberService extends FirebaseUtils
         .then((snapshot) => snapshot.docs.map((e) => e.data()).toList());
   }
 
+  /// Fetch the members who doesn't have a mentor.
   Future<List<Map<String, dynamic>>> fetchMembersWithoutMentor() async {
     final membersWithoutMentor = await getCollectionRef(CollectionEnum.users)
         .where(

@@ -1,15 +1,31 @@
-import 'package:core/core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/add%20user/presentation/widgets/select%20users%20grid%20dialog/select_users_grid_mixin.dart';
-import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
-part 'select_users_grid_dialog_item.dart';
+part of select_users_grid_dialog;
 
+/// This is a grid view of users to select
+///
+/// It takes :
+///
+/// 1. [users] : List of [UserModel] to display in grid
+/// 2. [selectedUserList] : List of [String] which contains the selected user ids
+///
 class SelectUsersGrid extends ConsumerStatefulWidget {
+  /// This is a grid view of users to select
+  ///
+  /// It takes :
+  ///
+  /// 1. [users] : List of [UserModel] to display in grid
+  /// 2. [selectedUserList] : List of [String] which contains the selected user ids
+  ///
+  const SelectUsersGrid({
+    required this.users,
+    required this.selectedUserList,
+    super.key,
+  });
+
+  /// 1. [users] : List of [UserModel] to display in grid
   final List<UserModel> users;
+
+  /// 2. [selectedUserList] : List of [String] which contains the selected user ids
   final List<String> selectedUserList;
-  const SelectUsersGrid(
-      {super.key, required this.users, required this.selectedUserList});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SelectUserGridState();
@@ -30,7 +46,7 @@ class _SelectUserGridState extends ConsumerState<SelectUsersGrid>
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () => onUserSelected(widget.users[index].uid ?? ''),
-          child: _SelectsUsersGridDialogItem(
+          child: _SelectsUsersGridItem(
             user: widget.users[index],
             isSelected: isSelected(index),
           ),

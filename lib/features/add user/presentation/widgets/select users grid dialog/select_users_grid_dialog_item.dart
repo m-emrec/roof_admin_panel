@@ -1,7 +1,25 @@
-part of 'select_user_grid.dart';
+part of select_users_grid_dialog;
 
-class _SelectsUsersGridDialogItem extends StatelessWidget {
-  const _SelectsUsersGridDialogItem({
+/// Used in [SelectUsersGrid].
+///
+/// It is basically a [Columns] which contains the user details like
+///
+/// 1. User Image
+/// 2. User Name
+/// 3. User Birth Date
+///
+///
+class _SelectsUsersGridItem extends StatelessWidget {
+  /// Used in [SelectUsersGrid].
+  ///
+  /// It is basically a [Columns] which contains the user details like
+  ///
+  /// 1. User Image
+  /// 2. User Name
+  /// 3. User Birth Date
+  ///
+  ///
+  const _SelectsUsersGridItem({
     required this.user,
     required this.isSelected,
   });

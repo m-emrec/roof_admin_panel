@@ -5,8 +5,8 @@ import 'package:roof_admin_panel/features/add%20user/domain/repositories/add_mem
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_members_without_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_mentats_use_case.dart';
+import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_mentors_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
-import 'package:roof_admin_panel/features/add%20user/domain/usecases/fethc_mentors_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/providers/add_member_view_model.dart';
 
 final _addMemberServiceProvider = Provider<AddMemberService>((ref) {
@@ -51,17 +51,7 @@ final _fetchMentatsUseCaseProvider = Provider<FetchMentatsUseCase>((ref) {
   );
 });
 
-// final addMemberProvider =
-//     StateNotifierProvider.autoDispose<AddMemberViewModel, UserModel?>((ref) {
-//   return AddMemberViewModel(
-//     addNewUserUseCase: ref.read(_addNewUserUseCaseProvider),
-//     fetchMembersWithoutMentorUseCase:
-//         ref.read(_fetchMembersWithoutMentorUseCaseProvider),
-//     fetchMentorsWithoutMentatUseCase:
-//         ref.read(_fetchMentorsWithoutMentatUseCaseProvider),
-//   );
-// });
-
+/// AddMemberViewModel provider
 final addMemberProvider =
     ChangeNotifierProvider.autoDispose<AddMemberViewModel>((ref) {
   return AddMemberViewModel(

@@ -25,9 +25,8 @@ class PhoneField extends StatelessWidget {
         }).toList(),
         initialValue:
             "${context.locale.countryCode} ${ConstantValues.phoneCodes[context.locale.countryCode]}",
-        onChanged: (value) {
-          phoneCodeController.text = value.split(" ")[1].toString();
-        },
+        onChanged: (value) =>
+            phoneCodeController.text = value.split(' ')[1].toString(),
       ),
       label: LocaleKeys.addMember_phoneNumber.tr(),
     );

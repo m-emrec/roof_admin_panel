@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/pages/add_member_page.dart';
 
+/// This mixin is used to add the required controllers and form key to the AddMemberPage
 mixin AddMemberPageMixin on State<AddMemberPage> {
   late final TextEditingController nameController;
   late final TextEditingController phoneNumberController;
