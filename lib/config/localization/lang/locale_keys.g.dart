@@ -137,6 +137,14 @@ abstract class  LocaleKeys {
   static const addMember_phoneNumber = 'addMember.phoneNumber';
   static const addMember_role = 'addMember.role';
   static const addMember_gender = 'addMember.gender';
+  static const addMember_membershipEndDate = 'addMember.membershipEndDate';
+  static const addMember_memberShipStartDate = 'addMember.memberShipStartDate';
+  static const addMember_memberNumber = 'addMember.memberNumber';
+  static const addMember_addMentorToMember = 'addMember.addMentorToMember';
+  static const addMember_addMentatToMentor = 'addMember.addMentatToMentor';
+  static const addMember_addMemberToMentor = 'addMember.addMemberToMentor';
+  static const addMember_addMentorToMentat = 'addMember.addMentorToMentat';
+  static const addMember_addMentorsToMentat = 'addMember.addMentorsToMentat';
   static const addMember = 'addMember';
   static const sidebar_members = 'sidebar.members';
   static const sidebar_feedback = 'sidebar.feedback';

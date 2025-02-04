@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
+///  GenderDropDown is a custom widget that is used to select the
+/// gender of the user.
 class GenderDropDown extends StatelessWidget {
   final TextEditingController controller;
   const GenderDropDown({super.key, required this.controller});

@@ -7,4 +7,6 @@ abstract class AddMemberRepository {
   Future<DataState<UserModel>> addNewMember(UserModel userModel);
   Future<DataState<List<UserModel>>> fetchMembersWithoutMentor();
   Future<DataState<List<UserModel>>> fetchMentorsWithoutMentat();
+  Future<DataState<List<UserModel>>> fetchMentors();
+  Future<DataState<List<UserModel>>> fetchMentats();
 }

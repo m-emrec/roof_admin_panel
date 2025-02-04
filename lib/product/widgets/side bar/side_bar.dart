@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_state_mixin.dart';

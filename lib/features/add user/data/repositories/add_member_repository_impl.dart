@@ -31,7 +31,32 @@ class AddMemberRepositoryImpl implements AddMemberRepository {
 
   @override
   Future<DataState<List<UserModel>>> fetchMentorsWithoutMentat() {
-    // TODO: implement fetchMentorsWithoutMentat
-    throw UnimplementedError();
+    return DataState.handleDataState(
+      () async {
+        final mentorsWithoutMentat =
+            await _addMemberService.fetchMentorsWithOutMentat();
+        return mentorsWithoutMentat.map(UserModel.fromJson).toList();
+      },
+    );
+  }
+
+  @override
+  Future<DataState<List<UserModel>>> fetchMentats() {
+    return DataState.handleDataState(
+      () async {
+        final mentats = await _addMemberService.fetchMentats();
+        return mentats.map(UserModel.fromJson).toList();
+      },
+    );
+  }
+
+  @override
+  Future<DataState<List<UserModel>>> fetchMentors() {
+    return DataState.handleDataState(
+      () async {
+        final mentors = await _addMemberService.fetchMentors();
+        return mentors.map(UserModel.fromJson).toList();
+      },
+    );
   }
 }

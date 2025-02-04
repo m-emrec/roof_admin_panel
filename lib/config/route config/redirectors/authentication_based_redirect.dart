@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/base_route_redirector.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/initial_route.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/signin_route.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 

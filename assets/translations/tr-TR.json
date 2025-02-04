@@ -149,7 +149,15 @@
         "name": "İsim",
         "phoneNumber": "Telefon Numarası",
         "role": "Rol",
-        "gender":"Cinsiyet"
+        "gender":"Cinsiyet",
+        "membershipEndDate": "Üyelik Bitiş Tarihi",
+        "memberShipStartDate": "Üyelik Başlangıç Tarihi",
+        "memberNumber": "Üye Numarası",
+        "addMentorToMember": "Mentör Ekle",
+        "addMentatToMentor": "Mentat Ekle",
+        "addMemberToMentor": "Mentöre Üye Ekle",
+        "addMentorToMentat": "Mentör Ekle",
+        "addMentorsToMentat": "Mentata Mentör Ekle"
     },
 "sidebar": {
     "members": "Üyerler",
