@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
@@ -142,18 +143,22 @@ class AddMemberViewModel extends ChangeNotifier {
       membershipStartDate: userModel.membershipStartDate,
       membershipEndDate: userModel.membershipEndDate,
     );
-    try {
-      Log.debug(user.toJson());
-    } catch (e) {
-      Log.error(e.toString());
-    }
+
     final dataState = await _addNewUserUseCase(user);
 
-    if (dataState is DataSuccess) {
-      user = dataState.resultData ?? UserModel();
-    } else if (dataState is DataFailed) {
-      Toast.showErrorToast(desc: dataState.errorMessage);
-    }
+    DataState.handleDataStateBasedAction<void>(
+      dataState,
+      onSuccess: () {
+        user = dataState.resultData ?? UserModel();
+      },
+      onFailure: () {
+        Toast.showErrorToast(
+          desc: AppErrorText.errorMessageConverter(
+            dataState.errorMessage,
+          ),
+        );
+      },
+    );
   }
 }
 

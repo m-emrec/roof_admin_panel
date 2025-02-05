@@ -14,12 +14,13 @@ class AddMemberService extends FirebaseUtils
   ///
   /// This function add a new user to [CollectionEnum.users] collection.
   Future<void> addNewMember(UserModel user) async {
+    Log.debug(user.toJson());
     final response = await createUserWithPhoneNumber(
       user: user.toJson(),
     );
     Log.debug(response.data);
     if (getResponseSuccess(response) == false) {
-      throw Exception(getErrorCode(response));
+      throw getErrorCode(response);
     }
   }
 

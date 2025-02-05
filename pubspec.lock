@@ -275,7 +275,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1eab2363c3ea5a6381366fc66d7a06e27424ce81"
+      resolved-ref: "76a7f849f9055545a8c0a071e00b972985df10e0"
       url: "git@github.com:m-emrec/roof-core.git"
     source: git
     version: "0.0.1"
@@ -621,10 +621,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_markdown
-      sha256: "46cdcdcd216f15ac04c80e24e814a89ea7143654442c53ba67fec349b4d44565"
+      sha256: b3ff1ef5fb3924ee02b4d38b974ffae3969d50603e68787684ee9dd45f6f144a
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.6"
+    version: "0.7.6+1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1540,10 +1540,10 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics
-      sha256: a1870d398158844fe5db12441611ed9a2222ff4340258b539eaf3590c1b4bd7e
+      sha256: "44cc7104ff32563122a929e4620cf3efd584194eec6d1d913eb5ba593dbcf6de"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.17"
+    version: "1.1.18"
   vector_graphics_codec:
     dependency: transitive
     description:
