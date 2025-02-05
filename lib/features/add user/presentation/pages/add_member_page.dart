@@ -5,13 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/pages/add_member_page_mixin.dart';
-import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
-import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/widgets/member_number_field.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/widgets/member_ship_duration_drop_down.dart';
-import 'package:roof_admin_panel/product/widgets/add%20user/phone_field.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/widgets/role_dropdown_and_role_based_button.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
+import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
+import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
+import 'package:roof_admin_panel/product/widgets/add%20user/phone_field.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 

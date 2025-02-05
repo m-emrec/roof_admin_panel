@@ -1,9 +1,11 @@
+import 'package:core/resources/data_state.dart';
 import 'package:core/utils/constants/constant_values.dart';
 import 'package:core/utils/constants/enums/gender.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/pages/add_member_page.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
@@ -56,7 +58,12 @@ mixin AddMemberPageMixin on State<AddMemberPage> {
               ),
             ),
           )
-          .showLoading(context: context);
+          .showLoading(context: context)
+          .then((value) {
+        if (mounted && value is DataSuccess) {
+          context.pop(value.resultData);
+        }
+      });
     }
   }
 

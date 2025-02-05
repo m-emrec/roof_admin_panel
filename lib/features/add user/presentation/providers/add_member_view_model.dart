@@ -136,15 +136,16 @@ class AddMemberViewModel extends ChangeNotifier {
   }
 
   /// Adds a new user
-  Future<void> addNewUser(UserModel userModel) async {
+  Future<DataState<UserModel>> addNewUser(UserModel userModel) async {
     user = _setUser(userModel);
 
     final dataState = await _addNewUserUseCase(user);
 
-    DataState.handleDataStateBasedAction<void>(
+    return DataState.handleDataStateBasedAction<DataState<UserModel>>(
       dataState,
       onSuccess: () {
         user = dataState.resultData ?? UserModel();
+        return DataSuccess(user);
       },
       onFailure: () {
         Toast.showErrorToast(
@@ -152,6 +153,7 @@ class AddMemberViewModel extends ChangeNotifier {
             dataState.errorMessage,
           ),
         );
+        return DataFailed(dataState.errorMessage ?? '');
       },
     );
   }

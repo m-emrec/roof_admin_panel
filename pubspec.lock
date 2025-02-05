@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "16e298750b6d0af7ce8a3ba7c18c69c3785d11b15ec83f6dcd0ad2a0009b3cab"
+      sha256: "03f6da266a27a4538a69295ec142cb5717d7d4e5727b84658b63e1e1509bac9c"
       url: "https://pub.dev"
     source: hosted
-    version: "76.0.0"
+    version: "79.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -34,10 +34,10 @@ packages:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "1f14db053a8c23e260789e9b0980fa27f2680dd640932cae5e1137cce0e46e1e"
+      sha256: c9040fc56483c22a5e04a9f6a251313118b1a3c42423770623128fa484115643
       url: "https://pub.dev"
     source: hosted
-    version: "6.11.0"
+    version: "7.2.0"
   archive:
     dependency: transitive
     description:
@@ -275,7 +275,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "76a7f849f9055545a8c0a071e00b972985df10e0"
+      resolved-ref: "9efe488a3f3e1f3d2dfa021b322f6797893087f7"
       url: "git@github.com:m-emrec/roof-core.git"
     source: git
     version: "0.0.1"
@@ -315,10 +315,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "7306ab8a2359a48d22310ad823521d723acfed60ee1f7e37388e8986853b6820"
+      sha256: "27eb0ae77836989a3bc541ce55595e8ceee0992807f14511552a898ddd0d88ac"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.8"
+    version: "3.0.1"
   dartx:
     dependency: transitive
     description:
@@ -592,18 +592,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: "46ecf0e317413dd065547887c43f93f55e9653e83eb98dc13dd07d40dd225325"
+      sha256: "53890b653738f34363d9f0d40f82104c261716bd551d3ba65f648770b6764c21"
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
-      sha256: "77f0a02fc30d9fcf2549fe874eb3fde091435724904bcbb1af60aa40cbfab1f4"
+      sha256: de70b42eb5329f712c8b041069d081ad5fb5109f32d6d1ea9c1b39596786215d
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   flutter_lints:
     dependency: "direct dev"
     description:
