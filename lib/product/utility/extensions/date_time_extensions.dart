@@ -15,6 +15,13 @@ extension DateTimeExtensions on DateTime {
     return DateTime.now().difference(this).inDays ~/ 365;
   }
 
+  /// Adds the given number of months to the current date.
+  ///
+  /// Returns a new [DateTime] object with the added months.
+  ///
+  /// ? The reason for this method is that the [DateTime] class does not have a
+  ///
+  ///? method to add months.
   DateTime addMonth(int monthsToAdd) {
     int month = this.month;
     int year = this.year;

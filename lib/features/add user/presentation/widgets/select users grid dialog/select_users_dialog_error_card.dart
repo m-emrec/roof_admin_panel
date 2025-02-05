@@ -1,12 +1,14 @@
 part of "select_users_grid_dialog.dart";
 
+/// If some error occurs while fetching users on [SelectUsersGridDialog], this card will be shown
 class _SelectUsersDialogErrorCard extends StatelessWidget {
-  final String errorMessage;
-  final VoidCallback onRetry;
+  /// If some error occurs while fetching users on [SelectUsersGridDialog], this card will be shown
   const _SelectUsersDialogErrorCard({
     required this.errorMessage,
     required this.onRetry,
   });
+  final String errorMessage;
+  final VoidCallback onRetry;
 
   @override
   Widget build(BuildContext context) {

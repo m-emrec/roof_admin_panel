@@ -24,6 +24,7 @@ class RoleBasedButtons extends ConsumerWidget {
   ) {
     CustomAlertDialog.showAlertDialog(
       context: context,
+      barrierDismissible: true,
       content: SelectsUsersGridDialog(
         fetchUsersMethod: fetchUsersMethod,
       ),

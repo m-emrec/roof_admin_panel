@@ -8,7 +8,9 @@ import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget
 ///  GenderDropDown is a custom widget that is used to select the
 /// gender of the user.
 class GenderDropDown extends StatelessWidget {
-  const GenderDropDown({super.key, required this.controller});
+  ///  GenderDropDown is a custom widget that is used to select the
+  /// gender of the user.
+  const GenderDropDown({required this.controller, super.key});
   final TextEditingController controller;
 
   @override
@@ -23,9 +25,7 @@ class GenderDropDown extends StatelessWidget {
             )
             .toList(),
         initialValue: controller.text,
-        onChanged: (value) {
-          controller.text = value.toString();
-        },
+        onChanged: (value) => controller.text = value.toString(),
       ),
     );
   }

@@ -4,6 +4,11 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 
+/// This is a text field for member number
+///
+/// It takes :
+///
+/// 1. [controller] : The controller to control the text field
 class MemberNumberField extends StatelessWidget {
   final TextEditingController controller;
   const MemberNumberField({super.key, required this.controller});
@@ -11,6 +16,7 @@ class MemberNumberField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      // I gave this width arbitrarily . It was looking good in the UI so I kept it
       width: 250,
       child: CustomTextField(
         label: LocaleKeys.addMember_memberNumber.tr(),

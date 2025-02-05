@@ -1,13 +1,4 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
-import 'package:core/resources/data_state.dart';
-import 'package:core/resources/use_case.dart';
-import 'package:core/utils/constants/enums/roles.dart';
-import 'package:core/utils/logger/logger.dart';
-import 'package:core/utils/models/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/features/add%20user/domain/usecases/fetch_members_without_mentor_use_case.dart';
@@ -57,12 +48,12 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Purpose of this method is to set
   /// mentorId, mentatId, members, mentors
-  /// based on the roleBasedActionName
+  /// based on the [roleBasedActionName]
   ///
-  /// if `roleBasedActionName `is setMentorId then mentorId will be set and the
+  /// if [roleBasedActionName] is [setMentorId] then [mentorId] will be set and the
   /// rest of the values will be null
   ///
-  /// if `roleBasedActionName` is setMentatId then mentatId will be set and the
+  /// if [roleBasedActionName] is [setMentatId] then mentatId will be set and the
   /// rest of the values will be null
   ///
   /// ...
@@ -93,14 +84,14 @@ class AddMemberViewModel extends ChangeNotifier {
   }
 
   /// Sets the roleBasedActionName
-  void setRoleBaseActionName(RoleBasedActionNames val) {
+  void _setRoleBaseActionName(RoleBasedActionNames val) {
     roleBasedActionName = val;
     notifyListeners();
   }
 
   /// Fetches the members without mentor
   Future<List<UserModel>> fetchMembersWithoutMentor() async {
-    setRoleBaseActionName(RoleBasedActionNames.setMembers);
+    _setRoleBaseActionName(RoleBasedActionNames.setMembers);
 
     final dataState = await _fetchMembersWithoutMentorUseCase(const NoParams());
     await Toast.toastDataStateMessageWrapper(dataState: dataState);
@@ -109,7 +100,7 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Fetches the  mentors
   Future<List<UserModel>> fetchMentors() async {
-    setRoleBaseActionName(RoleBasedActionNames.setMentorId);
+    _setRoleBaseActionName(RoleBasedActionNames.setMentorId);
     final dataState = await _fetchMentorsUseCase(const NoParams());
     await Toast.toastDataStateMessageWrapper(dataState: dataState);
     return dataState.resultData ?? [];
@@ -117,7 +108,7 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Fetches the mentats
   Future<List<UserModel>> fetchMentats() async {
-    setRoleBaseActionName(RoleBasedActionNames.setMentatId);
+    _setRoleBaseActionName(RoleBasedActionNames.setMentatId);
 
     final dataState = await _fetchMentatsUseCase(const NoParams());
     await Toast.toastDataStateMessageWrapper(dataState: dataState);
@@ -126,16 +117,15 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Fetches the mentors without mentat
   Future<List<UserModel>> fetchMentorsWithoutMentat() async {
-    setRoleBaseActionName(RoleBasedActionNames.setMentors);
+    _setRoleBaseActionName(RoleBasedActionNames.setMentors);
 
     final dataState = await _fetchMentorsWithoutMentatUseCase(const NoParams());
     await Toast.toastDataStateMessageWrapper(dataState: dataState);
     return dataState.resultData ?? [];
   }
 
-  /// Adds a new user
-  Future<void> addNewUser(UserModel userModel) async {
-    user = user.copyWith(
+  UserModel _setUser(UserModel userModel) {
+    return user.copyWith(
       name: userModel.name,
       phoneNumber: userModel.phoneNumber,
       gender: userModel.gender,
@@ -143,6 +133,11 @@ class AddMemberViewModel extends ChangeNotifier {
       membershipStartDate: userModel.membershipStartDate,
       membershipEndDate: userModel.membershipEndDate,
     );
+  }
+
+  /// Adds a new user
+  Future<void> addNewUser(UserModel userModel) async {
+    user = _setUser(userModel);
 
     final dataState = await _addNewUserUseCase(user);
 
@@ -166,6 +161,11 @@ class AddMemberViewModel extends ChangeNotifier {
 /// This enum holds the action names that are used to set the roleBasedAction
 ///
 /// setMentorId: This is used to set the mentorId
+/// **So, when this is selected the mentorId will be set**
+///
+/// **and the rest of the values will be null**
+///
+/// The rest are the same
 ///
 /// setMentatId: This is used to set the mentatId
 ///

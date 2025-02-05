@@ -38,7 +38,7 @@ class _SelectUserGridState extends ConsumerState<SelectUsersGrid>
     return GridView.builder(
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 100,
+        maxCrossAxisExtent: 150,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),

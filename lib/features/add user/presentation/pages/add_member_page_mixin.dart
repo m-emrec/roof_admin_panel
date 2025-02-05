@@ -19,10 +19,6 @@ mixin AddMemberPageMixin on State<AddMemberPage> {
   late final TextEditingController memberNumberController;
   late final TextEditingController memberShipStartDateController;
   late final TextEditingController memberShipDurationController;
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void didChangeDependencies() {
@@ -38,6 +34,7 @@ mixin AddMemberPageMixin on State<AddMemberPage> {
     super.didChangeDependencies();
   }
 
+  /// This function is called when the save button is pressed.
   Future<void> onTapSaveButton(WidgetRef ref) async {
     if (formKey.currentState?.validate() ?? false) {
       await ref

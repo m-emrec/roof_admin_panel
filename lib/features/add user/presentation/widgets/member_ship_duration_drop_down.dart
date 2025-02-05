@@ -4,8 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
+/// This is a drop down button for membership duration
+///
+/// It takes :
+///
+/// 1. [controller] : The controller to control the text field
 class MemberShipDurationDropDown extends StatelessWidget {
-  const MemberShipDurationDropDown({super.key, required this.controller});
+  /// This is a drop down button for membership duration
+  ///
+  /// It takes :
+  ///
+  /// 1. [controller] : The controller to control the text field
+  const MemberShipDurationDropDown({required this.controller, super.key});
   final TextEditingController controller;
 
   @override

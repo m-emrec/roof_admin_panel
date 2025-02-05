@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/add%20user/presentation/widgets/select%20users%20grid%20dialog/select_users_grid_mixin.dart';
@@ -32,7 +33,7 @@ class SelectsUsersGridDialog extends ConsumerStatefulWidget {
   ///
   /// This method should return a list of [UserModel]
   final Future<List<UserModel>> fetchUsersMethod;
-  // final VoidCallback onSelected;
+
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _SelectsUsersGridDialogState();
@@ -41,21 +42,22 @@ class SelectsUsersGridDialog extends ConsumerStatefulWidget {
 class _SelectsUsersGridDialogState
     extends ConsumerState<SelectsUsersGridDialog> {
   final List<String> selectedUserList = [];
+
+  void onTapAdd() {
+    ref.read(addMemberProvider).roleBasedAction(selectedUserList);
+    CustomAlertDialog.hideAlertDialog(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => context.pop(),
           child: Text(LocaleKeys.common_cancel.tr()),
         ),
         TextButton(
-          onPressed: () {
-            ref.read(addMemberProvider).roleBasedAction(selectedUserList);
-            CustomAlertDialog.hideAlertDialog(context);
-          },
+          onPressed: onTapAdd,
           child: Text(LocaleKeys.common_add.tr()),
         ),
       ],

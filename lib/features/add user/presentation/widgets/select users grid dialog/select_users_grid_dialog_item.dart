@@ -2,7 +2,7 @@ part of select_users_grid_dialog;
 
 /// Used in [SelectUsersGrid].
 ///
-/// It is basically a [Columns] which contains the user details like
+/// It is basically a [Column] which contains the user details like
 ///
 /// 1. User Image
 /// 2. User Name
@@ -31,20 +31,31 @@ class _SelectsUsersGridItem extends StatelessWidget {
     return Column(
       children: [
         Badge(
+          smallSize: 8,
+          backgroundColor: AppColors.primaryColor,
           isLabelVisible: isSelected,
           child: CircleAvatar(
             child: (user?.imageUrl != null)
                 ? Image.network(
                     user?.imageUrl ?? '',
                   )
-                : const SizedBox(),
+                : Image.asset(
+                    user?.gender == Gender.female
+                        ? Assets.images.femaleAvatar.path
+                        : Assets.images.maleAvatar.path,
+                  ),
           ),
         ),
         Text(
           user?.name ?? '',
+          style: context.textTheme.labelLarge,
         ),
         Text(
-          user?.birthDate?.formatDate(context) ?? '',
+          user?.memberNumber ?? '',
+          style: context.textTheme.labelMedium,
+        ),
+        Text(
+          user?.membershipEndDate?.formatDate(context) ?? '',
         ),
       ],
     );

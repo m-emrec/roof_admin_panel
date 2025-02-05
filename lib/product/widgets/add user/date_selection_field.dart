@@ -7,10 +7,29 @@ import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 
+/// This is a date selection field
+///
+/// It takes :
+///
+/// 1. [title] : The title of the field
+/// 2. [controller] : The controller to control the text field
 class DateSelectionField extends StatelessWidget {
-  const DateSelectionField(
-      {required this.title, super.key, required this.controller});
+  /// This is a date selection field
+  ///
+  /// It takes :
+  ///
+  /// 1. [title] : The title of the field
+  /// 2. [controller] : The controller to control the text field
+  const DateSelectionField({
+    required this.title,
+    required this.controller,
+    super.key,
+  });
+
+  /// The title of the field
   final String title;
+
+  /// The [TextEditingController] to control the text field
   final TextEditingController controller;
 
   @override
@@ -38,11 +57,15 @@ class _DateField extends StatefulWidget {
 class __DateFieldState extends State<_DateField> {
   DateTime? selectedDate;
 
-  void _selectDate() async {
-    final DateTime? picked = await showDatePicker(
+  /// This method will open a date picker dialog
+  ///
+  /// It will set the selected date to the selected date
+  Future<void> _selectDate() async {
+    final picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(1900),
+      // membership start date can't be a future date
       lastDate: DateTime.now(),
     );
     if (picked != null && picked != selectedDate) {
