@@ -29,18 +29,6 @@ class _MembersViewState extends ConsumerState<MembersView> {
           spacing: SpacingSizes.extraSmall,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                final result =
-                    await FirebaseFunctions.instanceFor(region: "europe-west1")
-                        .httpsCallable("canUserAuthenticate")
-                        .call({
-                  "phoneNumber": "+905250282812",
-                });
-                Log.info(result.data);
-              },
-              child: Text("Test"),
-            ),
             const MembersTableTitle(),
             const FilterAndSortRow(),
             Expanded(
