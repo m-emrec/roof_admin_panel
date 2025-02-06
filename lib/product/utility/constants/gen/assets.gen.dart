@@ -43,6 +43,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/adminButton_icon.svg
   String get adminButtonIcon => 'assets/icons/adminButton_icon.svg';
 
+  /// File path: assets/icons/announcement_icon.svg
+  String get announcementIcon => 'assets/icons/announcement_icon.svg';
+
   /// File path: assets/icons/calendar_icon.svg
   String get calendarIcon => 'assets/icons/calendar_icon.svg';
 
@@ -52,11 +55,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/editImage_icon.svg
   String get editImageIcon => 'assets/icons/editImage_icon.svg';
 
+  /// File path: assets/icons/feedbacks_icon.svg
+  String get feedbacksIcon => 'assets/icons/feedbacks_icon.svg';
+
   /// File path: assets/icons/filter_icon.svg
   String get filterIcon => 'assets/icons/filter_icon.svg';
 
   /// File path: assets/icons/logout_icon.svg
   String get logoutIcon => 'assets/icons/logout_icon.svg';
+
+  /// File path: assets/icons/members_icon.svg
+  String get membersIcon => 'assets/icons/members_icon.svg';
 
   /// File path: assets/icons/phoneIcon.svg
   String get phoneIcon => 'assets/icons/phoneIcon.svg';
@@ -64,6 +73,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/roof_logo.png
   AssetGenImage get roofLogo =>
       const AssetGenImage('assets/icons/roof_logo.png');
+
+  /// File path: assets/icons/sidebar_icon.svg
+  String get sidebarIcon => 'assets/icons/sidebar_icon.svg';
 
   /// File path: assets/icons/sort_icon.svg
   String get sortIcon => 'assets/icons/sort_icon.svg';
@@ -73,21 +85,25 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        addMemberIcon,
-        addEventIcon,
-        addIcon,
-        addPictureIcon,
-        adminButtonIcon,
-        calendarIcon,
-        complaintIcon,
-        editImageIcon,
-        filterIcon,
-        logoutIcon,
-        phoneIcon,
-        roofLogo,
-        sortIcon,
-        whatsappIcon
-      ];
+    addMemberIcon,
+    addEventIcon,
+    addIcon,
+    addPictureIcon,
+    adminButtonIcon,
+    announcementIcon,
+    calendarIcon,
+    complaintIcon,
+    editImageIcon,
+    feedbacksIcon,
+    filterIcon,
+    logoutIcon,
+    membersIcon,
+    phoneIcon,
+    roofLogo,
+    sidebarIcon,
+    sortIcon,
+    whatsappIcon,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -110,8 +126,12 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/temporary_auth_image.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [authImage2, femaleAvatar, maleAvatar, temporaryAuthImage];
+  List<AssetGenImage> get values => [
+    authImage2,
+    femaleAvatar,
+    maleAvatar,
+    temporaryAuthImage,
+  ];
 }
 
 class $AssetsTextsGen {
@@ -135,7 +155,7 @@ class $AssetsTranslationsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
@@ -145,11 +165,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -177,7 +193,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -209,15 +225,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;

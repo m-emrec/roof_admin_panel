@@ -1,23 +1,20 @@
 name: roof_admin_panel
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.6.0
 
-
 dependencies:
   flutter:
     sdk: flutter
   core:
-      git:
-        url: git@github.com:m-emrec/roof-core.git
-        ref: main
-        
+    git:
+      url: git@github.com:m-emrec/roof-core.git
+      ref: main
 
     ### Firebase
   # For Firebase initialization. -> https://pub.dev/packages/firebase_core
@@ -25,14 +22,14 @@ dependencies:
   # For storing storing nfc tag details. -> https://pub.dev/packages/firebase_database
   firebase_database: ^11.3.0
   # For storing item data in Firestore. -> https://pub.dev/packages/cloud_firestore
-  cloud_firestore: ^5.6.1 
+  cloud_firestore: ^5.6.1
   # For Authentication. -> https://pub.dev/packages/firebase_auth
   firebase_auth: ^5.4.0
   # For storing images. -> https://pub.dev/packages/firebase_storage
   firebase_storage: ^12.4.0
   firebase_remote_config: ^5.3.0
   ## State management -> https://pub.dev/packages/flutter_riverpod
-  flutter_riverpod: 
+  flutter_riverpod:
 
   # for easy debugging -> https://pub.dev/packages/logger
   logger: ^2.3.0
@@ -54,12 +51,13 @@ dependencies:
   google_fonts: ^6.2.1
   # for lottie animations -> https://pub.dev/packages/lottie
   lottie: ^3.1.2
-  # for markdown support -> https://pub.dev/packages/flutter_markdown 
+  # for markdown support -> https://pub.dev/packages/flutter_markdown
   flutter_markdown: ^0.7.3+2
   flutter_svg: ^2.0.16
-  
-  package_info_plus: ^8.1.2
-   # for camera usage  -> https://pub.dev/packages/image_picker
+
+  package_info_plus:
+    ^8.1.2
+    # for camera usage  -> https://pub.dev/packages/image_picker
   image_picker: ^1.1.2
   image_cropper: ^8.1.0
   # for image caching -> https://pub.dev/packages/cached_network_image
@@ -80,7 +78,6 @@ dependencies:
   equatable: ^2.0.7
   cloud_functions: ^5.3.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -92,15 +89,14 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter_gen:
-  output:  lib/product/utility/constants/gen/
+  output: lib/product/utility/constants/gen/
 
 flutter:
   assets:
-      - assets/texts/
-      - assets/icons/
-      - assets/images/
-      - assets/animations/
-      - assets/translations/
-
+    - assets/texts/
+    - assets/icons/
+    - assets/images/
+    - assets/animations/
+    - assets/translations/
 
   uses-material-design: true

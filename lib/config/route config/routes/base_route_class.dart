@@ -12,7 +12,7 @@ abstract class BaseRouteClass {
   /// This class defines the basic structure of a route.
   /// All routes in the application should extend this class.
   /// This class is used to create a GoRoute instance for each route.
-  BaseRouteClass();
+  const BaseRouteClass();
 
   /// The path of the route.
   /// This is the path that the user will navigate to in order to reach the route.
@@ -40,7 +40,7 @@ abstract class BaseRouteClass {
 
   /// The redirect function for the route.
   /// This is the function that will be called to determine if the user should be redirected to another route.
-  FutureOr<String?> Function(BuildContext, GoRouterState)? redirect;
+  FutureOr<String?> Function(BuildContext, GoRouterState)? get redirect => null;
 
   /// The route for the class.
   GoRoute get route => GoRoute(

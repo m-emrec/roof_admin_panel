@@ -7,6 +7,8 @@ import 'package:roof_admin_panel/features/members/presentation/pages/members_vie
 import 'package:roof_admin_panel/features/view%20manager/presentation/pages/view_manager.dart';
 
 final class MembersRoute extends BaseRouteClass {
+  const MembersRoute();
+
   @override
   String get name => "Members";
   @override
@@ -23,7 +25,9 @@ final class MembersRoute extends BaseRouteClass {
           FeedbackRoute().route,
         ],
         builder: (context, state, child) {
-          return ViewManager(child: child);
+          return ViewManager(
+            child: child,
+          );
         },
       );
 
