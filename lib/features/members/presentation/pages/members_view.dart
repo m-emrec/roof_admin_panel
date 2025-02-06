@@ -1,4 +1,3 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
