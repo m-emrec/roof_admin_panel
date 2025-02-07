@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
+import 'package:roof_admin_panel/product/widgets/empty_box.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -15,6 +16,7 @@ class CustomTable extends StatefulWidget {
   const CustomTable({
     required this.source,
     required this.columns,
+    this.onCellTap,
     this.rowsPerPage = 10,
     this.controller,
     super.key,
@@ -35,6 +37,9 @@ class CustomTable extends StatefulWidget {
 
   /// The controller of the table.
   final DataGridController? controller;
+
+  /// The callback function that is called when a cell is tapped.
+  final void Function(DataGridCellTapDetails)? onCellTap;
   @override
   State<CustomTable> createState() => _CustomTableState();
 }
@@ -57,23 +62,22 @@ class _CustomTableState extends State<CustomTable> {
               const SfDataGridThemeData(),
           child: SfDataGrid(
             loadMoreViewBuilder: (context, loadMoreRows) {
-              return FutureBuilder(
-                future: loadMoreRows(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Container(
-                      height: 48,
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      child: const LoadingIndicator(),
-                    );
-                  }
-                  return const SizedBox();
-                },
+              return Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                child: FutureBuilder(
+                  future: loadMoreRows(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const LoadingIndicator();
+                    }
+                    return const SizedBox();
+                  },
+                ),
               );
             },
             controller: widget.controller,
-            onCellTap: (details) {},
+            onCellTap: widget.onCellTap,
             showCheckboxColumn: true,
             headerGridLinesVisibility: GridLinesVisibility.none,
             isScrollbarAlwaysShown: true,

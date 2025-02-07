@@ -17,12 +17,11 @@ class MembersTable extends ConsumerWidget {
   ///
   /// it mainly used on the [MembersView] page.
   const MembersTable({
-    required this.members,
     super.key,
   });
 
   /// The list of members to display in the table.
-  final List<UserModel> members;
+  // final List<UserModel> members;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

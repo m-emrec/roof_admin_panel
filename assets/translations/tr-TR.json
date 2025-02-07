@@ -170,9 +170,10 @@
         "addMentorsToMentat": "Mentata Mentör Ekle"
     },
 "sidebar": {
-    "members": "Üyerler",
+    "members": "Üyeler",
     "feedback": "Geri Bildirimler",
     "settings": "Ayarlar",
+    "guests": "Misafirler",
     "logout": "Çıkış Yap",
     "accountSettings": "Hesap Ayarları"
 }

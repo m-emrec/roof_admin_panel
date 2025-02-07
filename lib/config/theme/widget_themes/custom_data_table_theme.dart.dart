@@ -5,9 +5,10 @@ final class _CustomDataTableTheme {
 
   static final CustomDataTableThemeExtension theme =
       CustomDataTableThemeExtension(
-    tableTheme: const SfDataGridThemeData(
-      filterIcon: Icon(Icons.filter_alt_outlined),
-      sortIcon: Icon(Icons.sort),
+    tableTheme: SfDataGridThemeData(
+      selectionColor: AppColors.backgroundColor[40],
+      filterIcon: const Icon(Icons.filter_alt_outlined),
+      sortIcon: const Icon(Icons.sort),
     ),
     headerTextStyle: TextStyles().textTheme.titleSmall?.copyWith(
           color: AppColors.darkTextColors[30],

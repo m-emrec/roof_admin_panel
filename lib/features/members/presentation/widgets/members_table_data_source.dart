@@ -1,7 +1,9 @@
 import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
@@ -64,10 +66,8 @@ class MembersTableDataSource extends DataGridSource {
               ),
               DataGridCell<String>(
                 columnName: MemberTableNames.membershipDuration.name,
-                value: DateTime.now()
-                    .difference(e.membershipStartDate ?? DateTime.now())
-                    .inDays
-                    .toString(),
+                value:
+                    "${e.membershipStartDate?.getMembershipDuration().inDays} ${LocaleKeys.common_date_day.tr()}",
               ),
             ],
           ),
@@ -79,33 +79,19 @@ class MembersTableDataSource extends DataGridSource {
   List<DataGridRow> get rows => _dataGridRows;
 
   @override
-  bool onCellBeginEdit(
-    DataGridRow dataGridRow,
-    RowColumnIndex rowColumnIndex,
-    GridColumn column,
-  ) {
-    Log.debug(dataGridRow.getCells()[rowColumnIndex.columnIndex].value);
-    return super.onCellBeginEdit(dataGridRow, rowColumnIndex, column);
-  }
-
-  @override
   Future<void> handleLoadMoreRows() async {
     final users = ref.read(membersViewModelProvider);
+    if ((users.value?.length ?? 0) <
+        (ref.read(totalMembersCountProvider).value ?? 0)) {
+      await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
+            users.value?.last.uid ?? '',
+          );
 
-    await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
-          users.value?.last.uid ?? '',
-        );
-
-    generateUserDataGridRows(
-      ref.read(membersViewModelProvider).value ?? [],
-    );
-    notifyListeners();
-  }
-
-  @override
-  Future<void> onCellSubmit(DataGridRow dataGridRow,
-      RowColumnIndex rowColumnIndex, GridColumn column) {
-    return super.onCellSubmit(dataGridRow, rowColumnIndex, column);
+      generateUserDataGridRows(
+        ref.read(membersViewModelProvider).value ?? [],
+      );
+      notifyListeners();
+    }
   }
 
   /// Builds the cell widget

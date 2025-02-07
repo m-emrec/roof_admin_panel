@@ -42,7 +42,6 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   /// It updates the state based on the result.
   Future<void> fetchFirst20Users() async {
     state = const AsyncLoading();
-
     final result = await _fetchFirst20UsersUseCase(const NoParams());
     if (result is DataSuccess) {
       state = AsyncData(result.resultData);

@@ -1,5 +1,6 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
+import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel.dart';
@@ -65,7 +66,40 @@ final totalMembersCountProvider = FutureProvider<int>((ref) async {
 /// This provider is used to provide the [MembersTableDataSource] instance.
 final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   return MembersTableDataSource(
-    users: [],
+    users: [
+      UserModel(
+        name: 'John Doe',
+        phoneNumber: '1234567890',
+        membershipEndDate: DateTime.now(),
+        role: [Role.admin],
+        birthDate: DateTime.now(),
+        memberNumber: '123456',
+      ),
+      UserModel(
+        name: 'John Doe',
+        phoneNumber: '1234567890',
+        membershipEndDate: DateTime.now(),
+        role: [Role.admin],
+        birthDate: DateTime.now(),
+        memberNumber: '123456',
+      ),
+      UserModel(
+        name: 'John Doe',
+        phoneNumber: '1234567890',
+        membershipEndDate: DateTime.now(),
+        role: [Role.admin],
+        birthDate: DateTime.now(),
+        memberNumber: '123456',
+      ),
+      UserModel(
+        name: 'John Doe',
+        phoneNumber: '1234567890',
+        membershipEndDate: DateTime.now(),
+        role: [Role.admin],
+        birthDate: DateTime.now(),
+        memberNumber: '123456',
+      ),
+    ],
     ref: ref,
   );
 });

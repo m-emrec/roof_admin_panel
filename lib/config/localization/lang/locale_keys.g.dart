@@ -1,5 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
+// ignore_for_file: constant_identifier_names
+
 abstract class  LocaleKeys {
   static const errors_phoneNumberCantStartWithZero = 'errors.phoneNumberCantStartWithZero';
   static const errors_user_is_not_guest = 'errors.user_is_not_guest';
@@ -158,6 +160,7 @@ abstract class  LocaleKeys {
   static const sidebar_members = 'sidebar.members';
   static const sidebar_feedback = 'sidebar.feedback';
   static const sidebar_settings = 'sidebar.settings';
+  static const sidebar_guests = 'sidebar.guests';
   static const sidebar_logout = 'sidebar.logout';
   static const sidebar_accountSettings = 'sidebar.accountSettings';
   static const sidebar = 'sidebar';

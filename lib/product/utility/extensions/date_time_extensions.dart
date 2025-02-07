@@ -1,3 +1,4 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 
@@ -34,6 +35,15 @@ extension DateTimeExtensions on DateTime {
     }
 
     return DateTime(year, month, day);
+  }
+
+  /// Calculates the duration of the membership.
+  ///
+  /// Returns a [Duration] object.
+  Duration getMembershipDuration() {
+    final now = DateTime.now()..difference(this);
+
+    return now.difference(this);
   }
 
   /// DateTime formatter for the application.
