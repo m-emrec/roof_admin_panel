@@ -6,7 +6,9 @@ import 'package:roof_admin_panel/features/feedback/data/models/feedback_response
 import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_response_entity.dart';
 import 'package:roof_admin_panel/features/feedback/domain/repositories/feedback_repository.dart';
 
+/// Implementation of [FeedbackRepository]
 class FeedbackRepositoryImpl implements FeedbackRepository {
+  /// Implementation of [FeedbackRepository]
   FeedbackRepositoryImpl(this._service);
 
   final FeedbackDataService _service;

@@ -1,7 +1,7 @@
 part of 'feedback_tile.dart';
 
-class _FeedbackTileImages extends StatelessWidget {
-  const _FeedbackTileImages({required this.feedback});
+class _FeedbackTileImagesRow extends StatelessWidget {
+  const _FeedbackTileImagesRow({required this.feedback});
   final FeedbackModel feedback;
 
   Future<void> onTapImage(

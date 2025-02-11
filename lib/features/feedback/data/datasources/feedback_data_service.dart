@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/utils/constants/firebase/feedback_doc_enum.dart';
 
+/// This class is used to interact with the firestore to get the feedbacks
 class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
   /// This method is used to get the count of feedbacks
   Future<int> getFeedbackCount() async {
@@ -9,7 +10,7 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
     return feedbacks.count ?? 0;
   }
 
-  /// Fetches the fires 20 feedbacks from the firestore
+  /// Fetches the first 20 feedbacks from the firestore
   Future<List<Map<String, dynamic>>> fetchFeedbacksInitial() async {
     final feedbacks = await getCollectionRef(CollectionEnum.feedbacks)
         .orderBy(
@@ -39,9 +40,7 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
         )
         .limit(20)
         .get();
-    Log.debug(
-      'fetchNextFeedbacks: ${feedbacks.docs.map((doc) => doc.data()).toList()}',
-    );
+
     return feedbacks.docs.map((doc) => doc.data()).toList();
   }
 
@@ -59,6 +58,11 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// This method used for fetching the reported user's data
+  ///
+  /// It takes the phoneNumber of the user and returns the user's data
+  ///
+  // ignore: unintended_html_in_doc_comment
+  /// as a Map<String, dynamic>
   Future<Map<String, dynamic>> fetchReportedUser(String phoneNumber) async {
     final query = await getCollectionRef(CollectionEnum.users)
         .where(
@@ -70,6 +74,9 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// This method is used to fetch the feedback owner's data
+  ///
+  /// It takes the uid of the user and returns the user's data
+  ///
   Future<Map<String, dynamic>?> fetchFeedbackOwner(String uid) async {
     final user = getDocumentRef(collection: CollectionEnum.users, docId: uid)
         .get()

@@ -3,14 +3,15 @@ import 'package:core/resources/use_case.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:roof_admin_panel/features/feedback/domain/repositories/feedback_repository.dart';
 
+/// A use case to fetch next feedbacks
 class FetchNextFeedbacksUseCase
     extends UseCase<DataState<List<FeedbackModel>>, String> {
-  final FeedbackRepository repository;
-
-  FetchNextFeedbacksUseCase(this.repository);
+  /// A use case to fetch next feedbacks
+  FetchNextFeedbacksUseCase(this._repository);
+  final FeedbackRepository _repository;
 
   @override
   Future<DataState<List<FeedbackModel>>> call(String params) {
-    return repository.fetchNextFeedbacks(params);
+    return _repository.fetchNextFeedbacks(params);
   }
 }

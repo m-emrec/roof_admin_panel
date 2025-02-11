@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_tile.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback_list.dart';
-import 'package:roof_admin_panel/product/widgets/error_retry_card.dart';
-import 'package:roof_admin_panel/product/widgets/skeleton.dart';
+import 'package:roof_admin_panel/product/widgets/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// FeedbackView
@@ -25,48 +25,25 @@ class FeedbackView extends ConsumerWidget {
         TitleWidget(
           title: LocaleKeys.feedback_pageTitle.tr(),
         ),
-        ref.watch(feedbackViewModelProvider).when(
-              data: (feedbacks) {
-                return FeedbackList(
-                  feedbacks: feedbacks,
-                );
-              },
-              error: (error, stackTrace) {
-                return ErrorRetryCard(
-                  errorMessage: error.toString(),
-                  retry: () => ref.refresh(feedbackViewModelProvider),
-                );
-              },
-              loading: () => const Expanded(
-                child: _LoadingFeedbackView(),
-              ),
+        AsyncDataBuilder(
+          provider: feedbackViewModelProvider,
+          data: (feedbacks) => FeedbackList(
+            feedbacks: feedbacks,
+          ),
+          skeleton: FeedbackTile(
+            feedback: FeedbackModel(
+              feedbackId: "1",
+              content:
+                  "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet",
+              createdAt: DateTime.now(),
+              imageUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+              ],
             ),
-      ],
-    );
-  }
-}
-
-class _LoadingFeedbackView extends StatelessWidget {
-  const _LoadingFeedbackView();
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomSkeleton(
-      child: FeedbackList(
-        feedbacks: List.generate(
-          5,
-          (_) => FeedbackModel(
-            feedbackId: "1",
-            content:
-                "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet",
-            createdAt: DateTime.now(),
-            imageUrls: [
-              "https://picsum.photos/200/300",
-              "https://picsum.photos/200/300",
-            ],
           ),
         ),
-      ),
+      ],
     );
   }
 }

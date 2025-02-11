@@ -12,6 +12,7 @@ import 'package:roof_admin_panel/product/utility/extensions/make_selectable_exte
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
+part 'feedback_response_dialog_utils.dart';
 
 /// Shows a dialog to respond to the feedback.
 class FeedbackResponseDialog extends ConsumerWidget {
@@ -69,38 +70,5 @@ class FeedbackResponseDialog extends ConsumerWidget {
         ),
       ),
     ).makeSelectable();
-  }
-}
-
-class _FeedbackResponseDialogUtils {
-  static Future<void> onTapSend(
-    BuildContext context,
-    FeedbackModel feedback,
-    TextEditingController responseController,
-    GlobalKey<FormState> formKey,
-    WidgetRef ref,
-  ) async {
-    if (formKey.currentState?.validate() ?? false) {
-      await ref
-          .read(feedbackViewModelProvider.notifier)
-          .respondFeedback(
-            FeedbackResponseModel(
-              response: responseController.text,
-              feedbackId: feedback.feedbackId,
-            ),
-          )
-          .showLoading(context: context)
-          .then(
-            (_) => _dispose(responseController, context),
-          );
-    }
-  }
-
-  static void _dispose(
-    TextEditingController responseController,
-    BuildContext context,
-  ) {
-    CustomAlertDialog.hideAlertDialog(context);
-    responseController.dispose();
   }
 }

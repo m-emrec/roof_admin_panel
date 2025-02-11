@@ -44,15 +44,20 @@ final _getFeedbackCountUseCaseProvider =
 final _fetchReportedUserUseCaseProvider =
     Provider<FetchReportedUserUseCase>((ref) {
   return FetchReportedUserUseCase(
-      repository: ref.read(_feedbackRepositoryProvider));
+    repository: ref.read(_feedbackRepositoryProvider),
+  );
 });
 
 final _fetchFeedbackOwnerUseCaseProvider =
     Provider<FetchFeedbackOwnerUseCase>((ref) {
   return FetchFeedbackOwnerUseCase(
-      repository: ref.read(_feedbackRepositoryProvider));
+    repository: ref.read(_feedbackRepositoryProvider),
+  );
 });
 
+/// [feedbackOwnerProvider] the user data of the feedback owner
+///
+/// It takes a [String] uid and returns a [UserModel]
 final feedbackOwnerProvider =
     FutureProvider.family<UserModel, String>((ref, uid) async {
   final dataState =
@@ -61,6 +66,9 @@ final feedbackOwnerProvider =
   return UserModel();
 });
 
+/// [reportedUserProvider] provides the user data of the reported user
+///
+/// It takes a [String] phoneNumber and returns a [UserModel]
 final reportedUserProvider =
     FutureProvider.family<UserModel, String>((ref, phoneNumber) async {
   final dataState =
@@ -69,16 +77,14 @@ final reportedUserProvider =
   return UserModel();
 });
 
-/// This provides the count of feedbacks
+/// [feedbackCountProvider] provides the total count of feedbacks
 final feedbackCountProvider = FutureProvider<int>((ref) async {
   return ref.read(_getFeedbackCountUseCaseProvider).call(const NoParams());
 });
 
+/// [feedbackViewModelProvider] provides the feedbacks
 ///
-/// TODO: add fethc reported user provider
-///
-/// TODO: add fetch reportedBy   provider
-
+/// returns a list of [FeedbackModel] as a [AsyncValue]
 final feedbackViewModelProvider =
     StateNotifierProvider<FeedbackViewModel, AsyncValue<List<FeedbackModel>>>(
         (ref) {

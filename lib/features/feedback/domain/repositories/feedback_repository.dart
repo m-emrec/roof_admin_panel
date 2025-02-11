@@ -3,6 +3,7 @@ import 'package:core/utils/models/feedback_model.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_response_entity.dart';
 
+/// An interface for the feedback repository
 abstract class FeedbackRepository {
   /// Fetches the first 20 feedbacks from the server
   Future<DataState<List<FeedbackModel>>> fetchFeedbacksInitial();

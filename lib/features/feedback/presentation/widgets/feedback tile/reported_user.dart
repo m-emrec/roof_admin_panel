@@ -6,12 +6,15 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 
+/// Shows the reported user info if the reportedUserId is not empty
 class ReportedUser extends ConsumerWidget {
+  /// Shows the reported user info if the reportedUserId is not empty
   const ReportedUser({
     super.key,
     required this.reportedUserId,
   });
 
+  ///
   final String reportedUserId;
 
   @override

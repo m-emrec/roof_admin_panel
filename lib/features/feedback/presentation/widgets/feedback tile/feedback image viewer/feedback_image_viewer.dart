@@ -20,13 +20,10 @@ class _FeedbackImageViewerState extends State<_FeedbackImageViewer>
     with FeedImageViewerStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      backgroundColor: Colors.transparent,
-      child: Stack(
-        alignment: Alignment.center,
-        fit: StackFit.passthrough,
-        children: [
-          PageView(
+    return Column(
+      children: [
+        Expanded(
+          child: PageView(
             controller: _pageController,
             children: [
               for (final imageUrl in widget.imageUrls)
@@ -38,16 +35,13 @@ class _FeedbackImageViewerState extends State<_FeedbackImageViewer>
                 ),
             ],
           ),
-          Positioned(
-            bottom: 0,
-            child: _ImageViewerControllersRow(
-              pageController: _pageController,
-              duration: _duration,
-              curve: _curve,
-            ),
-          ),
-        ],
-      ),
+        ),
+        _ImageViewerControllersRow(
+          pageController: _pageController,
+          duration: _duration,
+          curve: _curve,
+        ),
+      ],
     );
   }
 }

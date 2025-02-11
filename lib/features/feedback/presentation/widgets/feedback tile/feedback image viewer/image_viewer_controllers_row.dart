@@ -25,6 +25,7 @@ class _ImageViewerControllersRow extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: SpacingSizes.small,
         children: [
+          /// Previous button
           IconButton(
             onPressed: () => _pageController.previousPage(
               duration: _duration,
@@ -32,9 +33,13 @@ class _ImageViewerControllersRow extends StatelessWidget {
             ),
             icon: const Icon(Icons.arrow_back_ios_new_outlined),
           ),
+
+          /// Close button
           CloseButton(
             onPressed: () => context.pop(),
           ),
+
+          /// Next button
           IconButton(
             onPressed: () => _pageController.nextPage(
               duration: _duration,
