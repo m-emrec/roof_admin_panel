@@ -35,18 +35,20 @@ class _ViewManagerState extends State<ViewManager> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          const SideBar(),
-          Flexible(
-            child: Padding(
-              padding: const AppPadding.horizontalLSymmetric() +
-                  const AppPadding.verticalMSymmetric(),
-              child: widget.child,
+    return SelectionArea(
+      child: Scaffold(
+        body: Row(
+          children: [
+            const SideBar(),
+            Flexible(
+              child: Padding(
+                padding: const AppPadding.horizontalLSymmetric() +
+                    const AppPadding.verticalMSymmetric(),
+                child: widget.child,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

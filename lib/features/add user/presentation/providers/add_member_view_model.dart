@@ -140,22 +140,7 @@ class AddMemberViewModel extends ChangeNotifier {
     user = _setUser(userModel);
 
     final dataState = await _addNewUserUseCase(user);
-
-    return DataState.handleDataStateBasedAction<DataState<UserModel>>(
-      dataState,
-      onSuccess: () {
-        user = dataState.resultData ?? UserModel();
-        return DataSuccess(user);
-      },
-      onFailure: () {
-        Toast.showErrorToast(
-          desc: AppErrorText.errorMessageConverter(
-            dataState.errorMessage,
-          ),
-        );
-        return DataFailed(dataState.errorMessage ?? '');
-      },
-    );
+    return dataState;
   }
 }
 

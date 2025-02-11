@@ -1,0 +1,45 @@
+part of 'feedback_tile.dart';
+
+class _FeedbackTileImages extends StatelessWidget {
+  const _FeedbackTileImages({required this.feedback});
+  final FeedbackModel feedback;
+
+  Future<void> onTapImage(
+    BuildContext context,
+    List<String> imageUrls,
+    int index,
+  ) async {
+    await showDialog<void>(
+      context: context,
+      builder: (context) {
+        return _FeedbackImageViewer(
+          imageUrls: imageUrls,
+          index: index,
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        for (int i = 0; i < (feedback.imageUrls?.length ?? 0); i++)
+          GestureDetector(
+            onTap: () => onTapImage(context, feedback.imageUrls ?? [], i),
+            child: Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: AppBorderRadius.small(),
+              ),
+              child: Image.network(
+                feedback.imageUrls?[i] ?? "",
+                fit: BoxFit.cover,
+                width: 64,
+                height: 64,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}

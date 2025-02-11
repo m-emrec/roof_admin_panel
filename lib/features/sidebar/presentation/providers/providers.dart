@@ -23,9 +23,7 @@ final _getUserUseCaseProvider = Provider<GetUserUseCase>((ref) {
 final sideBarUserProvider = FutureProvider<UserModel?>((ref) async {
   final dataState = await ref.read(_getUserUseCaseProvider)(const NoParams());
 
-  return DataState.handleDataStateBasedAction(
-    dataState,
-    onSuccess: () => dataState.resultData,
-    onFailure: () => null,
-  );
+  if (dataState is DataSuccess) {
+    return dataState.resultData;
+  }
 });

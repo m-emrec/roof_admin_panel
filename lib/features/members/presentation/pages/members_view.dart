@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/features/members/presentation/providers/provide
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_title.dart';
+import 'package:roof_admin_panel/product/widgets/error_retry_card.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 
 /// This is the view that displays the members table and member related actions.
@@ -31,7 +32,10 @@ class _MembersViewState extends ConsumerState<MembersView> {
               data: (users) {
                 return const Expanded(child: MembersTable());
               },
-              error: (error, stackTrace) => _ErrorView(error.toString()),
+              error: (error, stackTrace) => ErrorRetryCard(
+                errorMessage: error.toString(),
+                retry: () => ref.refresh(membersViewModelProvider),
+              ),
               loading: () => const _LoadingView(),
             ),
       ],
@@ -47,28 +51,6 @@ class _LoadingView extends StatelessWidget {
     return const CustomSkeleton(
       child: Expanded(
         child: MembersTable(),
-      ),
-    );
-  }
-}
-
-class _ErrorView extends ConsumerWidget {
-  const _ErrorView(this.error);
-  final String error;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: Column(
-        children: [
-          Card(
-            child: Text(error),
-          ),
-          ElevatedButton(
-            onPressed: () => ref.refresh(membersViewModelProvider),
-            child: Text(LocaleKeys.common_retry.tr()),
-          ),
-        ],
       ),
     );
   }

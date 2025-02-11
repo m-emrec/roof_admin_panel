@@ -1,17 +1,72 @@
+import 'package:core/utils/models/feedback_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback_list.dart';
+import 'package:roof_admin_panel/product/widgets/error_retry_card.dart';
+import 'package:roof_admin_panel/product/widgets/skeleton.dart';
+import 'package:roof_admin_panel/product/widgets/title.dart';
 
-class FeedbackView extends StatefulWidget {
+/// FeedbackView
+/// This is the main view of the feedback feature.
+class FeedbackView extends ConsumerWidget {
+  /// FeedbackView
+  /// This is the main view of the feedback feature.
   const FeedbackView({super.key});
 
   @override
-  State<FeedbackView> createState() => _FeedbackViewState();
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// Title
+        TitleWidget(
+          title: LocaleKeys.feedback_pageTitle.tr(),
+        ),
+        ref.watch(feedbackViewModelProvider).when(
+              data: (feedbacks) {
+                return FeedbackList(
+                  feedbacks: feedbacks,
+                );
+              },
+              error: (error, stackTrace) {
+                return ErrorRetryCard(
+                  errorMessage: error.toString(),
+                  retry: () => ref.refresh(feedbackViewModelProvider),
+                );
+              },
+              loading: () => const Expanded(
+                child: _LoadingFeedbackView(),
+              ),
+            ),
+      ],
+    );
+  }
 }
 
-class _FeedbackViewState extends State<FeedbackView> {
+class _LoadingFeedbackView extends StatelessWidget {
+  const _LoadingFeedbackView();
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Feedback View'),
+    return CustomSkeleton(
+      child: FeedbackList(
+        feedbacks: List.generate(
+          5,
+          (_) => FeedbackModel(
+            feedbackId: "1",
+            content:
+                "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet",
+            createdAt: DateTime.now(),
+            imageUrls: [
+              "https://picsum.photos/200/300",
+              "https://picsum.photos/200/300",
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

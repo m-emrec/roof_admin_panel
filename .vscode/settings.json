@@ -4,5 +4,120 @@
         "Redirector",
         "redirectors",
         "sidemenu"
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#e8dbc9",
+        "activityBar.background": "#e8dbc9",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#439c77",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#15202b99",
+        "sash.hoverBorder": "#e8dbc9",
+        "statusBar.background": "#d8c3a6",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#c8ab83",
+        "statusBarItem.remoteBackground": "#d8c3a6",
+        "statusBarItem.remoteForeground": "#15202b",
+        "titleBar.activeBackground": "#d8c3a6",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#d8c3a699",
+        "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#d8c3a6",
+    "folder-color.pathColors": [
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/",
+            "badge": "as",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/datasources/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/datasources/feedback_data_service.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/models/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/models/feedback_response_model.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/repositories/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/data/repositories/feedback_repository_impl.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/entities/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/repositories/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/repositories/feedback_repository.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/fetch_feedback_owner_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/fetch_feedbacks_initial_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/fetch_next_feedbacks_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/fetch_reported_user_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/get_feedback_count_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/domain/usecases/respond_feedback_use_case.dart/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/presentation/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/presentation/pages/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/presentation/providers/",
+            "color": "foldercolorizer.color_00cc99"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/feedback/presentation/widgets/",
+            "color": "foldercolorizer.color_00cc99"
+        }
     ]
 }
