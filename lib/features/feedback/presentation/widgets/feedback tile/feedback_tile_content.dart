@@ -45,7 +45,7 @@ class _FeedbackTileContentState extends State<_FeedbackTileContent> {
               ]
             : [],
       ),
-      style: context.textTheme.bodyLarge,
+      style: context.feedbackTileThemeExtension?.contentTextStyle,
     );
   }
 }

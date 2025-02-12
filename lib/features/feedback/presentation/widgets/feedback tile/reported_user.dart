@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/extensions/theme_extensions_extesntion.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 
 /// Shows the reported user info if the reportedUserId is not empty
@@ -26,7 +27,8 @@ class ReportedUser extends ConsumerWidget {
               children: [
                 Text(
                   LocaleKeys.feedback_reportedUser.tr(),
-                  style: context.textTheme.labelLarge,
+                  style: context
+                      .feedbackTileThemeExtension?.userNameLabelTextStyle,
                 ),
                 Row(
                   children: [
@@ -34,7 +36,8 @@ class ReportedUser extends ConsumerWidget {
                       backgroundImage: (user.imageUrl?.isNotEmpty ?? false)
                           ? NetworkImage(user.imageUrl ?? "")
                           : null,
-                      radius: 16,
+                      radius:
+                          context.feedbackTileThemeExtension?.userImageRadius,
                     ),
                     TextButton(
                       child: Text(user.name ?? ""),

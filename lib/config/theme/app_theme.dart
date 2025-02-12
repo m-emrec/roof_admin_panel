@@ -1,3 +1,4 @@
+import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
@@ -7,11 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_bottom_sheet_them.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
-import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/verification_code_card_theme.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import 'theme_extensions/inline_text_button_theme.dart';
 
@@ -34,10 +34,10 @@ part 'widget_themes/_icon_button_theme.dart';
 part 'widget_themes/_chip_theme.dart';
 part 'widget_themes/_text_selection_theme.dart';
 part 'widget_themes/_menu_button_theme.dart';
-part 'widget_themes/_feedback_tile_theme.dart';
 part 'widget_themes/_expansion_tile_theme.dart';
 part 'widget_themes/_side_bar_theme.dart';
 part 'widget_themes/custom_data_table_theme.dart.dart';
+part './widget_themes/_feedback_tile_theme.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -67,6 +67,10 @@ part 'widget_themes/custom_data_table_theme.dart.dart';
 /// final ThemeData theme = AppTheme().lightTheme;
 /// ```
 class AppTheme {
+  AppTheme({required BuildContext context}) : _context = context;
+
+  final BuildContext _context;
+
   /// A getter that returns the light theme configuration for the application.
   ///
   /// This getter provides access to the predefined light theme settings,
@@ -75,49 +79,49 @@ class AppTheme {
   ///
   /// Returns:
   ///   A [ThemeData] object representing the light theme configuration.
-  ThemeData get lightTheme => _lightTheme;
-  final ThemeData _lightTheme = ThemeData(
-    brightness: Brightness.light,
-    useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.backgroundColor[50],
-    primaryColor: AppColors.primaryColor[50],
-    textTheme: TextStyles().textTheme,
+  // ThemeData get lightTheme => _lightTheme;
+  ThemeData get lightTheme => ThemeData(
+        brightness: Brightness.light,
+        useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.backgroundColor[50],
+        primaryColor: AppColors.primaryColor[50],
+        textTheme: TextStyles().textTheme,
 
-    /// Widget Themes
-    appBarTheme: _AppBarTheme.appBarTheme,
-    elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme,
-    menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
-    textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
-    popupMenuTheme: _PopMenuTheme.popMenuTheme,
-    outlinedButtonTheme: _OutlinedButtonTheme.outlinedButtonTheme,
-    textButtonTheme: _TextButtonTheme.textButtonTheme,
-    inputDecorationTheme: _InputDecorationTheme.inputDecorationTheme,
-    extensions: _extensions,
-    expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
+        /// Widget Themes
+        appBarTheme: _AppBarTheme.appBarTheme,
+        elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme,
+        menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
+        textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
+        popupMenuTheme: _PopMenuTheme.popMenuTheme,
+        outlinedButtonTheme: _OutlinedButtonTheme.outlinedButtonTheme,
+        textButtonTheme: _TextButtonTheme.textButtonTheme,
+        inputDecorationTheme: _InputDecorationTheme.inputDecorationTheme,
+        extensions: _extensions,
+        expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
 
-    checkboxTheme: _CheckboxTheme.checkboxTheme,
-    progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
-    floatingActionButtonTheme:
-        _FloatingActionButtonTheme.floatingActionButtonTheme,
-    datePickerTheme: _DatePickerTheme.datePickerTheme,
-    tooltipTheme: _TooltipTheme.tooltipTheme,
-    chipTheme: _ChipTheme.chipTheme,
-    dataTableTheme: const DataTableThemeData(
-      headingRowAlignment: MainAxisAlignment.start,
-    ),
-    iconButtonTheme: _IconButtonTheme.iconButtonTheme,
-  );
+        checkboxTheme: _CheckboxTheme.checkboxTheme,
+        progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
+        floatingActionButtonTheme:
+            _FloatingActionButtonTheme.floatingActionButtonTheme,
+        datePickerTheme: _DatePickerTheme.datePickerTheme,
+        tooltipTheme: _TooltipTheme.tooltipTheme,
+        chipTheme: _ChipTheme.chipTheme,
+        dataTableTheme: const DataTableThemeData(
+          headingRowAlignment: MainAxisAlignment.start,
+        ),
+        iconButtonTheme: _IconButtonTheme.iconButtonTheme,
+      );
 
   // MARK: CheckboxThemeData
 
   // MARK: Theme Extensions
-  static final Iterable<ThemeExtension<dynamic>> _extensions = [
-    _AddProfilePictureTheme.addProfilePictureTheme,
-    _VerificationCodeCardTheme.verificationCodeCardTheme,
-    _InlineTextButtonTheme.inlineTextButtonTheme,
-    _CustomBottomSheetTheme.customBottomSheetTheme,
-    _FeedbackTileTheme.feedbackTileTheme,
-    _SideBarTheme.sideBarTheme,
-    _CustomDataTableTheme.theme,
-  ];
+  Iterable<ThemeExtension<dynamic>> get _extensions => [
+        _AddProfilePictureTheme.addProfilePictureTheme,
+        _VerificationCodeCardTheme.verificationCodeCardTheme,
+        _InlineTextButtonTheme.inlineTextButtonTheme,
+        _CustomBottomSheetTheme.customBottomSheetTheme,
+        _SideBarTheme.sideBarTheme,
+        _CustomDataTableTheme.theme,
+        _FeedbackTileTheme.feedbackTileTheme(_context),
+      ];
 }

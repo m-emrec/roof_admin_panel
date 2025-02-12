@@ -1,18 +1,21 @@
-part of "../app_theme.dart";
+part of '../app_theme.dart';
 
 final class _FeedbackTileTheme {
   _FeedbackTileTheme._();
-
-  static final FeedbackTileThemeExtension feedbackTileTheme =
+  static FeedbackTileThemeExtension feedbackTileTheme(BuildContext context) =>
       FeedbackTileThemeExtension(
-    selectedTextColor: AppColors.backgroundColor[50],
-    selectedTileColor: AppColors.primaryColor,
-    subTitleTextStyle: TextStyles().textTheme.bodySmall,
-    titleTextStyle: TextStyles().textTheme.titleMedium,
-    tileTextStyle: TextStyles().textTheme.bodyMedium,
-    expandedBackgroundColor: AppColors.backgroundColor[60],
-    selectedSubTitleStyle: TextStyles().textTheme.labelLarge?.copyWith(
-          color: AppColors.primaryColor,
+        gapBetweenContentAndFooter: SpacingSizes.small,
+        gapBetweenHeaderAndContent: SpacingSizes.small,
+        titleTextStyle: context.textTheme.titleLarge ?? const TextStyle(),
+        subTitleTextStyle: context.textTheme.titleMedium ?? const TextStyle(),
+        createdAtTextStyle: context.textTheme.bodySmall ?? const TextStyle(),
+        userNameLabelTextStyle:
+            context.textTheme.labelLarge ?? const TextStyle(),
+        userImageRadius: 16,
+        contentTextStyle: context.textTheme.bodyLarge ?? const TextStyle(),
+        imageSize: const Size(64, 64),
+        imageShape: const RoundedRectangleBorder(
+          borderRadius: AppBorderRadius.small(),
         ),
-  );
+      );
 }

@@ -42,7 +42,7 @@ class RoofApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        theme: AppTheme().lightTheme,
+        theme: AppTheme(context: context).lightTheme,
       ),
     );
   }

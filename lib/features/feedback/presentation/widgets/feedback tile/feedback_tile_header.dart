@@ -18,11 +18,11 @@ class _FeedbackTileHeader extends StatelessWidget {
           children: [
             Text(
               feedback.feedbackTitle?.name ?? "",
-              style: context.textTheme.titleMedium,
+              style: context.feedbackTileThemeExtension?.titleTextStyle,
             ),
             Text(
               feedback.feedbackSubTitle?.name ?? "",
-              style: context.textTheme.titleSmall,
+              style: context.feedbackTileThemeExtension?.subTitleTextStyle,
             ),
           ],
         ),
@@ -31,7 +31,7 @@ class _FeedbackTileHeader extends StatelessWidget {
           children: [
             Text(
               feedback.createdAt.formatDate(context),
-              style: context.textTheme.bodySmall,
+              style: context.feedbackTileThemeExtension?.createdAtTextStyle,
             ),
             Visibility(
               visible: feedback.reportedUserId?.isNotEmpty ?? false,

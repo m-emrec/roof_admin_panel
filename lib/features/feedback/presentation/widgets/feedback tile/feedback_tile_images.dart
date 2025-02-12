@@ -28,14 +28,12 @@ class _FeedbackTileImagesRow extends StatelessWidget {
           GestureDetector(
             onTap: () => onTapImage(context, feedback.imageUrls ?? [], i),
             child: Card(
-              shape: const RoundedRectangleBorder(
-                borderRadius: AppBorderRadius.small(),
-              ),
+              shape: context.feedbackTileThemeExtension?.imageShape,
               child: Image.network(
                 feedback.imageUrls?[i] ?? "",
                 fit: BoxFit.cover,
-                width: 64,
-                height: 64,
+                width: context.feedbackTileThemeExtension?.imageSize.width,
+                height: context.feedbackTileThemeExtension?.imageSize.height,
               ),
             ),
           ),
