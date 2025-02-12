@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class FeedbackView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: SpacingSizes.medium,
       children: [
         /// Title
         TitleWidget(

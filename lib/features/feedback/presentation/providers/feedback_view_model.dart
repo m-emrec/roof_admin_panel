@@ -13,15 +13,17 @@ class FeedbackViewModel extends StateNotifier<AsyncValue<List<FeedbackModel>>> {
     required FetchFeedbacksInitialUseCase fetchFeedbacksInitialUseCase,
     required FetchNextFeedbacksUseCase fetchNextFeedbacksUseCase,
     required RespondFeedbackUseCase respondFeedbackUseCase,
+    required int feedbackCount,
   })  : _fetchFeedbacksInitialUseCase = fetchFeedbacksInitialUseCase,
         _fetchNextFeedbacksUseCase = fetchNextFeedbacksUseCase,
         _respondFeedbackUseCase = respondFeedbackUseCase,
+        _feedbackCount = feedbackCount,
         super(
           const AsyncValue.loading(),
         ) {
     fetchFeedbacksInitial();
   }
-
+  final int _feedbackCount;
   final FetchFeedbacksInitialUseCase _fetchFeedbacksInitialUseCase;
   final FetchNextFeedbacksUseCase _fetchNextFeedbacksUseCase;
   final RespondFeedbackUseCase _respondFeedbackUseCase;
@@ -53,6 +55,9 @@ class FeedbackViewModel extends StateNotifier<AsyncValue<List<FeedbackModel>>> {
 
   /// Fetch the next feedbacks
   Future<void> fetchNextFeedbacks(String lastFeedbackId) async {
+    if (state.value?.length == _feedbackCount) {
+      return;
+    }
     DataState.handleDataStateBasedAction<List<FeedbackModel>>(
       await _fetchNextFeedbacksUseCase(lastFeedbackId),
       onSuccess: (result) {

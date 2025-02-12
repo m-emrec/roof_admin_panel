@@ -93,5 +93,6 @@ final feedbackViewModelProvider =
         ref.read(_fetchFeedbacksInitialUseCaseProvider),
     fetchNextFeedbacksUseCase: ref.read(_fetchNextFeedbacksUseCaseProvider),
     respondFeedbackUseCase: ref.read(_respondFeedbackUseCaseProvider),
+    feedbackCount: ref.watch(feedbackCountProvider).value ?? 0,
   );
 });

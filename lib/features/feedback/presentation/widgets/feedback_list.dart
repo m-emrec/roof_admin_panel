@@ -1,3 +1,4 @@
+import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,7 +35,10 @@ class FeedbackList extends ConsumerWidget {
                 .read(feedbackViewModelProvider.notifier)
                 .fetchNextFeedbacks(feedbacks.last.feedbackId);
           }
-          return FeedbackTile(feedback: feedbacks[index]);
+          return Padding(
+            padding: const AppPadding.verticalSSymmetric(),
+            child: FeedbackTile(feedback: feedbacks[index]),
+          );
         },
       ),
     );

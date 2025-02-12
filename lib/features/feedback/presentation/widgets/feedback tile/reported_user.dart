@@ -10,8 +10,8 @@ import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 class ReportedUser extends ConsumerWidget {
   /// Shows the reported user info if the reportedUserId is not empty
   const ReportedUser({
-    super.key,
     required this.reportedUserId,
+    super.key,
   });
 
   ///
@@ -22,7 +22,7 @@ class ReportedUser extends ConsumerWidget {
     return ref.watch(reportedUserProvider(reportedUserId)).when(
           data: (user) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
                   LocaleKeys.feedback_reportedUser.tr(),

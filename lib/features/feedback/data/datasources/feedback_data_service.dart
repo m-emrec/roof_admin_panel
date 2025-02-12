@@ -15,6 +15,7 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
     final feedbacks = await getCollectionRef(CollectionEnum.feedbacks)
         .orderBy(
           FeedbackDocEnum.createdAt.name,
+          descending: true,
         )
         .limit(20)
         .get();
@@ -26,11 +27,10 @@ class FeedbackDataService extends FirebaseUtils with FirestoreUtils {
   Future<List<Map<String, dynamic>>> fetchNextFeedbacks(
     String lastFeedbackId,
   ) async {
-    /// TODO: ADd check here for count
     final feedbacks = await getOrderedCollectionQuery(
       collection: CollectionEnum.feedbacks,
       field: FeedbackDocEnum.createdAt.name,
-      descending: false,
+      descending: true,
     )
         .startAfterDocument(
           await getDocumentRef(

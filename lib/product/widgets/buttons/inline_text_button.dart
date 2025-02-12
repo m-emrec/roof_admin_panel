@@ -37,6 +37,8 @@ class InlineTextButton extends TextSpan {
     this.onTap,
   });
   @override
+  MouseCursor get mouseCursor => SystemMouseCursors.click;
+  @override
   TextStyle? get style =>
       context.theme.extension<InlineTextButtonTheme>()?.style;
 

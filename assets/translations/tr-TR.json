@@ -105,6 +105,8 @@
         "search": "Ara",
         "close": "Kapat",
         "giveUp": "Vazgeç",
+        "seeMore": "Devamını Gör",
+        "seeLess": "Daha Az Göster",
         "date":{
             "today": "Bugün",
             "yesterday": "Dün",

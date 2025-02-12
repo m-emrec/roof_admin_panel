@@ -106,6 +106,8 @@ abstract class  LocaleKeys {
   static const common_search = 'common.search';
   static const common_close = 'common.close';
   static const common_giveUp = 'common.giveUp';
+  static const common_seeMore = 'common.seeMore';
+  static const common_seeLess = 'common.seeLess';
   static const common_date_today = 'common.date.today';
   static const common_date_yesterday = 'common.date.yesterday';
   static const common_date_tomorrow = 'common.date.tomorrow';
