@@ -3,6 +3,18 @@ import 'package:core/utils/models/feedback_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_filter_types.dart';
 
+/// FeedbackFilterNotifier
+///
+/// This class is used to filter the feedbacks based on the response and title
+///
+/// It requires [List][FeedbackModel] feedbacks,
+///
+/// [FeedbackResponseFilterTypes] responseFilter,
+///
+/// [FeedbackTitlesEnum] titleFilter
+///
+/// It takes the feedbacks from [FeedbackViewModel] and
+/// filters them based on the response and title
 class FeedbackFilterNotifier extends StateNotifier<List<FeedbackModel>> {
   FeedbackFilterNotifier({
     required List<FeedbackModel> feedbacks,
@@ -20,6 +32,9 @@ class FeedbackFilterNotifier extends StateNotifier<List<FeedbackModel>> {
 
   final List<FeedbackModel> _feedbacks;
 
+  /// This method calls the filter methods
+  ///
+  /// IT
   void _applyFilter() {
     state = _filterFeedbacksByResponse();
     state = _filterByTitle();
@@ -27,7 +42,6 @@ class FeedbackFilterNotifier extends StateNotifier<List<FeedbackModel>> {
 
   List<FeedbackModel> _filterByTitle() {
     if (_titleFilter == null) {
-      // state = _feedbacks;
       return state;
     }
     final filtered = state

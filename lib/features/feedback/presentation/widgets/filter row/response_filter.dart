@@ -11,11 +11,12 @@ class __StateFiltersState extends ConsumerState<_ResponseFilter> {
   @override
   Widget build(BuildContext context) {
     return FilterChip(
-      selected: ref.watch(responseFilterProvider) == widget.filter,
+      selected: ref.watch(feedbackResponseFilterProvider) == widget.filter,
       label: Text(widget.filter.localizedString()),
       showCheckmark: false,
-      onSelected: (_) =>
-          ref.read(responseFilterProvider.notifier).state = widget.filter,
+      onSelected: (_) => ref
+          .read(feedbackResponseFilterProvider.notifier)
+          .state = widget.filter,
     );
   }
 }

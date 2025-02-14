@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
-import 'package:core/utils/constants/enums/feedback_titles_enum.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/feedback/data/models/feedback_response_model.dart';
-import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_filter_types.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_feedbacks_initial_use_case.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_next_feedbacks_use_case.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/respond_feedback_use_case.dart';
@@ -32,16 +30,16 @@ class FeedbackViewModel extends StateNotifier<AsyncValue<List<FeedbackModel>>> {
 
   /// This method is used to respond to the feedback
   ///
-  Future<void> respondFeedback(FeedbackResponseModel feedbackModel) async {
+  Future<void> respondToFeedback(FeedbackResponseModel response) async {
     DataState.handleDataStateBasedAction<void>(
-      await _respondFeedbackUseCase(feedbackModel),
+      await _respondFeedbackUseCase(response),
       onSuccess: (_) {
         state = AsyncValue.data(
           state.value
                   ?.map(
-                    (e) => e.feedbackId == feedbackModel.feedbackId
+                    (e) => e.feedbackId == response.feedbackId
                         ? e.copyWith(
-                            response: feedbackModel.response,
+                            response: response.response,
                           )
                         : e,
                   )
@@ -56,7 +54,12 @@ class FeedbackViewModel extends StateNotifier<AsyncValue<List<FeedbackModel>>> {
   }
 
   /// Fetch the next feedbacks
+  ///
+  /// It requires [String][lastFeedbackId] to fetch the next feedbacks
   Future<void> fetchNextFeedbacks(String lastFeedbackId) async {
+    /// If the feedback count is equal to the length of the feedbacks
+    /// this means that there are no more feedbacks to fetch
+    /// so we return to avoid unnecessary API calls
     if (state.value?.length == _feedbackCount) {
       return;
     }
@@ -75,7 +78,9 @@ class FeedbackViewModel extends StateNotifier<AsyncValue<List<FeedbackModel>>> {
     );
   }
 
-  /// Fetch the initial feedbacks
+  ///
+  /// This method is used to fetch the initial feedbacks
+  /// It is called when the view model is initialized
   Future<void> fetchFeedbacksInitial() async {
     state = const AsyncValue.loading();
     DataState.handleDataStateBasedAction<List<FeedbackModel>>(

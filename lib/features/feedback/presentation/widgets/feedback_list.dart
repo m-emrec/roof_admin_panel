@@ -1,7 +1,9 @@
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/models/feedback_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_tile.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
@@ -25,6 +27,12 @@ class FeedbackList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (feedbacks.isEmpty) {
+      return Center(
+        child: Text(LocaleKeys.feedback_noFeedbackForFilter.tr()),
+      );
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

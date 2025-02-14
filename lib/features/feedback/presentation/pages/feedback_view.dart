@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_filter_types.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_tile.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback_list.dart';

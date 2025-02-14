@@ -11,7 +11,7 @@ class _FeedbackResponseDialogUtils {
     if (formKey.currentState?.validate() ?? false) {
       await ref
           .read(feedbackViewModelProvider.notifier)
-          .respondFeedback(
+          .respondToFeedback(
             FeedbackResponseModel(
               response: responseController.text,
               feedbackId: feedback.feedbackId,

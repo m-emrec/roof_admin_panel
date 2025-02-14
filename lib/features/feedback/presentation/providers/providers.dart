@@ -100,20 +100,32 @@ final feedbackViewModelProvider =
   );
 });
 
-final responseFilterProvider =
+/// This is a simple [StateProvider] that provides the response filter type
+/// it returns a [FeedbackResponseFilterTypes],
+/// [FeedbackResponseFilterTypes.all] is the default value
+final feedbackResponseFilterProvider =
     StateProvider<FeedbackResponseFilterTypes>((ref) {
   return FeedbackResponseFilterTypes.all;
 });
 
-final titleFilterProvider = StateProvider<FeedbackTitlesEnum?>((ref) {
+/// This is a simple [StateProvider] that provides the title filter type
+/// it returns a [FeedbackTitlesEnum], [null] is the default value
+final feedbackTitleFilterProvider = StateProvider<FeedbackTitlesEnum?>((ref) {
   return null;
 });
 
+/// [feedbackFilterProvider] provides the filtered feedbacks
+/// it takes the [feedbackViewModelProvider], [feedbackResponseFilterProvider]
+/// and [feedbackTitleFilterProvider] as dependencies
+/// it returns a list of [FeedbackModel]
+/// it uses the [FeedbackFilterNotifier] to filter the feedbacks
+/// based on the response and title
+/// it uses the [feedbackViewModelProvider] to get the feedbacks
 final feedbackFilterProvider =
     StateNotifierProvider<FeedbackFilterNotifier, List<FeedbackModel>>((ref) {
   return FeedbackFilterNotifier(
     feedbacks: ref.watch(feedbackViewModelProvider).value ?? [],
-    responseFilter: ref.watch(responseFilterProvider),
-    titleFilter: ref.watch(titleFilterProvider),
+    responseFilter: ref.watch(feedbackResponseFilterProvider),
+    titleFilter: ref.watch(feedbackTitleFilterProvider),
   );
 });

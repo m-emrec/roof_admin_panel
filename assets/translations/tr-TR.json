@@ -186,7 +186,8 @@
     "responded": "Cevaplandı",
     "reportedUser": "Şikayet Edilen Kullanıcı",
     "reportedBy": "Şikayet Eden",
-
+    "noFeedback": "Henüz geri bildirim yok.",
+    "noFeedbackForFilter": "Bu filtreye uygun geri bildirim yok.",
     "filter":{
         "stateFilter":{
             "all": "Tümü",

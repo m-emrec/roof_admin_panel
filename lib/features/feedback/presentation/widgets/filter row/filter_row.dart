@@ -50,20 +50,20 @@ class _FeedbackTitleFilter extends ConsumerWidget {
                   value: e,
                   child: Text(e.name),
                   onTap: () {
-                    ref.read(titleFilterProvider.notifier).state = e;
+                    ref.read(feedbackTitleFilterProvider.notifier).state = e;
                   },
                 ),
               )
               .toList(),
           child: Chip(
             avatar: const Icon(Icons.filter_list),
-            deleteIcon: ref.watch(titleFilterProvider) != null
+            deleteIcon: ref.watch(feedbackTitleFilterProvider) != null
                 ? const Icon(Icons.close)
                 : const SizedBox(),
             onDeleted: () =>
-                ref.read(titleFilterProvider.notifier).state = null,
+                ref.read(feedbackTitleFilterProvider.notifier).state = null,
             label: Text(
-              ref.watch(titleFilterProvider)?.name ??
+              ref.watch(feedbackTitleFilterProvider)?.name ??
                   LocaleKeys.feedback_filter_typeFilter.tr(),
             ),
           ),
