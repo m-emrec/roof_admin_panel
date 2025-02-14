@@ -8,9 +8,10 @@ final class _FeedbackTileTheme {
         gapBetweenHeaderAndContent: SpacingSizes.small,
         titleTextStyle: context.textTheme.titleLarge ?? const TextStyle(),
         subTitleTextStyle: context.textTheme.titleMedium ?? const TextStyle(),
-        createdAtTextStyle: context.textTheme.bodySmall ?? const TextStyle(),
-        userNameLabelTextStyle:
-            context.textTheme.labelLarge ?? const TextStyle(),
+        createdAtTextStyle: context.textTheme.labelLarge ?? const TextStyle(),
+        userNameLabelTextStyle: context.textTheme.labelLarge
+                ?.copyWith(fontWeight: FontWeight.w600) ??
+            const TextStyle(),
         userImageRadius: 16,
         contentTextStyle: context.textTheme.bodyLarge ?? const TextStyle(),
         imageSize: const Size(64, 64),

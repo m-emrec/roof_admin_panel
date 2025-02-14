@@ -28,6 +28,7 @@ class _FeedbackTileHeader extends StatelessWidget {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
+          spacing: SpacingSizes.extraExtraSmall,
           children: [
             Text(
               feedback.createdAt.formatDate(context),

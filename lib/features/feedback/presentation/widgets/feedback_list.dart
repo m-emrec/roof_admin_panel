@@ -48,19 +48,32 @@ class FeedbackList extends ConsumerWidget {
             },
           ),
         ),
-        FutureBuilder(
-          future: // Fetch next feedbacks
-              ref
-                  .read(feedbackViewModelProvider.notifier)
-                  .fetchNextFeedbacks(feedbacks.last.feedbackId),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingIndicator();
-            }
-            return const SizedBox();
-          },
-        ),
+        _LoadMoreFeedbackWidget(feedbacks: feedbacks),
       ],
+    );
+  }
+}
+
+class _LoadMoreFeedbackWidget extends ConsumerWidget {
+  const _LoadMoreFeedbackWidget({
+    required this.feedbacks,
+  });
+
+  final List<FeedbackModel> feedbacks;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FutureBuilder(
+      future: // Fetch next feedbacks
+          ref
+              .read(feedbackViewModelProvider.notifier)
+              .fetchNextFeedbacks(feedbacks.last.feedbackId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingIndicator();
+        }
+        return const SizedBox();
+      },
     );
   }
 }

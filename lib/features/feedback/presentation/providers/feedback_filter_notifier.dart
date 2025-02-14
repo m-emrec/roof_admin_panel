@@ -16,6 +16,17 @@ import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_filt
 /// It takes the feedbacks from [FeedbackViewModel] and
 /// filters them based on the response and title
 class FeedbackFilterNotifier extends StateNotifier<List<FeedbackModel>> {
+  ///
+  /// This class is used to filter the feedbacks based on the response and title
+  ///
+  /// It requires [List][FeedbackModel] feedbacks,
+  ///
+  /// [FeedbackResponseFilterTypes] responseFilter,
+  ///
+  /// [FeedbackTitlesEnum] titleFilter
+  ///
+  /// It takes the feedbacks from [FeedbackViewModel] and
+  /// filters them based on the response and title
   FeedbackFilterNotifier({
     required List<FeedbackModel> feedbacks,
     required FeedbackResponseFilterTypes responseFilter,
@@ -34,7 +45,10 @@ class FeedbackFilterNotifier extends StateNotifier<List<FeedbackModel>> {
 
   /// This method calls the filter methods
   ///
-  /// IT
+  /// It is called initially when the class is created
+  ///
+  /// It filters the feedbacks based on the response and title
+  ///
   void _applyFilter() {
     state = _filterFeedbacksByResponse();
     state = _filterByTitle();

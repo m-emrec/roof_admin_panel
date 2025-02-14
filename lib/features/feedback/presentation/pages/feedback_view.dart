@@ -36,7 +36,7 @@ class FeedbackView extends ConsumerWidget {
           data: (feedbacks) {
             return Expanded(
               child: FeedbackList(
-                feedbacks: ref.watch(feedbackFilterProvider),
+                feedbacks: ref.watch(feedbackFilteredProvider),
               ),
             );
           },

@@ -26,7 +26,6 @@ part 'widget_themes/_text_button_theme.dart';
 part 'widget_themes/_outlined_button_theme.dart';
 part 'widget_themes/_elevated_button_theme.dart';
 part 'widget_themes/_add_profile_picture_theme.dart';
-part 'widget_themes/_verification_code_card_theme.dart';
 part 'widget_themes/_inline_text_button_theme.dart';
 part 'widget_themes/_custom_bottom_sheet_theme.dart';
 part 'widget_themes/_tooltip_theme.dart';
@@ -117,7 +116,6 @@ class AppTheme {
   // MARK: Theme Extensions
   Iterable<ThemeExtension<dynamic>> get _extensions => [
         _AddProfilePictureTheme.addProfilePictureTheme,
-        _VerificationCodeCardTheme.verificationCodeCardTheme,
         _InlineTextButtonTheme.inlineTextButtonTheme,
         _CustomBottomSheetTheme.customBottomSheetTheme,
         _SideBarTheme.sideBarTheme,

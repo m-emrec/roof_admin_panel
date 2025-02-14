@@ -114,14 +114,14 @@ final feedbackTitleFilterProvider = StateProvider<FeedbackTitlesEnum?>((ref) {
   return null;
 });
 
-/// [feedbackFilterProvider] provides the filtered feedbacks
+/// [feedbackFilteredProvider] provides the filtered feedbacks
 /// it takes the [feedbackViewModelProvider], [feedbackResponseFilterProvider]
 /// and [feedbackTitleFilterProvider] as dependencies
 /// it returns a list of [FeedbackModel]
 /// it uses the [FeedbackFilterNotifier] to filter the feedbacks
 /// based on the response and title
 /// it uses the [feedbackViewModelProvider] to get the feedbacks
-final feedbackFilterProvider =
+final feedbackFilteredProvider =
     StateNotifierProvider<FeedbackFilterNotifier, List<FeedbackModel>>((ref) {
   return FeedbackFilterNotifier(
     feedbacks: ref.watch(feedbackViewModelProvider).value ?? [],

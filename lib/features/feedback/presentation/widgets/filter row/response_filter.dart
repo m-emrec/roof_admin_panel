@@ -4,10 +4,11 @@ class _ResponseFilter extends ConsumerStatefulWidget {
   const _ResponseFilter(this.filter);
   final FeedbackResponseFilterTypes filter;
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => __StateFiltersState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      __ResponseFilterState();
 }
 
-class __StateFiltersState extends ConsumerState<_ResponseFilter> {
+class __ResponseFilterState extends ConsumerState<_ResponseFilter> {
   @override
   Widget build(BuildContext context) {
     return FilterChip(
