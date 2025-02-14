@@ -186,6 +186,15 @@
     "responded": "Cevaplandı",
     "reportedUser": "Şikayet Edilen Kullanıcı",
     "reportedBy": "Şikayet Eden",
+
+    "filter":{
+        "stateFilter":{
+            "all": "Tümü",
+            "responded": "Cevaplananlar",
+            "notResponded": "Cevaplanmayanlar"
+        },
+        "typeFilter": "Kategoriye Göre Filtrele"
+    },
     "aboutPerson": {
         "title": "Kişilerle İlgili",
         "aboutAMember": "Bir üye hakkında şikayet",

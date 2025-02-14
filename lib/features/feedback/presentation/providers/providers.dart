@@ -1,10 +1,12 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
+import 'package:core/utils/constants/enums/feedback_titles_enum.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/feedback/data/datasources/feedback_data_service.dart';
 import 'package:roof_admin_panel/features/feedback/data/repositories/feedback_repository_impl.dart';
+import 'package:roof_admin_panel/features/feedback/domain/entities/feedback_filter_types.dart';
 import 'package:roof_admin_panel/features/feedback/domain/repositories/feedback_repository.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_feedback_owner_use_case.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_feedbacks_initial_use_case.dart';
@@ -12,6 +14,7 @@ import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_next_fe
 import 'package:roof_admin_panel/features/feedback/domain/usecases/fetch_reported_user_use_case.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/get_feedback_count_use_case.dart';
 import 'package:roof_admin_panel/features/feedback/domain/usecases/respond_feedback_use_case.dart';
+import 'package:roof_admin_panel/features/feedback/presentation/providers/feedback_filter_notifier.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/feedback_view_model.dart';
 
 final _feedbackDataServiceProvider = Provider<FeedbackDataService>((ref) {
@@ -94,5 +97,23 @@ final feedbackViewModelProvider =
     fetchNextFeedbacksUseCase: ref.read(_fetchNextFeedbacksUseCaseProvider),
     respondFeedbackUseCase: ref.read(_respondFeedbackUseCaseProvider),
     feedbackCount: ref.watch(feedbackCountProvider).value ?? 0,
+  );
+});
+
+final responseFilterProvider =
+    StateProvider<FeedbackResponseFilterTypes>((ref) {
+  return FeedbackResponseFilterTypes.all;
+});
+
+final titleFilterProvider = StateProvider<FeedbackTitlesEnum?>((ref) {
+  return null;
+});
+
+final feedbackFilterProvider =
+    StateNotifierProvider<FeedbackFilterNotifier, List<FeedbackModel>>((ref) {
+  return FeedbackFilterNotifier(
+    feedbacks: ref.watch(feedbackViewModelProvider).value ?? [],
+    responseFilter: ref.watch(responseFilterProvider),
+    titleFilter: ref.watch(titleFilterProvider),
   );
 });

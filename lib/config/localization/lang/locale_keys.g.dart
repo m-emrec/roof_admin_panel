@@ -172,6 +172,12 @@ abstract class  LocaleKeys {
   static const feedback_responded = 'feedback.responded';
   static const feedback_reportedUser = 'feedback.reportedUser';
   static const feedback_reportedBy = 'feedback.reportedBy';
+  static const feedback_filter_stateFilter_all = 'feedback.filter.stateFilter.all';
+  static const feedback_filter_stateFilter_responded = 'feedback.filter.stateFilter.responded';
+  static const feedback_filter_stateFilter_notResponded = 'feedback.filter.stateFilter.notResponded';
+  static const feedback_filter_stateFilter = 'feedback.filter.stateFilter';
+  static const feedback_filter_typeFilter = 'feedback.filter.typeFilter';
+  static const feedback_filter = 'feedback.filter';
   static const feedback_aboutPerson_title = 'feedback.aboutPerson.title';
   static const feedback_aboutPerson_aboutAMember = 'feedback.aboutPerson.aboutAMember';
   static const feedback_aboutPerson_aboutAnAdmin = 'feedback.aboutPerson.aboutAnAdmin';

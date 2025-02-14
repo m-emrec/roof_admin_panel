@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_tile.dart';
+import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 
 /// FeedbackList
 /// This is a list of feedbacks.
@@ -24,23 +25,34 @@ class FeedbackList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Expanded(
-      child: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(),
-        itemCount: feedbacks.length,
-        itemBuilder: (context, index) {
-          if (index == feedbacks.length - 1) {
-            // Fetch next feedbacks
-            ref
-                .read(feedbackViewModelProvider.notifier)
-                .fetchNextFeedbacks(feedbacks.last.feedbackId);
-          }
-          return Padding(
-            padding: const AppPadding.verticalSSymmetric(),
-            child: FeedbackTile(feedback: feedbacks[index]),
-          );
-        },
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: feedbacks.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const AppPadding.verticalSSymmetric(),
+                child: FeedbackTile(feedback: feedbacks[index]),
+              );
+            },
+          ),
+        ),
+        FutureBuilder(
+          future: // Fetch next feedbacks
+              ref
+                  .read(feedbackViewModelProvider.notifier)
+                  .fetchNextFeedbacks(feedbacks.last.feedbackId),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const LoadingIndicator();
+            }
+            return const SizedBox();
+          },
+        ),
+      ],
     );
   }
 }
