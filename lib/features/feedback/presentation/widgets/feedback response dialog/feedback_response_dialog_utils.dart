@@ -1,34 +1,28 @@
 part of 'feedback_response_dialog.dart';
 
-class _FeedbackResponseDialogUtils {
-  static Future<void> onTapSend(
-    BuildContext context,
-    FeedbackModel feedback,
-    TextEditingController responseController,
-    GlobalKey<FormState> formKey,
-    WidgetRef ref,
-  ) async {
+mixin _FeedbackResponseDialogUtils on ConsumerState<FeedbackResponseDialog> {
+  final TextEditingController responseController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  Future<void> onTapSend() async {
     if (formKey.currentState?.validate() ?? false) {
       await ref
           .read(feedbackViewModelProvider.notifier)
           .respondToFeedback(
             FeedbackResponseModel(
               response: responseController.text,
-              feedbackId: feedback.feedbackId,
+              feedbackId: widget.feedback.feedbackId,
             ),
           )
           .showLoading(context: context)
-          .then(
-            (_) => _dispose(responseController, context),
-          );
+          .then((_) {
+        CustomAlertDialog.hideAlertDialog(context);
+      });
     }
   }
 
-  static void _dispose(
-    TextEditingController responseController,
-    BuildContext context,
-  ) {
-    CustomAlertDialog.hideAlertDialog(context);
+  @override
+  void dispose() {
     responseController.dispose();
+    super.dispose();
   }
 }

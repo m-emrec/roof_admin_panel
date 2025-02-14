@@ -15,17 +15,22 @@ import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 part 'feedback_response_dialog_utils.dart';
 
 /// Shows a dialog to respond to the feedback.
-class FeedbackResponseDialog extends ConsumerWidget {
+class FeedbackResponseDialog extends ConsumerStatefulWidget {
   /// Shows a dialog to respond to the feedback.
-  FeedbackResponseDialog(this.feedback, {super.key});
+  const FeedbackResponseDialog(this.feedback, {super.key});
 
   ///
   final FeedbackModel feedback;
 
-  final TextEditingController _responseController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _FeedbackResponseDialogState();
+}
+
+class _FeedbackResponseDialogState extends ConsumerState<FeedbackResponseDialog>
+    with _FeedbackResponseDialogUtils {
+  @override
+  Widget build(BuildContext context) {
     return CustomAlertDialog(
       actions: [
         TextButton(
@@ -33,30 +38,24 @@ class FeedbackResponseDialog extends ConsumerWidget {
           child: Text(LocaleKeys.common_cancel.tr()),
         ),
         ElevatedButton(
-          onPressed: () => _FeedbackResponseDialogUtils.onTapSend(
-            context,
-            feedback,
-            _responseController,
-            _formKey,
-            ref,
-          ),
+          onPressed: onTapSend,
           child: Text(LocaleKeys.common_send.tr()),
         ),
       ],
       content: SizedBox(
         width: context.dynamicWidth(0.5),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             spacing: SpacingSizes.small,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                feedback.content,
+                widget.feedback.content,
                 style: context.textTheme.titleMedium,
               ),
               CustomTextArea(
-                controller: _responseController,
+                controller: responseController,
                 validator: (value) => ValidatorMethods(text: value).emptyField,
                 focusNode: FocusNode(),
                 unfocusOnTapOutside: true,
