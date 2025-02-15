@@ -32,6 +32,7 @@ class _FeedbackResponseDialogState extends ConsumerState<FeedbackResponseDialog>
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
+      title: Text(LocaleKeys.feedback_response.tr()),
       actions: [
         TextButton(
           onPressed: () => context.pop(),

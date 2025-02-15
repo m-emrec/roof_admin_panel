@@ -20,28 +20,31 @@ class _FeedbackImageViewerState extends State<_FeedbackImageViewer>
     with FeedImageViewerStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: PageView(
-            controller: _pageController,
-            children: [
-              for (final imageUrl in widget.imageUrls)
-                InteractiveViewer(
-                  maxScale: 5,
-                  child: Image.network(
-                    imageUrl,
+    return GestureDetector(
+      onTap: () => context.pop(),
+      child: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              children: [
+                for (final imageUrl in widget.imageUrls)
+                  InteractiveViewer(
+                    maxScale: 5,
+                    child: Image.network(
+                      imageUrl,
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
-        ),
-        _ImageViewerControllersRow(
-          pageController: _pageController,
-          duration: _duration,
-          curve: _curve,
-        ),
-      ],
+          _ImageViewerControllersRow(
+            pageController: _pageController,
+            duration: _duration,
+            curve: _curve,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,10 +1,11 @@
-import 'package:core/extensions/context_extension.dart';
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/theme_extensions_extesntion.dart';
+import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 
 /// Shows the reported user info if the reportedUserId is not empty
@@ -24,6 +25,7 @@ class ReportedUser extends ConsumerWidget {
           data: (user) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              spacing: SpacingSizes.extraSmall,
               children: [
                 Text(
                   LocaleKeys.feedback_reportedUser.tr(),
@@ -32,10 +34,8 @@ class ReportedUser extends ConsumerWidget {
                 ),
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: (user.imageUrl?.isNotEmpty ?? false)
-                          ? NetworkImage(user.imageUrl ?? "")
-                          : null,
+                    Avatar(
+                      imageUrl: user.imageUrl,
                       radius:
                           context.feedbackTileThemeExtension?.userImageRadius,
                     ),

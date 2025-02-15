@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/theme_extensions_extesntion.dart';
+import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
 
 /// Show the owner of the feedback if the userID is not empty
@@ -52,11 +53,9 @@ class _FeedbackOwnerTile extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CircleAvatar(
-              backgroundImage: (user.imageUrl?.isNotEmpty ?? false)
-                  ? NetworkImage(user.imageUrl ?? "")
-                  : null,
-              radius: 16,
+            Avatar(
+              imageUrl: user.imageUrl,
+              radius: context.feedbackTileThemeExtension?.userImageRadius,
             ),
             TextButton(
               child: Text(user.name ?? ""),
