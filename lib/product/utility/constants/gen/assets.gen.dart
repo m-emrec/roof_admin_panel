@@ -61,6 +61,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/filter_icon.svg
   String get filterIcon => 'assets/icons/filter_icon.svg';
 
+  /// File path: assets/icons/guests_icon.svg
+  String get guestsIcon => 'assets/icons/guests_icon.svg';
+
   /// File path: assets/icons/logout_icon.svg
   String get logoutIcon => 'assets/icons/logout_icon.svg';
 
@@ -96,6 +99,7 @@ class $AssetsIconsGen {
     editImageIcon,
     feedbacksIcon,
     filterIcon,
+    guestsIcon,
     logoutIcon,
     membersIcon,
     phoneIcon,

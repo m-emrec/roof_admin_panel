@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar.dart';
@@ -37,6 +38,7 @@ class _ViewManagerState extends State<ViewManager> {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
+        backgroundColor: AppColors.backgroundColor[80],
         body: Row(
           children: [
             const SideBar(),

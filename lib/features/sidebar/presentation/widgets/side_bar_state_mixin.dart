@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
 import 'package:roof_admin_panel/features/sidebar/data/models/side_bar_item_model.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/controller.dart';
@@ -33,6 +34,11 @@ mixin SideBarStateMixin on State<SideBar> {
       route: FeedbackRoute(),
       icon: SvgPicture.asset(Assets.icons.feedbacksIcon),
       title: LocaleKeys.sidebar_feedback.tr(),
+    ),
+    SideBarItemModel(
+      title: LocaleKeys.sidebar_guests.tr(),
+      icon: SvgPicture.asset(Assets.icons.guestsIcon),
+      route: GuestsRoute(),
     ),
   ];
 
