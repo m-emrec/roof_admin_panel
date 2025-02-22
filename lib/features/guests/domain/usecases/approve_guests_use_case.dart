@@ -4,12 +4,12 @@ import 'package:roof_admin_panel/features/guests/domain/entities/guest_entity.da
 import 'package:roof_admin_panel/features/guests/domain/repositories/guests_repository.dart';
 
 ///
-class UpdateGuestUseCase extends UseCase<DataState<void>, GuestEntity> {
+class ApproveGuestsUseCase extends UseCase<DataState<void>, List<GuestEntity>> {
   ///
-  UpdateGuestUseCase(this._repository);
+  ApproveGuestsUseCase(this._repository);
   final GuestsRepository _repository;
   @override
-  Future<DataState<void>> call(GuestEntity params) {
-    return _repository.updateGuest(params);
+  Future<DataState<void>> call(List<GuestEntity> params) {
+    return _repository.approveGuests(params);
   }
 }

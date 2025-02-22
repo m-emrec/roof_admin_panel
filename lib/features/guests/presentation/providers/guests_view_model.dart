@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/domain/usecases/add_guest_use_case.dart';
+import 'package:roof_admin_panel/features/guests/domain/usecases/approve_guests_use_case.dart';
 import 'package:roof_admin_panel/features/guests/domain/usecases/delete_guest_use_case.dart';
 import 'package:roof_admin_panel/features/guests/domain/usecases/get_guests_use_case.dart';
 import 'package:roof_admin_panel/features/guests/domain/usecases/update_guest_use_case.dart';
@@ -15,7 +16,9 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
     required GetGuestsUseCase getGuestsUseCase,
     required DeleteGuestUseCase deleteGuestUseCase,
     required UpdateGuestUseCase updateGuestUseCase,
+    required ApproveGuestsUseCase approveGuestsUseCase,
   })  : _addGuestUseCase = addGuestUseCase,
+        _approveGuestsUseCase = approveGuestsUseCase,
         _getGuestsUseCase = getGuestsUseCase,
         _deleteGuestUseCase = deleteGuestUseCase,
         _updateGuestUseCase = updateGuestUseCase,
@@ -25,6 +28,7 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
     getGuests();
   }
 
+  final ApproveGuestsUseCase _approveGuestsUseCase;
   final AddGuestUseCase _addGuestUseCase;
   final GetGuestsUseCase _getGuestsUseCase;
   final DeleteGuestUseCase _deleteGuestUseCase;
@@ -62,7 +66,11 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
     DataState.handleDataStateBasedAction(
       result,
       onSuccess: (res) {
-        getGuests();
+        for (final guest in guests) {
+          state = AsyncData(
+            state.value?.where((e) => e.id != guest.id).toList() ?? [],
+          );
+        }
       },
       onFailure: (res) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(res?.errorMessage ?? ""),
@@ -87,15 +95,24 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
 
   /// A method to approve guests
   Future<void> approveGuests(List<Guest> guests) async {
-    final updatedGuests =
-        guests.map((e) => e.copyWith(role: [Role.approvedGuest])).toList();
-    final result = await _updateGuestUseCase(
-      updatedGuests.map((e) => e.toEntity()).toList(),
+    final result = await _approveGuestsUseCase(
+      guests.map((e) => e.toEntity()).toList(),
     );
     DataState.handleDataStateBasedAction(
       result,
       onSuccess: (res) {
-        getGuests();
+        for (final guest in guests) {
+          state = AsyncData(
+            state.value
+                    ?.map(
+                      (e) => e.id == guest.id
+                          ? e.copyWith(role: [Role.approvedGuest])
+                          : e,
+                    )
+                    .toList() ??
+                [],
+          );
+        }
       },
       onFailure: (res) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(res?.errorMessage ?? ""),

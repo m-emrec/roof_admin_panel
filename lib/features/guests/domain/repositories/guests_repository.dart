@@ -15,7 +15,10 @@ abstract class GuestsRepository {
 
   /// Updates a guest in the data layer.
   /// The [guest] parameter must not be null.
-  Future<DataState<void>> updateGuest(List<GuestEntity> guest);
+  Future<DataState<void>> updateGuest(GuestEntity guest);
+
+  /// Approves the given guests in the data layer.
+  Future<DataState<void>> approveGuests(List<GuestEntity> guest);
 
   /// Deletes a guest from the data layer.
   Future<DataState<void>> deleteGuest(List<GuestEntity> guest);

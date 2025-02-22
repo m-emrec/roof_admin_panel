@@ -7,6 +7,8 @@ import 'package:core/utils/constants/firebase/guest_doc_enum.dart';
 ///
 class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
   /// Get all guests from the database
+  /// Return the list of guests as a list of maps
+  ///
   Future<List<Map<String, dynamic>>> getGuests() async {
     final guests = getCollectionRef(CollectionEnum.guests);
     final guestsData = await guests.get();
@@ -18,6 +20,10 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// Add a guest to the database
+  ///
+  /// Adds a new guest to the database with the [guest] parameter
+  ///
+  ///
   Future<void> addGuest(Map<String, dynamic> guest) async {
     await addDocumentToCollectionWithCustomId(
       collection: CollectionEnum.guests,
@@ -39,8 +45,6 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// Delete a guest from the database
-  /// The [guest] parameter must not be null.
-  ///
   ///
   Future<void> deleteGuest(List<Map<String, dynamic>> guests) async {
     for (final guest in guests) {

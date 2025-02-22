@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
 
 /// This is a ConsumerWidget that displays a row of buttons that can be used to
@@ -27,7 +29,7 @@ class GuestTableActionsRow extends ConsumerWidget {
                     ref.read(selectedGuestsProvider),
                   )
               : null,
-          child: Text('Approve'),
+          child: Text(LocaleKeys.common_confirm.tr()),
         ),
         TextButton(
           onPressed: isButtonsActive
@@ -40,7 +42,7 @@ class GuestTableActionsRow extends ConsumerWidget {
                     (_) => ref.read(selectedGuestsProvider.notifier).state = [],
                   )
               : null,
-          child: Text('Delete'),
+          child: Text(LocaleKeys.common_delete.tr()),
         ),
       ],
     );

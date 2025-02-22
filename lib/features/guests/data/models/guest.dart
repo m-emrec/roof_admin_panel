@@ -11,9 +11,6 @@ part 'guest.g.dart';
 ///
 @JsonSerializable()
 class Guest extends GuestEntity {
-  ///
-  factory Guest.fromJson(Map<String, dynamic> json) => _$GuestFromJson(json);
-
   /// Guest model
   Guest({
     super.id,
@@ -26,6 +23,9 @@ class Guest extends GuestEntity {
   }) : super(
           guestStartDate: guestStartDate,
         );
+
+  ///
+  factory Guest.fromJson(Map<String, dynamic> json) => _$GuestFromJson(json);
 
   ///
   factory Guest.fromEntity(GuestEntity entity) {
@@ -46,6 +46,9 @@ class Guest extends GuestEntity {
     toJson: FirebaseTimeParser.dateTimeToTimestamp,
     defaultValue: null,
   )
+
+  /// I override this field to use custom converter
+  // ignore: overridden_fields
   final DateTime? guestStartDate;
 
   ///
