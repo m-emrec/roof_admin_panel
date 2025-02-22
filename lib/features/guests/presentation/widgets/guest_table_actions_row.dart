@@ -25,26 +25,41 @@ class GuestTableActionsRow extends ConsumerWidget {
       children: [
         TextButton(
           onPressed: isButtonsActive
-              ? () => ref.read(guestsViewModelProvider.notifier).approveGuests(
-                    ref.read(selectedGuestsProvider),
-                  )
+              ? () => _GuestsTableActionRowUtils.approveGuests(ref)
               : null,
           child: Text(LocaleKeys.common_confirm.tr()),
         ),
         TextButton(
           onPressed: isButtonsActive
-              ? () => ref
-                  .read(guestsViewModelProvider.notifier)
-                  .deleteGuest(
-                    ref.read(selectedGuestsProvider),
-                  )
-                  .then(
-                    (_) => ref.read(selectedGuestsProvider.notifier).state = [],
-                  )
+              ? () => _GuestsTableActionRowUtils.deleteGuests(ref)
               : null,
           child: Text(LocaleKeys.common_delete.tr()),
         ),
       ],
     );
+  }
+}
+
+class _GuestsTableActionRowUtils {
+  static void approveGuests(WidgetRef ref) {
+    ref
+        .read(guestsViewModelProvider.notifier)
+        .approveGuests(
+          ref.read(selectedGuestsProvider),
+        )
+        .then(
+          (_) => ref.read(selectedGuestsProvider.notifier).state = [],
+        );
+  }
+
+  static void deleteGuests(WidgetRef ref) {
+    ref
+        .read(guestsViewModelProvider.notifier)
+        .deleteGuest(
+          ref.read(selectedGuestsProvider),
+        )
+        .then(
+          (_) => ref.read(selectedGuestsProvider.notifier).state = [],
+        );
   }
 }
