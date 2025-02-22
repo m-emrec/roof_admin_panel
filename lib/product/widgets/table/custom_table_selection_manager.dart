@@ -2,6 +2,13 @@ part of 'custom_table.dart';
 
 /// A selection manager for the [CustomTable] widget.
 class _CustomTableSelectionManager extends RowSelectionManager {
+  factory _CustomTableSelectionManager() => instance;
+  _CustomTableSelectionManager._internal();
+
+  /// The instance of the selection manager.
+  static final _CustomTableSelectionManager instance =
+      _CustomTableSelectionManager._internal();
+
   @override
   void handleTap(RowColumnIndex rowColumnIndex) {
     /// Here, we only handle the tap event if the column index is 0.
