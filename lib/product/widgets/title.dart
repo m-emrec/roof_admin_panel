@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 
 /// This is the title widget.
 ///
@@ -9,15 +10,31 @@ import 'package:flutter/material.dart';
 class TitleWidget extends StatelessWidget {
   /// This is the title widget.
   ///
-  /// It displays a [Text] widget with [headlineLarge] style.
-  const TitleWidget({super.key, required this.title});
+  /// If the view is desktop It displays a [Text] widget with [headlineLarge] style.
+  ///
+  /// If the view is tablet It displays a [Text] widget with [headlineMedium] style.
+  ///
+  /// If the view is mobile It displays a [Text] widget with [headlineMedium] style.
+  ///
+  ///
+  const TitleWidget({required this.title, super.key});
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: context.textTheme.headlineLarge,
+    return ResponsiveBuilder(
+      desktop: Text(
+        title,
+        style: context.textTheme.headlineLarge,
+      ),
+      tablet: Text(
+        title,
+        style: context.textTheme.headlineMedium,
+      ),
+      mobile: Text(
+        title,
+        style: context.textTheme.headlineMedium,
+      ),
     );
   }
 }
