@@ -39,12 +39,13 @@ class _AddGuestDialogState extends ConsumerState<AddGuestDialog>
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
+      dialogPosition: DialogPosition.rightSide,
       actions: [
         TextButton(
           child: Text(LocaleKeys.common_cancel.tr()),
           onPressed: () => CustomAlertDialog.hideAlertDialog(context),
         ),
-        TextButton(
+        ElevatedButton(
           onPressed: onPressedAdd,
           child: Text(LocaleKeys.common_add.tr()),
         ),

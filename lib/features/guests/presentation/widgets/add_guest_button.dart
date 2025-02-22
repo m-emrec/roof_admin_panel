@@ -21,6 +21,7 @@ class AddGuestButton extends StatelessWidget {
         ElevatedButton(
           onPressed: () => CustomAlertDialog.showAlertDialog(
             context: context,
+            barrierDismissible: true,
             content: const AddGuestDialog(),
           ),
           child: Text(
