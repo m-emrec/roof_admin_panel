@@ -1,10 +1,11 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
-import 'package:roof_admin_panel/product/widgets/empty_box.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+part 'custom_table_selection_manager.dart';
+part 'custom_table_load_more_view.dart';
 
 /// A custom table widget that displays data in a table format.
 ///
@@ -19,6 +20,7 @@ class CustomTable extends StatefulWidget {
     this.onCellTap,
     this.rowsPerPage = 10,
     this.controller,
+    this.onSelectionChanged,
     super.key,
   });
 
@@ -40,6 +42,10 @@ class CustomTable extends StatefulWidget {
 
   /// The callback function that is called when a cell is tapped.
   final void Function(DataGridCellTapDetails)? onCellTap;
+
+  /// The callback function that is called when the selection is changed.
+  final void Function(List<DataGridRow>, List<DataGridRow>)? onSelectionChanged;
+
   @override
   State<CustomTable> createState() => _CustomTableState();
 }
@@ -49,8 +55,8 @@ class _CustomTableState extends State<CustomTable> {
   /// If the width of the table is less than this value, the column width mode is set to auto.
   ///
   /// I found this value by trial and error.
-  /// 600 is the minimum width that the table can be displayed properly.
-  final double _minWidth = 600;
+  /// 700 is the minimum width that the table can be displayed properly.
+  final double _minWidth = 700;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -60,48 +66,42 @@ class _CustomTableState extends State<CustomTable> {
                   .extension<CustomDataTableThemeExtension>()
                   ?.tableTheme ??
               const SfDataGridThemeData(),
-          child: SfDataGrid(
-            loadMoreViewBuilder: (context, loadMoreRows) {
-              return Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: FutureBuilder(
-                  future: loadMoreRows(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const LoadingIndicator();
-                    }
-                    return const SizedBox();
-                  },
-                ),
-              );
-            },
-            controller: widget.controller,
-            onCellTap: widget.onCellTap,
-            showCheckboxColumn: true,
-            headerGridLinesVisibility: GridLinesVisibility.none,
-            isScrollbarAlwaysShown: true,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: context.theme
+                  .extension<CustomDataTableThemeExtension>()
+                  ?.border,
+            ),
+            child: SfDataGrid(
+              loadMoreViewBuilder: _CustomTableLoadMoreViewBuilder.build,
+              controller: widget.controller,
+              onCellTap: widget.onCellTap,
+              checkboxColumnSettings: const DataGridCheckboxColumnSettings(
+                showCheckboxOnHeader: false,
+              ),
+              showCheckboxColumn: true,
+              headerGridLinesVisibility: GridLinesVisibility.none,
+              isScrollbarAlwaysShown: true,
+              rowsPerPage: widget.rowsPerPage,
+              // editingGestureType: EditingGestureType.tap,
+              gridLinesVisibility: GridLinesVisibility.none,
+              // onCellLongPress: (details) =>
+              //     Log.debug(details.rowColumnIndex.rowIndex),
 
-            rowsPerPage: widget.rowsPerPage,
-            // editingGestureType: EditingGestureType.tap,
-            gridLinesVisibility: GridLinesVisibility.none,
-            onCellLongPress: (details) =>
-                Log.debug(details.rowColumnIndex.rowIndex),
+              onSelectionChanged: widget.onSelectionChanged,
+              selectionMode: SelectionMode.multiple,
+              navigationMode: GridNavigationMode.cell,
+              source: widget.source,
+              selectionManager: _CustomTableSelectionManager(),
 
-            onSelectionChanged: (addedRows, removedRows) =>
-                Log.debug(addedRows.first.getCells().toString()),
-            selectionMode: SelectionMode.multiple,
-            navigationMode: GridNavigationMode.cell,
-            source: widget.source,
-
-            /// If the width of the table is less than the minimum width,
-            /// the column width mode is set to auto, otherwise it is set to fill.
-            /// This is done to prevent the table from overflowing.
-            columnWidthMode:
-                ColumnWidthMode.auto, //constraints.maxWidth < _minWidth
-            // ? ColumnWidthMode.auto
-            // : ColumnWidthMode.fill,
-            columns: widget.columns,
+              /// If the width of the table is less than the minimum width,
+              /// the column width mode is set to auto, otherwise it is set to fill.
+              /// This is done to prevent the table from overflowing.
+              columnWidthMode: constraints.maxWidth < _minWidth
+                  ? ColumnWidthMode.auto
+                  : ColumnWidthMode.fill,
+              columns: widget.columns,
+            ),
           ),
         );
       },

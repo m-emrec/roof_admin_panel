@@ -28,7 +28,33 @@
 		"scope": "dart",
 		"prefix": "logger",
 		"body": [
-			"Log.${1:info}('$2');",
+			"Log.${1:info}($2);",
 		]
-	}
+	},
+	"use_case":{
+		"scope": "dart",
+		"prefix": "use_case",
+		"body": [
+	
+			"import 'package:core/resources/data_state.dart';",
+"import 'package:core/resources/use_case.dart';"
+,
+"import 'package:roof_admin_panel/features/guests/domain/entities/guest_entity.dart';",
+"import 'package:roof_admin_panel/features/guests/domain/repositories/guests_repository.dart';",
+"///",
+"class $1UseCase extends UseCase<DataState<$2>, $3> {",
+"///",
+" $1UseCase(",
+"   this._repository",
+" );",
+" final $4 _repository;",
+
+" @override",
+" Future<DataState<$2>> call($3 params) {",
+   "return _repository.$5();",
+" }",
+"}",
+	]
+
+	},
 }

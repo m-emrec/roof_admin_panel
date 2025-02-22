@@ -35,7 +35,7 @@ class MembersTable extends ConsumerWidget {
           label: ColumnTitle(
             title: LocaleKeys.membersView_tableColumnLabels_memberNumber.tr(),
           ),
-          filterIconPosition: ColumnHeaderIconPosition.start,
+          // filterIconPosition: ColumnHeaderIconPosition.start,
         ),
         GridColumn(
           columnName: MemberTableNames.memberName.name,
@@ -43,7 +43,7 @@ class MembersTable extends ConsumerWidget {
             title: LocaleKeys.membersView_tableColumnLabels_name.tr(),
           ),
           columnWidthMode: ColumnWidthMode.auto,
-          allowEditing: false,
+          // allowEditing: false,
         ),
         GridColumn(
           columnName: MemberTableNames.membershipEndDate.name,

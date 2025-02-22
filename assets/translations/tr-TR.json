@@ -114,7 +114,8 @@
             "day": "Gün",
             "week": "Hafta",
             "month": "Ay",
-            "year": "Yıl"
+            "year": "Yıl",
+            "select":"Tarih Seç"
         },
         "gender": {
             "male": "Erkek",
@@ -238,5 +239,19 @@
         "title": "Genel Şikayetler",
         "another": "Diğer"
         }
-} 
+} ,
+"guestsView": {
+    "pageTitle": "Misafirler",
+    "guestCount": "{} Misafir",
+    "addGuest": "Misafir Ekle",
+    "tableColumnLabels": {
+        "name": "İsim",
+        "phoneNumber": "Telefon Numarası",
+        "age": "Yaş",
+        "guestStartDate": "Misafirlik Başlangıç Tarihi",
+        "joinedEventCount": "Katıldığı Etkinlik Sayısı",
+        "role": "Rol"
+    }
+}
+
 }

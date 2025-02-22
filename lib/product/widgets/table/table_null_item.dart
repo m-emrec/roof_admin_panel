@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 /// If the data is null, this widget is displayed in the table cell.
@@ -11,6 +12,9 @@ class TableNullItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Icon(Icons.not_interested_rounded);
+    return Icon(
+      Icons.question_mark_rounded,
+      color: AppColors.accentError[30],
+    );
   }
 }

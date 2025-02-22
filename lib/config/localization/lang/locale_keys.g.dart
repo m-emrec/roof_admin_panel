@@ -115,6 +115,7 @@ abstract class  LocaleKeys {
   static const common_date_week = 'common.date.week';
   static const common_date_month = 'common.date.month';
   static const common_date_year = 'common.date.year';
+  static const common_date_select = 'common.date.select';
   static const common_date = 'common.date';
   static const common_gender = 'common.gender';
   static const common_validationError_required = 'common.validationError.required';
@@ -214,5 +215,16 @@ abstract class  LocaleKeys {
   static const feedback_general_another = 'feedback.general.another';
   static const feedback_general = 'feedback.general';
   static const feedback = 'feedback';
+  static const guestsView_pageTitle = 'guestsView.pageTitle';
+  static const guestsView_guestCount = 'guestsView.guestCount';
+  static const guestsView_addGuest = 'guestsView.addGuest';
+  static const guestsView_tableColumnLabels_name = 'guestsView.tableColumnLabels.name';
+  static const guestsView_tableColumnLabels_phoneNumber = 'guestsView.tableColumnLabels.phoneNumber';
+  static const guestsView_tableColumnLabels_age = 'guestsView.tableColumnLabels.age';
+  static const guestsView_tableColumnLabels_guestStartDate = 'guestsView.tableColumnLabels.guestStartDate';
+  static const guestsView_tableColumnLabels_joinedEventCount = 'guestsView.tableColumnLabels.joinedEventCount';
+  static const guestsView_tableColumnLabels_role = 'guestsView.tableColumnLabels.role';
+  static const guestsView_tableColumnLabels = 'guestsView.tableColumnLabels';
+  static const guestsView = 'guestsView';
 
 }

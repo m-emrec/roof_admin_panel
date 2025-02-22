@@ -20,5 +20,11 @@ final class _CustomDataTableTheme {
     nameTextStyle: TextStyles().textTheme.titleMedium?.copyWith(
           color: AppColors.secondaryColor[30],
         ),
+    border: Border(
+      top: BorderSide(
+        color: AppColors.backgroundColor[40] ?? Colors.transparent,
+        width: 2,
+      ),
+    ),
   );
 }

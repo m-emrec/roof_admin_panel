@@ -38,6 +38,7 @@ class RoofApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ToastificationWrapper(
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: AppRouter().router,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

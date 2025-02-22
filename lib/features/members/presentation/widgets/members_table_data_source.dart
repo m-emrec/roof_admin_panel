@@ -7,9 +7,10 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_null_item.dart';
-import 'package:roof_admin_panel/product/widgets/table/table_row_item.dart';
+import 'package:roof_admin_panel/product/widgets/table/table_cell_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/user_avatar_item.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -164,7 +165,7 @@ class MembersTableDataSource extends DataGridSource {
         return _cellBuilder(
           dataGridCell.columnName.toTableNamesEnum(),
           dataGridCell.value,
-        );
+        ).makeSelectable();
       }).toList(),
     );
   }

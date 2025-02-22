@@ -41,20 +41,22 @@ class DateSelectionField extends StatelessWidget {
         validator: (p0) => controller.text.isEmpty
             ? LocaleKeys.common_validationError_required.tr()
             : null,
-        child: _DateField(controller),
+        child: DateField(controller: controller),
       ),
     );
   }
 }
 
-class _DateField extends StatefulWidget {
-  const _DateField(this.controller);
+class DateField extends StatefulWidget {
+  const DateField({
+    required this.controller,
+  });
   final TextEditingController controller;
   @override
-  State<_DateField> createState() => __DateFieldState();
+  State<DateField> createState() => _DateFieldState();
 }
 
-class __DateFieldState extends State<_DateField> {
+class _DateFieldState extends State<DateField> {
   DateTime? selectedDate;
 
   /// This method will open a date picker dialog
@@ -87,7 +89,7 @@ class __DateFieldState extends State<_DateField> {
           child: Text(
             selectedDate != null
                 ? selectedDate?.formatDate(context) ?? ""
-                : LocaleKeys.common_selectAll.tr(),
+                : LocaleKeys.common_date_select.tr(),
           ),
         ),
       ],

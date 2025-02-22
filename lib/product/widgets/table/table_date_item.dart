@@ -28,9 +28,18 @@ class TableDateItem extends StatelessWidget {
   ///
   ///  ```
   ///
-  const TableDateItem({required this.date, super.key});
+  const TableDateItem({
+    required this.date,
+    this.showIsMembershipExpiringSoon = true,
+    super.key,
+  });
+
+  /// The date to be shown in the table cell.
   final DateTime date;
 
+  /// If true, the text color is set to red if the membership is about to expire.
+  /// If false, the text color is set to the default color.
+  final bool showIsMembershipExpiringSoon;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -40,8 +49,10 @@ class TableDateItem extends StatelessWidget {
           ?.rowItemTextStyle
           ?.copyWith(
             // If the membership is about to expire, the text color is set to red.
-            color: ConstantValues.isMembershipExpiringSoon(date)
-                ? AppColors.accentError[60]
+            color: showIsMembershipExpiringSoon
+                ? ConstantValues.isMembershipExpiringSoon(date)
+                    ? AppColors.accentError[60]
+                    : null
                 : null,
           ),
     );
