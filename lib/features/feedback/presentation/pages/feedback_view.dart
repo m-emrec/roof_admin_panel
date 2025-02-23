@@ -8,7 +8,7 @@ import 'package:roof_admin_panel/features/feedback/presentation/providers/provid
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_tile.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback_list.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/filter%20row/filter_row.dart';
-import 'package:roof_admin_panel/product/widgets/async_data_builder.dart';
+import 'package:roof_admin_panel/product/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// FeedbackView

@@ -22,4 +22,8 @@ abstract class GuestsRepository {
 
   /// Deletes a guest from the data layer.
   Future<DataState<void>> deleteGuest(List<GuestEntity> guest);
+
+  /// Retrieves the number of guests from the data layer.
+  /// Returns the number of guests.
+  Future<DataState<int>> getGuestsCount();
 }

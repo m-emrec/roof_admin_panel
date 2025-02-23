@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// This is the title of the members table.
@@ -27,7 +28,6 @@ class MembersTableTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final totalMembersCount = ref.watch(totalMembersCountProvider);
     return Row(
       spacing: SpacingSizes.medium,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -40,13 +40,18 @@ class MembersTableTitle extends ConsumerWidget {
               title: LocaleKeys.membersView_pageTitle.tr(),
             ),
             // Total members count
-            Text(
-              LocaleKeys.membersView_memberCount.tr(
-                args: [totalMembersCount.value.toString()],
+            AsyncDataBuilder(
+              provider: totalMembersCountProvider,
+              data: (count) => Text(
+                LocaleKeys.membersView_memberCount.tr(
+                  args: [count.toString()],
+                ),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppColors.darkTextColors[30],
+                    ),
               ),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.darkTextColors[30],
-                  ),
+              skeleton: const Text("Loading"),
+              skeletonType: SkeletonType.single,
             ),
           ],
         ),

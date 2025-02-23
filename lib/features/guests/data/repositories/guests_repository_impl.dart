@@ -62,4 +62,11 @@ class GuestsRepositoryImpl implements GuestsRepository {
           _service.updateGuest(approvedGuests.map((e) => e.toJson()).toList()),
     );
   }
+
+  @override
+  Future<DataState<int>> getGuestsCount() {
+    return DataState.handleDataState(
+      _service.getGuestsCount,
+    );
+  }
 }

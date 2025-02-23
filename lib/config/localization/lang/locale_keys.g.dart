@@ -218,6 +218,8 @@ abstract class  LocaleKeys {
   static const guestsView_pageTitle = 'guestsView.pageTitle';
   static const guestsView_guestCount = 'guestsView.guestCount';
   static const guestsView_addGuest = 'guestsView.addGuest';
+  static const guestsView_approveAGuest = 'guestsView.approveAGuest';
+  static const guestsView_removeAGuest = 'guestsView.removeAGuest';
   static const guestsView_tableColumnLabels_name = 'guestsView.tableColumnLabels.name';
   static const guestsView_tableColumnLabels_phoneNumber = 'guestsView.tableColumnLabels.phoneNumber';
   static const guestsView_tableColumnLabels_age = 'guestsView.tableColumnLabels.age';

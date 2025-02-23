@@ -244,6 +244,8 @@
     "pageTitle": "Misafirler",
     "guestCount": "{} Misafir",
     "addGuest": "Misafir Ekle",
+    "approveAGuest": "Misafiri Onayla",
+    "removeAGuest": "Misafiri Kaldır",
     "tableColumnLabels": {
         "name": "İsim",
         "phoneNumber": "Telefon Numarası",

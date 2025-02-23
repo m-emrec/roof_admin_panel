@@ -4,12 +4,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/product/widgets/error_retry_card.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 import 'package:roof_admin_panel/product/widgets/skeleton.dart';
+part 'skeleton.dart';
 
 /// This widget builds a widget based on the state of an [AsyncValue].
 ///
 /// It takes a [provider] of type [AsyncValue<T>] and a [data] function that
 /// returns a widget when the state is [AsyncData]. It also takes an optional
 /// [skeleton] widget that is shown when the state is [AsyncLoading].
+///
+/// **Parameters**:
+/// - [provider] : The provider of type [AsyncValue<T>].
+/// - [data] : A function that returns a widget when the state is [AsyncData].
+/// - [skeleton] : A widget to put into the [CustomSkeleton] when the state is
+/// [AsyncLoading].
+/// If not provided, a [LoadingIndicator] will be shown.
+///
+/// - [showRefreshButton] : A bool to show the refresh button
+/// Default is true
+/// If set to false, the refresh button will not be shown
+/// If set to true, the refresh button will be shown
+/// and the [provider] will be refreshed when the button is clicked
+///
+/// - [skeletonType] : Type of the skeleton to show when the state is [AsyncLoading].
+/// Default is [SkeletonType.list]
+///
+/// [SkeletonType.single] - Shows a single skeleton
+/// When you want to display single item on the skeleton , use this type
+///
+/// [SkeletonType.list] - Shows a list of skeletons
+/// When you want to display list of items on the skeleton , use this type
+///
+///
+///
+///
+///
 ///
 /// Example:
 ///
@@ -48,6 +76,33 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
   /// returns a widget when the state is [AsyncData]. It also takes an optional
   /// [skeleton] widget that is shown when the state is [AsyncLoading].
   ///
+  /// **Parameters**:
+  /// - [provider] : The provider of type [AsyncValue<T>].
+  /// - [data] : A function that returns a widget when the state is [AsyncData].
+  /// - [skeleton] : A widget to put into the [CustomSkeleton] when the state is
+  /// [AsyncLoading].
+  /// If not provided, a [LoadingIndicator] will be shown.
+  ///
+  /// - [showRefreshButton] : A bool to show the refresh button
+  /// Default is true
+  /// If set to false, the refresh button will not be shown
+  /// If set to true, the refresh button will be shown
+  /// and the [provider] will be refreshed when the button is clicked
+  ///
+  /// - [skeletonType] : Type of the skeleton to show when the state is [AsyncLoading].
+  /// Default is [SkeletonType.list]
+  ///
+  /// [SkeletonType.single] - Shows a single skeleton
+  /// When you want to display single item on the skeleton , use this type
+  ///
+  /// [SkeletonType.list] - Shows a list of skeletons
+  /// When you want to display list of items on the skeleton , use this type
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
   /// Example:
   ///
   /// ```dart
@@ -84,6 +139,7 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
     this.showRefreshButton = true,
     super.key,
     this.skeleton,
+    this.skeletonType = SkeletonType.list,
   });
 
   /// The provider of type [AsyncValue<T>].
@@ -107,6 +163,12 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
   /// and the [provider] will be refreshed when the button is clicked
   ///
   final bool showRefreshButton;
+
+  /// The number of skeletons to show when the state is [AsyncLoading].
+  ///
+  /// Default is 5
+  ///
+  final SkeletonType skeletonType;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(provider).when(
@@ -121,18 +183,7 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
                 : const SizedBox();
           },
           loading: () => skeleton != null
-              ? Expanded(
-                  child: ListView(
-                    children: [
-                      ...List.generate(
-                        5,
-                        (_) => CustomSkeleton(
-                          child: skeleton ?? const SizedBox(),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
+              ? _Skeleton.build(skeleton ?? const SizedBox(), skeletonType)
               : const LoadingIndicator(),
         );
   }

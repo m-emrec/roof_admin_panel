@@ -2,7 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
+import 'package:roof_admin_panel/features/guests/presentation/providers/guests_view_model.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/extensions/future_extension.dart';
+part 'guests_table_action_rows_utils.dart';
 
 /// This is a ConsumerWidget that displays a row of buttons that can be used to
 /// approve or delete selected rows in a table.
@@ -25,41 +29,17 @@ class GuestTableActionsRow extends ConsumerWidget {
       children: [
         TextButton(
           onPressed: isButtonsActive
-              ? () => _GuestsTableActionRowUtils.approveGuests(ref)
+              ? () => _GuestsTableActionRowUtils(context, ref).approveGuests()
               : null,
-          child: Text(LocaleKeys.common_confirm.tr()),
+          child: Text(LocaleKeys.guestsView_approveAGuest.tr()),
         ),
         TextButton(
           onPressed: isButtonsActive
-              ? () => _GuestsTableActionRowUtils.deleteGuests(ref)
+              ? () => _GuestsTableActionRowUtils(context, ref).deleteGuests()
               : null,
-          child: Text(LocaleKeys.common_delete.tr()),
+          child: Text(LocaleKeys.guestsView_removeAGuest.tr()),
         ),
       ],
     );
-  }
-}
-
-class _GuestsTableActionRowUtils {
-  static void approveGuests(WidgetRef ref) {
-    ref
-        .read(guestsViewModelProvider.notifier)
-        .approveGuests(
-          ref.read(selectedGuestsProvider),
-        )
-        .then(
-          (_) => ref.read(selectedGuestsProvider.notifier).state = [],
-        );
-  }
-
-  static void deleteGuests(WidgetRef ref) {
-    ref
-        .read(guestsViewModelProvider.notifier)
-        .deleteGuest(
-          ref.read(selectedGuestsProvider),
-        )
-        .then(
-          (_) => ref.read(selectedGuestsProvider.notifier).state = [],
-        );
   }
 }
