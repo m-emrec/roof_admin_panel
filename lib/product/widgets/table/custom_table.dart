@@ -93,6 +93,7 @@ class _CustomTableState extends State<CustomTable> {
               navigationMode: GridNavigationMode.cell,
               source: widget.source,
               selectionManager: _CustomTableSelectionManager(),
+              allowEditing: true,
 
               /// If the width of the table is less than the minimum width,
               /// the column width mode is set to auto, otherwise it is set to fill.

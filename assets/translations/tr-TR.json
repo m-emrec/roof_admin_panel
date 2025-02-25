@@ -246,10 +246,12 @@
     "addGuest": "Misafir Ekle",
     "approveAGuest": "Misafiri Onayla",
     "removeAGuest": "Misafiri Kaldır",
+    "noGuest": "Henüz misafir yok.",
     "tableColumnLabels": {
         "name": "İsim",
         "phoneNumber": "Telefon Numarası",
         "age": "Yaş",
+        "gender":"Cinsiyet",
         "guestStartDate": "Misafirlik Başlangıç Tarihi",
         "joinedEventCount": "Katıldığı Etkinlik Sayısı",
         "role": "Rol"

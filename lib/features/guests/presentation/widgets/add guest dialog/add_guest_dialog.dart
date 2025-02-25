@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/custom_side_dialog.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
@@ -38,12 +39,11 @@ class _AddGuestDialogState extends ConsumerState<AddGuestDialog>
     with AddGuestDialogStateMixin {
   @override
   Widget build(BuildContext context) {
-    return CustomAlertDialog(
-      dialogPosition: DialogPosition.rightSide,
+    return CustomRightSideDialog(
       actions: [
         TextButton(
           child: Text(LocaleKeys.common_cancel.tr()),
-          onPressed: () => CustomAlertDialog.hideAlertDialog(context),
+          onPressed: () => CustomRightSideDialog.hide(context),
         ),
         ElevatedButton(
           onPressed: onPressedAdd,

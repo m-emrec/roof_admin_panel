@@ -43,29 +43,32 @@ class _FeedbackResponseDialogState extends ConsumerState<FeedbackResponseDialog>
           child: Text(LocaleKeys.common_send.tr()),
         ),
       ],
-      content: SizedBox(
-        width: context.dynamicWidth(0.5),
-        child: Form(
-          key: formKey,
-          child: Column(
-            spacing: SpacingSizes.small,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.feedback.content,
-                style: context.textTheme.titleMedium,
-              ),
-              CustomTextArea(
-                controller: responseController,
-                validator: (value) => ValidatorMethods(text: value).emptyField,
-                focusNode: FocusNode(),
-                unfocusOnTapOutside: true,
-                label: LocaleKeys.feedback_response.tr(),
-                constraints: BoxConstraints(
-                  maxHeight: context.dynamicHeight(0.3),
+      content: SingleChildScrollView(
+        child: SizedBox(
+          width: context.dynamicWidth(0.5),
+          child: Form(
+            key: formKey,
+            child: Column(
+              spacing: SpacingSizes.small,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.feedback.content,
+                  style: context.textTheme.titleMedium,
                 ),
-              ),
-            ],
+                CustomTextArea(
+                  controller: responseController,
+                  validator: (value) =>
+                      ValidatorMethods(text: value).emptyField,
+                  focusNode: FocusNode(),
+                  unfocusOnTapOutside: true,
+                  label: LocaleKeys.feedback_response.tr(),
+                  constraints: BoxConstraints(
+                    maxHeight: context.dynamicHeight(0.3),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

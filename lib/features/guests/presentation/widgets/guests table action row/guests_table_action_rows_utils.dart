@@ -5,7 +5,7 @@ class _GuestsTableActionRowUtils {
     BuildContext context,
     WidgetRef ref,
   ) =>
-      _GuestsTableActionRowUtils._internal(
+      _instance ??= _GuestsTableActionRowUtils._internal(
         context,
         ref,
       );
@@ -13,6 +13,8 @@ class _GuestsTableActionRowUtils {
     this.context,
     this.ref,
   );
+
+  static _GuestsTableActionRowUtils? _instance;
 
   final BuildContext context;
   final WidgetRef ref;

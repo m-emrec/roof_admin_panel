@@ -220,9 +220,11 @@ abstract class  LocaleKeys {
   static const guestsView_addGuest = 'guestsView.addGuest';
   static const guestsView_approveAGuest = 'guestsView.approveAGuest';
   static const guestsView_removeAGuest = 'guestsView.removeAGuest';
+  static const guestsView_noGuest = 'guestsView.noGuest';
   static const guestsView_tableColumnLabels_name = 'guestsView.tableColumnLabels.name';
   static const guestsView_tableColumnLabels_phoneNumber = 'guestsView.tableColumnLabels.phoneNumber';
   static const guestsView_tableColumnLabels_age = 'guestsView.tableColumnLabels.age';
+  static const guestsView_tableColumnLabels_gender = 'guestsView.tableColumnLabels.gender';
   static const guestsView_tableColumnLabels_guestStartDate = 'guestsView.tableColumnLabels.guestStartDate';
   static const guestsView_tableColumnLabels_joinedEventCount = 'guestsView.tableColumnLabels.joinedEventCount';
   static const guestsView_tableColumnLabels_role = 'guestsView.tableColumnLabels.role';

@@ -36,12 +36,10 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
 
   /// A method to get the guests
   Future<void> getGuests() async {
-    final result = await _getGuestsUseCase(const NoParams());
     DataState.handleDataStateBasedAction(
-      result,
-      onSuccess: (res) => state = AsyncData(
-        res.resultData?.map(Guest.fromEntity).toList() ?? [],
-      ),
+      await _getGuestsUseCase(const NoParams()),
+      onSuccess: (res) =>
+          _updateState(res.resultData?.map(Guest.fromEntity).toList() ?? []),
       onFailure: (res) =>
           state = AsyncError(res?.errorMessage ?? "", StackTrace.current),
     );
@@ -49,9 +47,8 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
 
   /// A method to add a guest
   Future<void> addGuest(Guest guest) async {
-    final result = await _addGuestUseCase(guest.toEntity());
     DataState.handleDataStateBasedAction(
-      result,
+      await _addGuestUseCase(guest.toEntity()),
       onSuccess: (res) {
         getGuests();
       },
@@ -61,13 +58,11 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
 
   /// A method to delete a guest
   Future<void> deleteGuest(List<Guest> guests) async {
-    final result =
-        await _deleteGuestUseCase(guests.map((e) => e.toEntity()).toList());
     DataState.handleDataStateBasedAction(
-      result,
+      await _deleteGuestUseCase(guests.map((e) => e.toEntity()).toList()),
       onSuccess: (res) {
         for (final guest in guests) {
-          state = AsyncData(
+          _updateState(
             state.value?.where((e) => e.id != guest.id).toList() ?? [],
           );
         }
@@ -93,16 +88,48 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
   //   );
   // }
 
-  /// A method to approve guests
-  Future<void> approveGuests(List<Guest> guests) async {
-    final result = await _approveGuestsUseCase(
-      guests.map((e) => e.toEntity()).toList(),
-    );
+  Future<void> increaseJoinedEventCount(Guest guest) async {
+    final updatedGuest =
+        guest.copyWith(joinedEventCount: (guest.joinedEventCount ?? 0) + 1);
+    final result = await _updateGuestUseCase(updatedGuest.toEntity());
     DataState.handleDataStateBasedAction(
       result,
       onSuccess: (res) {
+        getGuests();
+      },
+      onFailure: (res) => Toast.showErrorToast(
+        desc: AppErrorText.errorMessageConverter(res?.errorMessage ?? ""),
+      ),
+    );
+  }
+
+  Future<void> decreaseJoinedEventCount(Guest guest) async {
+    final updatedGuest = guest.copyWith(
+      joinedEventCount: (guest.joinedEventCount ?? 0) == 0
+          ? 0
+          : (guest.joinedEventCount ?? 0) - 1,
+    );
+    final result = await _updateGuestUseCase(updatedGuest.toEntity());
+    DataState.handleDataStateBasedAction(
+      result,
+      onSuccess: (res) {
+        getGuests();
+      },
+      onFailure: (res) => Toast.showErrorToast(
+        desc: AppErrorText.errorMessageConverter(res?.errorMessage ?? ""),
+      ),
+    );
+  }
+
+  /// A method to approve guests
+  Future<void> approveGuests(List<Guest> guests) async {
+    DataState.handleDataStateBasedAction(
+      await _approveGuestsUseCase(
+        guests.map((e) => e.toEntity()).toList(),
+      ),
+      onSuccess: (res) {
         for (final guest in guests) {
-          state = AsyncData(
+          _updateState(
             state.value
                     ?.map(
                       (e) => e.id == guest.id
@@ -118,5 +145,9 @@ class GuestsViewModel extends StateNotifier<AsyncValue<List<Guest>>> {
         desc: AppErrorText.errorMessageConverter(res?.errorMessage ?? ""),
       ),
     );
+  }
+
+  void _updateState(List<Guest> updatedData) {
+    state = AsyncData(updatedData);
   }
 }

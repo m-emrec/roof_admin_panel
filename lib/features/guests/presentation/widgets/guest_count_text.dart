@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/async%20data%20builder/async_data_builder.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 
 /// A widget that displays the number of guests.
 /// This widget is used in the [GuestsTableHeader] widget.
@@ -26,8 +27,7 @@ class GuestCountText extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AsyncDataBuilder(
       provider: getGuestsCountProvider,
-      skeleton: const Text("data"),
-      skeletonType: SkeletonType.single,
+      skeletonType: SkeletonType.text,
       data: (count) {
         return Text(
           LocaleKeys.guestsView_guestCount.tr(

@@ -1,21 +1,24 @@
 import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
+import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:roof_admin_panel/product/widgets/error_retry_card.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
-import 'package:roof_admin_panel/product/widgets/skeleton.dart';
-part 'skeleton.dart';
+
+part 'skeleton_builder.dart';
+part 'skeletons.dart';
 
 /// This widget builds a widget based on the state of an [AsyncValue].
 ///
 /// It takes a [provider] of type [AsyncValue<T>] and a [data] function that
 /// returns a widget when the state is [AsyncData]. It also takes an optional
-/// [skeleton] widget that is shown when the state is [AsyncLoading].
+/// [skeletonWidget] widget that is shown when the state is [AsyncLoading].
 ///
 /// **Parameters**:
 /// - [provider] : The provider of type [AsyncValue<T>].
 /// - [data] : A function that returns a widget when the state is [AsyncData].
-/// - [skeleton] : A widget to put into the [CustomSkeleton] when the state is
+/// - [skeletonWidget] : A widget to put into the [CustomSkeleton] when the state is
 /// [AsyncLoading].
 /// If not provided, a [LoadingIndicator] will be shown.
 ///
@@ -74,12 +77,12 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
   ///
   /// It takes a [provider] of type [AsyncValue<T>] and a [data] function that
   /// returns a widget when the state is [AsyncData]. It also takes an optional
-  /// [skeleton] widget that is shown when the state is [AsyncLoading].
+  /// [skeletonWidget] widget that is shown when the state is [AsyncLoading].
   ///
   /// **Parameters**:
   /// - [provider] : The provider of type [AsyncValue<T>].
   /// - [data] : A function that returns a widget when the state is [AsyncData].
-  /// - [skeleton] : A widget to put into the [CustomSkeleton] when the state is
+  /// - [skeletonWidget] : A widget to put into the [CustomSkeleton] when the state is
   /// [AsyncLoading].
   /// If not provided, a [LoadingIndicator] will be shown.
   ///
@@ -138,7 +141,7 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
     required this.data,
     this.showRefreshButton = true,
     super.key,
-    this.skeleton,
+    this.skeletonWidget,
     this.skeletonType = SkeletonType.list,
   });
 
@@ -151,7 +154,7 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
   final Widget Function(T) data;
 
   /// A widget to put into the [CustomSkeleton] when the state is [AsyncLoading].
-  final Widget? skeleton;
+  final Widget? skeletonWidget;
 
   /// A bool to show the refresh button
   ///
@@ -164,10 +167,9 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
   ///
   final bool showRefreshButton;
 
-  /// The number of skeletons to show when the state is [AsyncLoading].
+  /// Type of the skeleton to show when the state is [AsyncLoading].
   ///
-  /// Default is 5
-  ///
+  /// Default is [SkeletonType.list]
   final SkeletonType skeletonType;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -182,9 +184,10 @@ class AsyncDataBuilder<T> extends ConsumerWidget {
                   )
                 : const SizedBox();
           },
-          loading: () => skeleton != null
-              ? _Skeleton.build(skeleton ?? const SizedBox(), skeletonType)
-              : const LoadingIndicator(),
+          loading: () => _SkeletonFactory(
+            skeletonWidget,
+            skeletonType,
+          ).create(),
         );
   }
 }

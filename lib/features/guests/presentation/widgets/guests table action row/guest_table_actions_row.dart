@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,12 +32,28 @@ class GuestTableActionsRow extends ConsumerWidget {
           onPressed: isButtonsActive
               ? () => _GuestsTableActionRowUtils(context, ref).approveGuests()
               : null,
+          style: context.theme.textButtonTheme.style?.copyWith(
+            foregroundColor: WidgetStateColor.resolveWith((states) {
+              if (states.contains(WidgetState.disabled)) {
+                return Colors.grey;
+              }
+              return AppColors.primaryColor[70] ?? Colors.grey;
+            }),
+          ),
           child: Text(LocaleKeys.guestsView_approveAGuest.tr()),
         ),
         TextButton(
           onPressed: isButtonsActive
               ? () => _GuestsTableActionRowUtils(context, ref).deleteGuests()
               : null,
+          style: context.theme.textButtonTheme.style?.copyWith(
+            foregroundColor: WidgetStateColor.resolveWith((states) {
+              if (states.contains(WidgetState.disabled)) {
+                return Colors.grey;
+              }
+              return AppColors.accentError[70] ?? Colors.grey;
+            }),
+          ),
           child: Text(LocaleKeys.guestsView_removeAGuest.tr()),
         ),
       ],

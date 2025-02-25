@@ -8,7 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/async%20data%20builder/async_data_builder.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// This is the title of the members table.
@@ -50,8 +51,7 @@ class MembersTableTitle extends ConsumerWidget {
                       color: AppColors.darkTextColors[30],
                     ),
               ),
-              skeleton: const Text("Loading"),
-              skeletonType: SkeletonType.single,
+              skeletonType: SkeletonType.text,
             ),
           ],
         ),

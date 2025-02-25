@@ -6,6 +6,11 @@ import 'package:core/utils/constants/firebase/guest_doc_enum.dart';
 /// GuestsDatabaseService
 ///
 class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
+  /// Get the count of guests from the database
+  ///
+  /// Returns the count of guests as an integer
+  ///
+  ///
   Future<int> getGuestsCount() async {
     final query = getCollectionRef(CollectionEnum.guests).count();
 

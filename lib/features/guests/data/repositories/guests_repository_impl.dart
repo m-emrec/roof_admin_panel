@@ -51,15 +51,15 @@ class GuestsRepositoryImpl implements GuestsRepository {
   Future<DataState<void>> approveGuests(List<GuestEntity> guest) {
     final guestsModel = guest.map(Guest.fromEntity).toList();
 
-    final approvedGuests = guestsModel
+    final modifiedGuestsList = guestsModel
         .map(
           (e) => e.copyWith(role: [Role.approvedGuest]),
         )
         .toList();
 
     return DataState.handleDataState(
-      () =>
-          _service.updateGuest(approvedGuests.map((e) => e.toJson()).toList()),
+      () => _service
+          .updateGuest(modifiedGuestsList.map((e) => e.toJson()).toList()),
     );
   }
 

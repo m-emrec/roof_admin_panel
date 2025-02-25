@@ -21,7 +21,7 @@ import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_state_mixin.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/widgets/empty_box.dart';
-import 'package:roof_admin_panel/product/widgets/skeleton.dart';
+import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 part 'side_bar_user_avar.dart';

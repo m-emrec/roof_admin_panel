@@ -1,6 +1,7 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/guests/data/datasources/guest%20table%20source/guests_table_source.dart';
 import 'package:roof_admin_panel/features/guests/data/datasources/guests_database_service.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/data/repositories/guests_repository_impl.dart';
@@ -12,38 +13,7 @@ import 'package:roof_admin_panel/features/guests/domain/usecases/get_guests_coun
 import 'package:roof_admin_panel/features/guests/domain/usecases/get_guests_use_case.dart';
 import 'package:roof_admin_panel/features/guests/domain/usecases/update_guest_use_case.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/guests_view_model.dart';
-
-final _serviceProvider = Provider<GuestsDatabaseService>((ref) {
-  return GuestsDatabaseService();
-});
-
-final _repositoryProvider = Provider<GuestsRepository>((ref) {
-  return GuestsRepositoryImpl(databaseService: ref.read(_serviceProvider));
-});
-
-final _addGuestUseCaseProvider = Provider<AddGuestUseCase>((ref) {
-  return AddGuestUseCase(ref.read(_repositoryProvider));
-});
-
-final _getGuestsUJseCaseProvider = Provider<GetGuestsUseCase>((ref) {
-  return GetGuestsUseCase(ref.read(_repositoryProvider));
-});
-
-final _deleteGuestUseCaseProvider = Provider<DeleteGuestUseCase>((ref) {
-  return DeleteGuestUseCase(ref.read(_repositoryProvider));
-});
-
-final _updateGuestUseCaseProvider = Provider<UpdateGuestUseCase>((ref) {
-  return UpdateGuestUseCase(ref.read(_repositoryProvider));
-});
-
-final _approveGuestsUseCaseProvider = Provider<ApproveGuestsUseCase>((ref) {
-  return ApproveGuestsUseCase(ref.read(_repositoryProvider));
-});
-
-final _getGuestsCountUseCaseProvider = Provider<GetGuestsCountUseCase>((ref) {
-  return GetGuestsCountUseCase(ref.read(_repositoryProvider));
-});
+part 'dependencies.dart';
 
 /// Provider that provides the selected guests.
 ///
@@ -78,5 +48,11 @@ final guestsViewModelProvider =
     deleteGuestUseCase: ref.read(_deleteGuestUseCaseProvider),
     updateGuestUseCase: ref.read(_updateGuestUseCaseProvider),
     approveGuestsUseCase: ref.read(_approveGuestsUseCaseProvider),
+  );
+});
+
+final guestsTableSourceProvider = Provider<GuestsTableSource>((ref) {
+  return GuestsTableSource(
+    ref.watch(guestsViewModelProvider).value ?? [],
   );
 });

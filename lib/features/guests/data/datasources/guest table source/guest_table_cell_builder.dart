@@ -10,8 +10,12 @@ part of 'guests_table_source.dart';
 ///
 ///
 class _GuestsTableCellBuilder {
-  static Widget build(String columnName, dynamic value) {
-    final column = _getColumnName(columnName);
+  _GuestsTableCellBuilder(this.columnName, this.dataGridRow);
+  final String columnName;
+  final DataGridRow dataGridRow;
+
+  Widget build(dynamic value) {
+    final column = _GuestColumnNameConverter.toGuestTableEnum(columnName);
     if (value == null) {
       return const TableNullItem();
     }
@@ -28,31 +32,14 @@ class _GuestsTableCellBuilder {
           showIsMembershipExpiringSoon: false,
         );
       case GuestTableNames.joinedEventCount:
-        return TableCellItem(label: value.toString());
+        return JoinedEventCountButtons(
+          dataGridRow,
+          value as int,
+        );
       case GuestTableNames.role:
         return TableCellItem(
           label: value.toString(),
         );
-    }
-  }
-
-  /// This method returns the [GuestTableNames] based on given the [columnName]
-  static GuestTableNames _getColumnName(String columnName) {
-    switch (columnName) {
-      case "name":
-        return GuestTableNames.name;
-      case 'phoneNumber':
-        return GuestTableNames.phoneNumber;
-      case "gender":
-        return GuestTableNames.gender;
-      case "guestStartDate":
-        return GuestTableNames.guestStartDate;
-      case "joinedEventCount":
-        return GuestTableNames.joinedEventCount;
-      case "role":
-        return GuestTableNames.role;
-      default:
-        return GuestTableNames.name;
     }
   }
 }

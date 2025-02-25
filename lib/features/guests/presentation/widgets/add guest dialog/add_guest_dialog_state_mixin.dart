@@ -18,23 +18,27 @@ mixin AddGuestDialogStateMixin on ConsumerState<AddGuestDialog> {
   /// A method to handle the onPressed event of the add button.
   void onPressedAdd() {
     if (_AddGuestProperties.formKey.currentState?.validate() ?? false) {
-      ref
-          .read(guestsViewModelProvider.notifier)
-          .addGuest(
-            Guest(
-              name: _AddGuestProperties.nameController.text,
-              phoneNumber: _AddGuestProperties.phoneCodeController.text +
-                  _AddGuestProperties.phoneController.text,
-              guestStartDate:
-                  DateTime.parse(_AddGuestProperties.startDateController.text),
-              gender: _AddGuestProperties.genderController.text
-                  .fromLocalizedStringToGenderEnum(),
-            ),
-          )
-          .then(
-            (_) => CustomAlertDialog.hideAlertDialog(context),
-          );
+      _addGuest();
     }
+  }
+
+  void _addGuest() {
+    ref
+        .read(guestsViewModelProvider.notifier)
+        .addGuest(
+          Guest(
+            name: _AddGuestProperties.nameController.text,
+            phoneNumber: _AddGuestProperties.phoneCodeController.text +
+                _AddGuestProperties.phoneController.text,
+            guestStartDate:
+                DateTime.parse(_AddGuestProperties.startDateController.text),
+            gender: _AddGuestProperties.genderController.text
+                .fromLocalizedStringToGenderEnum(),
+          ),
+        )
+        .then(
+          (_) => CustomRightSideDialog.hide(context),
+        );
   }
 
   @override
