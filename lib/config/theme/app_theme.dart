@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
@@ -9,6 +10,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_pictu
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_bottom_sheet_them.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme_extension.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/guests_table_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/verification_code_card_theme.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -37,6 +39,7 @@ part 'widget_themes/_expansion_tile_theme.dart';
 part 'widget_themes/_side_bar_theme.dart';
 part 'widget_themes/custom_data_table_theme.dart.dart';
 part './widget_themes/_feedback_tile_theme.dart';
+part './widget_themes/guests_table_theme.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -121,5 +124,6 @@ class AppTheme {
         _SideBarTheme.sideBarTheme,
         _CustomDataTableTheme.theme,
         _FeedbackTileTheme.feedbackTileTheme(_context),
+        _GuestsTableTheme.theme(),
       ];
 }

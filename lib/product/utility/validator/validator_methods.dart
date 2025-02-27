@@ -8,6 +8,7 @@ class ValidatorMethods {
   /// [text] is the input string to be validated.
   ValidatorMethods({this.text});
   final String? text;
+  late final _trimmedText = text?.trim();
 
   /// The required length for a valid phone number.
   static const int phone_length = 10;
@@ -17,7 +18,7 @@ class ValidatorMethods {
   /// Returns `null` if the email address is valid, otherwise returns 'Invalid email address'.
   String? get validateMail {
     return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-            .hasMatch(text ?? '')
+            .hasMatch(_trimmedText ?? '')
         ? null
         : tr(LocaleKeys.errors_invalid_email);
   }
@@ -25,10 +26,10 @@ class ValidatorMethods {
   /// Validates the input to contain only numbers.
   /// Returns `null` if the input contains only numbers, otherwise returns 'Invalid input'.
   String? get numberOnlyValidator {
-    if (text == null || (text?.isEmpty ?? true)) {
+    if (_trimmedText == null || (_trimmedText?.isEmpty ?? true)) {
       return LocaleKeys.common_validationError_required.tr();
     }
-    if (!RegExp(r'^\d+$').hasMatch(text ?? "")) {
+    if (!RegExp(r'^\d+$').hasMatch(_trimmedText ?? "")) {
       return LocaleKeys.common_validationError_invalid.tr();
     }
     return null;
@@ -40,7 +41,7 @@ class ValidatorMethods {
   String? get validatePassword {
     return RegExp(
                 r"^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?':{}|<>])[A-Za-z\d!@#$%^&*(),.?':{}|<>]{6,}$")
-            .hasMatch(text ?? '')
+            .hasMatch(_trimmedText ?? '')
         ? null
         : tr(LocaleKeys.errors_weak_password);
   }
@@ -49,16 +50,18 @@ class ValidatorMethods {
   ///
   /// Returns `null` if the name is at least 3 characters long, otherwise returns 'Name must be at least 3 characters'.
   String? get validateName {
-    return (text?.length ?? 0) >= 3 ? null : tr(LocaleKeys.errors_invalid_name);
+    return (_trimmedText?.length ?? 0) >= 3
+        ? null
+        : tr(LocaleKeys.errors_invalid_name);
   }
 
   /// Validates the phone number length.
   ///
   /// Returns `null` if the phone number is at least 12 characters long, otherwise returns 'Phone number must be at least 12 characters'.
   String? get validatePhone {
-    return ((text?.isNotEmpty ?? false) && text?[0] == "0")
+    return ((_trimmedText?.isNotEmpty ?? false) && _trimmedText?[0] == "0")
         ? LocaleKeys.errors_phoneNumberCantStartWithZero.tr()
-        : (text?.length ?? 0) == phone_length
+        : (_trimmedText?.length ?? 0) == phone_length
             ? null
             : tr(LocaleKeys.errors_invalid_phone_number);
   }
@@ -67,7 +70,7 @@ class ValidatorMethods {
   /// Returns `null` if the field is not empty, otherwise returns 'This field is required'.
   /// This method is used to validate the required fields.
   String? get emptyField {
-    return text?.isEmpty ?? true
+    return _trimmedText?.isEmpty ?? true
         ? tr(LocaleKeys.common_validationError_required.tr())
         : null;
   }
@@ -76,7 +79,7 @@ class ValidatorMethods {
   /// Returns `null` if the input length is at least [length], otherwise
   /// returns 'This field must be at least [length] characters'.
   String? validateLength(int length) {
-    return (text?.length ?? 0) >= length
+    return (_trimmedText?.length ?? 0) >= length
         ? null
         : LocaleKeys.common_validationError_length
             .tr(args: [length.toString()]);

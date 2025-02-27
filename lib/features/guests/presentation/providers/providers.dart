@@ -44,13 +44,14 @@ final guestsViewModelProvider =
     StateNotifierProvider<GuestsViewModel, AsyncValue<List<Guest>>>((ref) {
   return GuestsViewModel(
     addGuestUseCase: ref.read(_addGuestUseCaseProvider),
-    getGuestsUseCase: ref.read(_getGuestsUJseCaseProvider),
+    getGuestsUseCase: ref.read(_getGuestsUseCaseProvider),
     deleteGuestUseCase: ref.read(_deleteGuestUseCaseProvider),
     updateGuestUseCase: ref.read(_updateGuestUseCaseProvider),
     approveGuestsUseCase: ref.read(_approveGuestsUseCaseProvider),
   );
 });
 
+/// Provider that provides the [GuestsTableSource].
 final guestsTableSourceProvider = Provider<GuestsTableSource>((ref) {
   return GuestsTableSource(
     ref.watch(guestsViewModelProvider).value ?? [],

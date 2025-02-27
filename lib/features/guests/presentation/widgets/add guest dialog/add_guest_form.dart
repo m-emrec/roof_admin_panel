@@ -6,35 +6,36 @@ class _AddGuestForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _AddGuestProperties.formKey,
+      key: _AddGuestFormControllers.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: SpacingSizes.medium,
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomTextField(
-            controller: _AddGuestProperties.nameController,
+            controller: _AddGuestFormControllers.nameController,
             validator: (_) => ValidatorMethods(
-              text: _AddGuestProperties.nameController.text,
+              text: _AddGuestFormControllers.nameController.text,
             ).validateName,
+            textCapitalization: TextCapitalization.words,
             label: LocaleKeys.guestsView_tableColumnLabels_name.tr(),
           ),
           PhoneField(
-            controller: _AddGuestProperties.phoneController,
-            phoneCodeController: _AddGuestProperties.phoneCodeController,
+            controller: _AddGuestFormControllers.phoneController,
+            phoneCodeController: _AddGuestFormControllers.phoneCodeController,
           ),
-          GenderDropDown(controller: _AddGuestProperties.genderController),
+          GenderDropDown(controller: _AddGuestFormControllers.genderController),
           Section(
             title: LocaleKeys.guestsView_tableColumnLabels_guestStartDate.tr(),
             required: true,
             child: ValidationWrapper(
               validator: (p0) =>
-                  _AddGuestProperties.startDateController.text.isEmpty
+                  _AddGuestFormControllers.startDateController.text.isEmpty
                       ? LocaleKeys.common_validationError_required.tr()
                       : null,
               child: DateField(
                 // title: LocaleKeys.guestsView_tableColumnLabels_guestStartDate.tr(),
-                controller: _AddGuestProperties.startDateController,
+                controller: _AddGuestFormControllers.startDateController,
               ),
             ),
           ),

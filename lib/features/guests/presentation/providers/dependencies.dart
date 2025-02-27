@@ -12,7 +12,7 @@ final _addGuestUseCaseProvider = Provider<AddGuestUseCase>((ref) {
   return AddGuestUseCase(ref.read(_repositoryProvider));
 });
 
-final _getGuestsUJseCaseProvider = Provider<GetGuestsUseCase>((ref) {
+final _getGuestsUseCaseProvider = Provider<GetGuestsUseCase>((ref) {
   return GetGuestsUseCase(ref.read(_repositoryProvider));
 });
 

@@ -77,6 +77,7 @@ class CustomTextField extends TextFormField {
               (unfocusOnTapOutside != (focusNode == null))),
           "If you want to use the unfocusOnTapOutside property, you must provide a focusNode",
         );
+
         return TextFormField(
           contextMenuBuilder: _CustomTextFieldUtils._contextMenuBuilder,
           cursorColor: AppColors.primaryColor,

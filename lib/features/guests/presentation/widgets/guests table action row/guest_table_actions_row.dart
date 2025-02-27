@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/guests_table_theme_extension.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/guests_view_model.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
@@ -32,28 +33,18 @@ class GuestTableActionsRow extends ConsumerWidget {
           onPressed: isButtonsActive
               ? () => _GuestsTableActionRowUtils(context, ref).approveGuests()
               : null,
-          style: context.theme.textButtonTheme.style?.copyWith(
-            foregroundColor: WidgetStateColor.resolveWith((states) {
-              if (states.contains(WidgetState.disabled)) {
-                return Colors.grey;
-              }
-              return AppColors.primaryColor[70] ?? Colors.grey;
-            }),
-          ),
+          style: context.theme
+              .extension<GuestsTableThemeExtension>()
+              ?.approveButtonStyle,
           child: Text(LocaleKeys.guestsView_approveAGuest.tr()),
         ),
         TextButton(
           onPressed: isButtonsActive
               ? () => _GuestsTableActionRowUtils(context, ref).deleteGuests()
               : null,
-          style: context.theme.textButtonTheme.style?.copyWith(
-            foregroundColor: WidgetStateColor.resolveWith((states) {
-              if (states.contains(WidgetState.disabled)) {
-                return Colors.grey;
-              }
-              return AppColors.accentError[70] ?? Colors.grey;
-            }),
-          ),
+          style: context.theme
+              .extension<GuestsTableThemeExtension>()
+              ?.removeButtonStyle,
           child: Text(LocaleKeys.guestsView_removeAGuest.tr()),
         ),
       ],

@@ -26,7 +26,7 @@ class GuestsRepositoryImpl implements GuestsRepository {
     final guestsModel = guests.map(Guest.fromEntity).toList();
 
     return DataState.handleDataState(
-      () => _service.deleteGuest(guestsModel.map((e) => e.toJson()).toList()),
+      () => _service.deleteGuests(guestsModel.map((e) => e.toJson()).toList()),
     );
   }
 
@@ -43,7 +43,7 @@ class GuestsRepositoryImpl implements GuestsRepository {
   @override
   Future<DataState<void>> updateGuest(GuestEntity guests) {
     return DataState.handleDataState(
-      () => _service.updateGuest([Guest.fromEntity(guests).toJson()]),
+      () => _service.updateGuests([Guest.fromEntity(guests).toJson()]),
     );
   }
 
@@ -59,7 +59,7 @@ class GuestsRepositoryImpl implements GuestsRepository {
 
     return DataState.handleDataState(
       () => _service
-          .updateGuest(modifiedGuestsList.map((e) => e.toJson()).toList()),
+          .updateGuests(modifiedGuestsList.map((e) => e.toJson()).toList()),
     );
   }
 

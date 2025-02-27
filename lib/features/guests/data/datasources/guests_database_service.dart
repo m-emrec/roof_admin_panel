@@ -10,6 +10,7 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
   ///
   /// Returns the count of guests as an integer
   ///
+  /// if the count is null, return 0
   ///
   Future<int> getGuestsCount() async {
     final query = getCollectionRef(CollectionEnum.guests).count();
@@ -20,6 +21,7 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
   }
 
   /// Get all guests from the database
+  ///
   /// Return the list of guests as a list of maps
   ///
   Future<List<Map<String, dynamic>>> getGuests() async {
@@ -32,8 +34,6 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
         .cast<Map<String, dynamic>>();
   }
 
-  /// Add a guest to the database
-  ///
   /// Adds a new guest to the database with the [guest] parameter
   ///
   ///
@@ -45,9 +45,9 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
     );
   }
 
-  /// Update a guest in the database
+  /// Update the given guests in the database
   ///
-  Future<void> updateGuest(List<Map<String, dynamic>> guests) async {
+  Future<void> updateGuests(List<Map<String, dynamic>> guests) async {
     for (final guest in guests) {
       await updateDocument(
         collection: CollectionEnum.guests,
@@ -57,9 +57,9 @@ class GuestsDatabaseService extends FirebaseUtils with FirestoreUtils {
     }
   }
 
-  /// Delete a guest from the database
+  /// Delete the given guests from the database
   ///
-  Future<void> deleteGuest(List<Map<String, dynamic>> guests) async {
+  Future<void> deleteGuests(List<Map<String, dynamic>> guests) async {
     for (final guest in guests) {
       await deleteDocument(
         collection: CollectionEnum.guests,

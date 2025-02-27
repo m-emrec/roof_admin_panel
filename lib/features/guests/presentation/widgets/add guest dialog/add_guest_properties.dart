@@ -21,7 +21,7 @@ part of 'add_guest_dialog.dart';
 ///* This way, I can access the controllers and form key in both the form and the mixin.
 ///*  and I don't have to pass them as parameters to the form or the mixin.
 ///
-class _AddGuestProperties {
+class _AddGuestFormControllers {
   static late GlobalKey<FormState> formKey;
   static late TextEditingController nameController;
   static late TextEditingController phoneController;
