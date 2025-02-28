@@ -24,10 +24,7 @@ class SideBarUserAvatar extends ConsumerWidget {
         future: ref.read(sideBarUserProvider.future),
         builder: (context, AsyncSnapshot<UserModel?> snapshot) {
           return CustomSkeleton(
-            // replace: true,
             enabled: snapshot.connectionState == ConnectionState.waiting,
-            // enabled: true,
-            // ignore: prefer_const_constructors
             child: SideBarItemViewSwitcher(
               expandedChild: _ExpandedSideBarUserAvatar(
                 snapshot.data ?? UserModel(name: "loading"),

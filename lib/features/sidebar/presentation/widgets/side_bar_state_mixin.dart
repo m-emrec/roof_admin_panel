@@ -23,7 +23,7 @@ mixin SideBarStateMixin on State<SideBar> {
   ///
   /// It contains the sidebar items.
   ///
-  /// When you want to add a new sidebar item, you should add it to this list.
+  ///* When you want to add a new sidebar item, you should add it to this list.
   final List<SideBarItemModel> sideBarItems = [
     SideBarItemModel(
       route: const MembersRoute(),

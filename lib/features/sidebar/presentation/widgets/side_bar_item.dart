@@ -6,6 +6,7 @@ class _SideBarItem extends StatelessWidget {
     required this.icon,
     required this.route,
   });
+
   final String title;
   final Widget icon;
   final BaseRouteClass route;

@@ -61,7 +61,7 @@ class _SideBarState extends State<SideBar>
             SideBarControlButton(animationController: animationController),
             const EmptyBox.xSmallGap(),
             Column(
-              spacing: SpacingSizes.medium,
+              spacing: SpacingSizes.extraSmall,
               children: [
                 SideBarUserAvatar(),
                 ...createSideBarItems(),
