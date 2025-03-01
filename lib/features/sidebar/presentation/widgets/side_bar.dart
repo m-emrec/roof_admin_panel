@@ -5,6 +5,7 @@ library side_bar;
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +47,6 @@ class _SideBarState extends State<SideBar>
 
   @override
   Widget build(BuildContext context) {
-    SideBarController().currentLocation.value =
-        GoRouterState.of(context).matchedLocation;
     return AnimatedBuilder(
       animation: animationController,
       builder: (context, child) => child ?? const SizedBox(),

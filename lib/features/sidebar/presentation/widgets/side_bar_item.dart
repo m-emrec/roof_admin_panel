@@ -11,6 +11,7 @@ class _SideBarItem extends StatelessWidget {
   final String title;
   final Widget icon;
   final BaseRouteClass route;
+
   @override
   Widget build(BuildContext context) {
     return SideBarItemViewSwitcher(
@@ -41,7 +42,7 @@ class _ExpandedSideBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: SideBarController().isItemSelected(route.path)
+      color: SideBarController().isItemSelected(context, route.path)
           ? AppColors.backgroundColor[40] ?? Colors.transparent
           : Colors.transparent,
       child: ListTile(
@@ -73,7 +74,7 @@ class _CollapsedSideBarItem extends StatelessWidget {
     return IconButton(
       style: context.theme.iconButtonTheme.style?.copyWith(
         backgroundColor: WidgetStatePropertyAll(
-          SideBarController().isItemSelected(route.path)
+          SideBarController().isItemSelected(context, route.path)
               ? AppColors.backgroundColor[40]
               : Colors.transparent,
         ),

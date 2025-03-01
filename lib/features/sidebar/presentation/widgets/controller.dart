@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 /// Controller class to control the sidebar expansion
 /// and the current location of the sidebar
@@ -39,5 +40,6 @@ class SideBarController {
 
   /// This method is used to check if the item is selected
   ///
-  bool isItemSelected(String route) => currentLocation.value == route;
+  bool isItemSelected(BuildContext context, String route) =>
+      GoRouterState.of(context).matchedLocation == route;
 }
