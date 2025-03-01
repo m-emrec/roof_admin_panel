@@ -37,6 +37,10 @@ class SideBarItemViewSwitcher extends StatelessWidget {
           : CrossFadeState.showSecond,
       secondChild: collapsedChild,
       firstChild: expandedChild,
+      alignment: Alignment.centerLeft,
+      sizeCurve: Curves.easeIn,
+      firstCurve: Curves.easeIn,
+      secondCurve: Curves.easeIn,
     );
   }
 }

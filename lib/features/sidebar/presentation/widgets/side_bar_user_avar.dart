@@ -15,27 +15,21 @@ class SideBarUserAvatar extends ConsumerWidget {
     /// [SideBarController().isExpanded] value changes.
     /// So, it will not change the avatar when the sidebar is expanded or collapsed.
     // ignore: prefer_const_constructors
-    return ClipRect(
-      clipBehavior: Clip.antiAlias,
-
-      ///
-      // ignore: prefer_const_constructors
-      child: FutureBuilder(
-        future: ref.read(sideBarUserProvider.future),
-        builder: (context, AsyncSnapshot<UserModel?> snapshot) {
-          return CustomSkeleton(
-            enabled: snapshot.connectionState == ConnectionState.waiting,
-            child: SideBarItemViewSwitcher(
-              expandedChild: _ExpandedSideBarUserAvatar(
-                snapshot.data ?? UserModel(name: "loading"),
-              ),
-              collapsedChild: _CollapsedSideBarUserAvatar(
-                snapshot.data ?? UserModel(name: "loading"),
-              ),
+    return FutureBuilder(
+      future: ref.read(sideBarUserProvider.future),
+      builder: (context, AsyncSnapshot<UserModel?> snapshot) {
+        return CustomSkeleton(
+          enabled: snapshot.connectionState == ConnectionState.waiting,
+          child: SideBarItemViewSwitcher(
+            expandedChild: _ExpandedSideBarUserAvatar(
+              snapshot.data ?? UserModel(name: "loading"),
             ),
-          );
-        },
-      ),
+            collapsedChild: _CollapsedSideBarUserAvatar(
+              snapshot.data ?? UserModel(name: "loading"),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -48,21 +42,13 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(user.name ?? ''),
-      leading: CircleAvatar(
+      leading: Avatar(
+        imageUrl: user.imageUrl,
         radius: 16,
-        child: Image.network(
-          user.imageUrl ?? '',
-          errorBuilder: (context, error, stackTrace) {
-            if (user.gender == Gender.female) {
-              return Image.asset(Assets.images.femaleAvatar.path);
-            }
-            return Image.asset(Assets.images.maleAvatar.path);
-          },
-        ),
       ),
       shape: Border(
         bottom: BorderSide(
-          color: AppColors.neutralGray500,
+          color: AppColors.primaryColor,
           width: 2,
         ),
       ),
@@ -81,17 +67,9 @@ class _CollapsedSideBarUserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
+    return Avatar(
+      imageUrl: user.imageUrl,
       radius: 16,
-      child: Image.network(
-        user.imageUrl ?? '',
-        errorBuilder: (context, error, stackTrace) {
-          if (user.gender == Gender.female) {
-            return Image.asset(Assets.images.femaleAvatar.path);
-          }
-          return Image.asset(Assets.images.maleAvatar.path);
-        },
-      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/pages/members_view.dart';
-import 'package:roof_admin_panel/features/view%20manager/presentation/pages/view_manager.dart';
+import 'package:roof_admin_panel/features/view%20manager/view_manager.dart';
 
 final class MembersRoute extends BaseRouteClass {
   const MembersRoute();

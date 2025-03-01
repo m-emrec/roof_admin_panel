@@ -1,4 +1,5 @@
-part of "side_bar_state_mixin.dart";
+// part of "side_bar_state_mixin.dart";
+part of "side_bar_items_builder.dart";
 
 class _SideBarItem extends StatelessWidget {
   const _SideBarItem({
@@ -12,19 +13,15 @@ class _SideBarItem extends StatelessWidget {
   final BaseRouteClass route;
   @override
   Widget build(BuildContext context) {
-    final isSelected = SideBarController().currentLocation.value == route.path;
-
     return SideBarItemViewSwitcher(
       expandedChild: _ExpandedSideBarItem(
-        isSelected: isSelected,
         icon: icon,
         title: title,
-        routeName: route.name,
+        route: route,
       ),
       collapsedChild: _CollapsedSideBarItem(
-        isSelected: isSelected,
         icon: icon,
-        routeName: route.name,
+        route: route,
         title: title,
       ),
     );
@@ -33,20 +30,18 @@ class _SideBarItem extends StatelessWidget {
 
 class _ExpandedSideBarItem extends StatelessWidget {
   const _ExpandedSideBarItem({
-    required this.isSelected,
     required this.icon,
     required this.title,
-    required this.routeName,
+    required this.route,
   });
-  final String routeName;
-  final bool isSelected;
+  final BaseRouteClass route;
   final Widget icon;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: isSelected
+      color: SideBarController().isItemSelected(route.path)
           ? AppColors.backgroundColor[40] ?? Colors.transparent
           : Colors.transparent,
       child: ListTile(
@@ -56,7 +51,7 @@ class _ExpandedSideBarItem extends StatelessWidget {
           title,
           style: context.textTheme.labelLarge,
         ),
-        onTap: () => context.goNamed(routeName),
+        onTap: () => context.goNamed(route.name),
       ),
     );
   }
@@ -64,14 +59,12 @@ class _ExpandedSideBarItem extends StatelessWidget {
 
 class _CollapsedSideBarItem extends StatelessWidget {
   const _CollapsedSideBarItem({
-    required this.isSelected,
     required this.icon,
     required this.title,
-    required this.routeName,
+    required this.route,
   });
 
-  final String routeName;
-  final bool isSelected;
+  final BaseRouteClass route;
   final Widget icon;
   final String title;
 
@@ -80,10 +73,12 @@ class _CollapsedSideBarItem extends StatelessWidget {
     return IconButton(
       style: context.theme.iconButtonTheme.style?.copyWith(
         backgroundColor: WidgetStatePropertyAll(
-          isSelected ? AppColors.backgroundColor[40] : Colors.transparent,
+          SideBarController().isItemSelected(route.path)
+              ? AppColors.backgroundColor[40]
+              : Colors.transparent,
         ),
       ),
-      onPressed: () => context.goNamed(routeName),
+      onPressed: () => context.goNamed(route.name),
       icon: icon,
       tooltip: title,
     );

@@ -36,4 +36,8 @@ class SideBarController {
   void expandSideBar() {
     isExpanded.value = true;
   }
+
+  /// This method is used to check if the item is selected
+  ///
+  bool isItemSelected(String route) => currentLocation.value == route;
 }
