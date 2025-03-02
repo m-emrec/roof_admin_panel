@@ -1,8 +1,8 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/controller.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
 
 /// SideBarStateMixin is a mixin class that contains the logic for the sidebar state.
 mixin SideBarStateMixin on State<SideBar> {

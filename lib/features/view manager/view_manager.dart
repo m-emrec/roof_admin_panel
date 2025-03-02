@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
 
 /// This widget contains the side bar and the main view
 ///

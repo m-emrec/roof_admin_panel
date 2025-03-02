@@ -11,9 +11,9 @@ import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/managers_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
-import 'package:roof_admin_panel/features/sidebar/data/models/side_bar_item_model.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/controller.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_item_view_switcher.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_model.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 
 part 'side_bar_item.dart';

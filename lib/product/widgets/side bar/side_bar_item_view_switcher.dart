@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/features/sidebar/presentation/widgets/controller.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 
 /// This widget contains a [AnimatedCrossFade] widget,
 ///
