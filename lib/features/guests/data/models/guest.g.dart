@@ -20,14 +20,14 @@ Guest _$GuestFromJson(Map<String, dynamic> json) => Guest(
     );
 
 Map<String, dynamic> _$GuestToJson(Guest instance) => <String, dynamic>{
-      'role': instance.role?.map((e) => _$RoleEnumMap[e]!).toList(),
       'id': instance.id,
       'phoneNumber': instance.phoneNumber,
       'gender': _$GenderEnumMap[instance.gender],
-      'guestStartDate':
-          FirebaseTimeParser.dateTimeToTimestamp(instance.guestStartDate),
       'joinedEventCount': instance.joinedEventCount,
       'name': instance.name,
+      'role': instance.role?.map((e) => _$RoleEnumMap[e]!).toList(),
+      'guestStartDate':
+          FirebaseTimeParser.dateTimeToTimestamp(instance.guestStartDate),
     };
 
 const _$GenderEnumMap = {

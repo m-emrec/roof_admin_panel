@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
+import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/controller.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_control_button.dart';
@@ -21,6 +22,8 @@ import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_items_builder.dart';
 import 'package:roof_admin_panel/features/sidebar/presentation/widgets/side_bar_state_mixin.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/utility/manager_info.dart';
+import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 

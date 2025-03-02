@@ -16,32 +16,28 @@ class SideBarUserAvatar extends ConsumerWidget {
     /// So, it will not change the avatar when the sidebar is expanded or collapsed.
     // ignore: prefer_const_constructors
     return FutureBuilder(
-      future: ref.read(sideBarUserProvider.future),
-      builder: (context, AsyncSnapshot<UserModel?> snapshot) {
-        return CustomSkeleton(
-          enabled: snapshot.connectionState == ConnectionState.waiting,
-          child: SideBarItemViewSwitcher(
-            expandedChild: _ExpandedSideBarUserAvatar(
-              snapshot.data ?? UserModel(name: "loading"),
-            ),
-            collapsedChild: _CollapsedSideBarUserAvatar(
-              snapshot.data ?? UserModel(name: "loading"),
-            ),
-          ),
-        );
+      future: ManagerInfo.init(),
+      builder: (context, AsyncSnapshot<void> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const SideBarItemViewSwitcher(
+            expandedChild: _ExpandedSideBarUserAvatar(),
+            collapsedChild: _CollapsedSideBarUserAvatar(),
+          );
+        }
+        return const SizedBox();
       },
     );
   }
 }
 
 class _ExpandedSideBarUserAvatar extends StatelessWidget {
-  const _ExpandedSideBarUserAvatar(this.user);
-  final UserModel user;
+  const _ExpandedSideBarUserAvatar();
 
   @override
   Widget build(BuildContext context) {
+    final user = ManagerInfo.instance.managerModel;
     return ListTile(
-      title: Text(user.name ?? ''),
+      title: Text(user.name),
       leading: Avatar(
         imageUrl: user.imageUrl,
         radius: 16,
@@ -53,22 +49,24 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
         ),
       ),
       subtitle: Text(LocaleKeys.sidebar_accountSettings.tr()),
-      trailing: SvgPicture.asset(Assets.icons.logoutIcon),
+      trailing: GestureDetector(
+        child: SvgPicture.asset(
+          Assets.icons.logoutIcon,
+        ),
+        onTap: () => AuthService().signOut(),
+      ),
       onTap: () {},
     );
   }
 }
 
 class _CollapsedSideBarUserAvatar extends StatelessWidget {
-  const _CollapsedSideBarUserAvatar(
-    this.user,
-  );
-  final UserModel user;
+  const _CollapsedSideBarUserAvatar();
 
   @override
   Widget build(BuildContext context) {
     return Avatar(
-      imageUrl: user.imageUrl,
+      imageUrl: ManagerInfo.instance.managerModel.imageUrl,
       radius: 16,
     );
   }
