@@ -178,7 +178,8 @@
     "settings": "Ayarlar",
     "guests": "Misafirler",
     "logout": "Çıkış Yap",
-    "accountSettings": "Hesap Ayarları"
+    "accountSettings": "Hesap Ayarları",
+    "managers": "Yöneticiler"
 },
   "feedback":{
     "pageTitle": "Geri Bildirimler",

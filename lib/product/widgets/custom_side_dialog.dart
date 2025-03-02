@@ -17,6 +17,7 @@ class CustomRightSideDialog extends StatefulWidget {
   final List<Widget> actions;
   static bool _isShowing = false;
 
+  /// This method is used to show the dialog
   static Future<void> show({
     required BuildContext context,
     required Widget content,
@@ -35,6 +36,7 @@ class CustomRightSideDialog extends StatefulWidget {
     }
   }
 
+  /// This method is used to hide the dialog
   static void hide(BuildContext context) {
     if (context.mounted && _isShowing) {
       _isShowing = false;

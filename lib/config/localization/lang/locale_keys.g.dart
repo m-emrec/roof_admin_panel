@@ -166,6 +166,7 @@ abstract class  LocaleKeys {
   static const sidebar_guests = 'sidebar.guests';
   static const sidebar_logout = 'sidebar.logout';
   static const sidebar_accountSettings = 'sidebar.accountSettings';
+  static const sidebar_managers = 'sidebar.managers';
   static const sidebar = 'sidebar';
   static const feedback_pageTitle = 'feedback.pageTitle';
   static const feedback_responseButtonLabel = 'feedback.responseButtonLabel';
