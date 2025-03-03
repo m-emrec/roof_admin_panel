@@ -257,6 +257,12 @@
         "joinedEventCount": "Katıldığı Etkinlik Sayısı",
         "role": "Rol"
     }
+},
+"managersView":{
+    "pageTitle": "Yöneticiler",
+    "addManager": "Yönetici Ekle"
 }
+
+
 
 }

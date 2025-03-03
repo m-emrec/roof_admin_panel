@@ -231,5 +231,8 @@ abstract class  LocaleKeys {
   static const guestsView_tableColumnLabels_role = 'guestsView.tableColumnLabels.role';
   static const guestsView_tableColumnLabels = 'guestsView.tableColumnLabels';
   static const guestsView = 'guestsView';
+  static const managersView_pageTitle = 'managersView.pageTitle';
+  static const managersView_addManager = 'managersView.addManager';
+  static const managersView = 'managersView';
 
 }
