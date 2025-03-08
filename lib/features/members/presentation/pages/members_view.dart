@@ -5,6 +5,8 @@ import 'package:roof_admin_panel/features/members/presentation/providers/provide
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_title.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
+import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
@@ -27,12 +29,15 @@ class _MembersViewState extends ConsumerState<MembersView> {
       children: [
         const MembersTableTitle(),
         const FilterAndSortRow(),
-        AsyncDataBuilder(
-          provider: membersViewModelProvider,
-          data: (_) => const Expanded(child: MembersTable()),
-          skeletonWidget: const _LoadingView(),
-          skeletonType: SkeletonType.single,
-        ),
+        PermissionBasedVisibility(
+          necessaryPermissions: [Permissions.canReadMembers],
+          child: AsyncDataBuilder(
+            provider: membersViewModelProvider,
+            data: (_) => const Expanded(child: MembersTable()),
+            skeletonWidget: const _LoadingView(),
+            skeletonType: SkeletonType.single,
+          ),
+        ).visibleOrPermissionInfo,
       ],
     );
   }

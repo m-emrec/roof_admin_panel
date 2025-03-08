@@ -86,6 +86,7 @@ abstract class  LocaleKeys {
   static const permissions_canReadManagers = 'permissions.canReadManagers';
   static const permissions_canEditFeedbacks = 'permissions.canEditFeedbacks';
   static const permissions_canReadFeedbacks = 'permissions.canReadFeedbacks';
+  static const permissions_noPermission = 'permissions.noPermission';
   static const permissions = 'permissions';
   static const roles_admin = 'roles.admin';
   static const roles_member = 'roles.member';

@@ -7,6 +7,8 @@ import 'package:roof_admin_panel/config/route%20config/routes/managers_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/pages/members_view.dart';
 import 'package:roof_admin_panel/features/view%20manager/view_manager.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
+import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 
 final class MembersRoute extends BaseRouteClass {
   const MembersRoute();
@@ -19,7 +21,10 @@ final class MembersRoute extends BaseRouteClass {
       ];
   @override
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
-      (context, state) => const MembersView();
+      (context, state) => PermissionBasedVisibility(
+            child: const MembersView(),
+            necessaryPermissions: [Permissions.canReadMembers],
+          ).visibleOrPermissionInfo;
 
   ShellRoute get shell => ShellRoute(
         routes: [

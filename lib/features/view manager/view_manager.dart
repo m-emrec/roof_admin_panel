@@ -37,6 +37,25 @@ class _ViewManagerState extends State<ViewManager> {
       child: FutureBuilder(
         future: ManagerInfo.init(),
         builder: (context, snapshot) {
+          if (ManagerInfo.instance.managerModel.uid.isEmpty) {
+            return CustomSkeleton(
+              child: Scaffold(
+                backgroundColor: AppColors.backgroundColor[80],
+                body: Row(
+                  children: [
+                    const SideBar(),
+                    Flexible(
+                      child: Padding(
+                        padding: const AppPadding.horizontalLSymmetric() +
+                            const AppPadding.verticalMSymmetric(),
+                        child: const SizedBox(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
           return CustomSkeleton(
             enabled: ManagerInfo.instance.managerModel.uid.isEmpty,
             child: Scaffold(

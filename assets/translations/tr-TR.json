@@ -83,7 +83,8 @@
         "canEditManagers": "Yöneticileri Düzenleyebilir",
         "canReadManagers": "Yöneticileri Görüntüleyebilir",
         "canEditFeedbacks": "Geri Bildirimleri Düzenleyebilir",
-        "canReadFeedbacks": "Geri Bildirimleri Görüntüleyebilir"
+        "canReadFeedbacks": "Geri Bildirimleri Görüntüleyebilir",
+        "noPermission": "Bu sayfaya erişim izniniz yok."
     },
     "roles": {
         "admin": "Admin",
