@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
+import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
 
 /// This class is a Singleton class that holds the information
 /// of the current manager.
@@ -9,17 +11,25 @@ import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 /// It is used to access the manager's information from anywhere in the app.
 ///
 ///
-final class ManagerInfo {
+final class ManagerInfo extends ChangeNotifier {
   ManagerInfo._(this.managerModel);
 
   static ManagerInfo? _instance;
+  static final _DUMMY_MANAGER_DATA = ManagerModel(
+      uid: "",
+      name: "",
+      email: "",
+      role: ManagerRoleModel(name: "", permissions: [], id: ""));
 
   ///
   static ManagerInfo get instance {
     if (_instance == null) {
       init();
     }
-    return _instance!;
+    return _instance ??
+        ManagerInfo._(
+          _DUMMY_MANAGER_DATA,
+        );
   }
 
   ///

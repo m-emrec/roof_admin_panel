@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/product/utility/manager_info.dart';
+import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
 
 /// This widget contains the side bar and the main view
@@ -30,27 +32,30 @@ class ViewManager extends StatefulWidget {
 
 class _ViewManagerState extends State<ViewManager> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SelectionArea(
-      child: Scaffold(
-        backgroundColor: AppColors.backgroundColor[80],
-        body: Row(
-          children: [
-            const SideBar(),
-            Flexible(
-              child: Padding(
-                padding: const AppPadding.horizontalLSymmetric() +
-                    const AppPadding.verticalMSymmetric(),
-                child: widget.child,
+      child: FutureBuilder(
+        future: ManagerInfo.init(),
+        builder: (context, snapshot) {
+          return CustomSkeleton(
+            enabled: ManagerInfo.instance.managerModel.uid.isEmpty,
+            child: Scaffold(
+              backgroundColor: AppColors.backgroundColor[80],
+              body: Row(
+                children: [
+                  const SideBar(),
+                  Flexible(
+                    child: Padding(
+                      padding: const AppPadding.horizontalLSymmetric() +
+                          const AppPadding.verticalMSymmetric(),
+                      child: widget.child,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

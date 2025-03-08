@@ -108,6 +108,13 @@ abstract class  LocaleKeys {
   static const common_giveUp = 'common.giveUp';
   static const common_seeMore = 'common.seeMore';
   static const common_seeLess = 'common.seeLess';
+  static const common_inputFields_name = 'common.inputFields.name';
+  static const common_inputFields_phoneNumber = 'common.inputFields.phoneNumber';
+  static const common_inputFields_email = 'common.inputFields.email';
+  static const common_inputFields_password = 'common.inputFields.password';
+  static const common_inputFields_role = 'common.inputFields.role';
+  static const common_inputFields_age = 'common.inputFields.age';
+  static const common_inputFields = 'common.inputFields';
   static const common_date_today = 'common.date.today';
   static const common_date_yesterday = 'common.date.yesterday';
   static const common_date_tomorrow = 'common.date.tomorrow';
@@ -233,6 +240,7 @@ abstract class  LocaleKeys {
   static const guestsView = 'guestsView';
   static const managersView_pageTitle = 'managersView.pageTitle';
   static const managersView_addManager = 'managersView.addManager';
+  static const managersView_addNewRole = 'managersView.addNewRole';
   static const managersView = 'managersView';
 
 }

@@ -11,7 +11,7 @@ import 'package:roof_admin_panel/features/auth/presentation/widgets/sign_in_form
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/buttons/buttons_import.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
-import 'package:roof_admin_panel/product/widgets/password_field.dart';
+import 'package:roof_admin_panel/product/widgets/text%20fields/password_field.dart';
 
 /// SignInForm widget
 ///

@@ -107,6 +107,14 @@
         "giveUp": "Vazgeç",
         "seeMore": "Devamını Gör",
         "seeLess": "Daha Az Göster",
+        "inputFields": {
+            "name": "İsim",
+            "phoneNumber": "Telefon Numarası",
+            "email": "E-posta",
+            "password": "Şifre",
+            "role": "Rol",
+            "age": "Yaş"
+        },
         "date":{
             "today": "Bugün",
             "yesterday": "Dün",
@@ -260,9 +268,10 @@
 },
 "managersView":{
     "pageTitle": "Yöneticiler",
-    "addManager": "Yönetici Ekle"
+    "addManager": "Yönetici Ekle",
+    "addNewRole": "Yeni Rol Ekle"
 }
 
 
-
+    
 }
