@@ -32,7 +32,7 @@ const _$PermissionsEnumMap = {
   Permissions.canReadMembers: 'canReadMembers',
   Permissions.canEditFeedbacks: 'canEditFeedbacks',
   Permissions.canReadFeedbacks: 'canReadFeedbacks',
-  Permissions.canWriteGuests: 'canWriteGuests',
+  Permissions.canEditGuests: 'canWriteGuests',
   Permissions.canReadGuests: 'canReadGuests',
   Permissions.canReadManagers: 'canReadManagers',
   Permissions.canEditManagers: 'canEditManagers',

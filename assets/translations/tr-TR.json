@@ -73,6 +73,18 @@
         "dynamic_link_not_match_config": "Sağlanan dinamik bağlantı alanı, Firebase konsolundaki yapılandırılmış alanla eşleşmiyor.",
         "image_not_found": "Görüntü bulunamadı."
     },
+    "permissions":{
+        "canEdit": "Düzenleyebilir",
+        "canRead": "Görüntüleyebilir",
+        "canEditMembers": "Üyeleri Düzenleyebilir",
+        "canReadMembers": "Üyeleri Görüntüleyebilir",
+        "canEditGuests": "Misafirleri Düzenleyebilir",
+        "canReadGuests": "Misafirleri Görüntüleyebilir",
+        "canEditManagers": "Yöneticileri Düzenleyebilir",
+        "canReadManagers": "Yöneticileri Görüntüleyebilir",
+        "canEditFeedbacks": "Geri Bildirimleri Düzenleyebilir",
+        "canReadFeedbacks": "Geri Bildirimleri Görüntüleyebilir"
+    },
     "roles": {
         "admin": "Admin",
         "member": "Üye",

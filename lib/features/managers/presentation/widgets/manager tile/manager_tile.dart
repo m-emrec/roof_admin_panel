@@ -15,15 +15,18 @@ class ManagerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      shape: const Border(bottom: BorderSide()),
-      leading: Avatar(
-        imageUrl: manager.imageUrl,
-        radius: 16,
+    return Tooltip(
+      message: manager.role.permissions.map((e) => e.toLocale()).join("\n"),
+      child: ListTile(
+        shape: const Border(bottom: BorderSide()),
+        leading: Avatar(
+          imageUrl: manager.imageUrl,
+          radius: 16,
+        ),
+        title: _ManagerTileTitle(manager),
+        subtitle: Text(manager.email),
+        trailing: const _ManagerTileTrailing(),
       ),
-      title: _ManagerTileTitle(manager),
-      subtitle: Text(manager.email),
-      trailing: const _ManagerTileTrailing(),
     );
   }
 }

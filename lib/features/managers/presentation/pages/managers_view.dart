@@ -24,6 +24,7 @@ class ManagersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Log.debug(Permissions.canEditManagers.toLocale());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: SpacingSizes.medium,

@@ -76,6 +76,17 @@ abstract class  LocaleKeys {
   static const errors_dynamic_link_not_match_config = 'errors.dynamic_link_not_match_config';
   static const errors_image_not_found = 'errors.image_not_found';
   static const errors = 'errors';
+  static const permissions_canEdit = 'permissions.canEdit';
+  static const permissions_canRead = 'permissions.canRead';
+  static const permissions_canEditMembers = 'permissions.canEditMembers';
+  static const permissions_canReadMembers = 'permissions.canReadMembers';
+  static const permissions_canEditGuests = 'permissions.canEditGuests';
+  static const permissions_canReadGuests = 'permissions.canReadGuests';
+  static const permissions_canEditManagers = 'permissions.canEditManagers';
+  static const permissions_canReadManagers = 'permissions.canReadManagers';
+  static const permissions_canEditFeedbacks = 'permissions.canEditFeedbacks';
+  static const permissions_canReadFeedbacks = 'permissions.canReadFeedbacks';
+  static const permissions = 'permissions';
   static const roles_admin = 'roles.admin';
   static const roles_member = 'roles.member';
   static const roles_guest = 'roles.guest';
