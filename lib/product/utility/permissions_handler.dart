@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/manager_info.dart';
+import 'package:roof_admin_panel/product/widgets/title.dart';
 
 /// An abstract class for handling permission-based actions and visibility.
 ///
@@ -75,10 +76,7 @@ class PermissionBasedVisibility extends PermissionHandler {
   ///
   Widget get visibleOrPermissionInfo => _hasPermission
       ? child
-      : Text(
-          LocaleKeys.permissions_noPermission.tr(),
-          style: TextStyles().textTheme.headlineLarge?.copyWith(
-                color: AppColors.accentError[60],
-              ),
+      : TitleWidget(
+          title: LocaleKeys.permissions_noPermission.tr(),
         );
 }
