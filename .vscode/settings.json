@@ -84,6 +84,14 @@
         },
         {
             "folderPath": "roof_admin_panel/lib/features/feedback/presentation/widgets/feedback_list.dart/"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/",
+            "badge": "a"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/managers/",
+            "badge": "MN"
         }
     ]
 }

@@ -24,7 +24,7 @@ class _EmailAndRoleField extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            _RoleDropdown(roleController),
+            SelectRoleDropdown(roleController),
             TextButton(
               onPressed: onAddNewRole,
               child: Text(LocaleKeys.managersView_addNewRole.tr()),

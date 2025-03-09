@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/managerRoles/presentation/widgets/select_role_dropdown.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/add%20new%20manager/add_manager_dialog_state_mixin.dart';
-import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/text%20fields/email_field.dart';
 part 'email_and_role_field.dart';
-part 'role_dropdown.dart';
 
 ///
 class AddManagerDialog extends ConsumerStatefulWidget {

@@ -22,7 +22,10 @@ class ManagersView extends StatelessWidget {
         TitleWidget(title: LocaleKeys.managersView_pageTitle.tr()),
         Center(
           child: PermissionBasedVisibility(
-            necessaryPermissions: [Permissions.canReadManagers],
+            necessaryPermissions: [
+              Permissions.canReadManagers,
+              Permissions.canRead,
+            ],
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               spacing: SpacingSizes.small,
