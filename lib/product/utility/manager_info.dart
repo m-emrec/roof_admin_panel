@@ -50,6 +50,13 @@ final class ManagerInfo extends ChangeNotifier {
     _instance = null;
   }
 
+  static Future<Map<String, dynamic>> _getManagerRole(
+    DocumentReference<Map<String, dynamic>> doc,
+  ) async {
+    final data = await doc.get();
+    return data.data() ?? {};
+  }
+
   static Future<Map<String, dynamic>> _getManagerData() async {
     final doc = await FirebaseFirestore.instance
         .collection(CollectionEnum.managers.name)
@@ -57,6 +64,13 @@ final class ManagerInfo extends ChangeNotifier {
           FirebaseAuth.instance.currentUser?.uid,
         )
         .get();
-    return doc.data() ?? {};
+
+    final data = doc.data() ?? {};
+
+    data["role"] = await _getManagerRole(
+      data["role"] as DocumentReference<Map<String, dynamic>>,
+    );
+
+    return data;
   }
 }

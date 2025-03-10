@@ -1,10 +1,11 @@
 part of 'manager_tile.dart';
 
-class _ManagerTileTrailing extends StatelessWidget {
-  const _ManagerTileTrailing();
+class _ManagerTileTrailing extends ConsumerWidget {
+  const _ManagerTileTrailing(this.manager);
+  final ManagerModel manager;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PermissionBasedVisibility(
       necessaryPermissions: [Permissions.canEdit, Permissions.canEditManagers],
       child: PopupMenuButton(
@@ -13,6 +14,11 @@ class _ManagerTileTrailing extends StatelessWidget {
           return [
             PopupMenuItem(
               value: 'edit',
+              onTap: () => CustomAlertDialog.showAlertDialog(
+                context: context,
+                barrierDismissible: true,
+                content: UpdateManagerDialog(manager),
+              ),
               child: Text(LocaleKeys.common_edit.tr()),
             ),
             PopupMenuItem(

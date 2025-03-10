@@ -19,6 +19,7 @@ Map<String, dynamic> _$ManagerModelToJson(ManagerModel instance) =>
       'uid': instance.uid,
       'email': instance.email,
       'name': instance.name,
-      'role': instance.role,
+      'role':
+          ManagerModel._createDocumentReferenceForManagerRole(instance.role),
       'imageUrl': instance.imageUrl,
     };

@@ -29,19 +29,18 @@ class _AddManagerDialogState extends ConsumerState<AddManagerDialog>
       content: Form(
         key: formKey,
         child: SizedBox(
-          width: context.dynamicWidth(0.3),
+          width: context.dynamicWidth(0.4),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _EmailAndRoleField(
                 emailController: emailController,
                 roleController: roleController,
-                onAddNewRole: onAddNewRole,
               ),
-              Visibility(
-                visible: shouldShowAddNewRole,
-                child: EmailField(TextEditingController()),
-              ),
+              // Visibility(
+              //   visible: shouldShowAddNewRole,
+              //   child: EmailField(TextEditingController()),
+              // ),
             ],
           ),
         ),

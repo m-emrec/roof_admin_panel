@@ -15,17 +15,9 @@ class SideBarUserAvatar extends ConsumerWidget {
     /// [SideBarController().isExpanded] value changes.
     /// So, it will not change the avatar when the sidebar is expanded or collapsed.
     // ignore: prefer_const_constructors
-    return FutureBuilder(
-      future: ManagerInfo.init(),
-      builder: (context, AsyncSnapshot<void> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return const SideBarItemViewSwitcher(
-            expandedChild: _ExpandedSideBarUserAvatar(),
-            collapsedChild: _CollapsedSideBarUserAvatar(),
-          );
-        }
-        return const SizedBox();
-      },
+    return SideBarItemViewSwitcher(
+      expandedChild: const _ExpandedSideBarUserAvatar(),
+      collapsedChild: const _CollapsedSideBarUserAvatar(),
     );
   }
 }

@@ -4,11 +4,9 @@ class _EmailAndRoleField extends StatelessWidget {
   const _EmailAndRoleField({
     required this.emailController,
     required this.roleController,
-    required this.onAddNewRole,
   });
   final TextEditingController emailController;
   final TextEditingController roleController;
-  final VoidCallback onAddNewRole;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,16 +19,7 @@ class _EmailAndRoleField extends StatelessWidget {
             TextEditingController(),
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            SelectRoleDropdown(roleController),
-            TextButton(
-              onPressed: onAddNewRole,
-              child: Text(LocaleKeys.managersView_addNewRole.tr()),
-            ),
-          ],
-        ),
+        SelectRoleDropdown(roleController),
       ],
     );
   }

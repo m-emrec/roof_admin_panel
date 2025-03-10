@@ -7,8 +7,8 @@ mixin AddManagerDialogStateMixin on ConsumerState<AddManagerDialog> {
   ///
   final formKey = GlobalKey<FormState>();
 
-  ///
-  bool shouldShowAddNewRole = false;
+  // /// TODO: Add this feature later
+  // bool shouldShowAddNewRole = false;
 
   ///
   final emailController = TextEditingController();
@@ -16,11 +16,11 @@ mixin AddManagerDialogStateMixin on ConsumerState<AddManagerDialog> {
   ///
   final roleController = TextEditingController();
 
-  ///
-  void onAddNewRole() {
-    shouldShowAddNewRole = !shouldShowAddNewRole;
-    setState(() {});
-  }
+  // /// TODO: Add this feature later
+  // void onAddNewRole() {
+  //   shouldShowAddNewRole = !shouldShowAddNewRole;
+  //   setState(() {});
+  // }
 
   ///
   void onTapAdd() => formKey.currentState?.validate();
