@@ -11,15 +11,20 @@ class AddManagerButton extends StatelessWidget {
   ///
   const AddManagerButton({super.key});
 
+  ///
+  void onTapAdd(BuildContext context) {
+    CustomAlertDialog.showAlertDialog(
+      context: context,
+      barrierDismissible: true,
+      content: const AddManagerDialog(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: PermissionBasedAction(
-        () => CustomAlertDialog.showAlertDialog(
-          context: context,
-          barrierDismissible: true,
-          content: const AddManagerDialog(),
-        ),
+        () => onTapAdd(context),
         necessaryPermissions: [Permissions.canEditManagers],
       ).actionIfAllowed,
       child: Text(LocaleKeys.managersView_addManager.tr()),

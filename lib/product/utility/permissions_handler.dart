@@ -13,54 +13,63 @@ import 'package:roof_admin_panel/product/widgets/title.dart';
 /// required permissions.
 ///
 abstract class PermissionHandler {
+  /// Creates a permission handler with the given required permissions.
   ///
+  /// This class checks if the current user has the necessary permissions
+  /// for performing certain actions.
   PermissionHandler({required this.necessaryPermissions});
 
-  ///
+  /// The required permissions for the action or widget.
   final List<Permissions> necessaryPermissions;
-  final List<Permissions> _currentUserPermissions =
-      ManagerInfo.instance.managerModel.role.permissions;
 
-  bool get _hasPermission {
-    for (final permission in _currentUserPermissions) {
-      if (necessaryPermissions.contains(permission)) {
-        return true;
-      }
-    }
-    return false;
-  }
+  /// The current user's permissions, fetched from [CurrentManager].
+  final List<Permissions> _currentUserPermissions =
+      CurrentManager.instance.managerModel.role.permissions;
+
+  /// Checks if the user has at least one of the required permissions.
+  ///
+  /// This method returns `true` if the user has any of the necessary permissions,
+  /// otherwise, it returns `false`.
+  bool get _hasPermission =>
+      _currentUserPermissions.any(necessaryPermissions.contains);
 }
 
+/// A permission-based action handler that enables or disables an action
+/// based on the user's permissions.
+///
+/// This class extends [PermissionHandler] and determines whether a given
+/// action (callback function) should be executed or disabled depending
+/// on the user's permission level. If the user has the necessary permissions,
+/// the provided [onPressed] callback is returned; otherwise, it is null.
 ///
 class PermissionBasedAction extends PermissionHandler {
-  /// A permission-based action handler that enables or disables an action
-  /// based on the user's permissions.
+  /// Creates a permission-based action handler.
   ///
-  /// This class extends [PermissionHandler] and determines whether a given
-  /// action (callback function) should be executed or disabled depending
-  /// on the user's permission level. If the user has the necessary permissions,
-  /// the provided [onPressed] callback is returned; otherwise, it is null.
+  /// If the user has the required permissions, [onPressed] will be executed
+  /// when triggered; otherwise, it will be disabled.
   PermissionBasedAction(
     this.onPressed, {
     required super.necessaryPermissions,
   });
 
-  ///
+  /// The action to be executed if permissions are met.
   final VoidCallback? onPressed;
 
-  ///
+  /// Returns [onPressed] if the user has permission; otherwise, `null`
   VoidCallback? get actionIfAllowed => _hasPermission ? onPressed : null;
 }
 
+/// A permission-based widget visibility handler that conditionally
+/// displays or hides a widget based on user permissions.
 ///
+/// This class extends [PermissionHandler] and determines whether the
+/// provided [child] widget should be displayed. If the user has the required
+/// permissions, the widget is shown; otherwise, an empty [SizedBox] is returned.
 class PermissionBasedVisibility extends PermissionHandler {
+  /// Creates a permission-based visibility handler.
   ///
-  /// A permission-based widget visibility handler that conditionally
-  /// displays or hides a widget based on user permissions.
-  ///
-  /// This class extends [PermissionHandler] and determines whether the
-  /// provided [child] widget should be displayed. If the user has the required
-  /// permissions, the widget is shown; otherwise, an empty [SizedBox] is returned.
+  /// If the user has the required permissions, [child] is displayed.
+  /// Otherwise, an alternative widget or empty space is used.
   PermissionBasedVisibility({
     required this.child,
     required super.necessaryPermissions,
@@ -69,10 +78,14 @@ class PermissionBasedVisibility extends PermissionHandler {
   ///
   final Widget child;
 
-  ///
-  Widget get visibleIfAllowed => _hasPermission ? child : const SizedBox();
+  /// Returns the child widget if the user has permission; otherwise, an empty container.
+  Widget get visibleIfAllowed => Visibility(
+        visible: _hasPermission,
+        child: child,
+      );
 
-  ///
+  /// Returns the child widget if the user has permission.
+  /// Otherwise, it displays a permission error message.
   Widget get visibleOrPermissionInfo => _hasPermission
       ? child
       : TitleWidget(

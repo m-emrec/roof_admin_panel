@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 part 'manager_role_model.g.dart';
@@ -10,12 +12,11 @@ class ManagerRoleModel {
     required this.id,
     required this.permissions,
   });
+  factory ManagerRoleModel.fromJson(Map<String, dynamic> json) =>
+      _$ManagerRoleModelFromJson(json);
 
   final String name;
   final String id;
   final List<Permissions> permissions;
-
-  factory ManagerRoleModel.fromJson(Map<String, dynamic> json) =>
-      _$ManagerRoleModelFromJson(json);
   Map<String, dynamic> toJson() => _$ManagerRoleModelToJson(this);
 }

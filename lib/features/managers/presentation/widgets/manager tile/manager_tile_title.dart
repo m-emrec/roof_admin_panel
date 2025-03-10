@@ -9,16 +9,19 @@ class _ManagerTileTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(text: manager.name),
-          TextSpan(
-            text: ' (${manager.role.name})',
-            style: context.textTheme.labelMedium,
+    return Row(
+      children: [
+        Text(manager.name),
+        Tooltip(
+          message: manager.role.permissions.map((e) => e.toLocale()).join("\n"),
+          textStyle: context.textTheme.labelLarge,
+          child: Text(
+            ' (${manager.role.name})',
+            style: context.textTheme.labelLarge
+                ?.copyWith(color: AppColors.secondaryColor[40]),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -282,7 +282,9 @@
 "managersView":{
     "pageTitle": "Yöneticiler",
     "addManager": "Yönetici Ekle",
-    "addNewRole": "Yeni Rol Ekle"
+    "addNewRole": "Yeni Rol Ekle",
+    "noManager": "Henüz yönetici yok.",
+    "updateManager":"Yöneticiyi Düzenle"
 }
 
 

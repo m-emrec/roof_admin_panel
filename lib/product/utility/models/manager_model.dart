@@ -26,6 +26,7 @@ class ManagerModel {
   )
   final ManagerRoleModel role;
   final String? imageUrl;
+
   static DocumentReference<Map<String, dynamic>>
       _createDocumentReferenceForManagerRole(ManagerRoleModel role) {
     final doc = FirebaseFirestore.instance

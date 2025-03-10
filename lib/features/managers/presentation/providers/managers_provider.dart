@@ -33,6 +33,7 @@ final _addManagerUseCaseProvider = Provider<AddManagerUseCase>((ref) {
   return AddManagerUseCase(ref.read(_repositoryProvider));
 });
 
+///
 final managersViewModelProvider =
     StateNotifierProvider<ManagersViewModel, AsyncValue<List<ManagerModel>>>(
         (ref) {

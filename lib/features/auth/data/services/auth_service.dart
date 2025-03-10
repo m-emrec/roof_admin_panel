@@ -25,6 +25,6 @@ class AuthService extends FirebaseUtils with FirebaseAuthUtils, FirestoreUtils {
   @override
   Future<void> signOut() async {
     await auth.signOut();
-    ManagerInfo.clear();
+    CurrentManager.clear();
   }
 }

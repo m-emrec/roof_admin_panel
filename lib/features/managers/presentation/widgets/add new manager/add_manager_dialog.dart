@@ -8,7 +8,6 @@ import 'package:roof_admin_panel/features/managerRoles/presentation/widgets/sele
 import 'package:roof_admin_panel/features/managers/presentation/widgets/add%20new%20manager/add_manager_dialog_state_mixin.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/text%20fields/email_field.dart';
-part 'email_and_role_field.dart';
 
 ///
 class AddManagerDialog extends ConsumerStatefulWidget {
@@ -30,24 +29,24 @@ class _AddManagerDialogState extends ConsumerState<AddManagerDialog>
         key: formKey,
         child: SizedBox(
           width: context.dynamicWidth(0.4),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: Row(
+            textBaseline: TextBaseline.alphabetic,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            spacing: SpacingSizes.medium,
             children: [
-              _EmailAndRoleField(
-                emailController: emailController,
-                roleController: roleController,
+              Flexible(
+                child: EmailField(
+                  emailController,
+                ),
               ),
-              // Visibility(
-              //   visible: shouldShowAddNewRole,
-              //   child: EmailField(TextEditingController()),
-              // ),
+              SelectRoleDropdown(roleController),
             ],
           ),
         ),
       ),
       actions: [
         TextButton(
-          onPressed: () => context.pop(),
+          onPressed: context.pop,
           child: Text(LocaleKeys.common_cancel.tr()),
         ),
         ElevatedButton(

@@ -253,6 +253,8 @@ abstract class  LocaleKeys {
   static const managersView_pageTitle = 'managersView.pageTitle';
   static const managersView_addManager = 'managersView.addManager';
   static const managersView_addNewRole = 'managersView.addNewRole';
+  static const managersView_noManager = 'managersView.noManager';
+  static const managersView_updateManager = 'managersView.updateManager';
   static const managersView = 'managersView';
 
 }

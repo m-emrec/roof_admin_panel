@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,8 +7,11 @@ import 'package:roof_admin_panel/features/managers/domain/usecases/get_managers_
 import 'package:roof_admin_panel/features/managers/domain/usecases/update_manager_use_case.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
+import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
+///
 class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
+  ///
   ManagersViewModel({
     required GetManagersUseCase getManagersUseCase,
     required DeleteManagerUseCase deleteManagerUseCase,
@@ -40,13 +42,13 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   }
 
   ///
-  Future<void> editManager(
+  Future<void> editManagerRole(
     String newRoleId,
     ManagerModel manager,
   ) async {
     final updatedManager = manager.copyWith(
       role: ManagerRoleModel(
-        name: "name",
+        name: "",
         id: newRoleId,
         permissions: [],
       ),
@@ -54,7 +56,8 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
     DataState.handleDataStateBasedAction(
       await _updateManagerUseCase(updatedManager),
       onSuccess: (_) => getManagers(),
-      onFailure: (p0) => null,
+      onFailure: (error) =>
+          Toast.showErrorToast(title: error?.errorMessage ?? ""),
     );
   }
 }

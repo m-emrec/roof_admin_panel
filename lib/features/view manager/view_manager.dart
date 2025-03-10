@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/manager_info.dart';
@@ -21,9 +21,11 @@ class ViewManager extends StatefulWidget {
   ///
   /// The [Row] widget contains the [SideBar] and the [child] widget
   const ViewManager({
-    super.key,
     required this.child,
+    super.key,
   });
+
+  /// The child widget to be displayed in the main view
   final Widget child;
 
   @override
@@ -35,46 +37,52 @@ class _ViewManagerState extends State<ViewManager> {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: FutureBuilder(
-        future: ManagerInfo.init(),
+        future: CurrentManager.init(),
         builder: (context, snapshot) {
-          if (ManagerInfo.instance.managerModel.uid.isEmpty) {
-            return CustomSkeleton(
-              child: Scaffold(
-                backgroundColor: AppColors.backgroundColor[80],
-                body: Row(
-                  children: [
-                    const SideBar(),
-                    Flexible(
-                      child: Padding(
-                        padding: const AppPadding.horizontalLSymmetric() +
-                            const AppPadding.verticalMSymmetric(),
-                        child: const SizedBox(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+          if (CurrentManager.instance.managerModel.uid.isEmpty) {
+            return const _LoadingView();
           }
-          return CustomSkeleton(
-            enabled: ManagerInfo.instance.managerModel.uid.isEmpty,
-            child: Scaffold(
-              backgroundColor: AppColors.backgroundColor[80],
-              body: Row(
-                children: [
-                  const SideBar(),
-                  Flexible(
-                    child: Padding(
-                      padding: const AppPadding.horizontalLSymmetric() +
-                          const AppPadding.verticalMSymmetric(),
-                      child: widget.child,
-                    ),
+          return Scaffold(
+            backgroundColor: AppColors.backgroundColor[80],
+            body: Row(
+              children: [
+                const SideBar(),
+                Flexible(
+                  child: Padding(
+                    padding: const AppPadding.horizontalLSymmetric() +
+                        const AppPadding.verticalMSymmetric(),
+                    child: widget.child,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _LoadingView extends StatelessWidget {
+  const _LoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomSkeleton(
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor[80],
+        body: Row(
+          children: [
+            const SideBar(),
+            Flexible(
+              child: Padding(
+                padding: const AppPadding.horizontalLSymmetric() +
+                    const AppPadding.verticalMSymmetric(),
+                child: const SizedBox(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

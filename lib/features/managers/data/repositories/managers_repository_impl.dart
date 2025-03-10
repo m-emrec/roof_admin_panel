@@ -3,7 +3,9 @@ import 'package:roof_admin_panel/features/managers/data/datasources/managers_dat
 import 'package:roof_admin_panel/features/managers/domain/repositories/managers_repository.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 
+///
 class ManagersRepositoryImpl implements ManagersRepository {
+  ///
   ManagersRepositoryImpl(
     this._managersDatabaseService,
   );
@@ -11,7 +13,6 @@ class ManagersRepositoryImpl implements ManagersRepository {
   final ManagersDatabaseService _managersDatabaseService;
   @override
   Future<DataState<void>> addManager(ManagerModel manager) {
-    // TODO: implement addManager
     throw UnimplementedError();
   }
 

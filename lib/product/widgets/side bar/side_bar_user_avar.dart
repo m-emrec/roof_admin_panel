@@ -27,7 +27,7 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = ManagerInfo.instance.managerModel;
+    final user = CurrentManager.instance.managerModel;
     return ListTile(
       title: Text(user.name),
       leading: Avatar(
@@ -58,7 +58,7 @@ class _CollapsedSideBarUserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Avatar(
-      imageUrl: ManagerInfo.instance.managerModel.imageUrl,
+      imageUrl: CurrentManager.instance.managerModel.imageUrl,
       radius: 16,
     );
   }
