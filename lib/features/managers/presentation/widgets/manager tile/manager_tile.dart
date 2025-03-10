@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/managers/presentation/providers/managers_provider.dart';
+import 'package:roof_admin_panel/features/managers/presentation/widgets/delete_manager_dialog.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/update_manager_dialog.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';

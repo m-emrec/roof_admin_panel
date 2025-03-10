@@ -13,7 +13,9 @@ class ManagersRepositoryImpl implements ManagersRepository {
   final ManagersDatabaseService _managersDatabaseService;
   @override
   Future<DataState<void>> addManager(ManagerModel manager) {
-    throw UnimplementedError();
+    return DataState.handleDataState(
+      () => _managersDatabaseService.addManager(manager.toJson()),
+    );
   }
 
   @override

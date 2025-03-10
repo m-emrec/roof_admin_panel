@@ -255,6 +255,8 @@ abstract class  LocaleKeys {
   static const managersView_addNewRole = 'managersView.addNewRole';
   static const managersView_noManager = 'managersView.noManager';
   static const managersView_updateManager = 'managersView.updateManager';
+  static const managersView_deleteManager = 'managersView.deleteManager';
+  static const managersView_deleteManagerConfirmation = 'managersView.deleteManagerConfirmation';
   static const managersView = 'managersView';
 
 }

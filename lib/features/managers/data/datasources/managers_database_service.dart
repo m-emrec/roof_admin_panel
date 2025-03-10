@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:core/utils/constants/firebase/collection_enums.dart';
@@ -8,10 +9,23 @@ import 'package:roof_admin_panel/product/utility/constants/enums/database%20keys
 class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
   ///
   ///
-  Future<void> addManager(Map<String, dynamic> managerToBeAdded) async {}
+  Future<void> addManager(Map<String, dynamic> managerToBeAdded) async {
+    /// TODO: FirebaseCloudFunctions'ı product'a taşı
+    await FirebaseFunctions.instanceFor(region: 'europe-west1')
+        .httpsCallable("createNewManager")
+        .call<void>(
+          managerToBeAdded,
+        );
+  }
 
   ///
-  Future<void> deleteManager(String id) async {}
+  Future<void> deleteManager(String id) async {
+    await FirebaseFunctions.instanceFor(region: 'europe-west1')
+        .httpsCallable("deleteManager")
+        .call<void>(
+      {"uid": id},
+    );
+  }
 
   ///
   Future<List<Map<String, dynamic>>> getManagers() async {

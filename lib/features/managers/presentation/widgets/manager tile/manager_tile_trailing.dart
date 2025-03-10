@@ -12,6 +12,14 @@ class _ManagerTileTrailing extends ConsumerWidget {
     );
   }
 
+  void onTapDelete(BuildContext context) {
+    CustomAlertDialog.showAlertDialog(
+      context: context,
+      barrierDismissible: true,
+      content: DeleteManagerDialog(manager),
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PermissionBasedVisibility(
@@ -25,6 +33,7 @@ class _ManagerTileTrailing extends ConsumerWidget {
               child: Text(LocaleKeys.common_edit.tr()),
             ),
             PopupMenuItem<void>(
+              onTap: () => onTapDelete(context),
               child: Text(LocaleKeys.common_delete.tr()),
             ),
           ];

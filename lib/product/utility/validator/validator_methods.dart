@@ -17,7 +17,7 @@ class ValidatorMethods {
   ///
   /// Returns `null` if the email address is valid, otherwise returns 'Invalid email address'.
   String? get validateMail {
-    return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    return RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
             .hasMatch(_trimmedText ?? '')
         ? null
         : tr(LocaleKeys.errors_invalid_email);

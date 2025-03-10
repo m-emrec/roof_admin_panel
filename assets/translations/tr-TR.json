@@ -284,7 +284,10 @@
     "addManager": "Yönetici Ekle",
     "addNewRole": "Yeni Rol Ekle",
     "noManager": "Henüz yönetici yok.",
-    "updateManager":"Yöneticiyi Düzenle"
+    "updateManager":"Yöneticiyi Düzenle",
+    "deleteManager":"Yöneticiyi Sil",
+    "deleteManagerConfirmation":"Bu ({}) yöneticiyi silmek istediğinizden emin misiniz?"
+
 }
 
 

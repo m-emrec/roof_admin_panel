@@ -6,7 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/managerRoles/presentation/widgets/select_role_dropdown.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/add%20new%20manager/add_manager_dialog_state_mixin.dart';
+import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
+import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/text%20fields/email_field.dart';
 
 ///
@@ -29,17 +31,28 @@ class _AddManagerDialogState extends ConsumerState<AddManagerDialog>
         key: formKey,
         child: SizedBox(
           width: context.dynamicWidth(0.4),
-          child: Row(
-            textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            spacing: SpacingSizes.medium,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: EmailField(
-                  emailController,
-                ),
+              Row(
+                textBaseline: TextBaseline.alphabetic,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                spacing: SpacingSizes.medium,
+                children: [
+                  Flexible(
+                    child: EmailField(
+                      emailController,
+                    ),
+                  ),
+                  SelectRoleDropdown(roleController),
+                ],
               ),
-              SelectRoleDropdown(roleController),
+              CustomTextField(
+                controller: nameController,
+                label: LocaleKeys.common_inputFields_name.tr(),
+                validator: (_) =>
+                    ValidatorMethods(text: nameController.text).validateName,
+              ),
             ],
           ),
         ),

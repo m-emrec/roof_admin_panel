@@ -31,6 +31,26 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   final AddManagerUseCase _addManagerUseCase;
 
   ///
+  Future<void> addManager(ManagerModel manager) async {
+    DataState.handleDataStateBasedAction(
+      await _addManagerUseCase(manager),
+      onSuccess: (_) => getManagers(),
+      onFailure: (error) =>
+          Toast.showErrorToast(title: error?.errorMessage ?? ""),
+    );
+  }
+
+  ///
+  Future<void> deleteManager(String id) async {
+    DataState.handleDataStateBasedAction(
+      await _deleteManagerUseCase(id),
+      onSuccess: (_) => getManagers(),
+      onFailure: (error) =>
+          Toast.showErrorToast(title: error?.errorMessage ?? ""),
+    );
+  }
+
+  ///
   Future<void> getManagers() async {
     state = const AsyncValue.loading();
     DataState.handleDataStateBasedAction(
