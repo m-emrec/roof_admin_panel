@@ -22,6 +22,13 @@ class AuthService extends FirebaseUtils with FirebaseAuthUtils, FirestoreUtils {
     );
   }
 
+  ///
+  Future<void> forgotPassword(String email) async {
+    await auth.sendPasswordResetEmail(
+      email: email,
+    );
+  }
+
   @override
   Future<void> signOut() async {
     await auth.signOut();

@@ -25,6 +25,8 @@ class _PasswordFieldState extends State<PasswordField> {
     return Column(
       children: [
         CustomTextField(
+          prefixIcon:
+              Icon(_showPassword ? Icons.lock_open_rounded : Icons.lock),
           onFieldSubmitted: (_) => widget.signIn(),
           validator: widget.validator,
           obscured: !_showPassword,
@@ -36,7 +38,7 @@ class _PasswordFieldState extends State<PasswordField> {
           value: _showPassword,
           onChanged: (value) {
             setState(() {
-              _showPassword = value!;
+              _showPassword = value ?? false;
             });
           },
         ),

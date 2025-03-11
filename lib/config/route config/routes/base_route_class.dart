@@ -54,7 +54,7 @@ abstract class BaseRouteClass {
         path: path,
         name: name,
         pageBuilder: (context, state) {
-          html.document.title = title;
+          html.document.title = "Roof Network | $title";
           return MaterialPage(child: pageBuilder(context, state));
         },
         routes: routes,

@@ -155,11 +155,16 @@
             "successfullySignedIn": "Başarıyla giriş yapıldı.",
             "email": "E-posta",
             "password": "Şifre",
-            "forgotPassword": "Şifremi Unuttum",
             "showPassword": "Şifreyi Göster",
             "validationError": {
                 "email": "Geçerli bir e-posta adresi girin.",
                 "password": "Şifre en az 6 karakter olmalıdır."
+            },
+            "forgotPassword":{
+                "pageTitle": "Şifremi Unuttum",
+                "sendResetLink": "Gönder",
+                "resetLinkSent": "Şifre sıfırlama bağlantısı e-posta adresinize gönderildi.",
+                "resetLinkFailed": "Şifre sıfırlama bağlantısı gönderilemedi. Lütfen e-posta adresinizi kontrol edin."
             }
         }
     },

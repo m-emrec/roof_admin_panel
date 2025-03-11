@@ -146,11 +146,15 @@ abstract class  LocaleKeys {
   static const auth_signin_successfullySignedIn = 'auth.signin.successfullySignedIn';
   static const auth_signin_email = 'auth.signin.email';
   static const auth_signin_password = 'auth.signin.password';
-  static const auth_signin_forgotPassword = 'auth.signin.forgotPassword';
   static const auth_signin_showPassword = 'auth.signin.showPassword';
   static const auth_signin_validationError_email = 'auth.signin.validationError.email';
   static const auth_signin_validationError_password = 'auth.signin.validationError.password';
   static const auth_signin_validationError = 'auth.signin.validationError';
+  static const auth_signin_forgotPassword_pageTitle = 'auth.signin.forgotPassword.pageTitle';
+  static const auth_signin_forgotPassword_sendResetLink = 'auth.signin.forgotPassword.sendResetLink';
+  static const auth_signin_forgotPassword_resetLinkSent = 'auth.signin.forgotPassword.resetLinkSent';
+  static const auth_signin_forgotPassword_resetLinkFailed = 'auth.signin.forgotPassword.resetLinkFailed';
+  static const auth_signin_forgotPassword = 'auth.signin.forgotPassword';
   static const auth_signin = 'auth.signin';
   static const auth = 'auth';
   static const membersView_pageTitle = 'membersView.pageTitle';

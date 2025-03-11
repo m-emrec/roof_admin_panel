@@ -4,15 +4,22 @@ import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 import 'package:roof_admin_panel/features/auth/domain/entities/auth_entity.dart';
 import 'package:roof_admin_panel/features/auth/domain/repositories/auth_repository.dart';
 
+///
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl({required this.authService});
+  ///
+  AuthRepositoryImpl(this._authService);
 
-  final AuthService authService;
+  final AuthService _authService;
   @override
   Future<DataState<void>> signInWithEmailAndPassword(AuthEntity authEntity) {
     return DataState.handleDataState(
-      () => authService
+      () => _authService
           .signWithEmailAndPassword(AuthModel.fromEntity(authEntity)),
     );
+  }
+
+  @override
+  Future<DataState<void>> forgotPassword(String email) {
+    return DataState.handleDataState(() => _authService.forgotPassword(email));
   }
 }

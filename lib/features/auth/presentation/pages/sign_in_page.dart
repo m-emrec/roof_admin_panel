@@ -2,7 +2,7 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/auth/presentation/widgets/animated_roof_logo.dart';
-import 'package:roof_admin_panel/features/auth/presentation/widgets/sign_in_form.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/form_section.dart';
 
 ///
 /// SignIn page
@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SignInForm(),
+                  FormSection(),
                 ],
               ),
             ),

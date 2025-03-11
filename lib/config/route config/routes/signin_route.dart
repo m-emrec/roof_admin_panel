@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/authentication_based_redirect.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/features/auth/presentation/pages/sign_in_page.dart';
@@ -22,7 +24,7 @@ final class SignInRoute extends BaseRouteClass {
   FutureOr<String?> Function(BuildContext p1, GoRouterState p2)? get redirect =>
       AuthenticationBasedRedirector().redirect;
   @override
-  String get title => "Giriş Yap";
+  String get title => LocaleKeys.auth_signin_pageTitle.tr();
   @override
   String get name => "signIn";
 

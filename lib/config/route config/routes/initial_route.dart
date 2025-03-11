@@ -17,20 +17,8 @@ final class InitialRoute extends BaseRouteClass {
 
   static final InitialRoute _instance = InitialRoute._internal();
 
-  // /// The initial route.
-  // /// here user will be redirected to the appropriate route based on their
-  // /// authentication state.
-  // @override
-  // GoRoute get route => GoRoute(
-  //       redirect: AuthenticationBasedRedirector()
-  //           .redirect, // RouteRedirector().authenticationBasedRedirect,
-  //       path: '/',
-  //       name: 'root',
-  //       builder: (context, state) => Scaffold(
-  //         backgroundColor: AppColors.backgroundColor,
-  //       ),
-  //     );
-
+  @override
+  String get title => "Roof Admin Panel";
   @override
   String get name => 'root';
 
@@ -41,7 +29,6 @@ final class InitialRoute extends BaseRouteClass {
           );
 
   @override
-  // TODO: implement redirect
   FutureOr<String?> Function(BuildContext p1, GoRouterState p2)? get redirect =>
       AuthenticationBasedRedirector().redirect;
 

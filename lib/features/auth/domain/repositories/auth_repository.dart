@@ -7,4 +7,7 @@ import 'package:roof_admin_panel/features/auth/domain/entities/auth_entity.dart'
 abstract class AuthRepository {
   /// This method will be used to sign in with email and password.
   Future<DataState<void>> signInWithEmailAndPassword(AuthEntity authEntity);
+
+  ///
+  Future<DataState<void>> forgotPassword(String email);
 }
