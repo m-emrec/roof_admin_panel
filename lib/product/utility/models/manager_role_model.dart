@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:core/core.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 part 'manager_role_model.g.dart';

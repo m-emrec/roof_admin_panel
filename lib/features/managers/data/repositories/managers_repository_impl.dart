@@ -1,5 +1,7 @@
 import 'package:core/resources/data_state.dart';
 import 'package:roof_admin_panel/features/managers/data/datasources/managers_database_service.dart';
+import 'package:roof_admin_panel/features/managers/data/models/add_manager_model.dart';
+import 'package:roof_admin_panel/features/managers/domain/entities/add_manager_entity.dart';
 import 'package:roof_admin_panel/features/managers/domain/repositories/managers_repository.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 
@@ -12,9 +14,10 @@ class ManagersRepositoryImpl implements ManagersRepository {
 
   final ManagersDatabaseService _managersDatabaseService;
   @override
-  Future<DataState<void>> addManager(ManagerModel manager) {
+  Future<DataState<void>> addManager(AddManagerEntity manager) {
     return DataState.handleDataState(
-      () => _managersDatabaseService.addManager(manager.toJson()),
+      () => _managersDatabaseService
+          .addManager(AddManagerModel.fromEntity(manager).toJson()),
     );
   }
 

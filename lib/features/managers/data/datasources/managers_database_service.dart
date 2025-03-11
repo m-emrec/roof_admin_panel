@@ -34,28 +34,28 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
     return _updateManagerDataWithManagerRole(managers.docs);
   }
 
-  ///? Since the [ManagerRoleModel] is stored as a [DocumentReference]
-  ///? in the Firestore, we need to get the role data using the reference.
+  ///? Since the [ManagerRoleModel] is stored as a [DocumentPath]
+  ///? in the Firestore, we need to get the role data using the path.
   Future<List<Map<String, dynamic>>> _updateManagerDataWithManagerRole(
     List<QueryDocumentSnapshot<Map<String, dynamic>>> docs,
   ) async {
     final updatedManagersList = <Map<String, dynamic>>[];
     for (final doc in docs) {
       final managerData = doc.data();
-      final role = await _getManagerRoleData(
-        managerData[ManagerDocKeys.role.name]
-            as DocumentReference<Map<String, dynamic>>,
-      );
-      managerData[ManagerDocKeys.role.name] = role;
+      await _getManagerRoleData(
+        managerData[ManagerDocKeys.role.name].toString(),
+      ).then((value) => managerData[ManagerDocKeys.role.name] = value);
+      // managerData[ManagerDocKeys.role.name] = role;
       updatedManagersList.add(managerData);
     }
+
     return updatedManagersList;
   }
 
   Future<Map<String, dynamic>> _getManagerRoleData(
-    DocumentReference<Map<String, dynamic>> doc,
+    String docPath,
   ) async {
-    final data = await doc.get();
+    final data = await firestore.doc(docPath).get();
     return data.data() ?? {};
   }
 

@@ -1,6 +1,7 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/managers/data/models/add_manager_model.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/add_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/delete_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/get_managers_use_case.dart';
@@ -31,7 +32,7 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   final AddManagerUseCase _addManagerUseCase;
 
   ///
-  Future<void> addManager(ManagerModel manager) async {
+  Future<void> addManager(AddManagerModel manager) async {
     DataState.handleDataStateBasedAction(
       await _addManagerUseCase(manager),
       onSuccess: (_) => getManagers(),

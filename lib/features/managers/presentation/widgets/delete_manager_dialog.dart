@@ -8,8 +8,20 @@ import 'package:roof_admin_panel/product/utility/extensions/future_extension.dar
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
+///
 class DeleteManagerDialog extends ConsumerWidget {
+  ///
   const DeleteManagerDialog(this.manager, {super.key});
+
+  Future<void> onTapDelete(WidgetRef ref, BuildContext context) async {
+    await ref
+        .read(managersViewModelProvider.notifier)
+        .deleteManager(manager.uid)
+        .showLoading(context: context);
+    CustomAlertDialog.hideAlertDialog(context);
+  }
+
+  ///
   final ManagerModel manager;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,13 +37,7 @@ class DeleteManagerDialog extends ConsumerWidget {
           child: Text(LocaleKeys.common_cancel.tr()),
         ),
         ElevatedButton(
-          onPressed: () async {
-            await ref
-                .read(managersViewModelProvider.notifier)
-                .deleteManager(manager.uid)
-                .showLoading(context: context);
-            CustomAlertDialog.hideAlertDialog(context);
-          },
+          onPressed: () => onTapDelete(ref, context),
           child: Text(LocaleKeys.common_delete.tr()),
         ),
       ],

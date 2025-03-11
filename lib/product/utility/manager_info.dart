@@ -70,24 +70,6 @@ final class CurrentManager {
     );
   }
 
-  /// Clears the current instance, resetting it to `null`.
-  ///
-  /// This method should be used when logging out or switching accounts.
-  static void clear() {
-    _instance = null;
-  }
-
-  /// Retrieves the manager's role data from Firestore.
-  ///
-  /// - Accepts a [DocumentReference] pointing to the manager's role.
-  /// - Fetches the role details and returns it as a `Map<String, dynamic>`.
-  static Future<Map<String, dynamic>> _getManagerRole(
-    DocumentReference<Map<String, dynamic>> doc,
-  ) async {
-    final data = await doc.get();
-    return data.data() ?? {};
-  }
-
   /// Fetches the current manager's data from Firestore.
   ///
   /// - Retrieves manager details using the current FirebaseAuth user ID.
@@ -103,12 +85,29 @@ final class CurrentManager {
         .get();
 
     final data = doc.data() ?? {};
-
     // Fetch role data and attach it to the manager's data
     data[ManagerDocKeys.role.name] = await _getManagerRole(
-      data[ManagerDocKeys.role.name] as DocumentReference<Map<String, dynamic>>,
+      data[ManagerDocKeys.role.name].toString(),
     );
 
     return data;
+  }
+
+  /// Retrieves the manager's role data from Firestore.
+  ///
+  /// - Accepts a [DocumentReference] pointing to the manager's role.
+  /// - Fetches the role details and returns it as a `Map<String, dynamic>`.
+  static Future<Map<String, dynamic>> _getManagerRole(
+    String docPath,
+  ) async {
+    final data = await FirebaseFirestore.instance.doc(docPath).get();
+    return data.data() ?? {};
+  }
+
+  /// Clears the current instance, resetting it to `null`.
+  ///
+  /// This method should be used when logging out or switching accounts.
+  static void clear() {
+    _instance = null;
   }
 }
