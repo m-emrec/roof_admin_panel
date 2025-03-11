@@ -21,13 +21,13 @@ class ManagerModel {
   final String email;
   final String name;
   @JsonKey(
-    toJson: _createDocumentReferenceForManagerRole,
+    toJson: _getDocumentPathOfManagerRole,
     fromJson: ManagerRoleModel.fromJson,
   )
   final ManagerRoleModel role;
   final String? imageUrl;
 
-  static String _createDocumentReferenceForManagerRole(ManagerRoleModel role) {
+  static String _getDocumentPathOfManagerRole(ManagerRoleModel role) {
     final doc = FirebaseFirestore.instance
         .doc("${CollectionEnum.managerRoles.name}/${role.id}");
     return doc.path;

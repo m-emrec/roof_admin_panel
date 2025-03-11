@@ -13,12 +13,6 @@ mixin SignInFormMixin on ConsumerState<SignInForm> {
 
   @override
   void initState() {
-    emailController.text = "m.emrec45@gmail.com";
-    passwordController.text = "Emre170495.";
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      signIn();
-    });
-    signIn();
     super.initState();
   }
 
@@ -29,6 +23,7 @@ mixin SignInFormMixin on ConsumerState<SignInForm> {
     super.dispose();
   }
 
+  ///
   Future<void> signIn() async {
     if (formKey.currentState!.validate()) {
       final email = emailController.text;

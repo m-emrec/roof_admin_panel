@@ -23,11 +23,11 @@ class AddManagerModel extends AddManagerEntity {
         role: entity.role,
       );
 
-  @JsonKey(toJson: _createDocumentReferenceForManagerRole)
+  @JsonKey(toJson: _getDocumentPathOfManagerRole)
   @override
   String get role => super.role;
 
-  static String _createDocumentReferenceForManagerRole(String roleId) {
+  static String _getDocumentPathOfManagerRole(String roleId) {
     final doc = FirebaseFirestore.instance
         .doc('${CollectionEnum.managerRoles.name}/$roleId');
     return doc.path;

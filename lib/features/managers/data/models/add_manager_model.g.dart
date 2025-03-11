@@ -17,6 +17,5 @@ Map<String, dynamic> _$AddManagerModelToJson(AddManagerModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
-      'role':
-          AddManagerModel._createDocumentReferenceForManagerRole(instance.role),
+      'role': AddManagerModel._getDocumentPathOfManagerRole(instance.role),
     };

@@ -1,18 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:core/utils/constants/firebase/collection_enums.dart';
-import 'package:roof_admin_panel/product/utility/constants/enums/database%20keys/manager_doc_keys.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/firebase/cloud_function_names.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/firebase/database%20keys/manager_doc_keys.dart';
 
 ///
 class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
   ///
   ///
   Future<void> addManager(Map<String, dynamic> managerToBeAdded) async {
-    /// TODO: FirebaseCloudFunctions'ı product'a taşı
-    await FirebaseFunctions.instanceFor(region: 'europe-west1')
-        .httpsCallable("createNewManager")
+    await functions
+        .httpsCallable(CloudFunctionNames.createNewManager.name)
         .call<void>(
           managerToBeAdded,
         );
@@ -20,10 +19,10 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
 
   ///
   Future<void> deleteManager(String id) async {
-    await FirebaseFunctions.instanceFor(region: 'europe-west1')
-        .httpsCallable("deleteManager")
+    await functions
+        .httpsCallable(CloudFunctionNames.deleteManager.name)
         .call<void>(
-      {"uid": id},
+      {ManagerDocKeys.uid.name: id},
     );
   }
 

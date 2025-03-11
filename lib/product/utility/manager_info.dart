@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:roof_admin_panel/product/utility/constants/enums/database%20keys/manager_doc_keys.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/firebase/database%20keys/manager_doc_keys.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
 
