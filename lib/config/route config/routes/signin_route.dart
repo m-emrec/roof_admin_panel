@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/authentication_based_redirect.dart';
@@ -16,15 +18,11 @@ final class SignInRoute extends BaseRouteClass {
   SignInRoute._internal();
 
   static final SignInRoute _instance = SignInRoute._internal();
-
   @override
-  GoRoute get route => GoRoute(
-        redirect: AuthenticationBasedRedirector().redirect,
-        name: "signIn",
-        path: "/sign-in",
-        builder: (context, state) => const SignIn(),
-      );
-
+  FutureOr<String?> Function(BuildContext p1, GoRouterState p2)? get redirect =>
+      AuthenticationBasedRedirector().redirect;
+  @override
+  String get title => "Giriş Yap";
   @override
   String get name => "signIn";
 

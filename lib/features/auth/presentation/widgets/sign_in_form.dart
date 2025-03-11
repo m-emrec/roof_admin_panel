@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
@@ -41,48 +42,36 @@ class _SignInFormState extends ConsumerState<SignInForm> with SignInFormMixin {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Card(
-        elevation: 0,
-        clipBehavior: Clip.antiAlias,
-        color: AppColors.backgroundColor[60]?.withValues(alpha: 0.9),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-          child: Padding(
-            padding: const AppPadding.horizontalxLSymmetric() +
-                const AppPadding.verticalxLSymmetric(),
-            child: SizedBox(
-              width: inputFieldWidth,
-              child: Column(
-                spacing: SpacingSizes.large,
-                children: [
-                  CustomTextField(
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) =>
-                        ValidatorMethods(text: emailController.text).emptyField,
-                    controller: emailController,
-                    label: LocaleKeys.auth_signin_email.tr(),
-                  ),
-                  PasswordField(
-                    signIn: signIn,
-                    validator: (value) =>
-                        ValidatorMethods(text: passwordController.text)
-                            .emptyField,
-                    passwordController: passwordController,
-                  ),
-                  Row(
-                    children: [
-                      ResponsiveElevatedButton(
-                        onPressed: signIn,
-                        child: Text(
-                          LocaleKeys.auth_signin_pageTitle.tr(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+      child: SizedBox(
+        width: context.dynamicWidth(0.4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          spacing: SpacingSizes.large,
+          children: [
+            CustomTextField(
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) =>
+                  ValidatorMethods(text: emailController.text).emptyField,
+              controller: emailController,
+              label: LocaleKeys.auth_signin_email.tr(),
             ),
-          ),
+            PasswordField(
+              signIn: signIn,
+              validator: (value) =>
+                  ValidatorMethods(text: passwordController.text).emptyField,
+              passwordController: passwordController,
+            ),
+            Row(
+              children: [
+                ResponsiveElevatedButton(
+                  onPressed: signIn,
+                  child: Text(
+                    LocaleKeys.auth_signin_pageTitle.tr(),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

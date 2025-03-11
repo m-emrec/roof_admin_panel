@@ -34,6 +34,7 @@ class LoadingIndicator extends StatefulWidget {
       ),
     );
     final result = await future;
+
     if (context.mounted) {
       context.pop();
     }

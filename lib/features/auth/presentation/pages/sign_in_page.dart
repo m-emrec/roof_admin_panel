@@ -1,7 +1,8 @@
-import 'package:core/utils/constants/app_paddings.dart';
+import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/animated_roof_logo.dart';
 import 'package:roof_admin_panel/features/auth/presentation/widgets/sign_in_form.dart';
-import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 
 ///
 /// SignIn page
@@ -17,29 +18,26 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const AppPadding.verticalLSymmetric() +
-              const AppPadding.horizontalLSymmetric(),
-          child: Container(
-            // background image
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  Assets.icons.roofLogo.path,
-                ),
-                fit: BoxFit.contain,
+      backgroundColor: AppColors.backgroundColor[60] ?? Colors.white,
+      body: Row(
+        spacing: SpacingSizes.large,
+        children: [
+          const Expanded(
+            child: AnimatedRoofLogo(),
+          ),
+          Expanded(
+            child: ColoredBox(
+              color: AppColors.backgroundColor,
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SignInForm(),
+                ],
               ),
             ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SignInForm(),
-              ],
-            ),
           ),
-        ),
+        ],
       ),
     );
   }

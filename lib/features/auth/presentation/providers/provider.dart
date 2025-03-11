@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
@@ -26,8 +25,6 @@ final _signInWithEmailAndPasswordProvider =
 /// ViewModel
 final authViewModelProvider =
     ChangeNotifierProvider.autoDispose<AuthViewModel>((ref) {
-  Log.debug('authServiceViewModelProvider initialized');
-
   return AuthViewModel(
     signInWithEmailAndPasswordUseCase:
         ref.read(_signInWithEmailAndPasswordProvider),

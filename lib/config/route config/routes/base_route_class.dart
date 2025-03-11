@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import "dart:html" as html;
 
 /// A base class for all routes in the application.
 /// This class defines the basic structure of a route.
@@ -42,12 +43,20 @@ abstract class BaseRouteClass {
   /// This is the function that will be called to determine if the user should be redirected to another route.
   FutureOr<String?> Function(BuildContext, GoRouterState)? get redirect => null;
 
+  /// The title of the route.
+  /// This is the title that will be displayed in the browser tab.
+  ///
+  /// By default it is equal to [name] but can be overridden in the child class.
+  String get title => name;
+
   /// The route for the class.
   GoRoute get route => GoRoute(
         path: path,
         name: name,
-        pageBuilder: (context, state) =>
-            MaterialPage(child: pageBuilder(context, state)),
+        pageBuilder: (context, state) {
+          html.document.title = title;
+          return MaterialPage(child: pageBuilder(context, state));
+        },
         routes: routes,
         redirect: redirect,
       );
