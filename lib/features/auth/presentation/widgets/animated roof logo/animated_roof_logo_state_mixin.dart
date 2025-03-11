@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/features/auth/presentation/widgets/animated_roof_logo.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/animated%20roof%20logo/animated_roof_logo.dart';
 
 /// A mixin that provides the [initAnimationController] method to initialize
 /// the [AnimationController] and start the animation.
@@ -11,7 +11,7 @@ mixin AnimatedRoofLogoStateMixin on State<AnimatedRoofLogo> {
   void initAnimationController(TickerProvider vsync) {
     animationController = AnimationController(
       vsync: vsync,
-      upperBound: 0.7,
+      upperBound: 0.6,
       duration: const Duration(milliseconds: 500),
     )
       ..forward()
@@ -20,7 +20,9 @@ mixin AnimatedRoofLogoStateMixin on State<AnimatedRoofLogo> {
 
   void _animationListener() {
     if (animationController.status == AnimationStatus.completed) {
-      animationController.animateTo(animationController.upperBound - 0.1);
+      animationController.animateTo(
+        animationController.upperBound - 0.1,
+      );
     }
   }
 

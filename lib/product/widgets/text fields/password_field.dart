@@ -25,6 +25,8 @@ class _PasswordFieldState extends State<PasswordField> {
     return Column(
       children: [
         CustomTextField(
+          focusNode: FocusNode(),
+          unfocusOnTapOutside: true,
           prefixIcon:
               Icon(_showPassword ? Icons.lock_open_rounded : Icons.lock),
           onFieldSubmitted: (_) => widget.signIn(),

@@ -1,6 +1,6 @@
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/features/auth/presentation/widgets/animated_roof_logo_state_mixin.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/animated%20roof%20logo/animated_roof_logo_state_mixin.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 
 ///
@@ -26,7 +26,6 @@ class _AnimatedRoofLogoState extends State<AnimatedRoofLogo>
 
   @override
   Widget build(BuildContext context) {
-    // html.window
     return Padding(
       padding: const AppPadding.verticalLSymmetric() +
           const AppPadding.horizontalLSymmetric(),
