@@ -2,6 +2,7 @@
     "errors": {
         "phoneNumberCantStartWithZero": "Lütfen telefon numaranızı başında 0 olmadan yazın.",
         "user_is_not_guest":"Girilen numara bir misafire ait değil.",
+        "email_not_verified": "E-posta adresiniz doğrulanmamış. Lütfen e-posta adresinizi kontrol edin ve doğrulama bağlantısını tıklayın.",
         "too_many_requests":"Çok fazla istek gönderildiği için bir süreliğine bloklandınız. Lütfen bir süre sonra tekrar deneyin.",
         "user_not_exist": "Görünüşe göre Roof üyesi değilsin. Hemen başvurunu yap ve aramıza katıl!",
         "invalid_name": "Geçersiz isim.",
@@ -156,6 +157,7 @@
             "email": "E-posta",
             "password": "Şifre",
             "showPassword": "Şifreyi Göster",
+            "pleaseVerifyEmail": "Giriş yapabilmek için lütfen e-posta adresinizi doğrulayın.",
             "validationError": {
                 "email": "Geçerli bir e-posta adresi girin.",
                 "password": "Şifre en az 6 karakter olmalıdır."

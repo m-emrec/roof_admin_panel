@@ -30,7 +30,7 @@ class AuthViewModel extends ChangeNotifier {
   Future<void> signInWithEmailAndPassword(AuthModel credentials) async {
     await DataState.handleDataStateBasedAction(
       await _signInWithEmailAndPasswordUseCase(credentials),
-      onSuccess: (p0) => notifyListeners(),
+      onSuccess: (p0) => null,
       onFailure: (failed) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(failed?.errorMessage),
       ),

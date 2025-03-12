@@ -262,7 +262,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "96bcc991de07df8f9cfb128813fd7ef29bbd4099"
+      resolved-ref: "2dcae0fad2d423f2e51510b04316a921dd23fd07"
       url: "git@github.com:m-emrec/roof-core.git"
     source: git
     version: "0.0.1"
@@ -1002,10 +1002,10 @@ packages:
     dependency: transitive
     description:
       name: package_config
-      sha256: "92d4488434b520a62570293fbd33bb556c7d49230791c1b4bbd973baf6d2dc67"
+      sha256: f096c55ebb7deb7e384101542bfba8c52696c1b56fca2eb62827989ef2353bbc
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   package_info_plus:
     dependency: "direct main"
     description:
@@ -1375,18 +1375,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_core
-      sha256: "5a1a76eef118e511443b299925d4a802eb8259388d6a580e0ad6413d1a70f987"
+      sha256: "59b6d2a7deacade6129d2f15615ca49ed56278fea055cd2e52cace78a343dd5e"
       url: "https://pub.dev"
     source: hosted
-    version: "28.2.9"
+    version: "28.2.11"
   syncfusion_flutter_datagrid:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_datagrid
-      sha256: a1f9efe10368ec6366807770460357bb872fc56e86584deba3fe2933d9af3487
+      sha256: fe45e8ed2159df5bf4ad2dbef9427c30db6c69379db057add4072338521d6aec
       url: "https://pub.dev"
     source: hosted
-    version: "28.2.9"
+    version: "28.2.11"
   synchronized:
     dependency: transitive
     description:

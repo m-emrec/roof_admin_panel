@@ -4,13 +4,13 @@ part of 'form_section.dart';
 mixin SignInFormMixin on ConsumerState<_SignInForm> {
   @override
   void dispose() {
-    _FormUtils.passwordController.clear();
+    FormUtils().passwordController.clear();
     super.dispose();
   }
 
   AuthModel get _createModel => AuthModel(
-        email: _FormUtils.emailController.text.trim(),
-        password: _FormUtils.passwordController.text,
+        email: FormUtils().emailController.text.trim(),
+        password: FormUtils().passwordController.text,
       );
 
   ///

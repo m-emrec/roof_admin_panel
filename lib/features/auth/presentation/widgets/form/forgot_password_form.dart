@@ -12,10 +12,10 @@ class _ForgotPasswordForm extends ConsumerWidget {
       children: [
         TextButton.icon(
           label: Text(LocaleKeys.common_back.tr()),
-          onPressed: _FormUtils.goToSignIn,
+          onPressed: FormUtils().goToSignIn,
           icon: const Icon(Icons.arrow_back),
         ),
-        EmailField(_FormUtils.emailController),
+        EmailField(FormUtils().emailController),
         Row(
           children: [
             ResponsiveElevatedButton(
@@ -31,13 +31,13 @@ class _ForgotPasswordForm extends ConsumerWidget {
   }
 
   Future<void> _onTapForgotPassword(BuildContext context, WidgetRef ref) async {
-    if (_FormUtils.formKey.currentState?.validate() ?? false) {
+    if (FormUtils().formKey.currentState?.validate() ?? false) {
       await ref
           .read(authViewModelProvider.notifier)
-          .forgotPassword(_FormUtils.emailController.text.trim())
+          .forgotPassword(FormUtils().emailController.text.trim())
           .showLoading(context: context)
           .then((dataState) {
-        if (dataState is DataSuccess) _FormUtils.goToSignIn();
+        if (dataState is DataSuccess) FormUtils().goToSignIn();
       });
     }
   }

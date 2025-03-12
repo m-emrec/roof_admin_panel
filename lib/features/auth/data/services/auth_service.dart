@@ -20,6 +20,10 @@ class AuthService extends FirebaseUtils with FirebaseAuthUtils, FirestoreUtils {
       email: credentials.email,
       password: credentials.password,
     );
+    if (!isVerified) {
+      await signOut();
+      throw Exception(Errors.email_not_verified.name);
+    }
   }
 
   ///
@@ -28,6 +32,9 @@ class AuthService extends FirebaseUtils with FirebaseAuthUtils, FirestoreUtils {
       email: email,
     );
   }
+
+  ///
+  bool get isVerified => auth.currentUser?.emailVerified ?? false;
 
   @override
   Future<void> signOut() async {

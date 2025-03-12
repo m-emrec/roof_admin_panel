@@ -15,19 +15,19 @@ class _SigninFormState extends ConsumerState<_SignInForm> with SignInFormMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: SpacingSizes.large,
       children: [
-        EmailField(_FormUtils.emailController),
+        EmailField(FormUtils().emailController),
         PasswordField(
-          signIn: () => onTapSignIn(_FormUtils.formKey),
+          signIn: () => onTapSignIn(FormUtils().formKey),
           validator: (value) =>
-              ValidatorMethods(text: _FormUtils.passwordController.text)
+              ValidatorMethods(text: FormUtils().passwordController.text)
                   .emptyField,
-          passwordController: _FormUtils.passwordController,
+          passwordController: FormUtils().passwordController,
         ),
         // Sign in button
         Row(
           children: [
             ResponsiveElevatedButton(
-              onPressed: () => onTapSignIn(_FormUtils.formKey),
+              onPressed: () => onTapSignIn(FormUtils().formKey),
               child: Text(
                 LocaleKeys.auth_signin_pageTitle.tr(),
               ),
@@ -37,7 +37,7 @@ class _SigninFormState extends ConsumerState<_SignInForm> with SignInFormMixin {
 
         /// Forgot password button
         TextButton(
-          onPressed: _FormUtils.goToForgotPassword,
+          onPressed: FormUtils().goToForgotPassword,
           child: Text(LocaleKeys.auth_signin_forgotPassword_pageTitle.tr()),
         ),
       ],

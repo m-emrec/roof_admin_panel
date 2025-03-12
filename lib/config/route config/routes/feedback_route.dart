@@ -11,7 +11,7 @@ final class FeedbackRoute extends BaseRouteClass {
   @override
   String get name => "Feedback";
   @override
-  String get title => LocaleKeys.feedback.tr();
+  String get title => LocaleKeys.feedback_pageTitle.tr();
   @override
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) => PermissionBasedVisibility(

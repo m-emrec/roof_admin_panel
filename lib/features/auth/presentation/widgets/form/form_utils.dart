@@ -1,40 +1,51 @@
-part of 'form_section.dart';
+import 'package:core/utils/logger/logger.dart';
+import 'package:flutter/material.dart';
 
-/// This class contains the [TextEditingController]s, [PageController]
-/// and [GlobalKey<FormState>] that are used in the [FormSection] widget.
+/// Utility class for managing form-related controllers and navigation.
 ///
-/// ??? Why I use this class?
+/// This class holds the [TextEditingController]s, [PageController],
+/// and [GlobalKey<FormState>] used in the [FormSection] widget.
 ///
-/// I use this class to not throw the controllers and formKey widget to widget.
-class _FormUtils {
-  static late final GlobalKey<FormState> formKey;
-  static late final PageController pageController;
-  static late final TextEditingController emailController;
-  static late final TextEditingController passwordController;
-  static const _pageAnimationDuration = Duration(milliseconds: 500);
-  static const _pageAnimationCurve = Curves.ease;
+/// ### Why use this class?
+/// Instead of passing controllers and form keys to multiple widgets,
+/// this class centralizes them, improving maintainability and avoiding
+/// unnecessary widget rebuilds.
+///
+/// It also provides helper methods for navigating between form pages.
+class FormUtils {
+  factory FormUtils() => _instance ??= FormUtils._internal(
+        TextEditingController(),
+        TextEditingController(),
+      );
 
-  static void init() {
-    formKey = GlobalKey<FormState>();
-    pageController = PageController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-  }
+  FormUtils._internal(this.emailController, this.passwordController);
 
-  static void dispose() {
+  static FormUtils? _instance;
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final PageController pageController = PageController();
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final _pageAnimationDuration = const Duration(milliseconds: 500);
+  final _pageAnimationCurve = Curves.ease;
+
+  void dispose() {
+    Log.debug('Disposing form utils');
     pageController.dispose();
     emailController.dispose();
     passwordController.dispose();
+
+    _instance = null;
   }
 
-  static void goToForgotPassword() {
+  void goToForgotPassword() {
     pageController.nextPage(
       duration: _pageAnimationDuration,
       curve: _pageAnimationCurve,
     );
   }
 
-  static void goToSignIn() {
+  void goToSignIn() {
     pageController.previousPage(
       duration: _pageAnimationDuration,
       curve: _pageAnimationCurve,

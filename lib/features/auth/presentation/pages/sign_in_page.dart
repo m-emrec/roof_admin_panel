@@ -2,6 +2,7 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/auth/presentation/widgets/animated%20roof%20logo/animated_roof_logo.dart';
 import 'package:roof_admin_panel/features/auth/presentation/widgets/form/form_section.dart';
+import 'package:roof_admin_panel/features/auth/presentation/widgets/form/form_utils.dart';
 
 ///
 /// SignIn page
@@ -14,6 +15,12 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  @override
+  void dispose() {
+    FormUtils().dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,6 +5,7 @@
 abstract class  LocaleKeys {
   static const errors_phoneNumberCantStartWithZero = 'errors.phoneNumberCantStartWithZero';
   static const errors_user_is_not_guest = 'errors.user_is_not_guest';
+  static const errors_email_not_verified = 'errors.email_not_verified';
   static const errors_too_many_requests = 'errors.too_many_requests';
   static const errors_user_not_exist = 'errors.user_not_exist';
   static const errors_invalid_name = 'errors.invalid_name';
@@ -147,6 +148,7 @@ abstract class  LocaleKeys {
   static const auth_signin_email = 'auth.signin.email';
   static const auth_signin_password = 'auth.signin.password';
   static const auth_signin_showPassword = 'auth.signin.showPassword';
+  static const auth_signin_pleaseVerifyEmail = 'auth.signin.pleaseVerifyEmail';
   static const auth_signin_validationError_email = 'auth.signin.validationError.email';
   static const auth_signin_validationError_password = 'auth.signin.validationError.password';
   static const auth_signin_validationError = 'auth.signin.validationError';
