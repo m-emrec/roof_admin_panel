@@ -30,7 +30,7 @@ final class SideBarItemsBuilder {
   ///* When you want to add a new sidebar item, you should add it to this list.
   static List<SideBarItemModel> get sideBarItems => [
         SideBarItemModel(
-          route: const MembersRoute(),
+          route: const MainRoute(),
           icon: SvgPicture.asset(Assets.icons.membersIcon),
           title: LocaleKeys.sidebar_members.tr(),
         ),

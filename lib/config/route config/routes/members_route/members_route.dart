@@ -10,8 +10,8 @@ import 'package:roof_admin_panel/features/view%20manager/view_manager.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 
-final class MembersRoute extends BaseRouteClass {
-  const MembersRoute();
+final class MainRoute extends BaseRouteClass {
+  const MainRoute();
 
   @override
   String get name => "Members";

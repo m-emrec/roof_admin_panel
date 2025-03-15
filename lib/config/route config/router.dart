@@ -34,7 +34,7 @@ final class AppRouter {
       // //* Home Page
       InitialRoute().route,
       // HomeRoute().shell,
-      MembersRoute().shell,
+      MainRoute().shell,
       // //* [SignIn] page
       SignInRoute().route,
     ],

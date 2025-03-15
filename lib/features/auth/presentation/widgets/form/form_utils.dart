@@ -30,7 +30,6 @@ class FormUtils {
   final _pageAnimationCurve = Curves.ease;
 
   void dispose() {
-    Log.debug('Disposing form utils');
     pageController.dispose();
     emailController.dispose();
     passwordController.dispose();

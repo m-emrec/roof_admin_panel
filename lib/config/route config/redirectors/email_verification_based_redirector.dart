@@ -15,9 +15,9 @@ import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 class EmailVerificationBasedRedirector implements BaseRouteRedirector {
   @override
   FutureOr<String?> redirect(BuildContext context, GoRouterState state) async {
-    final isVerified = AuthService().isVerified;
+    final isVerified = AuthService().isEmailVerified;
     if (isVerified) {
-      return state.namedLocation(const MembersRoute().route.name ?? "");
+      return state.namedLocation(const MainRoute().route.name ?? "");
     } else {
       return null;
     }
