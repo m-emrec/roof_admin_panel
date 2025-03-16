@@ -1,7 +1,6 @@
-import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
-import 'package:core/utils/logger/logger.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,6 +29,11 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
     setState(() {});
   }
 
+  void _setInitialValue(List<ManagerRoleModel> data) {
+    selectedRole = data.first;
+    widget.roleController.text = selectedRole?.id ?? "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -39,6 +43,9 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
         AsyncDataBuilder(
           provider: getManagerRolesProvider,
           data: (data) {
+            if (selectedRole == null) {
+              _setInitialValue(data);
+            }
             return CustomDropDownButton(
               items: data.map((e) => e.name).toList(),
               initialValue: data.first.name,

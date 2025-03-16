@@ -1,24 +1,24 @@
 import 'package:core/utils/constants/constant_values.dart';
 import 'package:core/utils/constants/enums/gender.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/widgets/custom_side_dialog.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
-import 'package:roof_admin_panel/product/widgets/text%20fields/phone_field.dart';
+import 'package:roof_admin_panel/product/widgets/custom_side_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
+import 'package:roof_admin_panel/product/widgets/text%20fields/phone_field.dart';
 import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
+
+part 'add_guest_dialog_state_mixin.dart';
 part 'add_guest_form.dart';
 part 'add_guest_properties.dart';
-part 'add_guest_dialog_state_mixin.dart';
 
 ///
 class AddGuestDialog extends ConsumerStatefulWidget {

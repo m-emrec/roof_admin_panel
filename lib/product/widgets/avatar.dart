@@ -27,6 +27,7 @@ class Avatar extends StatelessWidget {
     return Container(
       width: (radius ?? 24) * 2,
       height: (radius ?? 24) * 2,
+      clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(

@@ -50,7 +50,7 @@ class _ViewManagerState extends State<ViewManager> {
                 Flexible(
                   child: Padding(
                     padding: const AppPadding.horizontalLSymmetric() +
-                        const AppPadding.verticalMSymmetric(),
+                        const AppPadding.mediumOnlyPadding(top: true),
                     child: widget.child,
                   ),
                 ),
