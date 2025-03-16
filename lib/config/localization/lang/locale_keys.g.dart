@@ -264,5 +264,10 @@ abstract class  LocaleKeys {
   static const managersView_deleteManager = 'managersView.deleteManager';
   static const managersView_deleteManagerConfirmation = 'managersView.deleteManagerConfirmation';
   static const managersView = 'managersView';
+  static const accountSettingView_pageTitle = 'accountSettingView.pageTitle';
+  static const accountSettingView_changeEmail = 'accountSettingView.changeEmail';
+  static const accountSettingView_changePassword = 'accountSettingView.changePassword';
+  static const accountSettingView_logOut = 'accountSettingView.logOut';
+  static const accountSettingView = 'accountSettingView';
 
 }

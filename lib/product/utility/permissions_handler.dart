@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/manager_info.dart';
+import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/no_permission_card.dart';
 
 /// An abstract class for handling permission-based actions and visibility.

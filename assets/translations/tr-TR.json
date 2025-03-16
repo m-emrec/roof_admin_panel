@@ -295,8 +295,11 @@
     "deleteManager":"Yöneticiyi Sil",
     "deleteManagerConfirmation":"Bu ({}) yöneticiyi silmek istediğinizden emin misiniz?"
 
-}
-
-
-    
+},
+"accountSettingView":{
+    "pageTitle": "Hesap Ayarları",
+    "changeEmail": "E-posta Değiştir",
+    "changePassword": "Şifre Değiştir",
+    "logOut": "Çıkış Yap"
+} 
 }

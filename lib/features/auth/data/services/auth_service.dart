@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:roof_admin_panel/features/auth/data/models/auth_model.dart';
-import 'package:roof_admin_panel/product/utility/manager_info.dart';
+import 'package:roof_admin_panel/product/utility/current_manager.dart';
 
 /// A service class that handles authentication operations using Firebase.
 class AuthService extends FirebaseUtils with FirebaseAuthUtils, FirestoreUtils {

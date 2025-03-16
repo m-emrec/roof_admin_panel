@@ -50,13 +50,15 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
           width: 2,
         ),
       ),
-      // subtitle: Text(LocaleKeys.sidebar_accountSettings.tr()),
       trailing: GestureDetector(
-        child: const Icon(
-          Icons.settings,
-          size: 16,
+        child: const MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Icon(
+            Icons.settings,
+            size: 16,
+          ),
         ),
-        onTap: () => AuthService().signOut(),
+        onTap: () => context.goNamed(AccountSettingsRoute().name),
       ),
     );
   }

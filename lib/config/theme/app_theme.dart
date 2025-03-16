@@ -4,6 +4,7 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/constants/text_styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
@@ -12,7 +13,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table
 import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/guests_table_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
-import 'package:roof_admin_panel/config/theme/theme_extensions/verification_code_card_theme.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 import 'theme_extensions/inline_text_button_theme.dart';
@@ -40,6 +41,7 @@ part 'widget_themes/_side_bar_theme.dart';
 part 'widget_themes/custom_data_table_theme.dart.dart';
 part './widget_themes/_feedback_tile_theme.dart';
 part './widget_themes/guests_table_theme.dart';
+part './widget_themes/user_card_theme.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -125,5 +127,6 @@ class AppTheme {
         _CustomDataTableTheme.theme,
         _FeedbackTileTheme.feedbackTileTheme(_context),
         _GuestsTableTheme.theme(),
+        _UserCardTheme.theme,
       ];
 }

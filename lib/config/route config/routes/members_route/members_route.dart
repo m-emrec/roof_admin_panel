@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/account_settings_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
@@ -35,6 +36,7 @@ final class MainRoute extends BaseRouteClass {
           FeedbackRoute().route,
           GuestsRoute().route,
           ManagersRoute().route,
+          AccountSettingsRoute().route,
         ],
         builder: (context, state, child) {
           return ViewManager(
