@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 
 /// Utility class for managing form-related controllers and navigation.
@@ -13,6 +12,7 @@ import 'package:flutter/material.dart';
 ///
 /// It also provides helper methods for navigating between form pages.
 class FormUtils {
+  /// Returns the singleton instance of [FormUtils].
   factory FormUtils() => _instance ??= FormUtils._internal(
         TextEditingController(),
         TextEditingController(),
@@ -27,7 +27,7 @@ class FormUtils {
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final _pageAnimationDuration = const Duration(milliseconds: 500);
-  final _pageAnimationCurve = Curves.ease;
+  final _pageAnimationCurve = Curves.fastLinearToSlowEaseIn;
 
   void dispose() {
     pageController.dispose();

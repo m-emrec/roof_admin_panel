@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
