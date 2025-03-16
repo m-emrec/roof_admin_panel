@@ -18,8 +18,6 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // html.
-    /// TODO: Try GestureDetector type of thing to recognize Enter key press
     return Card(
       elevation: context.theme.extension<UserCardThemeExtension>()?.elevation,
       // shape: context.theme.extension<UserCardThemeExtension>()?.shape,
@@ -40,9 +38,6 @@ class UserCard extends StatelessWidget {
                   .extension<UserCardThemeExtension>()
                   ?.avatarRadius,
             ),
-            GestureDetector(
-                // on
-                ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
