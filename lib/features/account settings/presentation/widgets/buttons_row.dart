@@ -4,8 +4,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change_password_dialog.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
 class ButtonsRow extends StatelessWidget {
   const ButtonsRow({
@@ -15,6 +17,7 @@ class ButtonsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      // alignment: WrapAlignment.center,
       children: [
         TextButton.icon(
           onPressed: () {},
@@ -29,7 +32,11 @@ class ButtonsRow extends StatelessWidget {
           ),
         ),
         TextButton.icon(
-          onPressed: () {},
+          onPressed: () => CustomAlertDialog.showAlertDialog(
+            barrierDismissible: true,
+            context: context,
+            content: const ChangePasswordDialog(),
+          ),
           iconAlignment: IconAlignment.end,
           icon: Icon(
             Icons.edit,

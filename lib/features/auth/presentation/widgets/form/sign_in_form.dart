@@ -17,7 +17,6 @@ class _SigninFormState extends ConsumerState<_SignInForm> with SignInFormMixin {
       children: [
         EmailField(FormUtils().emailController),
         PasswordField(
-          signIn: () => onTapSignIn(FormUtils().formKey),
           validator: (value) =>
               ValidatorMethods(text: FormUtils().passwordController.text)
                   .emptyField,
@@ -41,6 +40,8 @@ class _SigninFormState extends ConsumerState<_SignInForm> with SignInFormMixin {
           child: Text(LocaleKeys.auth_signin_forgotPassword_pageTitle.tr()),
         ),
       ],
+    ).submitOnEnter(
+      onKeyEnter: () => onTapSignIn(FormUtils().formKey),
     );
   }
 }

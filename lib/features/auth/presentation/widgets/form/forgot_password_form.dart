@@ -27,6 +27,8 @@ class _ForgotPasswordForm extends ConsumerWidget {
           ],
         ),
       ],
+    ).submitOnEnter(
+      onKeyEnter: () => _onTapForgotPassword(context, ref),
     );
   }
 

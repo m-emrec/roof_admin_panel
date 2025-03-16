@@ -8,6 +8,13 @@ mixin SignInFormMixin on ConsumerState<_SignInForm> {
     super.dispose();
   }
 
+  ///
+  void onKeyEnter(KeyEvent event) {
+    if (event.logicalKey == LogicalKeyboardKey.enter) {
+      onTapSignIn(FormUtils().formKey);
+    }
+  }
+
   AuthModel get _createModel => AuthModel(
         email: FormUtils().emailController.text.trim(),
         password: FormUtils().passwordController.text,
