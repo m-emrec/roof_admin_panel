@@ -13,7 +13,10 @@ final class ManagersRoute extends BaseRouteClass {
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) => PermissionBasedVisibility(
             child: const ManagersView(),
-            necessaryPermissions: [Permissions.canReadManagers],
+            necessaryPermissions: [
+              Permissions.canReadManagers,
+              Permissions.canRead
+            ],
           ).visibleOrPermissionInfo;
 
   @override

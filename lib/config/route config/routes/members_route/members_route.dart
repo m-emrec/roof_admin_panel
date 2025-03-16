@@ -23,7 +23,10 @@ final class MainRoute extends BaseRouteClass {
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) => PermissionBasedVisibility(
             child: const MembersView(),
-            necessaryPermissions: [Permissions.canReadMembers],
+            necessaryPermissions: [
+              Permissions.canReadMembers,
+              Permissions.canRead,
+            ],
           ).visibleOrPermissionInfo;
 
   ShellRoute get shell => ShellRoute(

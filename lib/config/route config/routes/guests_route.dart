@@ -14,7 +14,10 @@ final class GuestsRoute extends BaseRouteClass {
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) => PermissionBasedVisibility(
             child: const GuestsView(),
-            necessaryPermissions: [Permissions.canReadGuests],
+            necessaryPermissions: [
+              Permissions.canReadGuests,
+              Permissions.canRead
+            ],
           ).visibleOrPermissionInfo;
 
   @override

@@ -16,7 +16,10 @@ final class FeedbackRoute extends BaseRouteClass {
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) => PermissionBasedVisibility(
             child: const FeedbackView(),
-            necessaryPermissions: [Permissions.canReadGuests],
+            necessaryPermissions: [
+              Permissions.canReadGuests,
+              Permissions.canRead
+            ],
           ).visibleOrPermissionInfo;
 
   @override
