@@ -24,7 +24,7 @@ final class _SideBarTheme {
   ///
   ///
   static final SideBarThemeExtension sideBarTheme = SideBarThemeExtension(
-    expandedWidth: 300,
+    expandedWidth: 200,
     collapsedWidth: 64,
     backgroundColor: AppColors.backgroundColor[60],
     boxShadow: const [

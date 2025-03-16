@@ -10,14 +10,24 @@ class SideBarUserAvatar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /// ! !! !! DO NOT MAKE THIS WIDGET CONST !! !! !
-    /// Because when this widget is const it will not rebuild it self when the
-    /// [SideBarController().isExpanded] value changes.
-    /// So, it will not change the avatar when the sidebar is expanded or collapsed.
-    // ignore: prefer_const_constructors
-    return SideBarItemViewSwitcher(
-      expandedChild: const _ExpandedSideBarUserAvatar(),
-      collapsedChild: const _CollapsedSideBarUserAvatar(),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: AppColors.backgroundColor[30] ?? Colors.transparent,
+          ),
+        ),
+      ),
+
+      /// ! !! !! DO NOT MAKE [SideBarItemViewSwitcher] CONST !! !! !
+      /// Because when this widget is const it will not rebuild it self when the
+      /// [SideBarController().isExpanded] value changes.
+      /// So, it will not change the avatar when the sidebar is expanded or collapsed.
+      // ignore: prefer_const_constructors
+      child: SideBarItemViewSwitcher(
+        expandedChild: const _ExpandedSideBarUserAvatar(),
+        collapsedChild: const _CollapsedSideBarUserAvatar(),
+      ),
     );
   }
 }
@@ -29,10 +39,10 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = CurrentManager.instance.managerModel;
     return ListTile(
-      title: Text(user.name),
+      title: Text(user.name, style: context.textTheme.labelMedium),
       leading: Avatar(
         imageUrl: user.imageUrl,
-        radius: 16,
+        radius: 12,
       ),
       shape: Border(
         bottom: BorderSide(
@@ -40,14 +50,14 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
           width: 2,
         ),
       ),
-      subtitle: Text(LocaleKeys.sidebar_accountSettings.tr()),
+      // subtitle: Text(LocaleKeys.sidebar_accountSettings.tr()),
       trailing: GestureDetector(
-        child: SvgPicture.asset(
-          Assets.icons.logoutIcon,
+        child: const Icon(
+          Icons.settings,
+          size: 16,
         ),
         onTap: () => AuthService().signOut(),
       ),
-      onTap: () {},
     );
   }
 }

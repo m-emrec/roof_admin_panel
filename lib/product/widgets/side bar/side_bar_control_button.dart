@@ -1,8 +1,8 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 
 /// This is the top right button in the sidebar that controls the sidebar's
 /// expansion and collapse.
@@ -25,9 +25,16 @@ class SideBarControlButton extends StatelessWidget {
         child: IconButton(
           style: context.theme.iconButtonTheme.style?.copyWith(
             backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
-          icon: const Icon(Icons.close_rounded),
           onPressed: animationController.reverse,
+          // style: context.theme.iconButtonTheme.style?.copyWith(
+          //   backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+          // ),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 16,
+          ),
         ),
       ),
       collapsedChild: IconButton(

@@ -50,7 +50,7 @@ class _ExpandedSideBarItem extends StatelessWidget {
         leading: icon,
         title: Text(
           title,
-          style: context.textTheme.labelLarge,
+          style: context.textTheme.labelMedium,
         ),
         onTap: () => context.goNamed(route.name),
       ),

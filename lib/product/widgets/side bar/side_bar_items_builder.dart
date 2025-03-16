@@ -11,10 +11,10 @@ import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/managers_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
-import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_model.dart';
-import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
-import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_model.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 
 part 'side_bar_item.dart';
 
@@ -31,7 +31,11 @@ final class SideBarItemsBuilder {
   static List<SideBarItemModel> get sideBarItems => [
         SideBarItemModel(
           route: const MainRoute(),
-          icon: SvgPicture.asset(Assets.icons.membersIcon),
+          icon: SvgPicture.asset(
+            Assets.icons.membersIcon,
+            width: 16,
+            height: 16,
+          ),
           title: LocaleKeys.sidebar_members.tr(),
         ),
         SideBarItemModel(

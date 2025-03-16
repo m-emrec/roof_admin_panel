@@ -14,7 +14,7 @@ class Avatar extends StatelessWidget {
   const Avatar({
     required this.imageUrl,
     super.key,
-    this.radius,
+    this.radius = 24,
   });
 
   ///
@@ -24,18 +24,39 @@ class Avatar extends StatelessWidget {
   final double? radius;
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: CircleAvatar(
-        radius: radius ?? 24,
-        backgroundImage: (imageUrl?.isNotEmpty ?? false)
-            ? NetworkImage(imageUrl ?? "")
-            : null,
-        child: Image.network(
-          imageUrl ?? "",
-          errorBuilder: (context, error, stackTrace) =>
-              Image.asset(Assets.images.maleAvatar.path),
-          fit: BoxFit.cover,
-        ),
+    return Container(
+      width: (radius ?? 24) * 2,
+      height: (radius ?? 24) * 2,
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xF992BBA2),
+            blurRadius: 3,
+          ),
+          BoxShadow(
+            color: Color(0xD892BBA2),
+            blurRadius: 6,
+          ),
+          BoxShadow(
+            color: Color(0x7F92BBA2),
+            blurRadius: 8,
+          ),
+          BoxShadow(
+            color: Color(0x2692BBA2),
+            blurRadius: 9,
+          ),
+          BoxShadow(
+            color: Color(0x0592BBA2),
+            blurRadius: 10,
+          ),
+        ],
+        shape: BoxShape.circle,
+      ),
+      child: Image.network(
+        imageUrl ?? "",
+        errorBuilder: (context, error, stackTrace) =>
+            Image.asset(Assets.images.maleAvatar.path),
+        fit: BoxFit.cover,
       ),
     );
   }
