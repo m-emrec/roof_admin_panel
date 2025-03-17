@@ -92,6 +92,14 @@
         {
             "folderPath": "roof_admin_panel/lib/features/managers/",
             "badge": "MN"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/account settings/domain/",
+            "color": "foldercolorizer.color_0066ff"
+        },
+        {
+            "folderPath": "roof_admin_panel/lib/features/account settings/data/",
+            "color": "foldercolorizer.color_555555"
         }
     ]
 }
