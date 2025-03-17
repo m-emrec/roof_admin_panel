@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change_password_dialog.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change%20password%20dialog/change_password_dialog.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';

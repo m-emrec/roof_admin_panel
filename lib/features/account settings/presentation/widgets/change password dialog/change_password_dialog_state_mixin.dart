@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change%20password%20dialog/change_password_dialog.dart';
+import 'package:roof_admin_panel/features/account%20settings/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
+import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
+
+mixin ChangePasswordDialogStateMixin on ConsumerState<ChangePasswordDialog> {
+  final formKey = GlobalKey<FormState>();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  Future<void> submit() async {
+    if (formKey.currentState?.validate() ?? false) {
+      await ref.read(accountSettingsNotifierProvider.notifier).changePassword(
+            passwordController.text,
+          );
+      CustomAlertDialog.hideAlertDialog(context);
+    }
+  }
+
+  String? validator(String? text) {
+    if (text != confirmPasswordController.text) {
+      return "Password does not match";
+    }
+    return ValidatorMethods(text: text).validatePassword;
+  }
+}

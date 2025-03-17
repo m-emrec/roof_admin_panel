@@ -37,7 +37,9 @@ class ValidatorMethods {
 
   /// Validates the password length.
   ///
-  /// Returns `null` if the password is at least 6 characters long, otherwise returns 'Password must be at least 6 characters'.
+  /// Returns `null` if the password is at least 6 characters long and contains
+  /// at least one uppercase letter and one special character, otherwise returns
+  /// 'Weak password'.
   String? get validatePassword {
     return RegExp(
                 r"^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?':{}|<>])[A-Za-z\d!@#$%^&*(),.?':{}|<>]{6,}$")

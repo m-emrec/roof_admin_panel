@@ -96,7 +96,16 @@ class CustomTextField extends TextFormField {
           textInputAction: textInputAction,
           textAlignVertical: TextAlignVertical.bottom,
           decoration: InputDecoration(
-            errorText: state.errorText,
+            error: state.errorText != null
+                ? Text(
+                    state.errorText ?? "",
+                    style: TextStyles().textTheme.bodyMedium?.copyWith(
+                          color: AppColors.accentError[50],
+                        ),
+                  )
+                : null,
+            // errorText: state.errorText,
+
             helperText: helperText,
             labelText: label,
             suffix: suffix,
