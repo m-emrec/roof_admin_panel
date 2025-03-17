@@ -300,6 +300,9 @@
     "pageTitle": "Hesap Ayarları",
     "changeEmail": "E-posta Değiştir",
     "changePassword": "Şifre Değiştir",
+    "validators":{
+        "confirmPassword": "Şifreler eşleşmiyor."
+    },
     "logOut": "Çıkış Yap"
 } 
 }
