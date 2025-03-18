@@ -1,3 +1,4 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 
 /// This widget used to return different widgets based on the screen size.
@@ -103,7 +104,7 @@ class _DeviceScreenTypeGetter {
 }
 
 enum _DeviceScreenType {
-  mobile(0, 480),
+  mobile(0, 599),
   tablet(600, 1024),
   desktop(1025, double.infinity),
   ;

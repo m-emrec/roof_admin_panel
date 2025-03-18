@@ -25,15 +25,15 @@ class TitleWidget extends StatelessWidget {
     return ResponsiveBuilder(
       desktop: Text(
         title,
-        style: context.textTheme.headlineLarge,
+        style: context.textTheme.headlineSmall,
       ),
       tablet: Text(
         title,
-        style: context.textTheme.headlineMedium,
+        style: context.textTheme.headlineSmall,
       ),
       mobile: Text(
         title,
-        style: context.textTheme.headlineMedium,
+        style: context.textTheme.titleLarge,
       ),
     );
   }

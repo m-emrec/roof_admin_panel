@@ -21,9 +21,9 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
       spacing: SpacingSizes.medium,
       children: [
         TitleWidget(title: LocaleKeys.accountSettingView_pageTitle.tr()),
-        SizedBox(
+        const SizedBox(
           // width: context.dynamicWidth(0.6),
-          child: const UserCard(),
+          child: UserCard(),
         ),
       ],
     );
