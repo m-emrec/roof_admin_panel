@@ -24,28 +24,6 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: SpacingSizes.medium,
       children: [
-        // ElevatedButton(
-        //   onPressed: () async {
-        //     FirebaseFunctions.instance //(region: "europe-west1")
-        //         .useFunctionsEmulator("127.0.0.1", 5001);
-        //     final functions =
-        //         FirebaseFunctions.instance; //(region: "europe-west1");
-        //     final res = await functions.httpsCallable("test").call(
-        //           ManagerModel(
-        //             uid: "asda",
-        //             email: "memrec@mec-appdev.com",
-        //             name: "name",
-        //             role: ManagerRoleModel(
-        //               name: "name",
-        //               id: "id",
-        //               permissions: [],
-        //             ),
-        //           ).toJson(),
-        //         );
-        //     Log.debug(res.data["result"]);
-        //   },
-        //   child: Text("Test"),
-        // ),
         TitleWidget(title: LocaleKeys.accountSettingView_pageTitle.tr()),
         Center(
           child: SizedBox(
