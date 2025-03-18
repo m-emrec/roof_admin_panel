@@ -276,6 +276,7 @@ abstract class  LocaleKeys {
   static const accountSettingView_changeEmailSuccess = 'accountSettingView.changeEmailSuccess';
   static const accountSettingView_changePasswordSuccess = 'accountSettingView.changePasswordSuccess';
   static const accountSettingView_changeNameSuccess = 'accountSettingView.changeNameSuccess';
+  static const accountSettingView_logOutConfirmation = 'accountSettingView.logOutConfirmation';
   static const accountSettingView_logOut = 'accountSettingView.logOut';
   static const accountSettingView = 'accountSettingView';
 

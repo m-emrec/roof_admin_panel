@@ -311,7 +311,7 @@
     "changeEmailSuccess": "E-posta adresiniz başarıyla değiştirildi.",
     "changePasswordSuccess": "Şifreniz başarıyla değiştirildi.",
     "changeNameSuccess": "İsminiz başarıyla değiştirildi.",
-    
+    "logOutConfirmation": "Çıkış yapmak istediğinizden emin misiniz?",
 
     "logOut": "Çıkış Yap"
 } 
