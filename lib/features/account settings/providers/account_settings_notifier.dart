@@ -1,20 +1,29 @@
+import 'package:core/resources/data_state.dart';
+import 'package:core/resources/use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/change_password_use_case.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_on_fire_store_after_verification.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_use_case.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_name_use_case.dart';
 
 class AccountSettingsNotifier extends ChangeNotifier {
-  AccountSettingsNotifier(
-      {required ChangePasswordUseCase changePasswordUseCase,
-      required UpdateEmailUseCase updateEmailUseCase,
-      required UpdateNameUseCase updateNameUseCase})
-      : _changePasswordUseCase = changePasswordUseCase,
+  AccountSettingsNotifier({
+    required ChangePasswordUseCase changePasswordUseCase,
+    required UpdateEmailUseCase updateEmailUseCase,
+    required UpdateEmailOnFireStoreAfterVerificationUseCase
+        updateEmailOnFireStoreAfterVerification,
+    required UpdateNameUseCase updateNameUseCase,
+  })  : _changePasswordUseCase = changePasswordUseCase,
         _updateEmailUseCase = updateEmailUseCase,
-        _updateNameUseCase = updateNameUseCase;
+        _updateNameUseCase = updateNameUseCase,
+        _updateEmailOnFireStoreAfterVerification =
+            updateEmailOnFireStoreAfterVerification;
 
   final ChangePasswordUseCase _changePasswordUseCase;
   final UpdateEmailUseCase _updateEmailUseCase;
   final UpdateNameUseCase _updateNameUseCase;
+  final UpdateEmailOnFireStoreAfterVerificationUseCase
+      _updateEmailOnFireStoreAfterVerification;
 
   Future<void> changePassword(String newPassword) async {
     await _changePasswordUseCase(newPassword);
@@ -23,11 +32,17 @@ class AccountSettingsNotifier extends ChangeNotifier {
 
   Future<void> updateEmail(String email) async {
     await _updateEmailUseCase(email);
+
     notifyListeners();
   }
 
   Future<void> updateName(String name) async {
     await _updateNameUseCase(name);
     notifyListeners();
+  }
+
+  Future<DataState<void>> updateEmailOnFireStoreAfterVerification(
+      String uid, String email) async {
+    return _updateEmailOnFireStoreAfterVerification([uid, email]);
   }
 }

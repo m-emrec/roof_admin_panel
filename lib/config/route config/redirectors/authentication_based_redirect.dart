@@ -1,15 +1,13 @@
 import 'dart:async';
 
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/base_route_redirector.dart';
 import 'package:roof_admin_panel/config/route%20config/redirectors/email_verification_based_redirector.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/email_update_verification_redirection_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/initial_route.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/signin_route.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
-import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 /// Checks if the user is authenticated and determines the appropriate route.
 ///
@@ -53,6 +51,10 @@ class AuthenticationBasedRedirector implements BaseRouteRedirector {
   ) async {
     final isLoggedIn = AuthService().currentUser != null;
     final currentLocation = state.fullPath;
+    if (currentLocation ==
+        EmailUpdateVerificationRedirectionRoute().route.path) {
+      return null;
+    }
     if (!isLoggedIn) {
       return SignInRoute().route.path;
     }

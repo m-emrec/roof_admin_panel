@@ -32,4 +32,13 @@ class AccountSettingsRepositoryImpl implements AccountSettingsRepository {
     // TODO: implement updateProfilePicture
     throw UnimplementedError();
   }
+
+  @override
+  Future<DataState<void>> updateEmailOnFireStoreAfterVerification(
+      String uid, String email) {
+    return DataState.handleDataState(
+      () => _accountSettingsDatabaseService
+          .updateEmailOnFireStoreAfterVerification(uid, email),
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:roof_admin_panel/features/account%20settings/data/datasources/ac
 import 'package:roof_admin_panel/features/account%20settings/data/repositories/account_settings_repository_impl.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/repositories/account_settings_repository.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/change_password_use_case.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_on_fire_store_after_verification.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_use_case.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_name_use_case.dart';
 import 'package:roof_admin_panel/features/account%20settings/providers/account_settings_notifier.dart';
@@ -28,11 +29,19 @@ final _updateNameUseCaseProvider = Provider<UpdateNameUseCase>((ref) {
   return UpdateNameUseCase(ref.read(_accountSettingsRepositoryProvider));
 });
 
+final _updateEmailOnFireStoreAfterVerificationUseCaseProvider =
+    Provider<UpdateEmailOnFireStoreAfterVerificationUseCase>((ref) {
+  return UpdateEmailOnFireStoreAfterVerificationUseCase(
+      ref.read(_accountSettingsRepositoryProvider));
+});
+
 final accountSettingsNotifierProvider =
     ChangeNotifierProvider<AccountSettingsNotifier>((ref) {
   return AccountSettingsNotifier(
     changePasswordUseCase: ref.read(_changePasswordUseCaseProvider),
     updateEmailUseCase: ref.read(_updateEmailUseCaseProvider),
     updateNameUseCase: ref.read(_updateNameUseCaseProvider),
+    updateEmailOnFireStoreAfterVerification:
+        ref.read(_updateEmailOnFireStoreAfterVerificationUseCaseProvider),
   );
 });

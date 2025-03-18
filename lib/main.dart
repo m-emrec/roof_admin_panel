@@ -1,6 +1,5 @@
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/enums/locale_enum.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
