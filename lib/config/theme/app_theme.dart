@@ -4,7 +4,6 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/constants/text_styles.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
@@ -127,6 +126,6 @@ class AppTheme {
         _CustomDataTableTheme.theme,
         _FeedbackTileTheme.feedbackTileTheme(_context),
         _GuestsTableTheme.theme(),
-        _UserCardTheme.theme,
+        _UserCardTheme.theme(_context),
       ];
 }

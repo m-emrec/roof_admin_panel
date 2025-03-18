@@ -32,14 +32,14 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog>
             spacing: SpacingSizes.large,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // new password
+              //* new password
               PasswordField(
                 passwordController: passwordController,
                 validator: validator,
                 label:
                     LocaleKeys.accountSettingView_inputFields_newPassword.tr(),
               ),
-              // confirm password
+              //* confirm password
               PasswordField(
                 passwordController: confirmPasswordController,
                 validator: validator,

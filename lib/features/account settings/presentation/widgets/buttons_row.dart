@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,6 +21,8 @@ class ButtonsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       // alignment: WrapAlignment.center,
+      direction: Axis.vertical,
+      spacing: SpacingSizes.small,
       children: [
         // change email
         _Button(
@@ -53,7 +55,7 @@ class ButtonsRow extends StatelessWidget {
         // log out
         _Button(
           label: LocaleKeys.accountSettingView_logOut.tr(),
-          onPressed: () => AuthService().signOut(),
+          onPressed: AuthService().signOut,
           icon: SvgPicture.asset(
             Assets.icons.logoutIcon,
             width: 16,
@@ -78,9 +80,6 @@ class _Button extends StatelessWidget {
     return TextButton.icon(
       label: Text(
         label,
-        style: context.textTheme.labelMedium?.copyWith(
-          color: AppColors.secondaryColor[90],
-        ),
       ),
       iconAlignment: IconAlignment.end,
       onPressed: onPressed,

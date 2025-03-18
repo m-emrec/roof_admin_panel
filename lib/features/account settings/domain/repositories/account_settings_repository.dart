@@ -1,4 +1,5 @@
 import 'package:core/resources/data_state.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/entities/update_email_entity.dart';
 
 abstract class AccountSettingsRepository {
   Future<DataState<void>> changePassword(
@@ -12,5 +13,6 @@ abstract class AccountSettingsRepository {
   Future<DataState<void>> updateProfilePicture(String profilePicture);
 
   Future<DataState<void>> updateEmailOnFireStoreAfterVerification(
-      String uid, String email);
+    UpdateEmailEntity updateEmailEntity,
+  );
 }

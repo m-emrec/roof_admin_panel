@@ -32,11 +32,8 @@ final class AppRouter {
     redirect: AuthenticationBasedRedirector().redirect,
     initialLocation: InitialRoute().route.path,
     routes: [
-      // //* Home Page
       InitialRoute().route,
-      // HomeRoute().shell,
       const MainRoute().shell,
-      // //* [SignIn] page
       SignInRoute().route,
       EmailUpdateVerificationRedirectionRoute().route,
     ],

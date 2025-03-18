@@ -308,6 +308,11 @@
     "validators":{
         "confirmPassword": "Şifreler eşleşmiyor."
     },
+    "changeEmailSuccess": "E-posta adresiniz başarıyla değiştirildi.",
+    "changePasswordSuccess": "Şifreniz başarıyla değiştirildi.",
+    "changeNameSuccess": "İsminiz başarıyla değiştirildi.",
+    
+
     "logOut": "Çıkış Yap"
 } 
 }

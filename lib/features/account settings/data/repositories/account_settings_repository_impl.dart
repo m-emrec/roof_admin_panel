@@ -1,8 +1,12 @@
 import 'package:core/resources/data_state.dart';
 import 'package:roof_admin_panel/features/account%20settings/data/datasources/account_settings_database_service.dart';
+import 'package:roof_admin_panel/features/account%20settings/data/models/update_email_model.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/entities/update_email_entity.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/repositories/account_settings_repository.dart';
 
+///
 class AccountSettingsRepositoryImpl implements AccountSettingsRepository {
+  ///
   AccountSettingsRepositoryImpl(this._accountSettingsDatabaseService);
 
   final AccountSettingsDatabaseService _accountSettingsDatabaseService;
@@ -29,16 +33,19 @@ class AccountSettingsRepositoryImpl implements AccountSettingsRepository {
 
   @override
   Future<DataState<void>> updateProfilePicture(String profilePicture) {
-    // TODO: implement updateProfilePicture
     throw UnimplementedError();
   }
 
   @override
   Future<DataState<void>> updateEmailOnFireStoreAfterVerification(
-      String uid, String email) {
+    UpdateEmailEntity updateEmailModel,
+  ) {
     return DataState.handleDataState(
       () => _accountSettingsDatabaseService
-          .updateEmailOnFireStoreAfterVerification(uid, email),
+          .updateEmailOnFireStoreAfterVerification(
+        UpdateEmailModel.fromEntity(updateEmailModel).uid,
+        UpdateEmailModel.fromEntity(updateEmailModel).email,
+      ),
     );
   }
 }

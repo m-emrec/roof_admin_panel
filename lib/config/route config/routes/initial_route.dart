@@ -18,8 +18,6 @@ final class InitialRoute extends BaseRouteClass {
   static final InitialRoute _instance = InitialRoute._internal();
 
   @override
-  String get title => "Roof Admin Panel";
-  @override
   String get name => 'root';
 
   @override
