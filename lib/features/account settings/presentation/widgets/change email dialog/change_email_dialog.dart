@@ -24,7 +24,8 @@ class ChangeEmailDialog extends ConsumerWidget {
           onPressed: () async => ref
               .read(accountSettingsNotifierProvider.notifier)
               .updateEmail(emailController.text)
-              .showLoading(context: context),
+              .showLoading(context: context)
+              .then((_) => CustomAlertDialog.hideAlertDialog(context)),
           child: Text(LocaleKeys.common_save.tr()),
         ),
       ],

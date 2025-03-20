@@ -19,7 +19,11 @@ class EmailUpdateRedirectionPage extends ConsumerWidget {
   /// It takes the uid and email as parameters
   /// It uses the accountSettingsNotifierProvider to update the email
   const EmailUpdateRedirectionPage(this.uid, this.email, {super.key});
+
+  ///
   final String uid;
+
+  ///
   final String email;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,6 +51,7 @@ class EmailUpdateRedirectionPage extends ConsumerWidget {
   }
 }
 
+/// This will be shown when the email update is failed
 class _Error extends StatelessWidget {
   const _Error(this.errorMessage);
   final String errorMessage;
