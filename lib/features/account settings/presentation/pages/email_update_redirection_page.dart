@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
-import 'package:roof_admin_panel/features/account%20settings/providers/providers.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 

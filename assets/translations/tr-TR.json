@@ -300,6 +300,8 @@
     "pageTitle": "Hesap Ayarları",
     "changeEmail": "E-posta Değiştir",
     "changePassword": "Şifre Değiştir",
+    "changeName": "İsim Değiştir",
+    "changeProfilePicture": "Değiştir",
     "inputFields": {
         "newEmail": "Yeni E-posta",
         "newPassword": "Yeni Şifre",

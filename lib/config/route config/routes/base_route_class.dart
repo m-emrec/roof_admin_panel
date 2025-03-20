@@ -1,14 +1,14 @@
 import 'dart:async';
+import "dart:html" as html;
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import "dart:html" as html;
 
 /// A base class for all routes in the application.
 /// This class defines the basic structure of a route.
 /// All routes in the application should extend this class.
 /// This class is used to create a GoRoute instance for each route.
-abstract class BaseRouteClass {
+abstract base class BaseRouteClass {
   /// A base class for all routes in the application.
   /// This class defines the basic structure of a route.
   /// All routes in the application should extend this class.

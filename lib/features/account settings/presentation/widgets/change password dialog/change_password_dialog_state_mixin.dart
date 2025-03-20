@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change%20password%20dialog/change_password_dialog.dart';
-import 'package:roof_admin_panel/features/account%20settings/providers/providers.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/future_extension.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';

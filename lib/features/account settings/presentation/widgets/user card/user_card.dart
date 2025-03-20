@@ -4,10 +4,9 @@ import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
-import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/buttons_row.dart';
-import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/info_column.dart';
-import 'package:roof_admin_panel/product/utility/current_manager.dart';
-import 'package:roof_admin_panel/product/widgets/avatar.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/account_setting_avatar.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/buttons_row.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/info_column.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 
 class UserCard extends StatelessWidget {
@@ -25,11 +24,7 @@ class UserCard extends StatelessWidget {
         alignment: WrapAlignment.center,
         spacing: SpacingSizes.medium,
         children: [
-          Avatar(
-            imageUrl: CurrentManager.instance.managerModel.imageUrl,
-            radius:
-                context.theme.extension<UserCardThemeExtension>()?.avatarRadius,
-          ),
+          const AccountSettingAvatar(),
           ResponsiveBuilder(
             mobile: Column(
               mainAxisSize: MainAxisSize.min,

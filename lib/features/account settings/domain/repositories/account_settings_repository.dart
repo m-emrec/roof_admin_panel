@@ -10,7 +10,7 @@ abstract class AccountSettingsRepository {
 
   Future<DataState<void>> updateName(String name);
 
-  Future<DataState<void>> updateProfilePicture(String profilePicture);
+  Future<DataState<String>> updateProfilePicture(String profilePicturePath);
 
   Future<DataState<void>> updateEmailOnFireStoreAfterVerification(
     UpdateEmailEntity updateEmailEntity,

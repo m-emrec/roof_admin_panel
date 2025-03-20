@@ -1,4 +1,5 @@
 import 'package:core/resources/data_state.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:roof_admin_panel/features/account%20settings/data/datasources/account_settings_database_service.dart';
 import 'package:roof_admin_panel/features/account%20settings/data/models/update_email_model.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/entities/update_email_entity.dart';
@@ -32,8 +33,13 @@ class AccountSettingsRepositoryImpl implements AccountSettingsRepository {
   }
 
   @override
-  Future<DataState<void>> updateProfilePicture(String profilePicture) {
-    throw UnimplementedError();
+  Future<DataState<String>> updateProfilePicture(
+    String profilePicturePath,
+  ) async {
+    final bytes = await XFile(profilePicturePath).readAsBytes();
+    return DataState.handleDataState(
+      () => _accountSettingsDatabaseService.updateProfilePicture(bytes),
+    );
   }
 
   @override

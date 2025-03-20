@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 /// Route redirectors are used to redirect users to a different route based on
 /// certain conditions.
 // ignore: one_member_abstracts
-abstract class BaseRouteRedirector {
+abstract interface class BaseRouteRedirector {
   /// Constructor for the BaseRouteRedirector class.
   const BaseRouteRedirector();
 

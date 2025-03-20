@@ -5,7 +5,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/pages/account_settings_page.dart';
 
-class AccountSettingsRoute extends BaseRouteClass {
+final class AccountSettingsRoute extends BaseRouteClass {
   @override
   String get name => "AccountSettings";
   @override

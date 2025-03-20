@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';
@@ -12,6 +14,8 @@ import 'package:roof_admin_panel/features/account%20settings/domain/usecases/cha
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_on_fire_store_after_verification.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_use_case.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_name_use_case.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_profile_picture_use_case.dart';
+import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 class AccountSettingsNotifier extends ChangeNotifier {
@@ -21,9 +25,11 @@ class AccountSettingsNotifier extends ChangeNotifier {
     required UpdateEmailOnFireStoreAfterVerificationUseCase
         updateEmailOnFireStoreAfterVerification,
     required UpdateNameUseCase updateNameUseCase,
+    required UpdateProfilePictureUseCase updateProfilePictureUseCase,
   })  : _changePasswordUseCase = changePasswordUseCase,
         _updateEmailUseCase = updateEmailUseCase,
         _updateNameUseCase = updateNameUseCase,
+        _updateProfilePictureUseCase = updateProfilePictureUseCase,
         _updateEmailOnFireStoreAfterVerification =
             updateEmailOnFireStoreAfterVerification;
 
@@ -32,6 +38,8 @@ class AccountSettingsNotifier extends ChangeNotifier {
   final UpdateNameUseCase _updateNameUseCase;
   final UpdateEmailOnFireStoreAfterVerificationUseCase
       _updateEmailOnFireStoreAfterVerification;
+
+  final UpdateProfilePictureUseCase _updateProfilePictureUseCase;
 
   Future<void> changePassword(String newPassword) async {
     await Toast.toastDataStateMessageWrapper(
@@ -45,6 +53,19 @@ class AccountSettingsNotifier extends ChangeNotifier {
     await Toast.toastDataStateMessageWrapper(
       dataState: await _updateEmailUseCase(email),
       successMessage: LocaleKeys.accountSettingView_changeEmailSuccess.tr(),
+    );
+
+    notifyListeners();
+  }
+
+  Future<void> updateProfilePicture(String profilePicturePath) async {
+    DataState.handleDataStateBasedAction(
+      await _updateProfilePictureUseCase(profilePicturePath),
+      onSuccess: (result) =>
+          CurrentManager.changePicture(result.resultData ?? ""),
+      onFailure: (error) => Toast.showErrorToast(
+        desc: AppErrorText.errorMessageConverter(error?.errorMessage ?? ""),
+      ),
     );
 
     notifyListeners();

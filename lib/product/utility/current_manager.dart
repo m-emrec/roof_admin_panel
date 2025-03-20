@@ -70,6 +70,16 @@ final class CurrentManager {
     );
   }
 
+  static void changePicture(String url) {
+    if (_instance != null) {
+      _instance = CurrentManager._(
+        _instance!.managerModel.copyWith(
+          imageUrl: url,
+        ),
+      );
+    }
+  }
+
   /// Fetches the current manager's data from Firestore.
   ///
   /// - Retrieves manager details using the current FirebaseAuth user ID.

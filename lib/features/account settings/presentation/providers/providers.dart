@@ -6,7 +6,8 @@ import 'package:roof_admin_panel/features/account%20settings/domain/usecases/cha
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_on_fire_store_after_verification.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_email_use_case.dart';
 import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_name_use_case.dart';
-import 'package:roof_admin_panel/features/account%20settings/providers/account_settings_notifier.dart';
+import 'package:roof_admin_panel/features/account%20settings/domain/usecases/update_profile_picture_use_case.dart';
+import 'package:roof_admin_panel/features/account%20settings/presentation/providers/account_settings_notifier.dart';
 
 final _serviceProvider = Provider<AccountSettingsDatabaseService>((ref) {
   return AccountSettingsDatabaseService();
@@ -29,6 +30,11 @@ final _updateNameUseCaseProvider = Provider<UpdateNameUseCase>((ref) {
   return UpdateNameUseCase(ref.read(_accountSettingsRepositoryProvider));
 });
 
+final _changeProfilePictureUseCaseProvider =
+    Provider<UpdateProfilePictureUseCase>((ref) {
+  return UpdateProfilePictureUseCase(
+      ref.read(_accountSettingsRepositoryProvider));
+});
 final _updateEmailOnFireStoreAfterVerificationUseCaseProvider =
     Provider<UpdateEmailOnFireStoreAfterVerificationUseCase>((ref) {
   return UpdateEmailOnFireStoreAfterVerificationUseCase(
@@ -43,5 +49,6 @@ final accountSettingsNotifierProvider =
     updateNameUseCase: ref.read(_updateNameUseCaseProvider),
     updateEmailOnFireStoreAfterVerification:
         ref.read(_updateEmailOnFireStoreAfterVerificationUseCaseProvider),
+    updateProfilePictureUseCase: ref.read(_changeProfilePictureUseCaseProvider),
   );
 });
