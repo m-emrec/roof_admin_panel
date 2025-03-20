@@ -22,7 +22,7 @@ abstract class PermissionHandler {
 
   /// The current user's permissions, fetched from [CurrentManager].
   final List<Permissions> _currentUserPermissions =
-      CurrentManager.instance.managerModel.role.permissions;
+      CurrentManager.instance.managerModelNotifier.value.role.permissions;
 
   /// Checks if the user has at least one of the required permissions.
   ///

@@ -39,7 +39,7 @@ class _ViewManagerState extends State<ViewManager> {
       child: FutureBuilder(
         future: CurrentManager.init(),
         builder: (context, snapshot) {
-          if (CurrentManager.instance.managerModel.uid.isEmpty) {
+          if (CurrentManager.instance.managerModelNotifier.value.uid.isEmpty) {
             return const _LoadingView();
           }
           return Scaffold(

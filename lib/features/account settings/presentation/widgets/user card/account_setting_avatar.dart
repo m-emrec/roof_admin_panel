@@ -34,7 +34,7 @@ class _AccountSettingAvatarState extends ConsumerState<AccountSettingAvatar>
         children: [
           // Profile Picture
           ValueListenableBuilder(
-            valueListenable: CurrentManager.valueNotifier!,
+            valueListenable: CurrentManager.instance.managerModelNotifier,
             builder: (context, value, child) => Avatar(
               imageUrl: value.imageUrl,
               radius: avatarRadius,

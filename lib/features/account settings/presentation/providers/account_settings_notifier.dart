@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
 import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';

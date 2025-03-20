@@ -29,23 +29,33 @@ import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart'
 ///
 /// **Note:** Calling [instance] without initializing via [init] will result
 /// in fetching the default dummy manager data.
-final class CurrentManager extends ChangeNotifier {
+final class CurrentManager {
   /// Private constructor to enforce singleton usage.
-  CurrentManager._(this.managerModel);
+  CurrentManager._(this.managerModelNotifier);
 
   /// Holds the singleton instance.
   static CurrentManager? _instance;
 
+  /// Notifier for the current manager's data.
+  /// **The reason for using a `ValueNotifier` is to allow listening to changes.**
+  /// **This is useful for updating UI when the manager's data changes.**
+  /// **To access the manager's data, use the [managerModel] getter.**
+  ///
+  ///
+  final ValueNotifier<ManagerModel> managerModelNotifier;
+
   /// The current manager's data.
-  final ManagerModel managerModel;
-  static ValueNotifier<ManagerModel>? valueNotifier;
+  ManagerModel get managerModel => managerModelNotifier.value;
 
   /// Dummy manager data used as fallback.
-  static final _DUMMY_MANAGER_DATA = ManagerModel(
-    uid: "",
-    name: "",
-    email: "",
-    role: ManagerRoleModel(name: "", permissions: [], id: ""),
+  // ignore: non_constant_identifier_names
+  static final _DUMMY_MANAGER_DATA = ValueNotifier(
+    ManagerModel(
+      uid: "",
+      name: "",
+      email: "",
+      role: ManagerRoleModel(name: "", permissions: [], id: ""),
+    ),
   );
 
   /// Returns the singleton instance of [CurrentManager].
@@ -68,22 +78,15 @@ final class CurrentManager extends ChangeNotifier {
   /// ```
   static Future<void> init() async {
     _instance ??= CurrentManager._(
-      ManagerModel.fromJson(await _getManagerData()),
+      ValueNotifier(ManagerModel.fromJson(await _getManagerData())),
     );
-    if (_instance != null) {
-      valueNotifier = ValueNotifier(_instance!.managerModel);
-    }
   }
 
   void changePicture(String url) {
     if (_instance != null) {
-      _instance = CurrentManager._(
-        _instance!.managerModel.copyWith(
-          imageUrl: url,
-        ),
+      managerModelNotifier.value = managerModelNotifier.value.copyWith(
+        imageUrl: url,
       );
-      valueNotifier?.value = _instance!.managerModel;
-      // notifyListeners();
     }
   }
 

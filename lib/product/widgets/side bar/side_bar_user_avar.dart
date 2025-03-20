@@ -37,28 +37,30 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = CurrentManager.instance.managerModel;
-    return ListTile(
-      title: Text(user.name, style: context.textTheme.labelMedium),
-      leading: Avatar(
-        imageUrl: user.imageUrl,
-        radius: 12,
-      ),
-      shape: Border(
-        bottom: BorderSide(
-          color: AppColors.primaryColor,
-          width: 2,
+    return ValueListenableBuilder(
+      valueListenable: CurrentManager.instance.managerModelNotifier,
+      builder: (context, user, child) => ListTile(
+        title: Text(user.name, style: context.textTheme.labelMedium),
+        leading: Avatar(
+          imageUrl: user.imageUrl,
+          radius: 12,
         ),
-      ),
-      trailing: GestureDetector(
-        child: const MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: Icon(
-            Icons.settings,
-            size: 16,
+        shape: Border(
+          bottom: BorderSide(
+            color: AppColors.primaryColor,
+            width: 2,
           ),
         ),
-        onTap: () => context.goNamed(AccountSettingsRoute().name),
+        trailing: GestureDetector(
+          child: const MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Icon(
+              Icons.settings,
+              size: 16,
+            ),
+          ),
+          onTap: () => context.goNamed(AccountSettingsRoute().name),
+        ),
       ),
     );
   }
@@ -69,9 +71,12 @@ class _CollapsedSideBarUserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Avatar(
-      imageUrl: CurrentManager.instance.managerModel.imageUrl,
-      radius: 16,
+    return ValueListenableBuilder(
+      valueListenable: CurrentManager.instance.managerModelNotifier,
+      builder: (context, user, child) => Avatar(
+        imageUrl: user.imageUrl,
+        radius: 16,
+      ),
     );
   }
 }
