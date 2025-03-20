@@ -281,5 +281,10 @@ abstract class  LocaleKeys {
   static const accountSettingView_logOutConfirmation = 'accountSettingView.logOutConfirmation';
   static const accountSettingView_logOut = 'accountSettingView.logOut';
   static const accountSettingView = 'accountSettingView';
+  static const notFoundPage_pageTitle = 'notFoundPage.pageTitle';
+  static const notFoundPage_pageNotFound = 'notFoundPage.pageNotFound';
+  static const notFoundPage_goHome = 'notFoundPage.goHome';
+  static const notFoundPage_goBack = 'notFoundPage.goBack';
+  static const notFoundPage = 'notFoundPage';
 
 }

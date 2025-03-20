@@ -316,5 +316,11 @@
     "logOutConfirmation": "Çıkış yapmak istediğinizden emin misiniz?",
 
     "logOut": "Çıkış Yap"
-} 
+},
+"notFoundPage":{
+    "pageTitle": "404",
+    "pageNotFound": "Aradığın sayfa bulunamadı.",
+    "goHome": "Ana Sayfaya Git",
+    "goBack": "Geri Dön"
+}
 }

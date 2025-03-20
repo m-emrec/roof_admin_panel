@@ -28,6 +28,9 @@ class $AssetsAnimationsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/404_icon.svg
+  String get a404Icon => 'assets/icons/404_icon.svg';
+
   /// File path: assets/icons/addMemberIcon.svg
   String get addMemberIcon => 'assets/icons/addMemberIcon.svg';
 
@@ -91,6 +94,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    a404Icon,
     addMemberIcon,
     addEventIcon,
     addIcon,
