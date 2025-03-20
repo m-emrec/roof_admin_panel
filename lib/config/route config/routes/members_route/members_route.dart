@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/account_settings_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dart';
@@ -16,6 +18,10 @@ final class MainRoute extends BaseRouteClass {
 
   @override
   String get name => "Members";
+
+  @override
+  String get title => LocaleKeys.membersView_pageTitle.tr();
+
   @override
   List<GoRoute> get routes => [
         AddMemberRoute().route,

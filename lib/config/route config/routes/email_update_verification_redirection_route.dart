@@ -17,6 +17,9 @@ final class EmailUpdateVerificationRedirectionRoute extends BaseRouteClass {
   String get name => "EmailUpdateVerificationRedirectionRoute";
 
   @override
+  String get title => "Email Update Verification Redirection";
+
+  @override
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
       (context, state) {
         final uid = state.pathParameters["uid"];
