@@ -44,7 +44,6 @@ class FilterRow extends StatelessWidget {
                   .toList(),
             ),
           ),
-          const Spacer(),
           const _FeedbackTitleFilter(),
         ],
       ),
