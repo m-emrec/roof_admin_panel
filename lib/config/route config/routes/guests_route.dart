@@ -25,5 +25,5 @@ final class GuestsRoute extends BaseRouteClass {
           ).visibleOrPermissionInfo;
 
   @override
-  String get path => "/guests";
+  String get path => "/misafirler";
 }

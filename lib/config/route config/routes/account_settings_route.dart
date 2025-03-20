@@ -15,5 +15,5 @@ final class AccountSettingsRoute extends BaseRouteClass {
       (context, state) => const AccountSettingsPage();
 
   @override
-  String get path => "/account_settings";
+  String get path => "/hesap-ayarlari";
 }

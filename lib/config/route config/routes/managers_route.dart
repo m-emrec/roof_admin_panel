@@ -25,5 +25,5 @@ final class ManagersRoute extends BaseRouteClass {
           ).visibleOrPermissionInfo;
 
   @override
-  String get path => "/managers";
+  String get path => "/yoneticiler";
 }

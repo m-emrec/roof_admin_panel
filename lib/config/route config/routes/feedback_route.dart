@@ -23,5 +23,5 @@ final class FeedbackRoute extends BaseRouteClass {
           ).visibleOrPermissionInfo;
 
   @override
-  String get path => "/feedback";
+  String get path => "/geri-bildirimler";
 }

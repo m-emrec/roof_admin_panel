@@ -52,5 +52,5 @@ final class MainRoute extends BaseRouteClass {
       );
 
   @override
-  String get path => "/members";
+  String get path => "/uyeler";
 }

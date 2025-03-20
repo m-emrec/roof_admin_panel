@@ -16,5 +16,5 @@ final class AddMemberRoute extends BaseRouteClass {
       (context, state) => const AddMemberPage();
 
   @override
-  String get path => "/add-member";
+  String get path => "/uye-ekle";
 }
