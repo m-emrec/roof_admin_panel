@@ -43,14 +43,20 @@ class _ExpandedSideBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColoredBox(
       color: SideBarController().isItemSelected(context, route.path)
-          ? AppColors.backgroundColor[40] ?? Colors.transparent
-          : Colors.transparent,
+          ? context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.selectedItemColor ??
+              Colors.transparent
+          : context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.unSelectedItemColor ??
+              Colors.transparent,
       child: ListTile(
         contentPadding: const AppPadding.horizontalSSymmetric(),
         leading: icon,
         title: Text(
           title,
-          style: context.textTheme.labelMedium,
+          style: context.theme.extension<SideBarThemeExtension>()?.textStyle,
         ),
         onTap: () => context.goNamed(route.name),
       ),
@@ -75,8 +81,12 @@ class _CollapsedSideBarItem extends StatelessWidget {
       style: context.theme.iconButtonTheme.style?.copyWith(
         backgroundColor: WidgetStatePropertyAll(
           SideBarController().isItemSelected(context, route.path)
-              ? AppColors.backgroundColor[40]
-              : Colors.transparent,
+              ? context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.selectedItemColor
+              : context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.unSelectedItemColor,
         ),
       ),
       onPressed: () => context.goNamed(route.name),

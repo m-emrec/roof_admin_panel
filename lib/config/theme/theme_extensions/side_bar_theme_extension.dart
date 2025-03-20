@@ -5,11 +5,19 @@ class SideBarThemeExtension extends ThemeExtension<SideBarThemeExtension> {
   final double collapsedWidth;
   final Color? backgroundColor;
   final List<BoxShadow>? boxShadow;
+  final Color? selectedItemColor;
+  final Color? unSelectedItemColor;
+  final TextStyle? textStyle;
+  final Size? iconSize;
   SideBarThemeExtension({
     required this.expandedWidth,
     required this.collapsedWidth,
     this.backgroundColor,
     this.boxShadow,
+    this.selectedItemColor,
+    this.unSelectedItemColor,
+    this.textStyle,
+    this.iconSize,
   });
 
   @override

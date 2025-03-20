@@ -11,6 +11,7 @@ import 'package:roof_admin_panel/config/route%20config/routes/feedback_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/guests_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/managers_route.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_model.dart';
@@ -28,35 +29,67 @@ final class SideBarItemsBuilder {
   /// It contains the sidebar items.
   ///
   ///* When you want to add a new sidebar item, you should add it to this list.
-  static List<SideBarItemModel> get sideBarItems => [
+  static List<SideBarItemModel> sideBarItems(BuildContext context) => [
         SideBarItemModel(
           route: const MainRoute(),
           icon: SvgPicture.asset(
             Assets.icons.membersIcon,
-            width: 16,
-            height: 16,
+            width: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.width,
+            height: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.height,
           ),
           title: LocaleKeys.sidebar_members.tr(),
         ),
         SideBarItemModel(
           route: FeedbackRoute(),
-          icon: SvgPicture.asset(Assets.icons.feedbacksIcon),
+          icon: SvgPicture.asset(
+            Assets.icons.feedbacksIcon,
+            width: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.width,
+            height: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.height,
+          ),
           title: LocaleKeys.sidebar_feedback.tr(),
         ),
         SideBarItemModel(
           title: LocaleKeys.sidebar_guests.tr(),
-          icon: SvgPicture.asset(Assets.icons.guestsIcon),
+          icon: SvgPicture.asset(
+            Assets.icons.guestsIcon,
+            width: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.width,
+            height: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.height,
+          ),
           route: GuestsRoute(),
         ),
         SideBarItemModel(
           title: LocaleKeys.sidebar_managers.tr(),
-          icon: const Icon(Icons.manage_accounts),
+          icon: Icon(
+            Icons.manage_accounts,
+            size: context.theme
+                .extension<SideBarThemeExtension>()
+                ?.iconSize
+                ?.width,
+          ),
           route: ManagersRoute(),
         ),
       ];
 
-  static List<Widget> create() {
-    return sideBarItems
+  static List<Widget> create(BuildContext context) {
+    return sideBarItems(context)
         .map(
           (item) => _SideBarItem(
             icon: item.icon,

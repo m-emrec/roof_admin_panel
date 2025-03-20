@@ -122,7 +122,7 @@ class AppTheme {
         _AddProfilePictureTheme.addProfilePictureTheme,
         _InlineTextButtonTheme.inlineTextButtonTheme,
         _CustomBottomSheetTheme.customBottomSheetTheme,
-        _SideBarTheme.sideBarTheme,
+        _SideBarTheme.sideBarTheme(_context),
         _CustomDataTableTheme.theme,
         _FeedbackTileTheme.feedbackTileTheme(_context),
         _GuestsTableTheme.theme(),

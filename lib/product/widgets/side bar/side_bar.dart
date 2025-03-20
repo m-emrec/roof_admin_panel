@@ -55,7 +55,7 @@ class _SideBarState extends State<SideBar>
               spacing: SpacingSizes.extraSmall,
               children: [
                 SideBarUserAvatar(),
-                ...SideBarItemsBuilder.create(),
+                ...SideBarItemsBuilder.create(context),
               ],
             ),
           ],
