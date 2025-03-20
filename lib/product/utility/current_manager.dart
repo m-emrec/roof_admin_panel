@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/firebase/database%20keys/manager_doc_keys.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
@@ -28,12 +29,16 @@ import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart'
 ///
 /// **Note:** Calling [instance] without initializing via [init] will result
 /// in fetching the default dummy manager data.
-final class CurrentManager {
+final class CurrentManager extends ChangeNotifier {
   /// Private constructor to enforce singleton usage.
   CurrentManager._(this.managerModel);
 
   /// Holds the singleton instance.
   static CurrentManager? _instance;
+
+  /// The current manager's data.
+  final ManagerModel managerModel;
+  static ValueNotifier<ManagerModel>? valueNotifier;
 
   /// Dummy manager data used as fallback.
   static final _DUMMY_MANAGER_DATA = ManagerModel(
@@ -53,9 +58,6 @@ final class CurrentManager {
     return _instance ?? CurrentManager._(_DUMMY_MANAGER_DATA);
   }
 
-  /// The current manager's data.
-  final ManagerModel managerModel;
-
   /// Initializes the singleton instance by fetching manager data from Firestore.
   ///
   /// This method **must** be called before accessing [instance].
@@ -68,15 +70,20 @@ final class CurrentManager {
     _instance ??= CurrentManager._(
       ManagerModel.fromJson(await _getManagerData()),
     );
+    if (_instance != null) {
+      valueNotifier = ValueNotifier(_instance!.managerModel);
+    }
   }
 
-  static void changePicture(String url) {
+  void changePicture(String url) {
     if (_instance != null) {
       _instance = CurrentManager._(
         _instance!.managerModel.copyWith(
           imageUrl: url,
         ),
       );
+      valueNotifier?.value = _instance!.managerModel;
+      // notifyListeners();
     }
   }
 

@@ -55,9 +55,9 @@ class Avatar extends StatelessWidget {
       ),
       child: Image.network(
         imageUrl ?? "",
+        fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) =>
             Image.asset(Assets.images.maleAvatar.path),
-        fit: BoxFit.cover,
       ),
     );
   }

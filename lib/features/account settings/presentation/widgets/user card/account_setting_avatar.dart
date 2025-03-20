@@ -33,9 +33,13 @@ class _AccountSettingAvatarState extends ConsumerState<AccountSettingAvatar>
         alignment: Alignment.center,
         children: [
           // Profile Picture
-          Avatar(
-            imageUrl: CurrentManager.instance.managerModel.imageUrl,
-            radius: avatarRadius,
+          ValueListenableBuilder(
+            valueListenable: CurrentManager.valueNotifier!,
+            builder: (context, value, child) => Avatar(
+              imageUrl: value.imageUrl,
+              radius: avatarRadius,
+            ),
+            // child: ,
           ),
           // Edit Profile Picture Overlay
           AnimatedOpacity(

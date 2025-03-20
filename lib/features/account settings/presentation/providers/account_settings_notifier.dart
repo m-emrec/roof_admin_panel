@@ -62,13 +62,11 @@ class AccountSettingsNotifier extends ChangeNotifier {
     DataState.handleDataStateBasedAction(
       await _updateProfilePictureUseCase(profilePicturePath),
       onSuccess: (result) =>
-          CurrentManager.changePicture(result.resultData ?? ""),
+          CurrentManager.instance.changePicture(result.resultData ?? ""),
       onFailure: (error) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(error?.errorMessage ?? ""),
       ),
     );
-
-    notifyListeners();
   }
 
   Future<void> updateName(String name) async {
