@@ -1,5 +1,4 @@
 import 'package:core/extensions/context_extension.dart';
-import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -77,16 +76,19 @@ final class SideBarItemsBuilder {
         ),
         SideBarItemModel(
           title: LocaleKeys.sidebar_managers.tr(),
-          icon: Icon(
-            Icons.manage_accounts,
-            size: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.width,
-          ),
+          icon: _icon(Assets.icons.managersIcon, context),
           route: ManagersRoute(),
         ),
       ];
+
+  static SvgPicture _icon(String iconPath, BuildContext context) {
+    return SvgPicture.asset(
+      iconPath,
+      width: context.theme.extension<SideBarThemeExtension>()?.iconSize?.width,
+      height:
+          context.theme.extension<SideBarThemeExtension>()?.iconSize?.height,
+    );
+  }
 
   static List<Widget> create(BuildContext context) {
     return sideBarItems(context)

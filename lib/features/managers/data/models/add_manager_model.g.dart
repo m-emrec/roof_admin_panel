@@ -10,7 +10,7 @@ AddManagerModel _$AddManagerModelFromJson(Map<String, dynamic> json) =>
     AddManagerModel(
       name: json['name'] as String,
       email: json['email'] as String,
-      role: json['roleDocumentId'] as String,
+      role: json['role'] as String,
     );
 
 Map<String, dynamic> _$AddManagerModelToJson(AddManagerModel instance) =>
