@@ -104,13 +104,6 @@ final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   );
 });
 
-final filterNotifierProvider =
-    StateNotifierProvider<FilterNotifier, List<FilterModel>>((ref) {
-  return FilterNotifier(
-    ref.watch(membersTableSourceProvider),
-  );
-});
-
 /// This provider is used to provide the [MembersViewModel] instance.
 final membersViewModelProvider =
     StateNotifierProvider<MembersViewModel, AsyncValue<List<UserModel>?>>(
@@ -119,5 +112,13 @@ final membersViewModelProvider =
     ref.read(membersTableSourceProvider),
     ref.read(_fetchFirst20UsersUseCaseProvider),
     ref.read(_fetchNext20UserUseCaseProvider),
+  );
+});
+
+final filterNotifierProvider =
+    StateNotifierProvider<FilterNotifier, List<UserModel>>((ref) {
+  return FilterNotifier(
+    ref.watch(membersViewModelProvider).value ?? [],
+    ref.read(membersTableSourceProvider),
   );
 });

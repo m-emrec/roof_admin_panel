@@ -1,4 +1,4 @@
-import 'package:core/utils/models/user_model.dart';
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +26,10 @@ class MembersTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = DataGridController();
+    Log.debug(ref
+        .read(membersTableSourceProvider)
+        .filterConditions[MemberTableNames.membershipEndDate.name]?[0]
+        .value);
     return CustomTable(
       controller: controller,
       source: ref.watch(membersTableSourceProvider),
@@ -38,13 +42,13 @@ class MembersTable extends ConsumerWidget {
           // filterIconPosition: ColumnHeaderIconPosition.start,
         ),
         GridColumn(
-          columnName: MemberTableNames.memberName.name,
-          label: ColumnTitle(
-            title: LocaleKeys.membersView_tableColumnLabels_name.tr(),
-          ),
-          columnWidthMode: ColumnWidthMode.auto,
-          // allowEditing: false,
-        ),
+            columnName: MemberTableNames.memberName.name,
+            label: ColumnTitle(
+              title: LocaleKeys.membersView_tableColumnLabels_name.tr(),
+            ),
+            columnWidthMode: ColumnWidthMode.auto,
+            // allowEditing: false,
+            allowFiltering: true),
         GridColumn(
           columnName: MemberTableNames.membershipEndDate.name,
           label: ColumnTitle(

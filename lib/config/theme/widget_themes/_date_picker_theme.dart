@@ -9,6 +9,8 @@ final class _DatePickerTheme {
         AppColors.accentError[50],
       ),
     ),
+    rangePickerBackgroundColor: AppColors.backgroundColor[80],
+    rangeSelectionBackgroundColor: AppColors.secondaryColor[50],
     confirmButtonStyle: ButtonStyle(
       foregroundColor: WidgetStatePropertyAll(
         AppColors.primaryColor[50],

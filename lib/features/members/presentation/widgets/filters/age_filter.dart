@@ -1,7 +1,8 @@
 import 'package:core/extensions/context_extension.dart';
-import 'package:core/utils/constants/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 
 class AgeFilter extends ConsumerStatefulWidget {
@@ -56,6 +57,8 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
       children: [
         Flexible(
           child: RangeSlider(
+            onChangeEnd: (value) =>
+                ref.read(filterNotifierProvider.notifier).addAgeFilter(value),
             divisions: _maxAge.round() - _minAge.round(),
             labels: RangeLabels(
               _rangeValues.start.round().toString(),
@@ -78,12 +81,13 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
         ),
         Text.rich(
           TextSpan(
-            text: '${_rangeValues.start.round()} - ${_rangeValues.end.round()}',
+            text:
+                '${_rangeValues.start.round()} - ${_rangeValues.end.round()} ',
             style: context.textTheme.labelMedium,
             children: [
               TextSpan(
-                text: ' Yaş Arası',
-                style: context.textTheme.labelSmall,
+                text: LocaleKeys.membersView_filters_ageFilter.tr(),
+                style: context.textTheme.bodySmall,
               ),
             ],
           ),

@@ -162,6 +162,15 @@ abstract class  LocaleKeys {
   static const membersView_pageTitle = 'membersView.pageTitle';
   static const membersView_memberCount = 'membersView.memberCount';
   static const membersView_addMember = 'membersView.addMember';
+  static const membersView_filters_title = 'membersView.filters.title';
+  static const membersView_filters_roleFilter = 'membersView.filters.roleFilter';
+  static const membersView_filters_roleFilterLabel = 'membersView.filters.roleFilterLabel';
+  static const membersView_filters_ageFilter = 'membersView.filters.ageFilter';
+  static const membersView_filters_ageFilterLabel = 'membersView.filters.ageFilterLabel';
+  static const membersView_filters_memberShipEndDurationFilter = 'membersView.filters.memberShipEndDurationFilter';
+  static const membersView_filters_memberShipEndDurationFilterLabel = 'membersView.filters.memberShipEndDurationFilterLabel';
+  static const membersView_filters_clearFilters = 'membersView.filters.clearFilters';
+  static const membersView_filters = 'membersView.filters';
   static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
   static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
   static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';

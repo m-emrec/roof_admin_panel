@@ -46,7 +46,7 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
     if (result is DataSuccess) {
       state = AsyncData(result.resultData);
       // users = state.value;
-      _membersTableDataSource.generateUserDataGridRows(result.resultData!);
+      // _membersTableDataSource.generateUserDataGridRows(result.resultData!);
     } else if (result is DataFailed) {
       Toast.showErrorToast(desc: result.errorMessage);
     }

@@ -1,10 +1,13 @@
-import 'package:core/utils/logger/logger.dart';
+import 'package:core/core.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filters/age_filter.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/filters/membership_end_duration_filter.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/filters/role_filter.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
 class FilterDialog extends ConsumerWidget {
@@ -13,18 +16,21 @@ class FilterDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomAlertDialog(
-      title: const Text("Filter"),
-      content: SizedBox(
+      title: Text(LocaleKeys.membersView_filters_title.tr()),
+      content: const SizedBox(
         width: 400,
-        child: const Column(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          spacing: SpacingSizes.small,
           children: [
             /// age
             AgeFilter(),
 
             // membership end duration ( slider )
-
+            MembershipEndDurationFilter(),
             // role ( dropdown )
+            RoleFilter(),
           ],
         ),
       ),
@@ -35,12 +41,21 @@ class FilterDialog extends ConsumerWidget {
           },
           child: Text(LocaleKeys.common_close.tr()),
         ),
+        Visibility(
+          visible: ref.read(filterNotifierProvider.notifier).isFilterApplied,
+          child: TextButton(
+            onPressed: () =>
+                ref.read(filterNotifierProvider.notifier).clearFilters(),
+            child: Text(
+              LocaleKeys.membersView_filters_clearFilters.tr(),
+            ),
+          ),
+        ),
         TextButton(
           onPressed: () {
             ref.read(filterNotifierProvider.notifier).applyFilters();
-            CustomAlertDialog.hideAlertDialog(context);
-
             Log.debug(ref.read(membersTableSourceProvider).filterConditions);
+            CustomAlertDialog.hideAlertDialog(context);
           },
           child: Text(LocaleKeys.common_save.tr()),
         ),
