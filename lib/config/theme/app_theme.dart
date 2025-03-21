@@ -41,6 +41,7 @@ part 'widget_themes/custom_data_table_theme.dart.dart';
 part './widget_themes/_feedback_tile_theme.dart';
 part './widget_themes/guests_table_theme.dart';
 part './widget_themes/user_card_theme.dart';
+part './widget_themes/slider_theme.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -112,6 +113,7 @@ class AppTheme {
         dataTableTheme: const DataTableThemeData(
           headingRowAlignment: MainAxisAlignment.start,
         ),
+        sliderTheme: _SliderTheme.theme(_context),
         iconButtonTheme: _IconButtonTheme.iconButtonTheme,
       );
 

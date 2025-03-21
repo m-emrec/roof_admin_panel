@@ -14,10 +14,19 @@ class FilterDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomAlertDialog(
       title: const Text("Filter"),
-      content: const Column(
-        children: [
-          AgeFilter(),
-        ],
+      content: SizedBox(
+        width: 400,
+        child: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            /// age
+            AgeFilter(),
+
+            // membership end duration ( slider )
+
+            // role ( dropdown )
+          ],
+        ),
       ),
       actions: [
         TextButton(

@@ -1,9 +1,8 @@
+import 'package:core/extensions/context_extension.dart';
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel.dart';
-import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class AgeFilter extends ConsumerStatefulWidget {
   const AgeFilter({super.key});
@@ -53,47 +52,55 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Row(
-        children: [
-          Column(
+    return Row(
+      children: [
+        Flexible(
+          child: RangeSlider(
+            divisions: _maxAge.round() - _minAge.round(),
+            labels: RangeLabels(
+              _rangeValues.start.round().toString(),
+              _rangeValues.end.round().toString(),
+            ),
+            onChanged: (value) {
+              if (value == const RangeValues(_minAge, _maxAge)) {
+                _isFilterApplied = false;
+              } else {
+                _isFilterApplied = true;
+              }
+              setState(() {
+                _rangeValues = value;
+              });
+            },
+            min: _minAge,
+            max: _maxAge,
+            values: _rangeValues,
+          ),
+        ),
+        Text.rich(
+          TextSpan(
+            text: '${_rangeValues.start.round()} - ${_rangeValues.end.round()}',
+            style: context.textTheme.labelMedium,
             children: [
-              RangeSlider(
-                labels: RangeLabels(
-                  _rangeValues.start.round().toString(),
-                  _rangeValues.end.round().toString(),
-                ),
-                onChanged: (value) {
-                  if (value == RangeValues(_minAge, _maxAge)) {
-                    _isFilterApplied = false;
-                  } else {
-                    _isFilterApplied = true;
-                  }
-                  setState(() {
-                    _rangeValues = value;
-                  });
-                },
-                min: 18,
-                max: 100,
-                values: _rangeValues,
-              ),
-              Text(
-                '${_rangeValues.start.round()} - ${_rangeValues.end.round()} Yaş Arası',
+              TextSpan(
+                text: ' Yaş Arası',
+                style: context.textTheme.labelSmall,
               ),
             ],
           ),
-          Visibility(
-            visible: _isFilterApplied,
-            child: IconButton(
-                onPressed: () {
-                  ref
-                      .read(filterNotifierProvider.notifier)
-                      .addAgeFilter(_rangeValues.start, _rangeValues.end);
-                },
-                icon: Icon(Icons.check)),
-          ),
-        ],
-      ),
+        ),
+
+        // Visibility(
+        //   visible: _isFilterApplied,
+        //   child: IconButton(
+        //     onPressed: () {
+        //       ref
+        //           .read(filterNotifierProvider.notifier)
+        //           .addAgeFilter(_rangeValues.start, _rangeValues.end);
+        //     },
+        //     icon: const Icon(Icons.check),
+        //   ),
+        // ),
+      ],
     );
   }
 }

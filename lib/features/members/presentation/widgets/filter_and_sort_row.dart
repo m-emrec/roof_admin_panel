@@ -15,6 +15,14 @@ class FilterAndSortRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      CustomAlertDialog.showAlertDialog(
+        barrierDismissible: true,
+        context: context,
+        content: const FilterDialog(),
+      );
+    });
+
     return Row(
       spacing: SpacingSizes.medium,
       mainAxisAlignment: MainAxisAlignment.end,
