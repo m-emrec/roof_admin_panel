@@ -1,4 +1,5 @@
 import 'package:core/extensions/context_extension.dart';
+import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MembersAgeFilter extends ConsumerWidget {
     _rangeValues =
         ref.watch(filterNotifierProvider).ageFilter ?? _defaultRangeValues;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         _TitleSection(
@@ -94,13 +96,12 @@ class _TitleSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      spacing: SpacingSizes.extraSmall,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      // spacing: SpacingSizes.extraSmall,
       children: [
-        SectionTitle(LocaleKeys.membersView_filters_ageFilterLabel.tr()),
-
         /// age filter text
+        SectionTitle(LocaleKeys.membersView_filters_ageFilterLabel.tr()),
         Text.rich(
           TextSpan(
             text:
@@ -121,8 +122,11 @@ class _TitleSection extends ConsumerWidget {
           child: InkWell(
             onTap: () =>
                 ref.read(filterNotifierProvider.notifier).removeAgeFilter(),
-            child: const Icon(
-              Icons.clear,
+            child: Text(
+              LocaleKeys.common_clear.tr(),
+              style: context.textTheme.labelMedium?.copyWith(
+                color: AppColors.accentError[50],
+              ),
             ),
           ),
         ),

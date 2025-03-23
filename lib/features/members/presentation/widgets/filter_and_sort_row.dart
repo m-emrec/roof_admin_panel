@@ -21,34 +21,48 @@ class FilterAndSortRow extends ConsumerWidget {
       spacing: SpacingSizes.medium,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        InkWell(
-          mouseCursor: SystemMouseCursors.click,
-          onTap: () => CustomAlertDialog.showAlertDialog(
-            barrierDismissible: true,
-            context: context,
-            content: const FilterDialog(),
-          ).whenComplete(
-            // Revert unapplied filters when the dialog is closed.
-            () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
-          ),
-          child: Chip(
-            onDeleted: ref.watch(filterNotifierProvider).isFilterApplied
-                ? () => ref.read(filterNotifierProvider).clearFilters()
-                : null,
-            backgroundColor: context.theme.scaffoldBackgroundColor,
-            label: SvgPicture.asset(
-              Assets.icons.filterIcon,
-              width: 16,
-              height: 16,
-            ),
-          ),
-        ),
+        const _Filter(),
         SvgPicture.asset(
           Assets.icons.sortIcon,
           width: 16,
           height: 16,
         ),
       ],
+    );
+  }
+}
+
+class _Filter extends ConsumerWidget {
+  const _Filter();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FilterChip(
+      selected: ref.watch(filterNotifierProvider).isFilterApplied,
+      onDeleted: ref.watch(filterNotifierProvider).isFilterApplied
+          ? () => ref.read(filterNotifierProvider).clearFilters()
+          : null,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      showCheckmark: false,
+      onSelected: (_) => CustomAlertDialog.showAlertDialog(
+        barrierDismissible: true,
+        context: context,
+        content: const FilterDialog(),
+      ).whenComplete(
+        // Revert unapplied filters when the dialog is closed.
+        () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
+      ),
+      // color: WidgetStateColor.resolveWith((state) {
+      //   if (state.contains(WidgetState.selected)) {
+      //     return AppColors.backgroundColor[60] ?? Colors.transparent;
+      //   }
+      //   return context.theme.scaffoldBackgroundColor;
+      // }),
+      label: SvgPicture.asset(
+        Assets.icons.filterIcon,
+        width: 16,
+        height: 16,
+      ),
     );
   }
 }

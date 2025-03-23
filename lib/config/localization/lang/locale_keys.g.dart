@@ -100,6 +100,7 @@ abstract class  LocaleKeys {
   static const common_cancel = 'common.cancel';
   static const common_selectAll = 'common.selectAll';
   static const common_cut = 'common.cut';
+  static const common_clear = 'common.clear';
   static const common_retry = 'common.retry';
   static const common_copy = 'common.copy';
   static const common_paste = 'common.paste';
