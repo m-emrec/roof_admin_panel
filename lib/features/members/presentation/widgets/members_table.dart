@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,10 +25,6 @@ class MembersTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = DataGridController();
-    Log.debug(ref
-        .read(membersTableSourceProvider)
-        .filterConditions[MemberTableNames.membershipEndDate.name]?[0]
-        .value);
     return CustomTable(
       controller: controller,
       source: ref.watch(membersTableSourceProvider),

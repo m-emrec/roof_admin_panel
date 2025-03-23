@@ -3,7 +3,7 @@ import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel.dart';
+import 'package:roof_admin_panel/features/members/data/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
@@ -109,14 +109,14 @@ final membersViewModelProvider =
     StateNotifierProvider<MembersViewModel, AsyncValue<List<UserModel>?>>(
         (ref) {
   return MembersViewModel(
-    ref.read(membersTableSourceProvider),
     ref.read(_fetchFirst20UsersUseCaseProvider),
     ref.read(_fetchNext20UserUseCaseProvider),
   );
 });
 
-final filterNotifierProvider = ChangeNotifierProvider<FilterNotifier>((ref) {
-  return FilterNotifier(
+final filterNotifierProvider =
+    ChangeNotifierProvider<MembersFilterNotifier>((ref) {
+  return MembersFilterNotifier(
     ref.watch(membersViewModelProvider).value ?? [],
     ref.read(membersTableSourceProvider),
   );

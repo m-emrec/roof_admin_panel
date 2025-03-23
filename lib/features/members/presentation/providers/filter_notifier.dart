@@ -1,70 +1,96 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:core/core.dart';
+import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/members/data/models/filter_m%C3%BCodel.dart';
+import 'package:roof_admin_panel/features/members/data/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class FilterNotifier extends ChangeNotifier {
-  FilterNotifier(this.members, this.membersTableDataSource) : super() {
+///
+class MembersFilterNotifier extends ChangeNotifier {
+  /// This is the notifier that is used to filter the members data.
+  MembersFilterNotifier(this.members, this.membersTableDataSource) {
     membersTableDataSource.generateUserDataGridRows(members);
   }
+
+  /// This is the list of members that is displayed
   final List<UserModel> members;
+
+  /// This is the data source that is used to display the members data.
   final MembersTableDataSource membersTableDataSource;
-  List<FilterModel> _filters = [];
+
+  /// This variable stores the filters to be applied.
+  ///
+  ///
+  final List<FilterModel> _filters = [];
+
+  /// It is a getter to check if any filter is applied.
+  ///
+  ///
   bool get isFilterApplied => _filters.isNotEmpty;
 
+  ///
   Role? get roleFilter {
-    for (final filter in _filters) {
-      if (filter.columnName == MemberTableNames.role) {
-        return filter.condition.value
-            .toString()
-            .fromLocalizedStringToRoleEnum();
-      }
+    final filter = _getIfFilterExists(MemberTableNames.role);
+    if (filter == null) {
+      return null;
     }
-    return null;
+    return filter.first.condition.value
+        .toString()
+        .fromLocalizedStringToRoleEnum();
   }
 
+  ///
   RangeValues? get ageFilter {
     double? min;
     double? max;
-    for (final filter in _filters) {
-      if (filter.columnName == MemberTableNames.age) {
-        if (filter.condition.type == FilterType.greaterThanOrEqual) {
-          min = filter.condition.value as double;
-        } else if (filter.condition.type == FilterType.lessThanOrEqual) {
-          max = filter.condition.value as double;
-        }
-      }
+
+    final filter = _getIfFilterExists(MemberTableNames.age);
+    if (filter == null) {
+      return null;
     }
+
+    min = double.tryParse(filter[0].condition.value.toString());
+    max = double.tryParse(filter[1].condition.value.toString());
+
     return min != null && max != null ? RangeValues(min, max) : null;
   }
 
+  /// Returns the [DateTimeRange] of the [membershipEndDurationFilter].
+  /// If the filter is not applied, it returns null.
+  ///
+  ///
   DateTimeRange? get membershipEndDurationFilter {
     DateTime? min;
     DateTime? max;
-    for (final filter in _filters) {
-      if (filter.columnName == MemberTableNames.membershipEndDate) {
-        if (filter.condition.type == FilterType.greaterThanOrEqual) {
-          min = filter.condition.value as DateTime;
-        } else if (filter.condition.type == FilterType.lessThanOrEqual) {
-          max = filter.condition.value as DateTime;
-        }
-      }
+
+    final filter = _getIfFilterExists(MemberTableNames.membershipEndDate);
+    if (filter == null) {
+      return null;
     }
-    return min != null && max != null
+    min = DateTime.tryParse(filter[0].condition.value.toString());
+    max = DateTime.tryParse(filter[1].condition.value.toString());
+
+    return max != null && min != null
         ? DateTimeRange(start: min, end: max)
         : null;
+  }
+
+  /// This method checks the filter for the given [columnName] and
+  /// returns it if it exists.
+  /// If the filter does not exist, it returns null.
+  ///
+  List<FilterModel>? _getIfFilterExists(MemberTableNames columnName) {
+    final filter =
+        _filters.where((element) => element.columnName == columnName).toList();
+    return filter.isNotEmpty ? filter : null;
   }
 
   ///
   void addAgeFilter(
     RangeValues ageRange,
   ) {
-    _removeFilter(MemberTableNames.age);
+    removeAgeFilter();
     final minimumAgeFilter = FilterModel(
       columnName: MemberTableNames.age,
       condition: FilterCondition(
@@ -86,6 +112,7 @@ class FilterNotifier extends ChangeNotifier {
       ..add(maximumAgeFilter);
   }
 
+  ///
   void removeAgeFilter() => _removeFilter(MemberTableNames.age);
 
   /// Adds a filter to the [membersTableDataSource] for the given [membershipEndDurationRange].
@@ -114,6 +141,7 @@ class FilterNotifier extends ChangeNotifier {
       ..add(maximumMembershipEndDurationFilter);
   }
 
+  ///
   void removeMembershipEndDurationFilter() =>
       _removeFilter(MemberTableNames.membershipEndDate);
 
@@ -130,9 +158,10 @@ class FilterNotifier extends ChangeNotifier {
       ),
     );
     _filters.add(roleFilter);
-    notifyListeners();
+    // notifyListeners();
   }
 
+  ///
   void removeRoleFilter() => _removeFilter(MemberTableNames.role);
 
   /// Removes only the filter with the given [columnName].
