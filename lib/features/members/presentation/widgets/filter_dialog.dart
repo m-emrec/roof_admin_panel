@@ -36,10 +36,7 @@ class FilterDialog extends ConsumerWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            ref.read(filterNotifierProvider).revertUnappliedFilters();
-            CustomAlertDialog.hideAlertDialog(context);
-          },
+          onPressed: () => CustomAlertDialog.hideAlertDialog(context),
           child: Text(LocaleKeys.common_close.tr()),
         ),
         Visibility(

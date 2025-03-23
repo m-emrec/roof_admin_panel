@@ -95,6 +95,7 @@ class MembersFilterNotifier extends ChangeNotifier {
     final databaseFilters = membersTableDataSource.filterConditions;
     _removeUnsavedFilters(databaseFilters);
     _restoreMissingSavedFilters(databaseFilters);
+    notifyListeners();
   }
 
   /// Goes through `_filters` and removes any filters that are not present

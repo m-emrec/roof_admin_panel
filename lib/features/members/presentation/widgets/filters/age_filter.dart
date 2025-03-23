@@ -9,7 +9,7 @@ import 'package:roof_admin_panel/features/members/presentation/providers/provide
 class MembersAgeFilter extends ConsumerWidget {
   MembersAgeFilter({super.key});
   static const double _minAge = 18;
-  static const double _maxAge = 100;
+  static const double _maxAge = 70;
   late RangeValues _rangeValues;
 
   final _defaultRangeValues = const RangeValues(_minAge, _maxAge);

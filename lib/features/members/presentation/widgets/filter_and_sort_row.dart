@@ -1,7 +1,9 @@
+import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter_dialog.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
@@ -19,18 +21,31 @@ class FilterAndSortRow extends ConsumerWidget {
       spacing: SpacingSizes.medium,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        InkWell(
-          onTap: () => CustomAlertDialog.showAlertDialog(
-            barrierDismissible: true,
-            context: context,
-            content: const FilterDialog(),
-          ),
-          child: SvgPicture.asset(
-            Assets.icons.filterIcon,
+        Chip(
+          onDeleted: ref.watch(filterNotifierProvider).isFilterApplied
+              ? () => ref.read(filterNotifierProvider).clearFilters()
+              : null,
+          backgroundColor: context.theme.scaffoldBackgroundColor,
+          label: InkWell(
+            onTap: () => CustomAlertDialog.showAlertDialog(
+              barrierDismissible: true,
+              context: context,
+              content: const FilterDialog(),
+            ).whenComplete(
+              // Revert unapplied filters when the dialog is closed.
+              () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
+            ),
+            child: SvgPicture.asset(
+              Assets.icons.filterIcon,
+              width: 16,
+              height: 16,
+            ),
           ),
         ),
         SvgPicture.asset(
           Assets.icons.sortIcon,
+          width: 16,
+          height: 16,
         ),
       ],
     );
