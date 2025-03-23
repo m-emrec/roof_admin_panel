@@ -25,7 +25,7 @@ class FilterDialog extends ConsumerWidget {
           spacing: SpacingSizes.small,
           children: [
             /// age
-            const AgeFilter(),
+            MembersAgeFilter(),
 
             // membership end duration ( slider )
             MembershipEndDurationFilter(),
@@ -37,6 +37,7 @@ class FilterDialog extends ConsumerWidget {
       actions: [
         TextButton(
           onPressed: () {
+            ref.read(filterNotifierProvider).revertUnappliedFilters();
             CustomAlertDialog.hideAlertDialog(context);
           },
           child: Text(LocaleKeys.common_close.tr()),
@@ -44,8 +45,7 @@ class FilterDialog extends ConsumerWidget {
         Visibility(
           visible: ref.watch(filterNotifierProvider).isFilterApplied,
           child: TextButton(
-            onPressed: () =>
-                ref.read(filterNotifierProvider.notifier).clearFilters(),
+            onPressed: () => ref.read(filterNotifierProvider).clearFilters(),
             child: Text(
               LocaleKeys.membersView_filters_clearFilters.tr(),
             ),
@@ -53,7 +53,7 @@ class FilterDialog extends ConsumerWidget {
         ),
         TextButton(
           onPressed: () {
-            ref.read(filterNotifierProvider.notifier).applyFilters();
+            ref.read(filterNotifierProvider).applyFilters();
             CustomAlertDialog.hideAlertDialog(context);
           },
           child: Text(LocaleKeys.common_save.tr()),

@@ -114,6 +114,7 @@ final membersViewModelProvider =
   );
 });
 
+/// This provider is used to provide the [MembersFilterNotifier] instance.
 final filterNotifierProvider =
     ChangeNotifierProvider<MembersFilterNotifier>((ref) {
   return MembersFilterNotifier(

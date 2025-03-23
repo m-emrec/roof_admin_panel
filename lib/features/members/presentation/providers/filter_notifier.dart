@@ -86,6 +86,78 @@ class MembersFilterNotifier extends ChangeNotifier {
     return filter.isNotEmpty ? filter : null;
   }
 
+  /// Called when the user closes the filter dialog without saving.
+  /// This method restores `_filters` to the last saved state by:
+  /// - Removing newly added filters,
+  /// - Reverting changes made to existing filters,
+  /// - Re-adding filters that were deleted but still exist in the saved state.
+  void revertUnappliedFilters() {
+    final databaseFilters = membersTableDataSource.filterConditions;
+    _removeUnsavedFilters(databaseFilters);
+    _restoreMissingSavedFilters(databaseFilters);
+  }
+
+  /// Goes through `_filters` and removes any filters that are not present
+  /// in the saved filters (i.e., were added during the dialog session).
+  /// Also restores any modified filters to their original saved state.
+  void _removeUnsavedFilters(
+      Map<String, List<FilterCondition>> databaseFilters) {
+    for (final filter in _filters) {
+      ///when the dialog closed ( pressed "close" button), if the filter is
+      ///not registered in the [membersTableDataSource]
+      /// then remove the filter from the [_filters] list.
+      if (membersTableDataSource.filterConditions
+              .containsKey(filter.columnName.name) ==
+          false) {
+        _removeFilter(filter.columnName);
+      } else {
+        _restoreModifiedFiltersToSavedState(databaseFilters, filter);
+      }
+    }
+  }
+
+  /// Replaces the filter's condition with the saved one
+  /// if it has been changed during the dialog session.
+  void _restoreModifiedFiltersToSavedState(
+      Map<String, List<FilterCondition>> databaseFilters, FilterModel filter) {
+    /// if the filter is registered in the [membersTableDataSource]
+    /// then check if the filter is changed in _filters list
+    /// if it is changed then reset the filter to the filter registered
+    /// in the [membersTableDataSource]
+    if (databaseFilters[filter.columnName.name] != null) {
+      if (databaseFilters[filter.columnName.name]!.contains(filter.condition) ==
+          false) {
+        final index = _filters.indexOf(filter);
+        _filters[index] = FilterModel(
+          columnName: filter.columnName,
+          condition: databaseFilters[filter.columnName.name]!.firstWhere(
+            (element) => element.type == filter.condition.type,
+          ),
+        );
+      }
+    }
+  }
+
+  /// Finds filters that exist in the saved state but were removed from `_filters`
+  /// during the dialog session, and adds them back.
+  void _restoreMissingSavedFilters(
+      Map<String, List<FilterCondition>> databaseFilters) {
+    for (final filter in databaseFilters.entries) {
+      if (_filters.any((element) => element.columnName.name == filter.key) ==
+          false) {
+        _filters.addAll(
+          filter.value.map(
+            (e) => FilterModel(
+              columnName: MemberTableNames.values
+                  .firstWhere((element) => element.name == filter.key),
+              condition: e,
+            ),
+          ),
+        );
+      }
+    }
+  }
+
   ///
   void addAgeFilter(
     RangeValues ageRange,
@@ -147,7 +219,7 @@ class MembersFilterNotifier extends ChangeNotifier {
 
   /// Adds a filter to the [membersTableDataSource] for the given [role].
   void addRoleFilter(String role) {
-    _removeFilter(MemberTableNames.role);
+    removeRoleFilter();
     final roleFilter = FilterModel(
       columnName: MemberTableNames.role,
       condition: FilterCondition(
@@ -169,12 +241,6 @@ class MembersFilterNotifier extends ChangeNotifier {
     MemberTableNames columnName,
   ) {
     _filters.removeWhere((element) {
-      if (element.columnName == columnName) {
-        // membersTableDataSource.removeFilter(
-        //   element.columnName.name,
-        //   element.condition,
-        // );
-      }
       return element.columnName == columnName;
     });
     notifyListeners();
