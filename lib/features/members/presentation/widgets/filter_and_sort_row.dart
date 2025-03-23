@@ -21,21 +21,22 @@ class FilterAndSortRow extends ConsumerWidget {
       spacing: SpacingSizes.medium,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Chip(
-          onDeleted: ref.watch(filterNotifierProvider).isFilterApplied
-              ? () => ref.read(filterNotifierProvider).clearFilters()
-              : null,
-          backgroundColor: context.theme.scaffoldBackgroundColor,
-          label: InkWell(
-            onTap: () => CustomAlertDialog.showAlertDialog(
-              barrierDismissible: true,
-              context: context,
-              content: const FilterDialog(),
-            ).whenComplete(
-              // Revert unapplied filters when the dialog is closed.
-              () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
-            ),
-            child: SvgPicture.asset(
+        InkWell(
+          mouseCursor: SystemMouseCursors.click,
+          onTap: () => CustomAlertDialog.showAlertDialog(
+            barrierDismissible: true,
+            context: context,
+            content: const FilterDialog(),
+          ).whenComplete(
+            // Revert unapplied filters when the dialog is closed.
+            () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
+          ),
+          child: Chip(
+            onDeleted: ref.watch(filterNotifierProvider).isFilterApplied
+                ? () => ref.read(filterNotifierProvider).clearFilters()
+                : null,
+            backgroundColor: context.theme.scaffoldBackgroundColor,
+            label: SvgPicture.asset(
               Assets.icons.filterIcon,
               width: 16,
               height: 16,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/widgets/section%20widget/section_title.dart';
 
 class MembersAgeFilter extends ConsumerWidget {
   MembersAgeFilter({super.key});
@@ -17,10 +18,46 @@ class MembersAgeFilter extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     _rangeValues =
         ref.watch(filterNotifierProvider).ageFilter ?? _defaultRangeValues;
-    return Row(
-      spacing: SpacingSizes.extraExtraSmall,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
+        _TitleSection(
+          rangeValues: _rangeValues,
+          defaultRangeValues: _defaultRangeValues,
+        ),
+
         /// age filter slider
+        _Slider(
+          maxAge: _maxAge,
+          minAge: _minAge,
+          rangeValues: _rangeValues,
+          defaultRangeValues: _defaultRangeValues,
+        ),
+      ],
+    );
+  }
+}
+
+class _Slider extends ConsumerWidget {
+  const _Slider({
+    required double maxAge,
+    required double minAge,
+    required RangeValues rangeValues,
+    required RangeValues defaultRangeValues,
+  })  : _maxAge = maxAge,
+        _minAge = minAge,
+        _rangeValues = rangeValues,
+        _defaultRangeValues = defaultRangeValues;
+
+  final double _maxAge;
+  final double _minAge;
+  final RangeValues _rangeValues;
+  final RangeValues _defaultRangeValues;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      children: [
         Flexible(
           child: RangeSlider(
             divisions: _maxAge.round() - _minAge.round(),
@@ -40,6 +77,28 @@ class MembersAgeFilter extends ConsumerWidget {
             values: _rangeValues,
           ),
         ),
+      ],
+    );
+  }
+}
+
+class _TitleSection extends ConsumerWidget {
+  const _TitleSection({
+    required RangeValues rangeValues,
+    required RangeValues defaultRangeValues,
+  })  : _rangeValues = rangeValues,
+        _defaultRangeValues = defaultRangeValues;
+
+  final RangeValues _rangeValues;
+  final RangeValues _defaultRangeValues;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      spacing: SpacingSizes.extraSmall,
+      children: [
+        SectionTitle(LocaleKeys.membersView_filters_ageFilterLabel.tr()),
 
         /// age filter text
         Text.rich(
