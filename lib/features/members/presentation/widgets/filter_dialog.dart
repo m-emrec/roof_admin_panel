@@ -17,7 +17,7 @@ class FilterDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomAlertDialog(
       title: Text(LocaleKeys.membersView_filters_title.tr()),
-      content: const SizedBox(
+      content: SizedBox(
         width: 400,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,12 +25,12 @@ class FilterDialog extends ConsumerWidget {
           spacing: SpacingSizes.small,
           children: [
             /// age
-            AgeFilter(),
+            const AgeFilter(),
 
             // membership end duration ( slider )
             MembershipEndDurationFilter(),
             // role ( dropdown )
-            RoleFilter(),
+            const RoleFilter(),
           ],
         ),
       ),
@@ -42,7 +42,7 @@ class FilterDialog extends ConsumerWidget {
           child: Text(LocaleKeys.common_close.tr()),
         ),
         Visibility(
-          visible: ref.read(filterNotifierProvider.notifier).isFilterApplied,
+          visible: ref.watch(filterNotifierProvider).isFilterApplied,
           child: TextButton(
             onPressed: () =>
                 ref.read(filterNotifierProvider.notifier).clearFilters(),
@@ -54,7 +54,6 @@ class FilterDialog extends ConsumerWidget {
         TextButton(
           onPressed: () {
             ref.read(filterNotifierProvider.notifier).applyFilters();
-            Log.debug(ref.read(membersTableSourceProvider).filterConditions);
             CustomAlertDialog.hideAlertDialog(context);
           },
           child: Text(LocaleKeys.common_save.tr()),

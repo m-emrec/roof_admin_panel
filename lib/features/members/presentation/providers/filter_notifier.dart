@@ -8,31 +8,63 @@ import 'package:roof_admin_panel/features/members/domain/entities/table_names_en
 import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class FilterNotifier extends StateNotifier<List<UserModel>> {
-  FilterNotifier(this.members, this.membersTableDataSource) : super([]) {
-    state = members;
+class FilterNotifier extends ChangeNotifier {
+  FilterNotifier(this.members, this.membersTableDataSource) : super() {
     membersTableDataSource.generateUserDataGridRows(members);
-    // applyFilters();
   }
   final List<UserModel> members;
   final MembersTableDataSource membersTableDataSource;
   List<FilterModel> _filters = [];
   bool get isFilterApplied => _filters.isNotEmpty;
-  void a() {
-    addMembershipEndDurationFilter(
-      DateTimeRange(
-        start: DateTime(2025, 3, 20),
-        end: DateTime(2025, 5, 3),
-      ),
-    );
-    applyFilters();
-    // membersTableDataSource.;
+
+  Role? get roleFilter {
+    for (final filter in _filters) {
+      if (filter.columnName == MemberTableNames.role) {
+        return filter.condition.value
+            .toString()
+            .fromLocalizedStringToRoleEnum();
+      }
+    }
+    return null;
+  }
+
+  RangeValues? get ageFilter {
+    double? min;
+    double? max;
+    for (final filter in _filters) {
+      if (filter.columnName == MemberTableNames.age) {
+        if (filter.condition.type == FilterType.greaterThanOrEqual) {
+          min = filter.condition.value as double;
+        } else if (filter.condition.type == FilterType.lessThanOrEqual) {
+          max = filter.condition.value as double;
+        }
+      }
+    }
+    return min != null && max != null ? RangeValues(min, max) : null;
+  }
+
+  DateTimeRange? get membershipEndDurationFilter {
+    DateTime? min;
+    DateTime? max;
+    for (final filter in _filters) {
+      if (filter.columnName == MemberTableNames.membershipEndDate) {
+        if (filter.condition.type == FilterType.greaterThanOrEqual) {
+          min = filter.condition.value as DateTime;
+        } else if (filter.condition.type == FilterType.lessThanOrEqual) {
+          max = filter.condition.value as DateTime;
+        }
+      }
+    }
+    return min != null && max != null
+        ? DateTimeRange(start: min, end: max)
+        : null;
   }
 
   ///
   void addAgeFilter(
     RangeValues ageRange,
   ) {
+    _removeFilter(MemberTableNames.age);
     final minimumAgeFilter = FilterModel(
       columnName: MemberTableNames.age,
       condition: FilterCondition(
@@ -54,10 +86,13 @@ class FilterNotifier extends StateNotifier<List<UserModel>> {
       ..add(maximumAgeFilter);
   }
 
+  void removeAgeFilter() => _removeFilter(MemberTableNames.age);
+
   /// Adds a filter to the [membersTableDataSource] for the given [membershipEndDurationRange].
   void addMembershipEndDurationFilter(
     DateTimeRange membershipEndDurationRange,
   ) {
+    removeMembershipEndDurationFilter();
     final minimumMembershipEndDurationFilter = FilterModel(
       columnName: MemberTableNames.membershipEndDate,
       condition: FilterCondition(
@@ -79,42 +114,53 @@ class FilterNotifier extends StateNotifier<List<UserModel>> {
       ..add(maximumMembershipEndDurationFilter);
   }
 
+  void removeMembershipEndDurationFilter() =>
+      _removeFilter(MemberTableNames.membershipEndDate);
+
   /// Adds a filter to the [membersTableDataSource] for the given [role].
   void addRoleFilter(String role) {
+    _removeFilter(MemberTableNames.role);
     final roleFilter = FilterModel(
       columnName: MemberTableNames.role,
       condition: FilterCondition(
         type: FilterType.contains,
         value: role,
         filterBehavior: FilterBehavior.stringDataType,
+        filterOperator: FilterOperator.and,
       ),
     );
     _filters.add(roleFilter);
+    notifyListeners();
   }
 
+  void removeRoleFilter() => _removeFilter(MemberTableNames.role);
+
   /// Removes only the filter with the given [columnName].
-  void removeFilter(
+  void _removeFilter(
     MemberTableNames columnName,
   ) {
     _filters.removeWhere((element) {
       if (element.columnName == columnName) {
-        membersTableDataSource.removeFilter(
-          element.columnName.name,
-          element.condition,
-        );
+        // membersTableDataSource.removeFilter(
+        //   element.columnName.name,
+        //   element.condition,
+        // );
       }
       return element.columnName == columnName;
     });
+    notifyListeners();
   }
 
   /// Removes all filters.
   void clearFilters() {
     _filters.clear();
     membersTableDataSource.clearFilters();
+    notifyListeners();
   }
 
   /// Applies all filters.
   void applyFilters() {
+    membersTableDataSource.clearFilters();
     for (final filter in _filters) {
       _addFilter(filter.columnName.name, filter.condition);
     }

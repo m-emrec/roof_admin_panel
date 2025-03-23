@@ -16,26 +16,23 @@ class _CoreInit {
     await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: AppColors.backgroundColor[50],
-        systemNavigationBarIconBrightness: Brightness.dark,
-      ),
-    );
+
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    final remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.ensureInitialized();
-    await remoteConfig.fetchAndActivate();
-    await remoteConfig.setConfigSettings(
-      RemoteConfigSettings(
-        fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: const Duration(minutes: 1),
-      ),
-    );
+    await _initFirebaseRemoteConfig();
     await _LocalizationInit().initLocale();
   }
+}
+
+Future<void> _initFirebaseRemoteConfig() async {
+  final remoteConfig = FirebaseRemoteConfig.instance;
+  await remoteConfig.ensureInitialized();
+  await remoteConfig.fetchAndActivate();
+  await remoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(minutes: 1),
+    ),
+  );
 }

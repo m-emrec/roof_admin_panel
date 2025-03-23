@@ -115,8 +115,7 @@ final membersViewModelProvider =
   );
 });
 
-final filterNotifierProvider =
-    StateNotifierProvider<FilterNotifier, List<UserModel>>((ref) {
+final filterNotifierProvider = ChangeNotifierProvider<FilterNotifier>((ref) {
   return FilterNotifier(
     ref.watch(membersViewModelProvider).value ?? [],
     ref.read(membersTableSourceProvider),

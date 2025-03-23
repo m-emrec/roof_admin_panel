@@ -1,6 +1,6 @@
-import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/constants/text_styles.dart';
@@ -70,7 +70,7 @@ part './widget_themes/slider_theme.dart';
 /// ```dart
 /// final ThemeData theme = AppTheme().lightTheme;
 /// ```
-class AppTheme {
+final class AppTheme {
   AppTheme({required BuildContext context}) : _context = context;
 
   final BuildContext _context;

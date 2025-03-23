@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,49 +17,15 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
   static const double _minAge = 18;
   static const double _maxAge = 100;
   late RangeValues _rangeValues;
-  bool _isFilterApplied = false;
-
-  @override
-  void initState() {
-    // if (ref
-    //     .read(filterConditionsListProviderProvider)
-    //     .any((element) => element.columnName == TableNamesEnum.age)) {
-    //   final ageFilters = ref
-    //       .read(filterConditionsListProviderProvider)
-    //       .where((element) => element.columnName == TableNamesEnum.age);
-    //   final minAge = ageFilters
-    //       .firstWhere((element) =>
-    //           element.condition.type == FilterType.greaterThanOrEqual)
-    //       .condition
-    //       .value;
-
-    //   final maxAge = ageFilters
-    //       .firstWhere(
-    //           (element) => element.condition.type == FilterType.lessThanOrEqual)
-    //       .condition
-    //       .value;
-
-    //   _rangeValues = RangeValues(
-    //       ConstantValues.getAge(DateTime.parse(minAge.toString())).toDouble() +
-    //           1,
-    //       ConstantValues.getAge(DateTime.parse(maxAge.toString())).toDouble() +
-    //           1);
-    //   ;
-    // } else {
-    // }
-    _rangeValues = RangeValues(_minAge, _maxAge);
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    _rangeValues = ref.watch(filterNotifierProvider).ageFilter ??
+        const RangeValues(_minAge, _maxAge);
     return Row(
       children: [
         Flexible(
           child: RangeSlider(
-            onChangeEnd: (value) =>
-                ref.read(filterNotifierProvider.notifier).addAgeFilter(value),
             divisions: _maxAge.round() - _minAge.round(),
             labels: RangeLabels(
               _rangeValues.start.round().toString(),
@@ -66,13 +33,10 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
             ),
             onChanged: (value) {
               if (value == const RangeValues(_minAge, _maxAge)) {
-                _isFilterApplied = false;
+                ref.read(filterNotifierProvider).removeAgeFilter();
               } else {
-                _isFilterApplied = true;
+                ref.read(filterNotifierProvider).addAgeFilter(value);
               }
-              setState(() {
-                _rangeValues = value;
-              });
             },
             min: _minAge,
             max: _maxAge,
@@ -92,18 +56,17 @@ class _AgeFilterState extends ConsumerState<AgeFilter> {
             ],
           ),
         ),
-
-        // Visibility(
-        //   visible: _isFilterApplied,
-        //   child: IconButton(
-        //     onPressed: () {
-        //       ref
-        //           .read(filterNotifierProvider.notifier)
-        //           .addAgeFilter(_rangeValues.start, _rangeValues.end);
-        //     },
-        //     icon: const Icon(Icons.check),
-        //   ),
-        // ),
+        Visibility(
+          visible: _rangeValues != const RangeValues(_minAge, _maxAge),
+          child: InkWell(
+            onTap: () {
+              ref.read(filterNotifierProvider.notifier).removeAgeFilter();
+            },
+            child: const Icon(
+              Icons.clear,
+            ),
+          ),
+        ),
       ],
     );
   }

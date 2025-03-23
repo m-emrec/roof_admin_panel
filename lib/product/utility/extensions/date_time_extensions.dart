@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 

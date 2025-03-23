@@ -11,13 +11,19 @@ class RoleFilter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final Role? roleFilter = ref.watch(filterNotifierProvider).roleFilter;
     return PopupMenuButton(
       child: Chip(
         labelStyle: context.textTheme.labelMedium,
+        onDeleted: roleFilter != null
+            ? () => ref.read(filterNotifierProvider.notifier).removeRoleFilter()
+            : null,
         label: SizedBox(
           width: double.maxFinite,
           child: Text(
-            LocaleKeys.membersView_filters_roleFilterLabel.tr(),
+            roleFilter != null
+                ? roleFilter.localizedText("")
+                : LocaleKeys.membersView_filters_roleFilterLabel.tr(),
             textAlign: TextAlign.center,
           ),
         ),
@@ -27,7 +33,7 @@ class RoleFilter extends ConsumerWidget {
           return PopupMenuItem(
             value: role,
             onTap: () => ref
-                .read(filterNotifierProvider.notifier)
+                .read(filterNotifierProvider)
                 .addRoleFilter(role.localizedText("")),
             child: Text(role.localizedText("")),
           );

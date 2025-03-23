@@ -7,19 +7,11 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 
-class MembershipEndDurationFilter extends ConsumerStatefulWidget {
-  const MembershipEndDurationFilter({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _MembershipEndDurationFilterState();
-}
-
-class _MembershipEndDurationFilterState
-    extends ConsumerState<MembershipEndDurationFilter> {
+class MembershipEndDurationFilter extends ConsumerWidget {
+  MembershipEndDurationFilter({super.key});
   DateTimeRange? _pickedDate;
 
-  Future<void> _showDatePicker() async {
+  Future<void> _showDatePicker(BuildContext context, WidgetRef ref) async {
     final firstDate = DateTime.now().subtract(const Duration(days: 365));
     final lastDate = DateTime.now().add(const Duration(days: 365));
     _setPickedDate(
@@ -29,33 +21,33 @@ class _MembershipEndDurationFilterState
         lastDate: lastDate,
         builder: (context, child) => child ?? const SizedBox(),
       ),
+      ref,
     );
   }
 
-  void _setPickedDate(DateTimeRange? pickedDate) {
+  void _setPickedDate(DateTimeRange? pickedDate, WidgetRef ref) {
     _pickedDate = pickedDate;
     if (_pickedDate != null) {
-      setState(() {});
       ref
-          .read(filterNotifierProvider.notifier)
+          .read(filterNotifierProvider)
           .addMembershipEndDurationFilter(_pickedDate!);
     }
   }
 
-  void _clearDate() {
-    _pickedDate = null;
-    setState(() {});
+  void _clearDate(WidgetRef ref) {
+    ref.read(filterNotifierProvider).removeMembershipEndDurationFilter();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    _pickedDate = ref.watch(filterNotifierProvider).membershipEndDurationFilter;
     return TextButton.icon(
-      onPressed: _showDatePicker,
+      onPressed: () => _showDatePicker(context, ref),
       icon: SvgPicture.asset(Assets.icons.calendarIcon),
       label: _pickedDate != null
           ? _PickedDateText(
               _pickedDate,
-              _clearDate,
+              () => _clearDate(ref),
             )
           : Text(
               LocaleKeys.membersView_filters_memberShipEndDurationFilterLabel
