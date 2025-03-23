@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
 class MembershipEndDurationFilter extends ConsumerWidget {
   MembershipEndDurationFilter({super.key});
@@ -41,46 +42,50 @@ class MembershipEndDurationFilter extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _pickedDate = ref.watch(filterNotifierProvider).membershipEndDurationFilter;
-    return TextButton.icon(
-      onPressed: () => _showDatePicker(context, ref),
-      icon: SvgPicture.asset(Assets.icons.calendarIcon),
-      label: _pickedDate != null
-          ? _PickedDateText(
-              _pickedDate,
-              () => _clearDate(ref),
-            )
-          : Text(
-              LocaleKeys.membersView_filters_memberShipEndDurationFilterLabel
-                  .tr(),
-            ),
+    return Section(
+      title:
+          LocaleKeys.membersView_filters_memberShipEndDurationFilterLabel.tr(),
+      child: ListTile(
+        shape: const StadiumBorder(),
+        trailing: Visibility(
+          visible: _pickedDate != null,
+          child: InkWell(
+            onTap: () => _clearDate(ref),
+            child: const Icon(Icons.clear),
+          ),
+        ),
+        leading: SvgPicture.asset(Assets.icons.calendarIcon),
+        onTap: () => _showDatePicker(context, ref),
+        title: _pickedDate != null
+            ? _PickedDateText(_pickedDate)
+            : Text(
+                LocaleKeys.common_date_select.tr(),
+                style: context.textTheme.labelMedium,
+              ),
+      ),
     );
   }
 }
 
 class _PickedDateText extends StatelessWidget {
-  const _PickedDateText(this._pickedDate, this._clearDate);
-  final VoidCallback _clearDate;
+  const _PickedDateText(
+    this._pickedDate,
+  );
   final DateTimeRange? _pickedDate;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      trailing: InkWell(
-        onTap: _clearDate,
-        child: const Icon(Icons.clear),
-      ),
-      title: Text.rich(
-        TextSpan(
-          text:
-              '${_pickedDate!.start.formatDate(context)} - ${_pickedDate!.end.formatDate(context)} ',
-          style: context.textTheme.labelMedium,
-          children: [
-            TextSpan(
-              text: LocaleKeys.membersView_filters_memberShipEndDurationFilter
-                  .tr(),
-              style: context.textTheme.bodySmall,
-            ),
-          ],
-        ),
+    return Text.rich(
+      TextSpan(
+        text:
+            '${_pickedDate!.start.formatDate(context)} - ${_pickedDate!.end.formatDate(context)} ',
+        style: context.textTheme.labelMedium,
+        children: [
+          TextSpan(
+            text:
+                LocaleKeys.membersView_filters_memberShipEndDurationFilter.tr(),
+            style: context.textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }
