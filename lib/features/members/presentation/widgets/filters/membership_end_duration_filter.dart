@@ -51,7 +51,10 @@ class MembershipEndDurationFilter extends ConsumerWidget {
           visible: _pickedDate != null,
           child: InkWell(
             onTap: () => _clearDate(ref),
-            child: const Icon(Icons.clear),
+            child: Icon(
+              Icons.clear,
+              color: AppColors.accentError[50],
+            ),
           ),
         ),
         leading: SvgPicture.asset(Assets.icons.calendarIcon),
