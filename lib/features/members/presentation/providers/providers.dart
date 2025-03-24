@@ -12,7 +12,7 @@ import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table_data_source.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
 
 /// This provider is used to provide the [MembersDatabaseService] instance.
 final _membersDataBaseServiceProvider = Provider<MembersDatabaseService>((ref) {

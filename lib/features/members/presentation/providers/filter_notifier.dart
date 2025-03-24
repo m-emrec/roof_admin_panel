@@ -3,7 +3,7 @@ import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/members/presentation/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table_data_source.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 ///
