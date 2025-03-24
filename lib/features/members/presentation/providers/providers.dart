@@ -3,7 +3,7 @@ import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/members/data/models/filter_model.dart';
+import 'package:roof_admin_panel/features/members/presentation/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
@@ -12,7 +12,7 @@ import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/members_table_data_source.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table_data_source.dart';
 
 /// This provider is used to provide the [MembersDatabaseService] instance.
 final _membersDataBaseServiceProvider = Provider<MembersDatabaseService>((ref) {

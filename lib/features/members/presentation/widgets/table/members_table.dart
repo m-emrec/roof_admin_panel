@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/widgets/table/custom_table.dart';
 import 'package:roof_admin_panel/product/widgets/table/header_item.dart';
@@ -32,14 +32,14 @@ class MembersTable extends ConsumerWidget {
         GridColumn(
           columnName: MemberTableNames.memberNumber.name,
           label: ColumnTitle(
-            title: LocaleKeys.membersView_tableColumnLabels_memberNumber.tr(),
+            title: MemberTableNames.memberNumber.toLocale,
           ),
           // filterIconPosition: ColumnHeaderIconPosition.start,
         ),
         GridColumn(
             columnName: MemberTableNames.memberName.name,
             label: ColumnTitle(
-              title: LocaleKeys.membersView_tableColumnLabels_name.tr(),
+              title: MemberTableNames.memberName.toLocale,
             ),
             columnWidthMode: ColumnWidthMode.auto,
             // allowEditing: false,
@@ -47,27 +47,25 @@ class MembersTable extends ConsumerWidget {
         GridColumn(
           columnName: MemberTableNames.membershipEndDate.name,
           label: ColumnTitle(
-            title:
-                LocaleKeys.membersView_tableColumnLabels_membershipEndDate.tr(),
+            title: MemberTableNames.membershipEndDate.toLocale,
           ),
         ),
         GridColumn(
           columnName: MemberTableNames.role.name,
           label: ColumnTitle(
-            title: LocaleKeys.membersView_tableColumnLabels_role.tr(),
+            title: MemberTableNames.role.toLocale,
           ),
         ),
         GridColumn(
           columnName: MemberTableNames.age.name,
           label: ColumnTitle(
-            title: LocaleKeys.membersView_tableColumnLabels_age.tr(),
+            title: MemberTableNames.age.toLocale,
           ),
         ),
         GridColumn(
           columnName: MemberTableNames.membershipDuration.name,
           label: ColumnTitle(
-            title: LocaleKeys.membersView_tableColumnLabels_memberShipDuration
-                .tr(),
+            title: MemberTableNames.membershipDuration.toLocale,
           ),
         ),
       ],

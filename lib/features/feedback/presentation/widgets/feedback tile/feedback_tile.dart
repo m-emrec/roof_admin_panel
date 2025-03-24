@@ -9,7 +9,7 @@ import 'package:roof_admin_panel/features/feedback/presentation/pages/feedback_v
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20response%20dialog/feedback_response_dialog.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/feedback_owner.dart';
 import 'package:roof_admin_panel/features/feedback/presentation/widgets/feedback%20tile/reported_user.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/members_table.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/theme_extensions_extesntion.dart';
 import 'package:roof_admin_panel/product/widgets/buttons/inline_text_button.dart';

@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class FilterEntity extends Equatable {
-  FilterEntity({required this.columnName, required this.condition});
+class FilterModel extends Equatable {
+  FilterModel({required this.columnName, required this.condition});
 
   final MemberTableNames columnName;
   final FilterCondition condition;

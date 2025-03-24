@@ -4,7 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/members/domain/entities/table_names_enum.dart';
+import 'package:roof_admin_panel/features/members/presentation/sort_type_enum.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
@@ -74,6 +75,69 @@ class MembersTableDataSource extends DataGridSource {
           ),
         )
         .toList();
+  }
+
+  @override
+  Future<void> sort({SortBy? sortBy, bool sortAscending = false}) async {
+    sortedColumns.clear();
+    if (sortBy == null) {
+      sortedColumns.clear();
+      return;
+    }
+    switch (sortBy) {
+      case SortBy.age:
+        Log.debug('Sorting by age');
+        sortedColumns.add(
+          SortColumnDetails(
+            name: MemberTableNames.age.name,
+            sortDirection: sortAscending
+                ? DataGridSortDirection.ascending
+                : DataGridSortDirection.descending,
+          ),
+        );
+
+      case SortBy.memberNumber:
+        sortedColumns.add(
+          SortColumnDetails(
+            name: MemberTableNames.memberNumber.name,
+            sortDirection: sortAscending
+                ? DataGridSortDirection.ascending
+                : DataGridSortDirection.descending,
+          ),
+        );
+      case SortBy.memberShipEndDate:
+        sortedColumns.add(
+          SortColumnDetails(
+            name: MemberTableNames.membershipEndDate.name,
+            sortDirection: sortAscending
+                ? DataGridSortDirection.ascending
+                : DataGridSortDirection.descending,
+          ),
+        );
+      case SortBy.memberShipStartDate:
+        break;
+
+      case SortBy.membershipDuration:
+        sortedColumns.add(
+          SortColumnDetails(
+            name: MemberTableNames.membershipDuration.name,
+            sortDirection: sortAscending
+                ? DataGridSortDirection.ascending
+                : DataGridSortDirection.descending,
+          ),
+        );
+
+      case SortBy.name:
+        sortedColumns.add(
+          SortColumnDetails(
+            name: MemberTableNames.memberName.name,
+            sortDirection: sortAscending
+                ? DataGridSortDirection.ascending
+                : DataGridSortDirection.descending,
+          ),
+        );
+    }
+    return super.sort();
   }
 
   @override
@@ -163,7 +227,7 @@ class MembersTableDataSource extends DataGridSource {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((dataGridCell) {
         return _cellBuilder(
-          dataGridCell.columnName.toTableNamesEnum(),
+          MemberTableNames.toTableNamesEnum(dataGridCell.columnName),
           dataGridCell.value,
         ).makeSelectable();
       }).toList(),
