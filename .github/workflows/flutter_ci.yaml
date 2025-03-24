@@ -21,6 +21,13 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.27.1"
+
+      - name: Setup GitHub Auth for private repos
+        run: |
+          echo "machine github.com" >> ~/.netrc
+          echo "login x-access-token" >> ~/.netrc
+          echo "password ${{ secrets.GH_ACCESS_TOKEN }}" >> ~/.netrc
+
       - name: Install dependencies
         run: flutter pub get
 

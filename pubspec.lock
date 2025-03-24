@@ -263,7 +263,7 @@ packages:
       path: "."
       ref: main
       resolved-ref: "2dcae0fad2d423f2e51510b04316a921dd23fd07"
-      url: "git@github.com:m-emrec/roof-core.git"
+      url: "https://github.com/m-emrec/roof-core.git"
     source: git
     version: "0.0.1"
   cross_file:
