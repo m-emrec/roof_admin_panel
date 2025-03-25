@@ -19,9 +19,9 @@ mixin DataGridRowGenerator on DataGridSource {
         .map<DataGridRow>(
           (e) => DataGridRow(
             cells: [
-              DataGridCell<String>(
+              DataGridCell<int>(
                 columnName: MemberTableNames.memberNumber.name,
-                value: e.memberNumber,
+                value: int.tryParse(e.memberNumber.toString()),
               ),
               DataGridCell<List<String?>>(
                 columnName: MemberTableNames.memberName.name,

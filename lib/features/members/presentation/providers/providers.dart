@@ -1,8 +1,10 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
@@ -102,6 +104,13 @@ final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
     ],
     ref: ref,
   );
+});
+
+final isSortAppliedProvider = StateProvider<bool>((ref) {
+  return false;
+});
+final sortDirectionProvider = StateProvider<SortDirection>((ref) {
+  return SortDirection.desc;
 });
 
 /// This provider is used to provide the [MembersViewModel] instance.

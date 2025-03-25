@@ -172,6 +172,15 @@ abstract class  LocaleKeys {
   static const membersView_filters_memberShipEndDurationFilterLabel = 'membersView.filters.memberShipEndDurationFilterLabel';
   static const membersView_filters_clearFilters = 'membersView.filters.clearFilters';
   static const membersView_filters = 'membersView.filters';
+  static const membersView_sort_memberNumber = 'membersView.sort.memberNumber';
+  static const membersView_sort_name = 'membersView.sort.name';
+  static const membersView_sort_membershipEndDate = 'membersView.sort.membershipEndDate';
+  static const membersView_sort_membershipStartDate = 'membersView.sort.membershipStartDate';
+  static const membersView_sort_memberShipDuration = 'membersView.sort.memberShipDuration';
+  static const membersView_sort_age = 'membersView.sort.age';
+  static const membersView_sort_ascending = 'membersView.sort.ascending';
+  static const membersView_sort_descending = 'membersView.sort.descending';
+  static const membersView_sort = 'membersView.sort';
   static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
   static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
   static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';

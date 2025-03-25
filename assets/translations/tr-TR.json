@@ -186,6 +186,17 @@
             "memberShipEndDurationFilterLabel": "Üyelik Bitiş Tarihi Aralığı",
             "clearFilters": "Filtreleri Temizle"
         },
+        "sort":{
+            "memberNumber": "Üye Numarasına Göre",
+            "name": "İsme Göre",    
+            "membershipEndDate": "Üyelik Bitiş Tarihine Göre",
+            "membershipStartDate": "Üyelik Başlangıç Tarihine Göre",
+            "memberShipDuration": "Üyelik Süresine Göre",
+            "age": "Yaşa Göre",
+            "ascending": "Artan",
+            "descending": "Azalan"
+        },
+
         "tableColumnLabels": {
             "memberNumber": "Üye Numarası",
             "name": "İsim",
