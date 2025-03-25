@@ -1,4 +1,5 @@
 import 'package:core/resources/data_state.dart';
+import 'package:core/resources/error_manager.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,11 +7,21 @@ import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
-/// This is the view model that provides the members data to the view.
-/// It fetches the data from the use case and provides it to the view.
+///
 class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
-  /// This is the view model that provides the members data to the view.
-  /// It fetches the data from the use case and provides it to the view.
+  /// [MembersViewModel] is a StateNotifier responsible for managing the state of the members list.
+  ///
+  /// It communicates with use cases to fetch user data and provides it to the UI as [AsyncValue].
+  /// Initially, it fetches the first 20 users when the view model is created. It also supports
+  /// pagination by fetching the next 20 users when requested.
+  ///
+  /// This class handles both success and failure states using [DataState], and displays error
+  /// messages through a custom toast widget if necessary.
+  ///
+  /// Use this ViewModel to:
+  /// - Fetch the first 20 users
+  /// - Fetch the next 20 users based on the last user ID
+  /// - Maintain and update the members list in the UI
   MembersViewModel(
     FetchFirst20UsersUseCase fetchFirst20UsersUseCase,
     FetchNext20UsersUseCase fetchNext20UsersUseCase,
@@ -38,14 +49,13 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   /// It updates the state based on the result.
   Future<void> fetchFirst20Users() async {
     state = const AsyncLoading();
-    final result = await _fetchFirst20UsersUseCase(const NoParams());
-    if (result is DataSuccess) {
-      state = AsyncData(result.resultData);
-      // users = state.value;
-      // _membersTableDataSource.generateUserDataGridRows(result.resultData!);
-    } else if (result is DataFailed) {
-      Toast.showErrorToast(desc: result.errorMessage);
-    }
+    DataState.handleDataStateBasedAction(
+      await _fetchFirst20UsersUseCase(const NoParams()),
+      onSuccess: (result) => state = AsyncData(result.resultData),
+      onFailure: (result) => Toast.showErrorToast(
+        desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
+      ),
+    );
   }
 
   /// This method fetches the next 20 users from the use case.
@@ -54,12 +64,13 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   ///
   /// This method is called when the user scrolls to the end of the list.
   Future<void> fetchNext20Users(String lastUserId) async {
-    final result = await _fetchNext20UsersUseCase(lastUserId);
-    if (result is DataSuccess) {
-      state = AsyncData([...state.value!, ...result.resultData!]);
-      // users = state.value;
-    } else if (result is DataFailed) {
-      Toast.showErrorToast(desc: result.errorMessage);
-    }
+    DataState.handleDataStateBasedAction(
+      await _fetchNext20UsersUseCase(lastUserId),
+      onSuccess: (result) =>
+          state = AsyncData([...state.value!, ...result.resultData!]),
+      onFailure: (result) => Toast.showErrorToast(
+        desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
+      ),
+    );
   }
 }
