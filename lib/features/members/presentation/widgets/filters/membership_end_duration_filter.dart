@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
@@ -31,12 +32,14 @@ class MembershipEndDurationFilter extends ConsumerWidget {
     if (_pickedDate != null) {
       ref
           .read(filterNotifierProvider)
-          .addMembershipEndDurationFilter(_pickedDate!);
+          .addFilter(MemberTableNames.membershipEndDate, _pickedDate);
     }
   }
 
   void _clearDate(WidgetRef ref) {
-    ref.read(filterNotifierProvider).removeMembershipEndDurationFilter();
+    ref
+        .read(filterNotifierProvider)
+        .removeFilter(MemberTableNames.membershipEndDate);
   }
 
   @override
