@@ -7,6 +7,9 @@ class _SortLabel extends StatelessWidget {
   final WidgetRef ref;
   @override
   Widget build(BuildContext context) {
+    // Log.info(
+    //   ref.watch(membersTableSourceProvider).sortedColumns.first.name,
+    // );
     return Visibility(
       visible: ref.watch(isSortAppliedProvider),
       child: Padding(

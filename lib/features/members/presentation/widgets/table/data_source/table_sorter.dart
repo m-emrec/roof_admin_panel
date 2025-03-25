@@ -1,8 +1,10 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/sort_by_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/extensions/string_tr_comparator_extension.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 mixin TableSorter on DataGridSource {

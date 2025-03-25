@@ -2,6 +2,7 @@ import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
+import 'package:roof_admin_panel/features/members/presentation/models/table_name_field_model.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -23,9 +24,10 @@ mixin DataGridRowGenerator on DataGridSource {
                 columnName: MemberTableNames.memberNumber.name,
                 value: int.tryParse(e.memberNumber.toString()),
               ),
-              DataGridCell<List<String?>>(
+              DataGridCell<TableNameFieldModel>(
                 columnName: MemberTableNames.memberName.name,
-                value: [e.name, e.phoneNumber],
+                value: TableNameFieldModel(
+                    name: e.name ?? "", phoneNumber: e.phoneNumber ?? ""),
               ),
               DataGridCell<DateTime>(
                 columnName: MemberTableNames.membershipEndDate.name,
