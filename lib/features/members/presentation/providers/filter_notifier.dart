@@ -44,9 +44,9 @@ class MembersFilterNotifier extends ChangeNotifier {
   /// The strategy map that determines how to construct filter models
   /// for each specific table column based on its data type.
   final Map<MemberTableNames, FilterStrategy<dynamic>> _filterStrategies = {
-    MemberTableNames.role: StringFilterStrategy(),
-    MemberTableNames.age: RangeFilterStrategy(),
-    MemberTableNames.membershipEndDate: DateRangeFilterStrategy(),
+    MemberTableNames.role: const StringFilterStrategy(),
+    MemberTableNames.age: const RangeFilterStrategy(),
+    MemberTableNames.membershipEndDate: const DateRangeFilterStrategy(),
   };
 
   /// It is a getter to check if any filter is applied.

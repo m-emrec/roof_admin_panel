@@ -4,7 +4,13 @@ import 'package:roof_admin_panel/features/members/presentation/models/filter_mod
 import 'package:roof_admin_panel/features/members/presentation/strategies/filter%20strategies/filter_strategy.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+///
 final class DateRangeFilterStrategy implements FilterStrategy<DateTimeRange> {
+  /// Use this strategy to filter the data based on the date range.
+  ///
+  ///
+  const DateRangeFilterStrategy();
+
   @override
   List<FilterModel> build(MemberTableNames columnName, DateTimeRange value) {
     return [
