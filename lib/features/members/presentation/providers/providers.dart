@@ -1,17 +1,15 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
 import 'package:core/utils/constants/enums/roles.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
-import 'package:roof_admin_panel/features/members/presentation/models/filter_model.dart';
 import 'package:roof_admin_panel/features/members/data/repositories/members_repository_impl.dart';
 import 'package:roof_admin_panel/features/members/data/services/members_database_service.dart';
 import 'package:roof_admin_panel/features/members/domain/repositories/members_repository.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_next_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_users_count_use_case.dart';
+import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
@@ -106,9 +104,20 @@ final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   );
 });
 
+/// I use this provider to notify the UI about the sort status.
+/// It was needed to show the sort direction icon.
+///
+/// And I could not do it with [membersTableSourceProvider] because there is no
+/// way to notify the UI about the sort status, it can only notify
+/// the [MembersTableDataSource].
+///
 final isSortAppliedProvider = StateProvider<bool>((ref) {
   return false;
 });
+
+/// This provider is used to provide the sort direction.
+///
+///
 final sortDirectionProvider = StateProvider<SortDirection>((ref) {
   return SortDirection.desc;
 });
