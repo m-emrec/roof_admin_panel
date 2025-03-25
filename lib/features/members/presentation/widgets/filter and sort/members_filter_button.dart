@@ -20,13 +20,6 @@ class _MembersFilterButton extends ConsumerWidget {
         // Revert unapplied filters when the dialog is closed.
         () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
       ),
-      // color: WidgetStateColor.resolveWith((state) {
-      //   if (state.contains(WidgetState.selected)) {
-      //     return AppColors.backgroundColor[60] ?? Colors.transparent;
-      //   }
-      //   return context.theme.scaffoldBackgroundColor;
-      // }),
-
       label: SvgPicture.asset(
         Assets.icons.filterIcon,
         width: 16,

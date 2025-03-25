@@ -1,8 +1,6 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/logger/logger.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +12,8 @@ import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 part 'members_filter_button.dart';
 part 'members_sort_button.dart';
+part 'sort_label.dart';
+part 'sort_direction_button.dart';
 
 /// This is the row that contains the filter and sort icons.
 class FilterAndSortRow extends ConsumerWidget {
