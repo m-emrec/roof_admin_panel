@@ -14,6 +14,41 @@ import 'package:roof_admin_panel/features/members/presentation/providers/filter_
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
 
+final _dummyUsers = [
+  UserModel(
+    name: 'John Doe',
+    phoneNumber: '1234567890',
+    membershipEndDate: DateTime.now(),
+    role: [Role.admin],
+    birthDate: DateTime.now(),
+    memberNumber: '123456',
+  ),
+  UserModel(
+    name: 'John Doe',
+    phoneNumber: '1234567890',
+    membershipEndDate: DateTime.now(),
+    role: [Role.admin],
+    birthDate: DateTime.now(),
+    memberNumber: '123456',
+  ),
+  UserModel(
+    name: 'John Doe',
+    phoneNumber: '1234567890',
+    membershipEndDate: DateTime.now(),
+    role: [Role.admin],
+    birthDate: DateTime.now(),
+    memberNumber: '123456',
+  ),
+  UserModel(
+    name: 'John Doe',
+    phoneNumber: '1234567890',
+    membershipEndDate: DateTime.now(),
+    role: [Role.admin],
+    birthDate: DateTime.now(),
+    memberNumber: '123456',
+  ),
+];
+
 /// This provider is used to provide the [MembersDatabaseService] instance.
 final _membersDataBaseServiceProvider = Provider<MembersDatabaseService>((ref) {
   return MembersDatabaseService();
@@ -66,40 +101,7 @@ final totalMembersCountProvider = FutureProvider<int>((ref) async {
 /// This provider is used to provide the [MembersTableDataSource] instance.
 final membersTableSourceProvider = Provider<MembersTableDataSource>((ref) {
   return MembersTableDataSource(
-    users: [
-      UserModel(
-        name: 'John Doe',
-        phoneNumber: '1234567890',
-        membershipEndDate: DateTime.now(),
-        role: [Role.admin],
-        birthDate: DateTime.now(),
-        memberNumber: '123456',
-      ),
-      UserModel(
-        name: 'John Doe',
-        phoneNumber: '1234567890',
-        membershipEndDate: DateTime.now(),
-        role: [Role.admin],
-        birthDate: DateTime.now(),
-        memberNumber: '123456',
-      ),
-      UserModel(
-        name: 'John Doe',
-        phoneNumber: '1234567890',
-        membershipEndDate: DateTime.now(),
-        role: [Role.admin],
-        birthDate: DateTime.now(),
-        memberNumber: '123456',
-      ),
-      UserModel(
-        name: 'John Doe',
-        phoneNumber: '1234567890',
-        membershipEndDate: DateTime.now(),
-        role: [Role.admin],
-        birthDate: DateTime.now(),
-        memberNumber: '123456',
-      ),
-    ],
+    users: _dummyUsers,
     ref: ref,
   );
 });
