@@ -95,7 +95,7 @@ class MembersFilterNotifier extends ChangeNotifier {
 
     final filter = _getFilterIfExists(MemberTableNames.membershipEndDate);
 
-    if (filter == null && (filter!.length < 2)) return null;
+    if (filter == null || (filter.length < 2)) return null;
 
     min = DateTime.tryParse(filter[0].condition.value.toString());
     max = DateTime.tryParse(filter[1].condition.value.toString());
