@@ -1,4 +1,5 @@
 import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -220,13 +221,13 @@ class MembersFilterNotifier extends ChangeNotifier {
   void applyFilters() {
     membersTableDataSource.clearFilters();
     for (final filter in _filters.values.expand((element) => element)) {
-      _addFilter(filter.columnName.name, filter.condition);
+      _addFilterToTableSource(filter.columnName.name, filter.condition);
     }
   }
 
   /// Internally adds a single [condition] to the [membersTableDataSource]
   /// for the given [columnName].
-  void _addFilter(String columnName, FilterCondition condition) {
+  void _addFilterToTableSource(String columnName, FilterCondition condition) {
     membersTableDataSource.addFilter(columnName, condition);
   }
 }

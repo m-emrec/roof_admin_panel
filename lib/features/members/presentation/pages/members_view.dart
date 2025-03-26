@@ -26,7 +26,9 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return const Expanded(child: MembersTable());
+            return const Flexible(
+              child: MembersTable(),
+            );
           },
           skeletonWidget: const _LoadingView(),
           skeletonType: SkeletonType.single,
@@ -42,9 +44,7 @@ class _LoadingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomSkeleton(
-      child: Expanded(
-        child: MembersTable(),
-      ),
+      child: MembersTable(),
     );
   }
 }

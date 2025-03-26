@@ -23,9 +23,24 @@ class MembersTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = DataGridController();
+    // Log.info(ref.watch(membersTableSourceProvider).rows.length);
+    final tableSource = ref.watch(membersTableSourceProvider);
+
+    /// If the filter is applied and no data is found for the filter,
+    /// First call the [handleLoadMoreRows] method to fetch more data and
+    ///  then show a message.
+    if (ref.watch(filterNotifierProvider).isFilterApplied &&
+        tableSource.effectiveRows.isEmpty) {
+      tableSource.handleLoadMoreRows();
+      return const Center(
+        child: Text('No data found for this filter'),
+      );
+    }
+
     return CustomTable(
       controller: controller,
-      source: ref.watch(membersTableSourceProvider),
+      source: tableSource,
+      rowsPerPage: 1,
       columns: <GridColumn>[
         GridColumn(
           columnName: MemberTableNames.memberNumber.name,
@@ -35,13 +50,12 @@ class MembersTable extends ConsumerWidget {
           // filterIconPosition: ColumnHeaderIconPosition.start,
         ),
         GridColumn(
-            columnName: MemberTableNames.memberName.name,
-            label: ColumnTitle(
-              title: MemberTableNames.memberName.toLocale,
-            ),
-            columnWidthMode: ColumnWidthMode.auto,
-            // allowEditing: false,
-            allowFiltering: true),
+          columnName: MemberTableNames.memberName.name,
+          label: ColumnTitle(
+            title: MemberTableNames.memberName.toLocale,
+          ),
+          columnWidthMode: ColumnWidthMode.auto,
+        ),
         GridColumn(
           columnName: MemberTableNames.membershipEndDate.name,
           label: ColumnTitle(

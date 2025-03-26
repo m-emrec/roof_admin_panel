@@ -5,6 +5,7 @@ class _CustomTableLoadMoreViewBuilder {
     BuildContext context,
     Future<void> Function() loadMoreRows,
   ) {
+    // Log.debug('Building load more view');
     return Container(
       width: double.infinity,
       alignment: Alignment.center,

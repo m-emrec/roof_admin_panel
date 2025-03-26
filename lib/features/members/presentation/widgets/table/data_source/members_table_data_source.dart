@@ -1,3 +1,4 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,7 +45,6 @@ class MembersTableDataSource extends DataGridSource
       generateUserDataGridRows(
         ref.read(membersViewModelProvider).value ?? [],
       );
-      notifyListeners();
     }
   }
 

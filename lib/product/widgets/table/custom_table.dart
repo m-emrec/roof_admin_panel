@@ -82,6 +82,7 @@ class _CustomTableState extends State<CustomTable> {
               showCheckboxColumn: true,
               headerGridLinesVisibility: GridLinesVisibility.none,
               isScrollbarAlwaysShown: true,
+
               rowsPerPage: widget.rowsPerPage,
               // editingGestureType: EditingGestureType.tap,
               gridLinesVisibility: GridLinesVisibility.none,

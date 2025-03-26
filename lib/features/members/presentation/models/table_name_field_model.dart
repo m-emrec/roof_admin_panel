@@ -1,6 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
-import 'package:roof_admin_panel/product/utility/extensions/string_tr_comparator_extension.dart';
-
 class TableNameFieldModel {
   TableNameFieldModel({
     required this.name,
