@@ -45,14 +45,10 @@ class MembersTableDataSource extends DataGridSource
       generateUserDataGridRows(
         ref.read(membersViewModelProvider).value ?? [],
       );
-      Log.info(ref.read(membersViewModelProvider).value?.length);
       // ref.read(filterNotifierProvider).revertUnappliedFilters();
       ref.read(filterNotifierProvider).revertUnappliedFilters();
       ref.read(filterNotifierProvider).applyFilters();
     }
-    Log.warning(effectiveRows);
-
-    Log.debug(ref.read(filterNotifierProvider).isFilterApplied);
   }
 
   @override

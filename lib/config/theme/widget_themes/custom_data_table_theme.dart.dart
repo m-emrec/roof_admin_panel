@@ -26,5 +26,6 @@ final class _CustomDataTableTheme {
         width: 2,
       ),
     ),
+    rowHeight: 72,
   );
 }

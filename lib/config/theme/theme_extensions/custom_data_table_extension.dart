@@ -15,10 +15,12 @@ class CustomDataTableThemeExtension
     this.rowItemTextStyle,
     this.nameTextStyle,
     this.border,
+    this.rowHeight,
   });
   final BoxBorder? border;
   final TextStyle? rowItemTextStyle;
   final TextStyle? nameTextStyle;
+  final double? rowHeight;
 
   /// The theme data for the table.
   final SfDataGridThemeData tableTheme;

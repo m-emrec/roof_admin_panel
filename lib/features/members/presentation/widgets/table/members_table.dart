@@ -14,16 +14,16 @@ class MembersTable extends ConsumerWidget {
   /// [MembersTable] is a widget that displays a table of members.
   ///
   /// it mainly used on the [MembersView] page.
-  const MembersTable({
+  MembersTable({
     super.key,
   });
 
   /// The list of members to display in the table.
   // final List<UserModel> members;
+  final controller = DataGridController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = DataGridController();
     // Log.info(ref.watch(membersTableSourceProvider).rows.length);
     final tableSource = ref.watch(membersTableSourceProvider);
 
@@ -62,7 +62,7 @@ class MembersTable extends ConsumerWidget {
     return CustomTable(
       controller: controller,
       source: tableSource,
-      rowsPerPage: 1,
+      rowsPerPage: 20,
       columns: <GridColumn>[
         GridColumn(
           columnName: MemberTableNames.memberNumber.name,

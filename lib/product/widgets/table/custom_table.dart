@@ -50,7 +50,8 @@ class CustomTable extends StatefulWidget {
   State<CustomTable> createState() => _CustomTableState();
 }
 
-class _CustomTableState extends State<CustomTable> {
+class _CustomTableState extends State<CustomTable>
+    with _CustomTableLoadMoreViewBuilder {
   /// The minimum width of the table.
   /// If the width of the table is less than this value, the column width mode is set to auto.
   ///
@@ -59,21 +60,23 @@ class _CustomTableState extends State<CustomTable> {
   final double _minWidth = 700;
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme.extension<CustomDataTableThemeExtension>();
+
     return LayoutBuilder(
       builder: (context, constraints) {
+        loadMoreIfNotScrollable(
+          constraints.maxHeight,
+        );
         return SfDataGridTheme(
-          data: context.theme
-                  .extension<CustomDataTableThemeExtension>()
-                  ?.tableTheme ??
-              const SfDataGridThemeData(),
+          data: theme?.tableTheme ?? const SfDataGridThemeData(),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              border: context.theme
-                  .extension<CustomDataTableThemeExtension>()
-                  ?.border,
+              border: theme?.border,
             ),
             child: SfDataGrid(
-              loadMoreViewBuilder: _CustomTableLoadMoreViewBuilder.build,
+              rowHeight: theme?.rowHeight ?? double.nan,
+              showVerticalScrollbar: false,
+              loadMoreViewBuilder: buildLoadMore,
               controller: widget.controller,
               onCellTap: widget.onCellTap,
               checkboxColumnSettings: const DataGridCheckboxColumnSettings(
