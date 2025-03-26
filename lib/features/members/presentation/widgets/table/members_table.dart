@@ -1,3 +1,4 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
@@ -31,9 +32,30 @@ class MembersTable extends ConsumerWidget {
     ///  then show a message.
     if (ref.watch(filterNotifierProvider).isFilterApplied &&
         tableSource.effectiveRows.isEmpty) {
-      tableSource.handleLoadMoreRows();
-      return const Center(
-        child: Text('No data found for this filter'),
+      return FutureBuilder(
+        future: tableSource.handleLoadMoreRows(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Center(
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('No data found for this filter'),
+                  TextButton(
+                    onPressed: () =>
+                        ref.read(filterNotifierProvider).clearFilters(),
+                    child: Text("Clear Filter"),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       );
     }
 

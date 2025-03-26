@@ -1,5 +1,4 @@
 import 'package:core/utils/constants/enums/roles.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

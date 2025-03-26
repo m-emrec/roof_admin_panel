@@ -15,47 +15,54 @@ class FilterDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return CustomAlertDialog(
-      title: Text(LocaleKeys.membersView_filters_title.tr()),
-      content: SizedBox(
-        width: 400,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          spacing: SpacingSizes.small,
-          children: [
-            /// age
-            MembersAgeFilter(),
+    return PopScope(
+      onPopInvokedWithResult: (_, __) =>
+          ref.read(filterNotifierProvider).revertUnappliedFilters(),
+      child: CustomAlertDialog(
+        title: Text(LocaleKeys.membersView_filters_title.tr()),
+        content: SizedBox(
+          width: 400,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            spacing: SpacingSizes.small,
+            children: [
+              /// age
+              MembersAgeFilter(),
 
-            // membership end duration ( slider )
-            MembershipEndDurationFilter(),
-            // role ( dropdown )
-            const RoleFilter(),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => CustomAlertDialog.hideAlertDialog(context),
-          child: Text(LocaleKeys.common_close.tr()),
-        ),
-        Visibility(
-          visible: ref.watch(filterNotifierProvider).isFilterApplied,
-          child: TextButton(
-            onPressed: () => ref.read(filterNotifierProvider).clearFilters(),
-            child: Text(
-              LocaleKeys.membersView_filters_clearFilters.tr(),
-            ),
+              // membership end duration ( slider )
+              MembershipEndDurationFilter(),
+              // role ( dropdown )
+              const RoleFilter(),
+            ],
           ),
         ),
-        TextButton(
-          onPressed: () {
-            ref.read(filterNotifierProvider).applyFilters();
-            CustomAlertDialog.hideAlertDialog(context);
-          },
-          child: Text(LocaleKeys.common_save.tr()),
-        ),
-      ],
+        actions: [
+          TextButton(
+            onPressed: () {
+              CustomAlertDialog.hideAlertDialog(context);
+            },
+            child: Text(LocaleKeys.common_close.tr()),
+          ),
+          Visibility(
+            visible: ref.watch(filterNotifierProvider).isFilterApplied,
+            child: TextButton(
+              onPressed: () => ref.read(filterNotifierProvider).clearFilters(),
+              child: Text(
+                LocaleKeys.membersView_filters_clearFilters.tr(),
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              ref.read(filterNotifierProvider).applyFilters();
+
+              CustomAlertDialog.hideAlertDialog(context);
+            },
+            child: Text(LocaleKeys.common_save.tr()),
+          ),
+        ],
+      ),
     );
   }
 }

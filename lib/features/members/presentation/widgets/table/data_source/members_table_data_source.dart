@@ -36,16 +36,23 @@ class MembersTableDataSource extends DataGridSource
   @override
   Future<void> handleLoadMoreRows() async {
     final users = ref.read(membersViewModelProvider);
+
     if ((users.value?.length ?? 0) <
         (ref.read(totalMembersCountProvider).value ?? 0)) {
       await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
             users.value?.last.uid ?? '',
           );
-
       generateUserDataGridRows(
         ref.read(membersViewModelProvider).value ?? [],
       );
+      Log.info(ref.read(membersViewModelProvider).value?.length);
+      // ref.read(filterNotifierProvider).revertUnappliedFilters();
+      ref.read(filterNotifierProvider).revertUnappliedFilters();
+      ref.read(filterNotifierProvider).applyFilters();
     }
+    Log.warning(effectiveRows);
+
+    Log.debug(ref.read(filterNotifierProvider).isFilterApplied);
   }
 
   @override
