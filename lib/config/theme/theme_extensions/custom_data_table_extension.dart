@@ -15,12 +15,20 @@ class CustomDataTableThemeExtension
     this.rowItemTextStyle,
     this.nameTextStyle,
     this.border,
-    this.rowHeight,
+    required this.rowHeight,
+    required this.minTableWidth,
+    this.checkboxShape,
   });
   final BoxBorder? border;
   final TextStyle? rowItemTextStyle;
   final TextStyle? nameTextStyle;
-  final double? rowHeight;
+  final double rowHeight;
+  final OutlinedBorder? checkboxShape;
+
+  /// The minimum width of the table.
+  /// If the width of the table is less than this value, the column width mode is set to auto.
+  ///
+  final double minTableWidth;
 
   /// The theme data for the table.
   final SfDataGridThemeData tableTheme;
@@ -32,11 +40,14 @@ class CustomDataTableThemeExtension
     SfDataGridThemeData? tableTheme,
     TextStyle? headerTextStyle,
     BoxBorder? border,
+    double? rowHeight,
   }) {
     return CustomDataTableThemeExtension(
       tableTheme: tableTheme ?? this.tableTheme,
       headerTextStyle: headerTextStyle ?? this.headerTextStyle,
       border: border ?? this.border,
+      rowHeight: rowHeight ?? this.rowHeight,
+      minTableWidth: minTableWidth,
     );
   }
 
@@ -54,6 +65,8 @@ class CustomDataTableThemeExtension
           tableTheme,
       headerTextStyle:
           TextStyle.lerp(headerTextStyle, other.headerTextStyle, t),
+      rowHeight: rowHeight,
+      minTableWidth: minTableWidth,
     );
   }
 }

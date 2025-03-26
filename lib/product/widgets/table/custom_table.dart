@@ -52,12 +52,6 @@ class CustomTable extends StatefulWidget {
 
 class _CustomTableState extends State<CustomTable>
     with _CustomTableLoadMoreViewBuilder {
-  /// The minimum width of the table.
-  /// If the width of the table is less than this value, the column width mode is set to auto.
-  ///
-  /// I found this value by trial and error.
-  /// 700 is the minimum width that the table can be displayed properly.
-  final double _minWidth = 700;
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.extension<CustomDataTableThemeExtension>();
@@ -83,14 +77,11 @@ class _CustomTableState extends State<CustomTable>
                 showCheckboxOnHeader: false,
               ),
               showCheckboxColumn: true,
+              checkboxShape: theme?.checkboxShape,
               headerGridLinesVisibility: GridLinesVisibility.none,
-              isScrollbarAlwaysShown: true,
 
               rowsPerPage: widget.rowsPerPage,
-              // editingGestureType: EditingGestureType.tap,
               gridLinesVisibility: GridLinesVisibility.none,
-              // onCellLongPress: (details) =>
-              //     Log.debug(details.rowColumnIndex.rowIndex),
 
               onSelectionChanged: widget.onSelectionChanged,
               selectionMode: SelectionMode.multiple,
@@ -102,9 +93,10 @@ class _CustomTableState extends State<CustomTable>
               /// If the width of the table is less than the minimum width,
               /// the column width mode is set to auto, otherwise it is set to fill.
               /// This is done to prevent the table from overflowing.
-              columnWidthMode: constraints.maxWidth < _minWidth
-                  ? ColumnWidthMode.auto
-                  : ColumnWidthMode.fill,
+              columnWidthMode:
+                  constraints.maxWidth < (theme?.minTableWidth ?? 700)
+                      ? ColumnWidthMode.auto
+                      : ColumnWidthMode.fill,
               columns: widget.columns,
             ),
           ),

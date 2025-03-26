@@ -27,5 +27,12 @@ final class _CustomDataTableTheme {
       ),
     ),
     rowHeight: 72,
+
+    /// I found this value by trial and error.
+    /// 700 is the minimum width that the table can be displayed properly.
+    minTableWidth: 700,
+    checkboxShape: const ContinuousRectangleBorder(
+      borderRadius: AppBorderRadius.small(),
+    ),
   );
 }

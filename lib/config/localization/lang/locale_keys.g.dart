@@ -171,6 +171,7 @@ abstract class  LocaleKeys {
   static const membersView_filters_memberShipEndDurationFilter = 'membersView.filters.memberShipEndDurationFilter';
   static const membersView_filters_memberShipEndDurationFilterLabel = 'membersView.filters.memberShipEndDurationFilterLabel';
   static const membersView_filters_clearFilters = 'membersView.filters.clearFilters';
+  static const membersView_filters_nothingFoundForFilter = 'membersView.filters.nothingFoundForFilter';
   static const membersView_filters = 'membersView.filters';
   static const membersView_sort_memberNumber = 'membersView.sort.memberNumber';
   static const membersView_sort_name = 'membersView.sort.name';

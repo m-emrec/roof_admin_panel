@@ -11,7 +11,10 @@ mixin _CustomTableLoadMoreViewBuilder on State<CustomTable> {
     final rowHeight =
         context.theme.extension<CustomDataTableThemeExtension>()?.rowHeight ??
             double.nan;
-    if (maxHeight / (rowHeight * widget.rowsPerPage) > 1) {
+
+    final shouldLoadMore = maxHeight / (rowHeight * widget.rowsPerPage) > 1;
+
+    if (shouldLoadMore) {
       ///
       // ignore: invalid_use_of_protected_member
       widget.source.handleLoadMoreRows();

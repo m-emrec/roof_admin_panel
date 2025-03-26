@@ -184,7 +184,8 @@
             "ageFilterLabel": "Yaş Aralığı",
             "memberShipEndDurationFilter": "Tarihleri Arasında Üyeliği Bitenler",
             "memberShipEndDurationFilterLabel": "Üyelik Bitiş Tarihi Aralığı",
-            "clearFilters": "Filtreleri Temizle"
+            "clearFilters": "Filtreleri Temizle",
+            "nothingFoundForFilter": "Bu filtreye uygun üye bulunamadı."
         },
         "sort":{
             "memberNumber": "Üye Numarasına Göre",

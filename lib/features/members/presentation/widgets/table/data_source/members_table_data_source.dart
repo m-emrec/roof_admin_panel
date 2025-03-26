@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +35,6 @@ class MembersTableDataSource extends DataGridSource
   @override
   Future<void> handleLoadMoreRows() async {
     final users = ref.read(membersViewModelProvider);
-
     if ((users.value?.length ?? 0) <
         (ref.read(totalMembersCountProvider).value ?? 0)) {
       await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
