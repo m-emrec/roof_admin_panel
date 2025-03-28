@@ -14,11 +14,10 @@ class _SortDirectionButton extends ConsumerWidget {
           onTap: () {
             ref.read(membersTableSourceProvider).changeSortDirection(ref);
           },
-          child: Icon(
+          child: AppIcon.small(
             sortDirection == SortDirection.asc
-                ? Icons.arrow_upward_rounded
-                : Icons.arrow_downward_rounded,
-            size: 16,
+                ? Assets.icons.sortAscIcon
+                : Assets.icons.sortDescIcon,
           ),
         ),
       ),

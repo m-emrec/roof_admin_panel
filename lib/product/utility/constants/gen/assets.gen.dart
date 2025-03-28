@@ -86,6 +86,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/sidebar_icon.svg
   String get sidebarIcon => 'assets/icons/sidebar_icon.svg';
 
+  /// File path: assets/icons/sort_asc_icon.svg
+  String get sortAscIcon => 'assets/icons/sort_asc_icon.svg';
+
+  /// File path: assets/icons/sort_desc_icon.svg
+  String get sortDescIcon => 'assets/icons/sort_desc_icon.svg';
+
   /// File path: assets/icons/sort_icon.svg
   String get sortIcon => 'assets/icons/sort_icon.svg';
 
@@ -113,6 +119,8 @@ class $AssetsIconsGen {
     phoneIcon,
     roofLogo,
     sidebarIcon,
+    sortAscIcon,
+    sortDescIcon,
     sortIcon,
     whatsappIcon,
   ];

@@ -12,7 +12,10 @@ final class _PageNotFound {
                 spacing: SpacingSizes.large,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(Assets.icons.a404Icon),
+                  AppIcon(
+                    Assets.icons.a404Icon,
+                    size: IconSizes.xxxxlarge,
+                  ),
                   Text(
                     LocaleKeys.notFoundPage_pageNotFound.tr(),
                     style: context.textTheme.titleMedium,

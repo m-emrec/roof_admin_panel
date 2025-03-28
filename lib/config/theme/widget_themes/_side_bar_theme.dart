@@ -28,7 +28,7 @@ final class _SideBarTheme {
         expandedWidth: 200,
         collapsedWidth: 64,
         backgroundColor: AppColors.backgroundColor[60],
-        iconSize: const Size(16, 16),
+        iconSize: IconSizes.small,
         selectedItemColor: AppColors.backgroundColor[40],
         unSelectedItemColor: Colors.transparent,
         textStyle: ctx.textTheme.labelMedium,

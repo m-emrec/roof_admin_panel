@@ -12,6 +12,7 @@ import 'package:roof_admin_panel/config/route%20config/routes/managers_route.dar
 import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_model.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
@@ -28,70 +29,44 @@ final class SideBarItemsBuilder {
   /// It contains the sidebar items.
   ///
   ///* When you want to add a new sidebar item, you should add it to this list.
-  static List<SideBarItemModel> sideBarItems(BuildContext context) => [
-        SideBarItemModel(
-          route: const MainRoute(),
-          icon: SvgPicture.asset(
-            Assets.icons.membersIcon,
-            width: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.width,
-            height: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.height,
-          ),
-          title: LocaleKeys.sidebar_members.tr(),
+  static List<SideBarItemModel> _sideBarItems(BuildContext context) {
+    final Size iconSize =
+        context.theme.extension<SideBarThemeExtension>()?.iconSize ?? Size.zero;
+    return [
+      SideBarItemModel(
+        route: const MainRoute(),
+        icon: AppIcon(Assets.icons.membersIcon, size: iconSize),
+        title: LocaleKeys.sidebar_members.tr(),
+      ),
+      SideBarItemModel(
+        route: FeedbackRoute(),
+        icon: AppIcon(
+          Assets.icons.feedbacksIcon,
+          size: iconSize,
         ),
-        SideBarItemModel(
-          route: FeedbackRoute(),
-          icon: SvgPicture.asset(
-            Assets.icons.feedbacksIcon,
-            width: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.width,
-            height: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.height,
-          ),
-          title: LocaleKeys.sidebar_feedback.tr(),
+        title: LocaleKeys.sidebar_feedback.tr(),
+      ),
+      SideBarItemModel(
+        title: LocaleKeys.sidebar_guests.tr(),
+        icon: AppIcon(
+          Assets.icons.guestsIcon,
+          size: iconSize,
         ),
-        SideBarItemModel(
-          title: LocaleKeys.sidebar_guests.tr(),
-          icon: SvgPicture.asset(
-            Assets.icons.guestsIcon,
-            width: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.width,
-            height: context.theme
-                .extension<SideBarThemeExtension>()
-                ?.iconSize
-                ?.height,
-          ),
-          route: GuestsRoute(),
+        route: GuestsRoute(),
+      ),
+      SideBarItemModel(
+        title: LocaleKeys.sidebar_managers.tr(),
+        icon: AppIcon(
+          Assets.icons.managersIcon,
+          size: iconSize,
         ),
-        SideBarItemModel(
-          title: LocaleKeys.sidebar_managers.tr(),
-          icon: _icon(Assets.icons.managersIcon, context),
-          route: ManagersRoute(),
-        ),
-      ];
-
-  static SvgPicture _icon(String iconPath, BuildContext context) {
-    return SvgPicture.asset(
-      iconPath,
-      width: context.theme.extension<SideBarThemeExtension>()?.iconSize?.width,
-      height:
-          context.theme.extension<SideBarThemeExtension>()?.iconSize?.height,
-    );
+        route: ManagersRoute(),
+      ),
+    ];
   }
 
   static List<Widget> create(BuildContext context) {
-    return sideBarItems(context)
+    return _sideBarItems(context)
         .map(
           (item) => _SideBarItem(
             icon: item.icon,

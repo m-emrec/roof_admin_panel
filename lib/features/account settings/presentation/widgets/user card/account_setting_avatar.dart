@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/account_setting_avatar_state_mixin.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 class AccountSettingAvatar extends ConsumerStatefulWidget {
@@ -57,9 +58,8 @@ class _AccountSettingAvatarState extends ConsumerState<AccountSettingAvatar>
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
+                  AppIcon.small(
                     Assets.icons.editImageIcon,
-                    width: 16,
                   ),
                   Text(
                     LocaleKeys.accountSettingView_changeProfilePicture.tr(),

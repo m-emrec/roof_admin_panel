@@ -11,6 +11,7 @@ import 'package:roof_admin_panel/features/account%20settings/presentation/widget
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/change%20password%20dialog/change_password_dialog.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/log_out_confirmation_dialog.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
 class ButtonsRow extends StatelessWidget {
@@ -61,9 +62,8 @@ class ButtonsRow extends StatelessWidget {
             barrierDismissible: true,
             content: const LogOutConfirmationDialog(),
           ),
-          icon: SvgPicture.asset(
+          icon: AppIcon.small(
             Assets.icons.logoutIcon,
-            width: 16,
           ),
         ),
       ],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 
@@ -82,7 +83,7 @@ class _DateFieldState extends State<DateField> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(Assets.icons.calendarIcon),
+        AppIcon(Assets.icons.calendarIcon),
         const SizedBox(width: 10),
         TextButton(
           onPressed: _selectDate,

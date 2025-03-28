@@ -2,6 +2,7 @@ import 'package:core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/product/utility/constants/gen/assets.gen.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 
 /// This is the top right button in the sidebar that controls the sidebar's
@@ -41,7 +42,7 @@ class SideBarControlButton extends StatelessWidget {
         style: context.theme.iconButtonTheme.style?.copyWith(
           backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
         ),
-        icon: SvgPicture.asset(Assets.icons.sidebarIcon),
+        icon: AppIcon(Assets.icons.sidebarIcon),
         onPressed: animationController.forward,
       ),
     );

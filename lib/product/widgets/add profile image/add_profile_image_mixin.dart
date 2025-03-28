@@ -9,6 +9,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 
 /// A mixin that provides the functionality to add a profile image.
 mixin AddProfileImageMixin<T extends StatefulWidget> on State<T> {
@@ -58,7 +59,7 @@ mixin AddProfileImageMixin<T extends StatefulWidget> on State<T> {
     if (image != null) {
       return Image.file(image!, fit: BoxFit.cover);
     } else {
-      return SvgPicture.asset(
+      return AppIcon(
         Assets.icons.addPictureIcon,
         fit: BoxFit.none,
       );

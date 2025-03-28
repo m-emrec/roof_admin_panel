@@ -16,16 +16,9 @@ class _MembersFilterButton extends ConsumerWidget {
         barrierDismissible: true,
         context: context,
         content: const FilterDialog(),
-      )
-      // .whenComplete(
-      //   // Revert unapplied filters when the dialog is closed.
-      //   () => ref.read(filterNotifierProvider).revertUnappliedFilters(),
-      // )
-      ,
-      label: SvgPicture.asset(
+      ),
+      label: AppIcon.small(
         Assets.icons.filterIcon,
-        width: 16,
-        height: 16,
       ),
     );
   }

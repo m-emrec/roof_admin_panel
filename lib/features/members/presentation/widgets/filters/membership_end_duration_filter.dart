@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/widgets/app_icon.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
 class MembershipEndDurationFilter extends ConsumerWidget {
@@ -60,7 +61,7 @@ class MembershipEndDurationFilter extends ConsumerWidget {
             ),
           ),
         ),
-        leading: SvgPicture.asset(Assets.icons.calendarIcon),
+        leading: AppIcon.small(Assets.icons.calendarIcon),
         onTap: () => _showDatePicker(context, ref),
         title: _pickedDate != null
             ? _PickedDateText(_pickedDate)

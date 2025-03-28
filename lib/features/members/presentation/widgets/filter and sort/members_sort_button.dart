@@ -35,10 +35,8 @@ class _MembersSortButton extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _SortLabel(ref),
-              SvgPicture.asset(
+              AppIcon.small(
                 Assets.icons.sortIcon,
-                width: 16,
-                height: 16,
               ),
             ],
           ),

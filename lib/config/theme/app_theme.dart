@@ -13,6 +13,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_the
 import 'package:roof_admin_panel/config/theme/theme_extensions/guests_table_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
+import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 import 'theme_extensions/inline_text_button_theme.dart';
