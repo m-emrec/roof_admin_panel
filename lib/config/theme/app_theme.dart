@@ -95,7 +95,7 @@ final class AppTheme {
         textTheme: TextStyles().textTheme,
 
         /// Widget Themes
-        appBarTheme: _AppBarTheme.appBarTheme,
+        appBarTheme: _AppBarTheme(),
         elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme,
         menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
         textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
@@ -105,14 +105,13 @@ final class AppTheme {
         inputDecorationTheme: _InputDecorationTheme.inputDecorationTheme,
         extensions: _extensions,
         expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
-
-        checkboxTheme: _CheckboxTheme.checkboxTheme,
+        checkboxTheme: _CheckboxTheme(),
         progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
         floatingActionButtonTheme:
             _FloatingActionButtonTheme.floatingActionButtonTheme,
-        datePickerTheme: _DatePickerTheme.datePickerTheme,
+        datePickerTheme: _DatePickerTheme(),
         tooltipTheme: _TooltipTheme.tooltipTheme,
-        chipTheme: _ChipTheme.chipTheme,
+        chipTheme: _ChipTheme(),
         dataTableTheme: const DataTableThemeData(
           headingRowAlignment: MainAxisAlignment.start,
         ),
@@ -124,7 +123,7 @@ final class AppTheme {
 
   // MARK: Theme Extensions
   Iterable<ThemeExtension<dynamic>> get _extensions => [
-        _AddProfilePictureTheme.addProfilePictureTheme,
+        _AddProfilePictureTheme(),
         _InlineTextButtonTheme.inlineTextButtonTheme,
         _CustomBottomSheetTheme.customBottomSheetTheme,
         _SideBarTheme.sideBarTheme(_context),
@@ -132,6 +131,6 @@ final class AppTheme {
         _FeedbackTileTheme.feedbackTileTheme(_context),
         _GuestsTableTheme.theme(),
         _UserCardTheme.theme(_context),
-        _MembershipInfoCardTheme(_context),
+        _MembershipInfoCardTheme.theme(_context),
       ];
 }

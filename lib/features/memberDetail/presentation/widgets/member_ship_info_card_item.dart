@@ -27,7 +27,7 @@ class MemberInfoCardItem extends StatelessWidget {
           value ?? '',
           style: context.theme
               .extension<MembershipInfoCardThemeExtension>()
-              ?.membershipInfoLabelTextStyle,
+              ?.membershipInfoValueTextStyle,
         ),
       ],
     );

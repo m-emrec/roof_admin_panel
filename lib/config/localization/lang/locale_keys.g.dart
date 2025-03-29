@@ -322,6 +322,7 @@ abstract class  LocaleKeys {
   static const memberDetailView_ban = 'memberDetailView.ban';
   static const memberDetailView_areYouSure = 'memberDetailView.areYouSure';
   static const memberDetailView_edit = 'memberDetailView.edit';
+  static const memberDetailView_personalInfo = 'memberDetailView.personalInfo';
   static const memberDetailView = 'memberDetailView';
   static const notFoundPage_pageTitle = 'notFoundPage.pageTitle';
   static const notFoundPage_pageNotFound = 'notFoundPage.pageNotFound';

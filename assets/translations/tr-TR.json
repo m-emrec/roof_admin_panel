@@ -361,7 +361,8 @@
     "members":"Üyeleri",
     "ban":"Üyeyi Banla",
     "areYouSure":"Bu üyeyi banlamak istediğinizden emin misiniz?",
-    "edit":"Üyeyi Düzenle"
+    "edit":"Üyeyi Düzenle",
+    "personalInfo":"Kişisel Bilgiler"
     },
 
 "notFoundPage":{

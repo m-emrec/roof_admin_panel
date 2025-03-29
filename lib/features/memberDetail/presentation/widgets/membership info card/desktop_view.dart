@@ -6,9 +6,7 @@ class _DesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.extension<MembershipInfoCardThemeExtension>();
-    return Card(
-      elevation: theme?.elevation,
-      color: theme?.backgroundColor,
+    return MembersDetailSectionCard(
       child: Padding(
         padding: theme?.padding ?? EdgeInsets.zero,
         child: Row(
