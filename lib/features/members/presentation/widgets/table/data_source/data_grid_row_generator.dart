@@ -27,7 +27,10 @@ mixin DataGridRowGenerator on DataGridSource {
               DataGridCell<TableNameFieldModel>(
                 columnName: MemberTableNames.memberName.name,
                 value: TableNameFieldModel(
-                    name: e.name ?? "", phoneNumber: e.phoneNumber ?? ""),
+                  name: e.name ?? "",
+                  phoneNumber: e.phoneNumber ?? "",
+                  imageUrl: e.imageUrl,
+                ),
               ),
               DataGridCell<DateTime>(
                 columnName: MemberTableNames.membershipEndDate.name,

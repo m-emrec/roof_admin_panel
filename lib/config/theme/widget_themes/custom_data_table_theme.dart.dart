@@ -27,6 +27,7 @@ final class _CustomDataTableTheme {
       ),
     ),
     rowHeight: 72,
+    avatarRadius: 16,
 
     /// I found this value by trial and error.
     /// 700 is the minimum width that the table can be displayed properly.

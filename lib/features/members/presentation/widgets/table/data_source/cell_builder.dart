@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/models/table_name_field_model.dart';
+import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_cell_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_null_item.dart';
@@ -45,7 +46,8 @@ mixin CellBuilder {
           TableUserAvatar(
             userName: value.name,
             phoneNumber: value.phoneNumber,
-          ),
+            imageUrl: value.imageUrl,
+          ).showClickMouseCursorOnWidget(),
         );
 
       /// I use default case here because rest of the fields are

@@ -4,7 +4,6 @@ import 'dart:async';
 
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/error_manager.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';

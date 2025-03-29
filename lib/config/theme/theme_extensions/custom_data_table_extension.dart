@@ -18,12 +18,14 @@ class CustomDataTableThemeExtension
     required this.rowHeight,
     required this.minTableWidth,
     this.checkboxShape,
+    this.avatarRadius,
   });
   final BoxBorder? border;
   final TextStyle? rowItemTextStyle;
   final TextStyle? nameTextStyle;
   final double rowHeight;
   final OutlinedBorder? checkboxShape;
+  final double? avatarRadius;
 
   /// The minimum width of the table.
   /// If the width of the table is less than this value, the column width mode is set to auto.

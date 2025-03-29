@@ -6,13 +6,13 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 /// [StringFilterStrategy] is a concrete implementation of [FilterStrategy] for string data types.
 ///
 final class StringFilterStrategy implements FilterStrategy<String> {
-  /// U
+  ///
   const StringFilterStrategy();
   @override
   List<FilterModel> build(MemberTableNames columnName, String value) {
     return [
       FilterModel(
-        columnName: MemberTableNames.role,
+        columnName: columnName,
         condition: FilterCondition(
           type: FilterType.contains,
           value: value,

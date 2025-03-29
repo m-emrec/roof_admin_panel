@@ -2,10 +2,11 @@ class TableNameFieldModel {
   TableNameFieldModel({
     required this.name,
     required this.phoneNumber,
+    this.imageUrl,
   });
   final String name;
   final String phoneNumber;
-
+  final String? imageUrl;
   int compareTo(TableNameFieldModel other) {
     final nameChars = name.replaceAll(" ", "").split("");
     final otherChars = other.name.replaceAll(" ", "").split("");

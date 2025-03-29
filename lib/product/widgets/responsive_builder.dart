@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 
 /// This widget used to return different widgets based on the screen size.
