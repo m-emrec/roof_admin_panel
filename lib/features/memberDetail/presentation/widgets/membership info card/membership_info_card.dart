@@ -10,9 +10,9 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/avat
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/section_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
-part 'desktop_view.dart';
-part 'membership_info_section.dart';
-part 'member_ship_info_card_item.dart';
+part '_desktop_view.dart';
+part '_membership_info_section.dart';
+part '_member_ship_info_card_item.dart';
 
 ///
 class MembershipInfoCard extends StatelessWidget {
@@ -29,7 +29,7 @@ class MembershipInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       mobile: const Text("Mobile"),
-      tablet: const Text("Tablet"),
+      // tablet: const Text("Tablet"),
       desktop: _DesktopView(member),
     );
   }

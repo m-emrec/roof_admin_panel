@@ -347,7 +347,6 @@
     "memberShipStartDate":"Üyelik Başlangıç Tarihi",
     "memberShipEndDate":"Üyelik Bitiş Tarihi",
     "memberShipDuration":"Üyelik Süresi",
-    "phoneNumber":"Telefon Numarası",
     "mentor":"Mentörü",
     "mentat":"Mentatı",
     "members":"Üyeleri"
@@ -359,6 +358,7 @@
    },
     "personalInfo": {
         "title":"Kişisel Bilgiler",
+    "phoneNumber":"Telefon Numarası",
         "birthDate":"Doğum Tarihi",
         "gender":"Cinsiyet",
         "livingCity":"Yaşadığı Şehir",

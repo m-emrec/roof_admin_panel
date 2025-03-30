@@ -19,7 +19,8 @@ class _MembershipInfoCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: SpacingSizes.extraSmall,
+      spacing: SpacingSizes.extraExtraSmall,
+      runSpacing: SpacingSizes.extraExtraSmall,
       children: [
         Text(
           "$label:",

@@ -34,11 +34,20 @@ class PersonalInformationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return MembersDetailSectionCard(
       child: Section(
-        title: LocaleKeys.memberDetailView_personalInfo.tr(),
+        title: LocaleKeys.memberDetailView_personalInfo_title.tr(),
         child: Column(
           spacing: SpacingSizes.medium,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Phone Number
+            PersonalInformationItem(
+              title: LocaleKeys.memberDetailView_personalInfo_phoneNumber.tr(),
+              children: [
+                Text(
+                  member?.phoneNumber ?? "",
+                ),
+              ],
+            ),
             // birthdate
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_personalInfo_birthDate.tr(),

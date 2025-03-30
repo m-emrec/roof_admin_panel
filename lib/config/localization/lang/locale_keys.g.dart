@@ -306,7 +306,6 @@ abstract class  LocaleKeys {
   static const memberDetailView_membershipInfo_memberShipStartDate = 'memberDetailView.membershipInfo.memberShipStartDate';
   static const memberDetailView_membershipInfo_memberShipEndDate = 'memberDetailView.membershipInfo.memberShipEndDate';
   static const memberDetailView_membershipInfo_memberShipDuration = 'memberDetailView.membershipInfo.memberShipDuration';
-  static const memberDetailView_membershipInfo_phoneNumber = 'memberDetailView.membershipInfo.phoneNumber';
   static const memberDetailView_membershipInfo_mentor = 'memberDetailView.membershipInfo.mentor';
   static const memberDetailView_membershipInfo_mentat = 'memberDetailView.membershipInfo.mentat';
   static const memberDetailView_membershipInfo_members = 'memberDetailView.membershipInfo.members';
@@ -316,6 +315,7 @@ abstract class  LocaleKeys {
   static const memberDetailView_buttons_edit = 'memberDetailView.buttons.edit';
   static const memberDetailView_buttons = 'memberDetailView.buttons';
   static const memberDetailView_personalInfo_title = 'memberDetailView.personalInfo.title';
+  static const memberDetailView_personalInfo_phoneNumber = 'memberDetailView.personalInfo.phoneNumber';
   static const memberDetailView_personalInfo_birthDate = 'memberDetailView.personalInfo.birthDate';
   static const memberDetailView_personalInfo_gender = 'memberDetailView.personalInfo.gender';
   static const memberDetailView_personalInfo_livingCity = 'memberDetailView.personalInfo.livingCity';
