@@ -5,20 +5,23 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/widgets/empty_box.dart';
+import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 class NameRoleButtonsSection extends StatelessWidget {
   const NameRoleButtonsSection({
     super.key,
     required this.member,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   });
 
   final UserModel? member;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: crossAxisAlignment,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TitleWidget(
@@ -30,9 +33,13 @@ class NameRoleButtonsSection extends StatelessWidget {
               .extension<MembershipInfoCardThemeExtension>()
               ?.roleTextStyle,
         ),
-        const EmptyBox.mediumGap(),
+        const ResponsiveBuilder(
+          mobile: EmptyBox.xSmallGap(),
+          desktop: EmptyBox.largeGap(),
+        ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.end,
           spacing: SpacingSizes.small,
           children: [
             Icon(

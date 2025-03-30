@@ -1,4 +1,4 @@
-part of 'membership_info_card.dart';
+part of 'membership_info_section.dart';
 
 ///
 class _MembershipInfoCardItem extends StatelessWidget {

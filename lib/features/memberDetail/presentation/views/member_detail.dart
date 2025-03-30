@@ -1,9 +1,7 @@
 import 'package:core/core.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about_section.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about%20and%20personal%20info/about_and_personal_info.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership_info_card.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_section.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
@@ -32,18 +30,7 @@ class MemberDetailDialog extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MembershipInfoCard(member: member),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      fit: FlexFit.tight,
-                      child: PersonalInformationSection(member: member),
-                    ),
-                    Flexible(
-                      child: AboutSection(member: member),
-                    ),
-                  ],
-                ),
+                AboutAndPersonalInfo(member),
               ],
             ),
           ),

@@ -23,7 +23,7 @@ class _DesktopView extends StatelessWidget {
                   color: theme?.dividerTheme.color,
                 ),
               ),
-              _MembershipInfoSection(member: member),
+              MembershipInfoSection(member: member),
             ],
           ),
         ),
