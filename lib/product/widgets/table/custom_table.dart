@@ -73,6 +73,7 @@ class _CustomTableState extends State<CustomTable>
               loadMoreViewBuilder: buildLoadMore,
               controller: widget.controller,
               onCellTap: widget.onCellTap,
+
               checkboxColumnSettings: const DataGridCheckboxColumnSettings(
                 showCheckboxOnHeader: false,
               ),
@@ -82,7 +83,6 @@ class _CustomTableState extends State<CustomTable>
 
               rowsPerPage: widget.rowsPerPage,
               gridLinesVisibility: GridLinesVisibility.none,
-
               onSelectionChanged: widget.onSelectionChanged,
               selectionMode: SelectionMode.multiple,
               navigationMode: GridNavigationMode.cell,

@@ -56,7 +56,7 @@ class MembersTableDataSource extends DataGridSource
         return cellBuilder(
           MemberTableNames.toTableNamesEnum(dataGridCell.columnName),
           dataGridCell.value,
-        ).makeSelectable();
+        );
       }).toList(),
     );
   }

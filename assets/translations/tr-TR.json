@@ -340,6 +340,31 @@
 
     "logOut": "Çıkış Yap"
 },
+"memberDetailView":{
+    "memberNumber":"Üye Numarası",
+    "memberShipStartDate":"Üyelik Başlangıç Tarihi",
+    "memberShipEndDate":"Üyelik Bitiş Tarihi",
+    "memberShipDuration":"Üyelik Süresi",
+    "phoneNumber":"Telefon Numarası",
+    "about":"Hakkında",
+    "birthDate":"Doğum Tarihi",
+    "gender":"Cinsiyet",
+    "livingCity":"Yaşadığı Şehir",
+    "livingTown":"Yaşadığı İlçe",
+    "workingCity":"Çalıştığı Şehir",
+    "workingTown":"Çalıştığı İlçe",
+    "occupation":"Meslek",
+    "interests":"İlgi Alanları",
+    "hobbies":"Hobiler",
+    "mentor":"Mentörü",
+    "mentat":"Mentatı",
+    "members":"Üyeleri",
+    "ban":"Üyeyi Banla",
+    "areYouSure":"Bu üyeyi banlamak istediğinizden emin misiniz?",
+    "edit":"Üyeyi Düzenle",
+    "personalInfo":"Kişisel Bilgiler"
+    },
+
 "notFoundPage":{
     "pageTitle": "404",
     "pageNotFound": "Aradığın sayfa bulunamadı.",

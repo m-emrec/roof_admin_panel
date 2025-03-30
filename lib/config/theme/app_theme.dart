@@ -11,6 +11,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/custom_bottom_she
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/feedback_tile_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/guests_table_theme_extension.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
@@ -43,6 +44,7 @@ part './widget_themes/_feedback_tile_theme.dart';
 part './widget_themes/guests_table_theme.dart';
 part './widget_themes/user_card_theme.dart';
 part './widget_themes/slider_theme.dart';
+part './widget_themes/membership_info_card_theme.dart';
 
 /// A class that defines the application's theme settings.
 ///
@@ -93,7 +95,7 @@ final class AppTheme {
         textTheme: TextStyles().textTheme,
 
         /// Widget Themes
-        appBarTheme: _AppBarTheme.appBarTheme,
+        appBarTheme: _AppBarTheme(),
         elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme,
         menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
         textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
@@ -103,14 +105,13 @@ final class AppTheme {
         inputDecorationTheme: _InputDecorationTheme.inputDecorationTheme,
         extensions: _extensions,
         expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
-
-        checkboxTheme: _CheckboxTheme.checkboxTheme,
+        checkboxTheme: _CheckboxTheme(),
         progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
         floatingActionButtonTheme:
             _FloatingActionButtonTheme.floatingActionButtonTheme,
-        datePickerTheme: _DatePickerTheme.datePickerTheme,
+        datePickerTheme: _DatePickerTheme(),
         tooltipTheme: _TooltipTheme.tooltipTheme,
-        chipTheme: _ChipTheme.chipTheme,
+        chipTheme: _ChipTheme(),
         dataTableTheme: const DataTableThemeData(
           headingRowAlignment: MainAxisAlignment.start,
         ),
@@ -122,7 +123,7 @@ final class AppTheme {
 
   // MARK: Theme Extensions
   Iterable<ThemeExtension<dynamic>> get _extensions => [
-        _AddProfilePictureTheme.addProfilePictureTheme,
+        _AddProfilePictureTheme(),
         _InlineTextButtonTheme.inlineTextButtonTheme,
         _CustomBottomSheetTheme.customBottomSheetTheme,
         _SideBarTheme.sideBarTheme(_context),
@@ -130,5 +131,6 @@ final class AppTheme {
         _FeedbackTileTheme.feedbackTileTheme(_context),
         _GuestsTableTheme.theme(),
         _UserCardTheme.theme(_context),
+        _MembershipInfoCardTheme.theme(_context),
       ];
 }

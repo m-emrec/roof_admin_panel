@@ -8,6 +8,11 @@ class _CustomTableSelectionManager extends RowSelectionManager {
   /// The instance of the selection manager.
   static final _CustomTableSelectionManager instance =
       _CustomTableSelectionManager._internal();
+  @override
+  Future<void> handleKeyEvent(KeyEvent keyEvent) {
+    Log.debug('KeyEvent: $keyEvent');
+    return super.handleKeyEvent(keyEvent);
+  }
 
   @override
   void handleTap(RowColumnIndex rowColumnIndex) {

@@ -39,6 +39,14 @@ class _SigninFormState extends ConsumerState<_SignInForm> with SignInFormMixin {
           onPressed: FormUtils().goToForgotPassword,
           child: Text(LocaleKeys.auth_signin_forgotPassword_pageTitle.tr()),
         ),
+        OutlinedButton(
+          onPressed: () {
+            FormUtils().emailController.text = 'mec@mec-appdev.com';
+            FormUtils().passwordController.text = 'Emre170.';
+            onTapSignIn(FormUtils().formKey);
+          },
+          child: const Text("DEBUG SIGN IN"),
+        ),
       ],
     ).submitOnEnter(
       onKeyEnter: () => onTapSignIn(FormUtils().formKey),
