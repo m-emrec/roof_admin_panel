@@ -3,7 +3,7 @@ import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/avatar%20role%20name%20section/name_role_buttons_section.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/avatar%20role%20name%20section/name_role_buttons_section.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 

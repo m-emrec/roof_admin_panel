@@ -5,25 +5,33 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
+///
 class MemberDetailDialog extends StatelessWidget {
-  const MemberDetailDialog({super.key, required this.member});
+  ///
+  const MemberDetailDialog({
+    required this.member,
+    super.key,
+  });
+
+  ///
   final UserModel? member;
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog(
-      content: Badge(
-        padding: EdgeInsets.zero,
-        largeSize: context.theme.buttonTheme.height,
-        backgroundColor: AppColors.accentError[10],
-        label: CloseButton(
-          style: ButtonStyle(
-            backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
-            foregroundColor: WidgetStatePropertyAll(AppColors.accentError[70]),
+      content: SizedBox(
+        width: context.dynamicWidth(0.9),
+        height: context.dynamicHeight(0.9),
+        child: Badge(
+          padding: EdgeInsets.zero,
+          largeSize: context.theme.buttonTheme.height,
+          backgroundColor: AppColors.accentError[10],
+          label: CloseButton(
+            style: ButtonStyle(
+              backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
+              foregroundColor:
+                  WidgetStatePropertyAll(AppColors.accentError[70]),
+            ),
           ),
-        ),
-        child: SizedBox(
-          width: context.dynamicWidth(0.9),
-          height: context.dynamicHeight(0.9),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
