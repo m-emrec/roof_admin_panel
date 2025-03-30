@@ -22,7 +22,7 @@ class _DesktopView extends StatelessWidget {
             ),
             SizedBox(
               width: context.dynamicWidth(0.55),
-              child: MembershipInfoSection(member: member),
+              child: _MembershipInfoSection(member: member),
             ),
           ],
         ),

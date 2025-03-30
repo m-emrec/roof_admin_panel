@@ -1,16 +1,20 @@
-import 'package:core/extensions/context_extension.dart';
-import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
+part of 'membership_info_card.dart';
 
-class MemberInfoCardItem extends StatelessWidget {
-  const MemberInfoCardItem({
+///
+class _MembershipInfoCardItem extends StatelessWidget {
+  /// Used in the [MembershipInfoCard] to display the membership information
+  /// in consistent layout.
+  ///
+  ///
+  const _MembershipInfoCardItem({
     required this.label,
-    super.key,
     this.value,
   });
 
+  /// The label of the membership information
   final String label;
+
+  /// The value of the membership information
   final String? value;
   @override
   Widget build(BuildContext context) {

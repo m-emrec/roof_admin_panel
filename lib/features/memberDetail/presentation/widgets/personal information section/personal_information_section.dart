@@ -3,17 +3,31 @@ import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal_information_item.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_item.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/section_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
+///
 class PersonalInformationSection extends StatelessWidget {
+  /// This is the section which displays the personal information of the user.
+  ///
+  /// It contains the following information:
+  ///
+  /// - [birthdate]
+  /// - [gender]
+  /// - [living city]
+  /// - [work city]
+  /// - [occupation]
+  /// - [hobbies]
+  /// - [interests]
+  ///
   const PersonalInformationSection({
-    super.key,
     required this.member,
+    super.key,
   });
 
+  ///
   final UserModel? member;
 
   @override
@@ -28,29 +42,29 @@ class PersonalInformationSection extends StatelessWidget {
             // birthdate
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_birthDate.tr(),
-              label: [
+              children: [
                 Text(
                   member?.birthDate?.formatDate(context) ?? "",
-                  // style: context.textTheme.bodyLarge,
                 ),
               ],
             ),
             // gender
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_gender.tr(),
-              label: [
+              children: [
                 Text(
                   member?.gender?.localizedText ?? "",
                 ),
               ],
             ),
             // living city
-            Row(
+            Wrap(
               spacing: SpacingSizes.medium,
+              runSpacing: SpacingSizes.medium,
               children: [
                 PersonalInformationItem(
                   title: LocaleKeys.memberDetailView_livingCity.tr(),
-                  label: [
+                  children: [
                     Text(
                       member?.livingCity?.cityName ?? "",
                     ),
@@ -62,7 +76,7 @@ class PersonalInformationSection extends StatelessWidget {
                 // work city
                 PersonalInformationItem(
                   title: LocaleKeys.memberDetailView_workingCity.tr(),
-                  label: [
+                  children: [
                     Text(
                       member?.workCity?.cityName ?? "",
                     ),
@@ -77,7 +91,7 @@ class PersonalInformationSection extends StatelessWidget {
             // occupation
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_occupation.tr(),
-              label: [
+              children: [
                 Text(
                   member?.occupation ?? "",
                 ),
@@ -86,12 +100,12 @@ class PersonalInformationSection extends StatelessWidget {
             // hobbies
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_hobbies.tr(),
-              label: member?.hobbies?.map(Text.new).toList() ?? [],
+              children: member?.hobbies?.map(Text.new).toList() ?? [],
             ),
             // interests
             PersonalInformationItem(
               title: LocaleKeys.memberDetailView_interests.tr(),
-              label: member?.interests?.map(Text.new).toList() ?? [],
+              children: member?.interests?.map(Text.new).toList() ?? [],
             ),
           ],
         ),

@@ -1,14 +1,7 @@
-import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/models/user_model.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/member_ship_info_card_item.dart';
-import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+part of "membership_info_card.dart";
 
-class MembershipInfoSection extends StatelessWidget {
-  const MembershipInfoSection({
-    super.key,
+class _MembershipInfoSection extends StatelessWidget {
+  const _MembershipInfoSection({
     required this.member,
   });
 
@@ -26,28 +19,30 @@ class MembershipInfoSection extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
-        MemberInfoCardItem(
+        _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_memberNumber.tr(),
           value: member?.memberNumber,
         ),
-        MemberInfoCardItem(
+        _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_phoneNumber.tr(),
           value: member?.phoneNumber,
         ),
-        MemberInfoCardItem(
+        _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_memberShipStartDate.tr(),
           value: member?.membershipStartDate?.formatDate(context),
         ),
-        MemberInfoCardItem(
+        _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_memberShipEndDate.tr(),
           value: member?.membershipEndDate?.formatDate(context),
         ),
-        MemberInfoCardItem(
+        _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_memberShipDuration.tr(),
           value: member?.membershipStartDate != null
               ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
               : "",
         ),
+
+        /// TODO: Addd mentor, mentat, members etc.
       ],
     );
   }
