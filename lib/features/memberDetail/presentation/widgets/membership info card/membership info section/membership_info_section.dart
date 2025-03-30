@@ -50,7 +50,7 @@ class _MobileView extends StatelessWidget {
         mainAxisExtent: context.responsiveSelector<double>(
           mobile: SpacingSizes.small,
           desktop: SpacingSizes.small,
-          tablet: SpacingSizes.large,
+          tablet: SpacingSizes.extraExtraLarge,
         ),
       ),
       children: [

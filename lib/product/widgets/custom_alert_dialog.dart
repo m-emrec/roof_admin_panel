@@ -94,6 +94,8 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
               )
             : null,
       ),
+      actionsPadding:
+          (widget.actions?.isEmpty ?? true) ? EdgeInsets.zero : null,
       actions: widget.actions ??
           [
             TextButton(

@@ -9,7 +9,6 @@ class _MobileView extends StatelessWidget {
       child: SizedBox(
         width: context.dynamicWidth(0.9),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: SpacingSizes.medium,
           children: [
             AvatarNameRoleSection(member: member),
