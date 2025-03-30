@@ -12,7 +12,6 @@ class _DesktopView extends StatelessWidget {
         child: Padding(
           padding: theme?.padding ?? EdgeInsets.zero,
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             spacing: SpacingSizes.medium,
             children: [
               AvatarNameRoleSection(member: member),

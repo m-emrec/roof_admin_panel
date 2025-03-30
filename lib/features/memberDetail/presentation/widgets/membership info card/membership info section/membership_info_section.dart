@@ -7,7 +7,6 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
-import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 part '_member_ship_info_card_item.dart';
 
 class MembershipInfoSection extends StatelessWidget {
@@ -19,9 +18,13 @@ class MembershipInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
+    return context.responsiveSelector<Widget>(
       mobile: _MobileView(member: member),
-      desktop: Flexible(child: _MobileView(member: member)),
+      desktop: Flexible(
+        child: _MobileView(
+          member: member,
+        ),
+      ),
     );
   }
 }

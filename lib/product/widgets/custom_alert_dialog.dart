@@ -22,10 +22,12 @@ class CustomAlertDialog extends StatefulWidget {
     this.content,
     this.title,
     this.actions,
+    this.showCloseButton = false,
   });
   final Widget? content;
   final Widget? title;
   final List<Widget>? actions;
+  final bool showCloseButton;
   static bool _isShowing = false;
 
   static Future<void> showAlertDialog({
@@ -73,9 +75,25 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: EdgeInsets.zero,
       backgroundColor: AppColors.backgroundColor,
       actionsAlignment: MainAxisAlignment.end,
+      iconPadding: const AppPadding.horizontalxxSSymmetric(),
+      icon: Align(
+        alignment: Alignment.topRight,
+        child: widget.showCloseButton
+            ? CloseButton(
+                color: AppColors.accentError[70],
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    Colors.transparent,
+                  ),
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.zero,
+                  ),
+                ),
+              )
+            : null,
+      ),
       actions: widget.actions ??
           [
             TextButton(

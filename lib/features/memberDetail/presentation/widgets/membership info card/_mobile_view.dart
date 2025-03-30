@@ -8,7 +8,6 @@ class _MobileView extends StatelessWidget {
     return MembersDetailSectionCard(
       child: SizedBox(
         width: context.dynamicWidth(0.9),
-        // height: context.dynamicHeight(0.2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: SpacingSizes.medium,

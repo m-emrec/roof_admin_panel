@@ -21,29 +21,18 @@ class MemberDetailDialog extends StatelessWidget {
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
-        child: Badge(
-          padding: EdgeInsets.zero,
-          largeSize: context.theme.buttonTheme.height,
-          backgroundColor: AppColors.accentError[10],
-          label: CloseButton(
-            style: ButtonStyle(
-              backgroundColor: const WidgetStatePropertyAll(Colors.transparent),
-              foregroundColor:
-                  WidgetStatePropertyAll(AppColors.accentError[70]),
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MembershipInfoCard(member: member),
-                AboutAndPersonalInfo(member),
-              ],
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MembershipInfoCard(member: member),
+              AboutAndPersonalInfo(member),
+            ],
           ),
         ),
       ),
+      showCloseButton: true,
       actions: const [],
     ).makeSelectable();
   }
