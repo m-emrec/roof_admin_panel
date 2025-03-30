@@ -20,23 +20,33 @@ class _MembershipInfoSection extends StatelessWidget {
       shrinkWrap: true,
       children: [
         _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_memberNumber.tr(),
+          label: LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
           value: member?.memberNumber,
         ),
         _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_phoneNumber.tr(),
+          label: LocaleKeys.memberDetailView_membershipInfo_phoneNumber.tr(),
           value: member?.phoneNumber,
         ),
         _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_memberShipStartDate.tr(),
+          label: LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate
+              .tr(),
           value: member?.membershipStartDate?.formatDate(context),
         ),
         _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_memberShipEndDate.tr(),
+          label:
+              LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr(),
           value: member?.membershipEndDate?.formatDate(context),
         ),
         _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_memberShipDuration.tr(),
+          label: LocaleKeys.memberDetailView_membershipInfo_memberShipDuration
+              .tr(),
+          value: member?.membershipStartDate != null
+              ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
+              : "",
+        ),
+        _MembershipInfoCardItem(
+          label: LocaleKeys.memberDetailView_membershipInfo_memberShipDuration
+              .tr(),
           value: member?.membershipStartDate != null
               ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
               : "",
