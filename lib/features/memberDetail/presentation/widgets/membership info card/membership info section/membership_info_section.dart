@@ -1,6 +1,4 @@
-import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
-import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
