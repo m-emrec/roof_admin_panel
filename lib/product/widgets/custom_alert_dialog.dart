@@ -17,18 +17,21 @@ enum DialogPosition {
 }
 
 class CustomAlertDialog extends StatefulWidget {
-  CustomAlertDialog.withCloseIcon({
-    super.key,
-    this.content,
-    this.title,
-    this.actions,
-  }) : showCloseButton = true;
   const CustomAlertDialog({
     super.key,
     this.content,
     this.title,
     this.actions,
   }) : showCloseButton = false;
+
+  /// Shows a [CustomAlertDialog] with a close button on the top right corner.
+  ///
+  const CustomAlertDialog.withCloseIcon({
+    super.key,
+    this.content,
+    this.title,
+    this.actions,
+  }) : showCloseButton = true;
 
   final Widget? content;
   final Widget? title;
