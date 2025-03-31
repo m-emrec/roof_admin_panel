@@ -1,4 +1,3 @@
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../product/utility/constants/icon_sizes.dart';

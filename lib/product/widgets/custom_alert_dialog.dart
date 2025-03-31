@@ -22,10 +22,21 @@ class CustomAlertDialog extends StatefulWidget {
     this.content,
     this.title,
     this.actions,
-  });
+  }) : showCloseButton = false;
+
+  /// Shows a [CustomAlertDialog] with a close button on the top right corner.
+  ///
+  const CustomAlertDialog.withCloseIcon({
+    super.key,
+    this.content,
+    this.title,
+    this.actions,
+  }) : showCloseButton = true;
+
   final Widget? content;
   final Widget? title;
   final List<Widget>? actions;
+  final bool showCloseButton;
   static bool _isShowing = false;
 
   static Future<void> showAlertDialog({
@@ -73,9 +84,27 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: EdgeInsets.zero,
       backgroundColor: AppColors.backgroundColor,
       actionsAlignment: MainAxisAlignment.end,
+      iconPadding: const AppPadding.horizontalxxSSymmetric(),
+      icon: widget.showCloseButton
+          ? Align(
+              alignment: Alignment.topRight,
+              child: CloseButton(
+                color: AppColors.accentError[70],
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    Colors.transparent,
+                  ),
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.zero,
+                  ),
+                ),
+              ),
+            )
+          : null,
+      actionsPadding:
+          (widget.actions?.isEmpty ?? true) ? EdgeInsets.zero : null,
       actions: widget.actions ??
           [
             TextButton(

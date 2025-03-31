@@ -1,4 +1,4 @@
-part of 'membership_info_card.dart';
+part of 'membership_info_section.dart';
 
 ///
 class _MembershipInfoCardItem extends StatelessWidget {
@@ -19,7 +19,8 @@ class _MembershipInfoCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: SpacingSizes.extraSmall,
+      spacing: SpacingSizes.extraExtraSmall,
+      runSpacing: SpacingSizes.extraExtraSmall,
       children: [
         Text(
           "$label:",

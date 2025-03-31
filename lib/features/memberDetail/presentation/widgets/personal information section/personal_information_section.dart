@@ -34,14 +34,23 @@ class PersonalInformationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return MembersDetailSectionCard(
       child: Section(
-        title: LocaleKeys.memberDetailView_personalInfo.tr(),
+        title: LocaleKeys.memberDetailView_personalInfo_title.tr(),
         child: Column(
           spacing: SpacingSizes.medium,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Phone Number
+            PersonalInformationItem(
+              title: LocaleKeys.memberDetailView_personalInfo_phoneNumber.tr(),
+              children: [
+                Text(
+                  member?.phoneNumber ?? "",
+                ),
+              ],
+            ),
             // birthdate
             PersonalInformationItem(
-              title: LocaleKeys.memberDetailView_birthDate.tr(),
+              title: LocaleKeys.memberDetailView_personalInfo_birthDate.tr(),
               children: [
                 Text(
                   member?.birthDate?.formatDate(context) ?? "",
@@ -50,7 +59,7 @@ class PersonalInformationSection extends StatelessWidget {
             ),
             // gender
             PersonalInformationItem(
-              title: LocaleKeys.memberDetailView_gender.tr(),
+              title: LocaleKeys.memberDetailView_personalInfo_gender.tr(),
               children: [
                 Text(
                   member?.gender?.localizedText ?? "",
@@ -63,7 +72,8 @@ class PersonalInformationSection extends StatelessWidget {
               runSpacing: SpacingSizes.medium,
               children: [
                 PersonalInformationItem(
-                  title: LocaleKeys.memberDetailView_livingCity.tr(),
+                  title:
+                      LocaleKeys.memberDetailView_personalInfo_livingCity.tr(),
                   children: [
                     Text(
                       member?.livingCity?.cityName ?? "",
@@ -75,7 +85,8 @@ class PersonalInformationSection extends StatelessWidget {
                 ),
                 // work city
                 PersonalInformationItem(
-                  title: LocaleKeys.memberDetailView_workingCity.tr(),
+                  title:
+                      LocaleKeys.memberDetailView_personalInfo_workingCity.tr(),
                   children: [
                     Text(
                       member?.workCity?.cityName ?? "",
@@ -90,7 +101,7 @@ class PersonalInformationSection extends StatelessWidget {
 
             // occupation
             PersonalInformationItem(
-              title: LocaleKeys.memberDetailView_occupation.tr(),
+              title: LocaleKeys.memberDetailView_personalInfo_occupation.tr(),
               children: [
                 Text(
                   member?.occupation ?? "",
@@ -99,12 +110,12 @@ class PersonalInformationSection extends StatelessWidget {
             ),
             // hobbies
             PersonalInformationItem(
-              title: LocaleKeys.memberDetailView_hobbies.tr(),
+              title: LocaleKeys.memberDetailView_personalInfo_hobbies.tr(),
               children: member?.hobbies?.map(Text.new).toList() ?? [],
             ),
             // interests
             PersonalInformationItem(
-              title: LocaleKeys.memberDetailView_interests.tr(),
+              title: LocaleKeys.memberDetailView_personalInfo_interests.tr(),
               children: member?.interests?.map(Text.new).toList() ?? [],
             ),
           ],

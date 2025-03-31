@@ -26,10 +26,10 @@ class ValidatorMethods {
   /// Validates the input to contain only numbers.
   /// Returns `null` if the input contains only numbers, otherwise returns 'Invalid input'.
   String? get numberOnlyValidator {
-    if (_trimmedText == null || (_trimmedText?.isEmpty ?? true)) {
+    if (_trimmedText == null || (_trimmedText.isEmpty)) {
       return LocaleKeys.common_validationError_required.tr();
     }
-    if (!RegExp(r'^\d+$').hasMatch(_trimmedText ?? "")) {
+    if (!RegExp(r'^\d+$').hasMatch(_trimmedText)) {
       return LocaleKeys.common_validationError_invalid.tr();
     }
     return null;

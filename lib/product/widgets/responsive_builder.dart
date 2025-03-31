@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/screen_type.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 
 /// This widget used to return different widgets based on the screen size.
 ///
@@ -76,39 +78,13 @@ class ResponsiveBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (_DeviceScreenTypeGetter(MediaQuery.of(context).size.width)
-        .deviceScreenType) {
-      case _DeviceScreenType.mobile:
+    switch (context.getScreenType()) {
+      case ScreenType.mobile:
         return mobile;
-      case _DeviceScreenType.tablet:
+      case ScreenType.tablet:
         return tablet ?? desktop;
-      case _DeviceScreenType.desktop:
+      case ScreenType.desktop:
         return desktop;
     }
   }
-}
-
-class _DeviceScreenTypeGetter {
-  const _DeviceScreenTypeGetter(this._width);
-  final double _width;
-
-  _DeviceScreenType get deviceScreenType {
-    if (_width < _DeviceScreenType.mobile.upperBound) {
-      return _DeviceScreenType.mobile;
-    } else if (_width < _DeviceScreenType.tablet.upperBound) {
-      return _DeviceScreenType.tablet;
-    }
-    return _DeviceScreenType.desktop;
-  }
-}
-
-enum _DeviceScreenType {
-  mobile(0, 599),
-  tablet(600, 1024),
-  desktop(1025, double.infinity),
-  ;
-
-  const _DeviceScreenType(this.lowerBound, this.upperBound);
-  final double lowerBound;
-  final double upperBound;
 }
