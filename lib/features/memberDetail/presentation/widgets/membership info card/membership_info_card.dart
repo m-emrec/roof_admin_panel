@@ -10,8 +10,6 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/sect
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
-part '_desktop_view.dart';
-part '_mobile_view.dart';
 
 ///
 class MembershipInfoCard extends StatelessWidget {
@@ -39,27 +37,73 @@ class MembershipInfoCard extends StatelessWidget {
           itemBuilder: _popMenuItemBuilder,
         ),
       ).visibleIfAllowed,
-      child: ResponsiveBuilder(
-        mobile: _MobileView(member),
-        desktop: _DesktopView(member),
+      child: SizedBox(
+        width: context.dynamicWidth(0.9),
+        child: ResponsiveBuilder(
+          mobile: _MobileView(member),
+          desktop: _DesktopView(member),
+        ),
       ),
     );
   }
 
   List<PopupMenuEntry<int>> _popMenuItemBuilder(BuildContext context) => [
-        PopupMenuItem(
+        const PopupMenuItem(
           value: 1,
           child: Text(
             'Edit',
-            style: context.textTheme.bodyMedium,
           ),
         ),
-        PopupMenuItem(
+        const PopupMenuItem(
           value: 2,
           child: Text(
             'Delete',
-            style: context.textTheme.bodyMedium,
           ),
         ),
       ];
+}
+
+class _DesktopView extends StatelessWidget {
+  const _DesktopView(this.member);
+  final UserModel? member;
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme.extension<MembershipInfoCardThemeExtension>();
+    return MembersDetailSectionCard(
+      child: Padding(
+        padding: theme?.padding ?? EdgeInsets.zero,
+        child: Row(
+          spacing: SpacingSizes.medium,
+          children: [
+            AvatarNameRoleSection(member: member),
+            SizedBox(
+              height: context.dynamicHeight(0.1),
+              child: VerticalDivider(
+                thickness: theme?.dividerTheme.thickness,
+                color: theme?.dividerTheme.color,
+              ),
+            ),
+            MembershipInfoSection(member: member),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MobileView extends StatelessWidget {
+  const _MobileView(this.member);
+  final UserModel? member;
+  @override
+  Widget build(BuildContext context) {
+    return MembersDetailSectionCard(
+      child: Column(
+        spacing: SpacingSizes.medium,
+        children: [
+          AvatarNameRoleSection(member: member),
+          MembershipInfoSection(member: member),
+        ],
+      ),
+    );
+  }
 }

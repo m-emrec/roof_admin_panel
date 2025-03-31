@@ -17,7 +17,7 @@ class MemberDetailDialog extends StatelessWidget {
   final UserModel? member;
   @override
   Widget build(BuildContext context) {
-    return CustomAlertDialog(
+    return CustomAlertDialog.withCloseIcon(
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
@@ -32,8 +32,7 @@ class MemberDetailDialog extends StatelessWidget {
           ),
         ),
       ),
-      showCloseButton: true,
-      actions: [],
+      actions: const [],
     ).makeSelectable();
   }
 }

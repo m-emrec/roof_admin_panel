@@ -17,13 +17,19 @@ enum DialogPosition {
 }
 
 class CustomAlertDialog extends StatefulWidget {
+  CustomAlertDialog.withCloseIcon({
+    super.key,
+    this.content,
+    this.title,
+    this.actions,
+  }) : showCloseButton = true;
   const CustomAlertDialog({
     super.key,
     this.content,
     this.title,
     this.actions,
-    this.showCloseButton = false,
-  });
+  }) : showCloseButton = false;
+
   final Widget? content;
   final Widget? title;
   final List<Widget>? actions;
@@ -78,10 +84,10 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
       backgroundColor: AppColors.backgroundColor,
       actionsAlignment: MainAxisAlignment.end,
       iconPadding: const AppPadding.horizontalxxSSymmetric(),
-      icon: Align(
-        alignment: Alignment.topRight,
-        child: widget.showCloseButton
-            ? CloseButton(
+      icon: widget.showCloseButton
+          ? Align(
+              alignment: Alignment.topRight,
+              child: CloseButton(
                 color: AppColors.accentError[70],
                 style: const ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(
@@ -91,9 +97,9 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                     EdgeInsets.zero,
                   ),
                 ),
-              )
-            : null,
-      ),
+              ),
+            )
+          : null,
       actionsPadding:
           (widget.actions?.isEmpty ?? true) ? EdgeInsets.zero : null,
       actions: widget.actions ??
