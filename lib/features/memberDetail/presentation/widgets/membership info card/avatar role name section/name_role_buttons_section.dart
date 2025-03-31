@@ -3,12 +3,11 @@ import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
-import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
-class NameRoleButtonsSection extends StatelessWidget {
-  const NameRoleButtonsSection({
+class NameAndRoleSection extends StatelessWidget {
+  const NameAndRoleSection({
     super.key,
     required this.member,
     this.crossAxisAlignment = CrossAxisAlignment.start,
@@ -38,21 +37,6 @@ class NameRoleButtonsSection extends StatelessWidget {
               style: context.theme
                   .extension<MembershipInfoCardThemeExtension>()
                   ?.roleTextStyle,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          spacing: SpacingSizes.small,
-          children: [
-            Icon(
-              Icons.edit,
-              size: IconSizes.medium.width,
-            ),
-            Icon(
-              Icons.delete_forever,
-              size: IconSizes.medium.width,
             ),
           ],
         ),

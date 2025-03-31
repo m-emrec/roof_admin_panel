@@ -33,7 +33,7 @@ class MemberDetailDialog extends StatelessWidget {
         ),
       ),
       showCloseButton: true,
-      actions: const [],
+      actions: [],
     ).makeSelectable();
   }
 }

@@ -40,7 +40,7 @@ class _MobileView extends StatelessWidget {
               .extension<MembershipInfoCardThemeExtension>()
               ?.avatarRadius,
         ),
-        NameRoleButtonsSection(
+        NameAndRoleSection(
           member: member,
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
@@ -66,7 +66,7 @@ class _DesktopView extends StatelessWidget {
               .extension<MembershipInfoCardThemeExtension>()
               ?.avatarRadius,
         ),
-        NameRoleButtonsSection(member: member),
+        NameAndRoleSection(member: member),
       ],
     );
   }

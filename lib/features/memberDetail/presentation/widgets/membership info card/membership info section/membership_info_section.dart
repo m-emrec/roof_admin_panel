@@ -1,4 +1,6 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
+import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -50,7 +52,7 @@ class _MobileView extends StatelessWidget {
         mainAxisExtent: context.responsiveSelector<double>(
           mobile: SpacingSizes.small,
           desktop: SpacingSizes.small,
-          tablet: SpacingSizes.extraExtraLarge,
+          tablet: SpacingSizes.large,
         ),
       ),
       children: [
@@ -77,7 +79,7 @@ class _MobileView extends StatelessWidget {
         ),
         _MembershipInfoCardItem(
           label: LocaleKeys.memberDetailView_membershipInfo_mentor.tr(),
-          value: member?.mentorId,
+          value: " mentor widget",
         ),
       ],
     );

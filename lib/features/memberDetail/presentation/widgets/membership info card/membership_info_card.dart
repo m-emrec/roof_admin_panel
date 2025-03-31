@@ -7,6 +7,8 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_c
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/avatar%20role%20name%20section/avatar_name_role_section.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_section.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/section_card.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
+import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 part '_desktop_view.dart';
 part '_mobile_view.dart';
@@ -24,9 +26,40 @@ class MembershipInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      mobile: _MobileView(member),
-      desktop: _DesktopView(member),
+    return Badge(
+      backgroundColor: Colors.transparent,
+      padding: EdgeInsets.zero,
+      offset: const Offset(-SpacingSizes.large, SpacingSizes.medium),
+      label: PermissionBasedVisibility(
+        necessaryPermissions: [
+          Permissions.canEdit,
+          Permissions.canEditMembers,
+        ],
+        child: PopupMenuButton(
+          itemBuilder: _popMenuItemBuilder,
+        ),
+      ).visibleIfAllowed,
+      child: ResponsiveBuilder(
+        mobile: _MobileView(member),
+        desktop: _DesktopView(member),
+      ),
     );
   }
+
+  List<PopupMenuEntry<int>> _popMenuItemBuilder(BuildContext context) => [
+        PopupMenuItem(
+          value: 1,
+          child: Text(
+            'Edit',
+            style: context.textTheme.bodyMedium,
+          ),
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: Text(
+            'Delete',
+            style: context.textTheme.bodyMedium,
+          ),
+        ),
+      ];
 }
