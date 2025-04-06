@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/memberDetail/data/datasources/membership_detail_service.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/repositories/mebership_detail_repository_impl.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/repositories/member_detail_repository.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
@@ -7,8 +8,14 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/providers/me
 import 'package:roof_admin_panel/features/memberDetail/presentation/views/member_detail.dart'
     show MemberDetailDialog;
 
+final _serviceProvider = Provider<MembershipDetailService>((ref) {
+  return MembershipDetailService();
+});
+
 final _repositoryProvider = Provider<MemberDetailRepository>((ref) {
-  return MembershipDetailRepositoryImpl();
+  return MembershipDetailRepositoryImpl(
+    ref.read(_serviceProvider),
+  );
 });
 
 final _editMembershipDetailUseCaseProvider =
@@ -33,7 +40,7 @@ final memberProvider = StateProvider.autoDispose<UserModel?>((ref) {
 ///
 /// **Default** value is `false`.
 final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
-  return false;
+  return true;
 });
 
 /// Provider for the [MembershipDetailNotifier].

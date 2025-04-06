@@ -7,8 +7,8 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 
-class RoleFilter extends ConsumerWidget {
-  const RoleFilter({super.key});
+class MembersRoleFilter extends ConsumerWidget {
+  const MembersRoleFilter({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

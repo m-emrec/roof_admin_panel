@@ -68,4 +68,6 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
       role: role,
     );
   }
+
+  Map<String, dynamic> toJson() => _$MembershipDetailModelToJson(this);
 }

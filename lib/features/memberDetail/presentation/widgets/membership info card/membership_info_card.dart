@@ -25,18 +25,8 @@ class MembershipInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.theme.extension<MembershipInfoCardThemeExtension>();
 
-    return Badge(
-      backgroundColor: Colors.transparent,
-      padding: EdgeInsets.zero,
-      offset: const Offset(-SpacingSizes.large, SpacingSizes.medium),
-      label: PermissionBasedVisibility(
-        necessaryPermissions: [
-          Permissions.canEdit,
-          Permissions.canEditMembers,
-        ],
-        child: const _MembershipInfoCardBadgeLabel(),
-      ).visibleIfAllowed,
-      child: MembersDetailSectionCard(
+    return _MembershipInfoCardBadge(
+      MembersDetailSectionCard(
         child: Padding(
           padding: context.responsiveSelector(
             mobile: EdgeInsets.zero,

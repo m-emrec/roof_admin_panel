@@ -46,7 +46,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   late final TextEditingController membershipEndDateController;
 
   ///
-  late final TextEditingController roleController;
+  late final ValueNotifier<Role> roleController;
 
   ///
   late final TextEditingController mentorIdController;
@@ -62,23 +62,48 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
     membershipEndDateController = TextEditingController(
       text: state.membershipEndDate?.toString() ?? '',
     );
-    roleController = TextEditingController(
-      text: state.role?.first?.name ?? '',
-    );
+    roleController = ValueNotifier(state.role?.first ?? Role.member);
     mentorIdController = TextEditingController(
       text: state.mentorId ?? '',
     );
   }
 
+  void a() {
+    Log.info("""
+  memberNumberController = ${memberNumberController.text}
+  membershipStartDateController = ${membershipStartDateController.text}
+  membershipEndDateController = ${membershipEndDateController.text}
+  roleController = ${roleController.value}
+  mentorIdController = ${mentorIdController.text}
+ 
+""");
+  }
+
   ///
-  Future<void> editMembershipDetails({
-    required EditedMembershipDetail details,
-  }) async {
+  Future<void> editMembershipDetails() async {
+    final details = EditedMembershipDetail(
+      uid: state.uid ?? '',
+      memberNumber: memberNumberController.text,
+      membershipStartDate: DateTime.parse(membershipStartDateController.text),
+      membershipEndDate: DateTime.parse(membershipEndDateController.text),
+      role: roleController.value,
+    );
+
     state = state.copyWith(
       membershipStartDate: details.membershipStartDate,
       membershipEndDate: details.membershipEndDate,
       memberNumber: details.memberNumber,
       role: [details.role],
+    );
+    final result = await _editMembershipDetailsUseCase(
+      EditedMembershipDetail(
+        uid: state.uid ?? '',
+        memberNumber: memberNumberController.text,
+        membershipStartDate: DateTime.parse(membershipStartDateController.text),
+        membershipEndDate: DateTime.parse(membershipEndDateController.text),
+        role: roleController.value,
+        // mentorId: mentorIdController.text,
+      ),
     );
   }
 

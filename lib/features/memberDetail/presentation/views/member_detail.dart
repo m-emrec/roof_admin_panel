@@ -43,16 +43,18 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const MembershipInfoCard(),
-              AboutAndPersonalInfo(widget.member),
-            ],
-          ),
-        ),
+        child: ref.watch(memberProvider) != null
+            ? SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const MembershipInfoCard(),
+                    AboutAndPersonalInfo(widget.member),
+                  ],
+                ),
+              )
+            : const SizedBox(),
       ).makeSelectable(),
       actions: const [],
     );
