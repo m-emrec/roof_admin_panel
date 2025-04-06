@@ -23,13 +23,11 @@ class MemberDetailDialog extends ConsumerStatefulWidget {
 }
 
 class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
-  late final UserModel? member;
   @override
   void initState() {
-    Future.microtask(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(memberProvider.notifier).state = widget.member;
     });
-    member = widget.member;
     super.initState();
   }
 
@@ -51,7 +49,7 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const MembershipInfoCard(),
-              AboutAndPersonalInfo(member),
+              AboutAndPersonalInfo(widget.member),
             ],
           ),
         ),

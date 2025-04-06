@@ -5,16 +5,14 @@ class _MembershipInfoCardBadgeLabel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(isEditingProvider.notifier).state = true;
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   ref.read(isEditingProvider.notifier).state = true;
+    // });
     return ref.watch(isEditingProvider)
         ? Row(
             children: [
               GestureDetector(
-                onTap: () {
-                  ref.read(membershipDetailNotifierProvider.notifier).a();
-                },
+                onTap: () {},
                 child: Icon(
                   Icons.edit,
                   color: AppColors.primaryColor[50],

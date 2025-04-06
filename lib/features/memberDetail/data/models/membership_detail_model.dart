@@ -6,8 +6,20 @@ import 'package:roof_admin_panel/features/memberDetail/domain/entities/membershi
 
 part 'membership_detail_model.g.dart';
 
+/// [EditedMembershipDetail] is a model class that represents the details of a membership.
+/// It extends the [EditedMembershipDetailEntity] class and provides
+/// serialization and deserialization functionality using the [JsonSerializable] annotation.
+/// It contains fields for the user's unique identifier (uid), member number,
+/// membership start date, membership end date, and role.
+/// The class also includes a factory constructor to create an instance from an entity
+/// and a method to convert the model back to an entity.
 @JsonSerializable()
 class EditedMembershipDetail extends EditedMembershipDetailEntity {
+  /// Constructor for [EditedMembershipDetail].
+  /// It requires the user's unique identifier (uid), member number,
+  /// membership start date, membership end date, and role.
+  /// The [membershipStartDate] and [membershipEndDate] fields are parsed
+  /// from and to Firestore timestamps using the [FirebaseTimeParser].
   EditedMembershipDetail({
     required super.uid,
     required super.memberNumber,
@@ -32,6 +44,8 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
   @override
   final DateTime? membershipEndDate;
 
+  /// a factory constructor to create an instance of [EditedMembershipDetail]
+  /// from [EditedMembershipDetailEntity].
   factory EditedMembershipDetail.fromEntity(
     EditedMembershipDetailEntity entity,
   ) {
@@ -44,6 +58,7 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
     );
   }
 
+  /// This method is used to convert the model back to an entity.
   EditedMembershipDetailEntity toEntity() {
     return EditedMembershipDetailEntity(
       uid: uid,

@@ -16,19 +16,18 @@ import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 part '_member_ship_info_card_item.dart';
 
-class MembershipInfoSection extends StatelessWidget {
-  const MembershipInfoSection({
-    required this.member,
-  });
-
-  final UserModel? member;
+class MembershipInfoSection extends ConsumerWidget {
+  const MembershipInfoSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final member = ref.watch(memberProvider);
     return context.responsiveSelector<Widget>(
-      mobile: _MobileView(member: member),
+      mobile: _MembershipInfoGrid(
+        member: member,
+      ),
       desktop: Flexible(
-        child: _MobileView(
+        child: _MembershipInfoGrid(
           member: member,
         ),
       ),
@@ -36,8 +35,8 @@ class MembershipInfoSection extends StatelessWidget {
   }
 }
 
-class _MobileView extends ConsumerWidget {
-  const _MobileView({
+class _MembershipInfoGrid extends ConsumerWidget {
+  const _MembershipInfoGrid({
     required this.member,
   });
 
