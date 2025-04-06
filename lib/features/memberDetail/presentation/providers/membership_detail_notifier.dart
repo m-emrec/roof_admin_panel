@@ -51,6 +51,9 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   ///
   late final TextEditingController mentorIdController;
 
+  /// Initializes all form and text controllers with the existing user state.
+  /// This ensures that the form fields reflect current data and are ready for editing.
+  /// Disposing controllers is handled in the `dispose` method.
   void _initializeControllers() {
     formKey = GlobalKey<FormState>();
     memberNumberController = TextEditingController(

@@ -6,7 +6,7 @@ part of 'membership_detail_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EditedMembershipDetail _$MembershipDetailModelFromJson(
+EditedMembershipDetail _$EditedMembershipDetailFromJson(
         Map<String, dynamic> json) =>
     EditedMembershipDetail(
       uid: json['uid'] as String,
@@ -18,12 +18,13 @@ EditedMembershipDetail _$MembershipDetailModelFromJson(
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']),
     );
 
-Map<String, dynamic> _$MembershipDetailModelToJson(
+Map<String, dynamic> _$EditedMembershipDetailToJson(
         EditedMembershipDetail instance) =>
     <String, dynamic>{
       'uid': instance.uid,
-      'memberNumber': instance.memberNumber,
-      'role': _$RoleEnumMap[instance.role],
+      'role': EditedMembershipDetail._roleToJson(instance.role),
+      'memberNumber':
+          EditedMembershipDetail._memberNumberToJson(instance.memberNumber),
       'membershipStartDate':
           FirebaseTimeParser.dateTimeToTimestamp(instance.membershipStartDate),
       'membershipEndDate':

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:core/core.dart';
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/constants/firebase/time_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -23,26 +24,10 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
   EditedMembershipDetail({
     required super.uid,
     required super.memberNumber,
-    required this.membershipStartDate,
-    required this.membershipEndDate,
+    required super.membershipStartDate,
+    required super.membershipEndDate,
     required super.role,
-  }) : super(
-          membershipEndDate: membershipEndDate,
-          membershipStartDate: membershipStartDate,
-        );
-
-  @JsonKey(
-    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
-    toJson: FirebaseTimeParser.dateTimeToTimestamp,
-  )
-  @override
-  final DateTime? membershipStartDate;
-  @JsonKey(
-    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
-    toJson: FirebaseTimeParser.dateTimeToTimestamp,
-  )
-  @override
-  final DateTime? membershipEndDate;
+  });
 
   /// a factory constructor to create an instance of [EditedMembershipDetail]
   /// from [EditedMembershipDetailEntity].
@@ -58,6 +43,29 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
     );
   }
 
+  @override
+  @JsonKey(
+    toJson: _roleToJson,
+  )
+  Role? get role => super.role;
+
+  @JsonKey(toJson: _memberNumberToJson)
+  @override
+  String? get memberNumber => super.memberNumber;
+
+  @JsonKey(
+    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
+    toJson: FirebaseTimeParser.dateTimeToTimestamp,
+  )
+  @override
+  DateTime? get membershipStartDate => super.membershipStartDate;
+  @JsonKey(
+    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
+    toJson: FirebaseTimeParser.dateTimeToTimestamp,
+  )
+  @override
+  DateTime? get membershipEndDate => super.membershipEndDate;
+
   /// This method is used to convert the model back to an entity.
   EditedMembershipDetailEntity toEntity() {
     return EditedMembershipDetailEntity(
@@ -69,5 +77,21 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
     );
   }
 
-  Map<String, dynamic> toJson() => _$MembershipDetailModelToJson(this);
+  ///
+  // ignore: public_member_api_docs
+  Map<String, dynamic> toJson() => _$EditedMembershipDetailToJson(this);
+
+  ///
+  static int _memberNumberToJson(String? memberNumber) {
+    return int.tryParse(memberNumber ?? "") ?? 0;
+  }
+
+  ///
+  static List<String?> _roleToJson(Role? role) {
+    if (role == null) {
+      return [];
+    }
+
+    return [_$RoleEnumMap[role]];
+  }
 }
