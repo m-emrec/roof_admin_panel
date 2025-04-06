@@ -70,6 +70,7 @@ class CustomTextField extends TextFormField {
   final bool unfocusOnTapOutside;
   final int? maxLength;
   void Function(String)? onFieldSubmitted;
+
   @override
   FormFieldBuilder<String> get builder => (state) {
         assert(
@@ -77,7 +78,6 @@ class CustomTextField extends TextFormField {
               (unfocusOnTapOutside != (focusNode == null))),
           "If you want to use the unfocusOnTapOutside property, you must provide a focusNode",
         );
-
         return TextFormField(
           contextMenuBuilder: _CustomTextFieldUtils._contextMenuBuilder,
           cursorColor: AppColors.primaryColor,
@@ -107,7 +107,7 @@ class CustomTextField extends TextFormField {
             suffix: suffix,
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: color ?? AppColors.neutralGray500[40]!,
+                color: AppColors.secondaryColor,
               ),
             ),
             prefixIcon: prefixIcon == null

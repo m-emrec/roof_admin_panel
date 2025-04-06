@@ -54,7 +54,7 @@ class PermissionBasedAction extends PermissionHandler {
   final VoidCallback? onPressed;
 
   /// Returns [onPressed] if the user has permission; otherwise, `null`
-  VoidCallback? get actionIfAllowed => _hasPermission ? onPressed : null;
+  VoidCallback? call() => _hasPermission ? onPressed : null;
 }
 
 /// A permission-based widget visibility handler that conditionally

@@ -1,12 +1,13 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about%20and%20personal%20info/about_and_personal_info.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership_info_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
-///
-class MemberDetailDialog extends StatelessWidget {
+class MemberDetailDialog extends ConsumerStatefulWidget {
   ///
   const MemberDetailDialog({
     required this.member,
@@ -15,6 +16,29 @@ class MemberDetailDialog extends StatelessWidget {
 
   ///
   final UserModel? member;
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MemberDetailDialogState();
+}
+
+class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
+  late final UserModel? member;
+  @override
+  void initState() {
+    Future.microtask(() {
+      ref.read(memberProvider.notifier).state = widget.member;
+    });
+    member = widget.member;
+    super.initState();
+  }
+
+  @override
+  void deactivate() {
+    ref.invalidate(membershipDetailNotifierProvider);
+    super.deactivate();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomAlertDialog.withCloseIcon(
@@ -26,13 +50,13 @@ class MemberDetailDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MembershipInfoCard(member: member),
+              const MembershipInfoCard(),
               AboutAndPersonalInfo(member),
             ],
           ),
         ),
-      ),
+      ).makeSelectable(),
       actions: const [],
-    ).makeSelectable();
+    );
   }
 }
