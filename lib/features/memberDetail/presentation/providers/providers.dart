@@ -40,7 +40,7 @@ final memberProvider = StateProvider.autoDispose<UserModel?>((ref) {
 ///
 /// **Default** value is `false`.
 final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
-  return true;
+  return false;
 });
 
 /// Provider for the [MembershipDetailNotifier].
@@ -55,9 +55,10 @@ final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
 /// Therefore, to ensure the state remains accessible during editing, we use
 /// a standard `StateNotifierProvider`.
 final membershipDetailNotifierProvider =
-    StateNotifierProvider<MembershipDetailNotifier, UserModel>((ref) {
+    StateNotifierProvider.autoDispose<MembershipDetailNotifier, UserModel>(
+        (ref) {
   return MembershipDetailNotifier(
-    ref.watch(memberProvider) as UserModel,
+    ref,
     editMembershipDetailsUseCase:
         ref.read(_editMembershipDetailUseCaseProvider),
   );

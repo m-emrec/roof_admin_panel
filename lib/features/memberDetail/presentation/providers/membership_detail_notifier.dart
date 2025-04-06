@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/models/membership_detail_model.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
 /// MembershipDetailNotifier
@@ -20,14 +22,17 @@ import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_memb
 /// - mentorId
 ///
 class MembershipDetailNotifier extends StateNotifier<UserModel> {
+  /// Constructor for the [MembershipDetailNotifier].
   MembershipDetailNotifier(
-    UserModel user, {
+    this.ref, {
     required EditMembershipDetailsUseCase editMembershipDetailsUseCase,
   })  : _editMembershipDetailsUseCase = editMembershipDetailsUseCase,
-        super(user) {
+        super(ref.watch(memberProvider) as UserModel) {
     _initializeControllers();
   }
 
+  /// The [ref] is used to access the provider and its dependencies.
+  final Ref ref;
   final EditMembershipDetailsUseCase _editMembershipDetailsUseCase;
 
   ///
@@ -71,44 +76,62 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
     );
   }
 
-  void a() {
-    Log.info("""
-  memberNumberController = ${memberNumberController.text}
-  membershipStartDateController = ${membershipStartDateController.text}
-  membershipEndDateController = ${membershipEndDateController.text}
-  roleController = ${roleController.value}
-  mentorIdController = ${mentorIdController.text}
- 
-""");
-  }
-
-  ///
+  /// This method is called to edit the membership details.
+  /// It creates an instance of [EditedMembershipDetail] using the current values
+  /// from the text editing controllers and the selected role.
+  /// It then updates the state with the new values and calls the use case to edit
+  /// the membership details.
+  /// If the operation is successful, it shows a success toast message.
+  /// If it fails, it shows an error toast message.
+  /// Finally, it resets the form fields to their initial values.
+  /// This method is called when the user submits the form.
   Future<void> editMembershipDetails() async {
-    final details = EditedMembershipDetail(
-      uid: state.uid ?? '',
-      memberNumber: memberNumberController.text,
-      membershipStartDate: DateTime.parse(membershipStartDateController.text),
-      membershipEndDate: DateTime.parse(membershipEndDateController.text),
-      role: roleController.value,
-    );
+    final model = _createEditedMembershipDetailModel;
 
     state = state.copyWith(
-      membershipStartDate: details.membershipStartDate,
-      membershipEndDate: details.membershipEndDate,
-      memberNumber: details.memberNumber,
-      role: [details.role],
+      membershipStartDate: model.membershipStartDate,
+      membershipEndDate: model.membershipEndDate,
+      memberNumber: model.memberNumber,
+      role: [model.role],
     );
-    final result = await _editMembershipDetailsUseCase(
+
+    DataState.handleDataStateBasedAction(
+      await _editMembershipDetailsUseCase(model),
+      onSuccess: (_) => Toast.showSuccessToast(
+        desc: 'Membership details updated successfully.',
+      ),
+      onFailure: (error) {
+        Toast.showErrorToast(
+          desc: AppErrorText.errorMessageConverter(error?.errorMessage ?? ''),
+        );
+      },
+    );
+    reset();
+  }
+
+  /// resets the form fields to their initial values.
+  /// It also sets the edit state to false.
+  /// This is useful when the user wants to cancel the editing process and
+  /// revert to the original values.
+  void reset() {
+    ref.read(isEditingProvider.notifier).state = false;
+    memberNumberController.text = state.memberNumber ?? '';
+    membershipStartDateController.text =
+        state.membershipStartDate?.toString() ?? '';
+    membershipEndDateController.text =
+        state.membershipEndDate?.toString() ?? '';
+    roleController.value = state.role?.first ?? Role.member;
+    mentorIdController.text = state.mentorId ?? '';
+  }
+
+  EditedMembershipDetail get _createEditedMembershipDetailModel =>
       EditedMembershipDetail(
         uid: state.uid ?? '',
         memberNumber: memberNumberController.text,
         membershipStartDate: DateTime.parse(membershipStartDateController.text),
         membershipEndDate: DateTime.parse(membershipEndDateController.text),
         role: roleController.value,
-        // mentorId: mentorIdController.text,
-      ),
-    );
-  }
+      );
 
   @override
   void dispose() {

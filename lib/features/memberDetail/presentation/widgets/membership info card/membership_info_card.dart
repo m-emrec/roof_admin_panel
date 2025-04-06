@@ -11,6 +11,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/section_card.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
+import 'package:roof_admin_panel/product/utility/extensions/future_extension.dart';
 import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 part 'membership_info_card_badge_label.dart';
 

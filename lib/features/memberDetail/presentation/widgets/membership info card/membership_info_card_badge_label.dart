@@ -19,53 +19,74 @@ class _MembershipInfoCardBadge extends ConsumerWidget {
           Permissions.canEditMembers,
         ],
         child: isEditing
-            ? Row(
-                spacing: SpacingSizes.small,
-                children: [
-                  InkWell(
-                    onTap: () =>
-                        ref.read(isEditingProvider.notifier).state = false,
-                    child: Icon(
-                      Icons.close,
-                      color: AppColors.accentError[50],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      ref
-                          .read(membershipDetailNotifierProvider.notifier)
-                          .editMembershipDetails();
-                    },
-                    child: Icon(
-                      Icons.check,
-                      color: AppColors.primaryColor[50],
-                    ),
-                  ),
-                ],
-              )
+            ? const _EditStateBadge()
             : PopupMenuButton(
                 itemBuilder: _popMenuItemBuilder,
-                onSelected: (value) => ref
-                    .read(isEditingProvider.notifier)
-                    .state = value == 1 ? true : false,
+                onSelected: (value) =>
+                    _onSelected(value, ref), // Handle the selected value
               ),
       ).visibleIfAllowed,
       child: child,
     );
   }
 
-  List<PopupMenuEntry<int>> _popMenuItemBuilder(BuildContext context) => [
+  void _onSelected(_Value value, WidgetRef ref) {
+    switch (value) {
+      case _Value.edit:
+        ref.read(isEditingProvider.notifier).state = true;
+      case _Value.delete:
+        break;
+    }
+  }
+
+  List<PopupMenuEntry<_Value>> _popMenuItemBuilder(BuildContext context) => [
         const PopupMenuItem(
-          value: 1,
+          value: _Value.edit,
           child: Text(
             'Edit',
           ),
         ),
         const PopupMenuItem(
-          value: 2,
+          value: _Value.delete,
           child: Text(
             'Delete',
           ),
         ),
       ];
+}
+
+class _EditStateBadge extends ConsumerWidget {
+  const _EditStateBadge();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      spacing: SpacingSizes.small,
+      children: [
+        InkWell(
+          onTap: () =>
+              ref.read(membershipDetailNotifierProvider.notifier).reset(),
+          child: Icon(
+            Icons.close,
+            color: AppColors.accentError[50],
+          ),
+        ),
+        InkWell(
+          onTap: () => ref
+              .read(membershipDetailNotifierProvider.notifier)
+              .editMembershipDetails()
+              .showLoading(context: context),
+          child: Icon(
+            Icons.check,
+            color: AppColors.primaryColor[50],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+enum _Value {
+  edit,
+  delete,
 }

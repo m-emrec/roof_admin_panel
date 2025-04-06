@@ -37,8 +37,7 @@ class _MembershipInfoCardItem extends ConsumerWidget {
           ),
         ),
         Visibility(
-          /// TODO : change thi condition
-          visible: ref.watch(isEditingProvider) && _isEditable,
+          visible: !ref.watch(isEditingProvider) || _isEditable,
           child: child,
         ),
       ],
