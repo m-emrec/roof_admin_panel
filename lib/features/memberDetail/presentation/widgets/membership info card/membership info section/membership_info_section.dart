@@ -13,7 +13,9 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_c
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
+import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 part '_member_ship_info_card_item.dart';
 
 class MembershipInfoSection extends ConsumerWidget {
@@ -46,70 +48,78 @@ class _MembershipInfoGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final membershipNotifierProvider =
         ref.read(membershipDetailNotifierProvider.notifier);
-    return GridView(
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: context.responsiveSelector<int>(
-          mobile: 1,
-          desktop: 2,
-          tablet: 1,
-        ),
-        crossAxisSpacing: SpacingSizes.extraSmall,
-        mainAxisSpacing: SpacingSizes.medium,
-        mainAxisExtent: context.responsiveSelector<double>(
-          mobile: SpacingSizes.small,
-          desktop: SpacingSizes.small,
-          tablet: SpacingSizes.large,
-        ),
-      ),
-      children: [
-        _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
-          child: _TextItem(
-            value: member?.memberNumber ?? "",
-            editStateLabel:
-                LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
-            controller: membershipNotifierProvider.memberNumberController,
+    return Form(
+      key: membershipNotifierProvider.formKey,
+      child: GridView(
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: context.responsiveSelector<int>(
+            mobile: 1,
+            desktop: 2,
+            tablet: 1,
+          ),
+          crossAxisSpacing: SpacingSizes.extraSmall,
+          mainAxisSpacing: SpacingSizes.medium,
+          mainAxisExtent: context.responsiveSelector<double>(
+            mobile: SpacingSizes.small,
+            desktop: SpacingSizes.small,
+            tablet: SpacingSizes.large,
           ),
         ),
-        _MembershipInfoCardItem(
-          label: LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate
-              .tr(),
-          child: _DateItem(
-            member?.membershipStartDate,
-            LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate.tr(),
-            membershipNotifierProvider.membershipStartDateController,
+        children: [
+          // Membership Number
+          _MembershipInfoCardItem(
+            label: LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
+            child: _TextItem(
+              value: member?.memberNumber ?? "",
+              editStateLabel:
+                  LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
+              controller: membershipNotifierProvider.memberNumberController,
+              validator: (value) =>
+                  ValidatorMethods(text: value).numberOnlyValidator,
+            ),
           ),
-        ),
-        _MembershipInfoCardItem(
-          label:
-              LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr(),
-          child: _DateItem(
-            member?.membershipEndDate,
-            LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr(),
-            membershipNotifierProvider.membershipEndDateController,
-          ),
-        ),
-        _MembershipInfoCardItem.notEditable(
-          label: LocaleKeys.memberDetailView_membershipInfo_memberShipDuration
-              .tr(),
-          child: _TextItem(
-            value: member?.membershipStartDate != null
-                ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
-                : "",
-            editStateLabel: LocaleKeys
-                .memberDetailView_membershipInfo_memberShipDuration
+          // Membership Start Date
+          _MembershipInfoCardItem(
+            label: LocaleKeys
+                .memberDetailView_membershipInfo_memberShipStartDate
                 .tr(),
+            child: _DateItem(
+              member?.membershipStartDate,
+              LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate
+                  .tr(),
+              membershipNotifierProvider.membershipStartDateController,
+            ),
           ),
-        ),
-        _MembershipInfoCardItem.notEditable(
-          label: LocaleKeys.memberDetailView_membershipInfo_mentor.tr(),
-          child: const _TextItem(
-            value: "mentor widget",
-            editStateLabel: "asd",
+          // Membership End Date
+          _MembershipInfoCardItem(
+            label: LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate
+                .tr(),
+            child: _DateItem(
+              member?.membershipEndDate,
+              LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr(),
+              membershipNotifierProvider.membershipEndDateController,
+            ),
           ),
-        ),
-      ],
+          // Membership Role
+          _MembershipInfoCardItem.notEditable(
+            label: LocaleKeys.memberDetailView_membershipInfo_memberShipDuration
+                .tr(),
+            child: _TextItem(
+              value: member?.membershipStartDate != null
+                  ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
+                  : "",
+            ),
+          ),
+          // Membership Role
+          _MembershipInfoCardItem.notEditable(
+            label: LocaleKeys.memberDetailView_membershipInfo_mentor.tr(),
+            child: const _TextItem(
+              value: "mentor widget",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

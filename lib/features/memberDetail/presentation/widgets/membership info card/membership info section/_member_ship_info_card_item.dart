@@ -47,13 +47,15 @@ class _MembershipInfoCardItem extends ConsumerWidget {
 
 class _TextItem extends ConsumerWidget {
   const _TextItem({
-    required this.editStateLabel,
+    this.editStateLabel,
     this.value,
     this.controller,
+    this.validator,
   });
   final String? value;
-  final String editStateLabel;
+  final String? editStateLabel;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isEditing = ref.watch(isEditingProvider);
@@ -61,6 +63,7 @@ class _TextItem extends ConsumerWidget {
         ? ClipRRect(
             borderRadius: const AppBorderRadius.small(),
             child: TextFormField(
+              key: ValueKey(editStateLabel),
               style: context.theme
                   .extension<MembershipInfoCardThemeExtension>()
                   ?.membershipInfoValueTextStyle,
@@ -68,8 +71,11 @@ class _TextItem extends ConsumerWidget {
                 filled: true,
                 fillColor: AppColors.backgroundColor,
                 labelText: editStateLabel,
+                errorStyle: context.textTheme.bodySmall?.copyWith(
+                  color: AppColors.accentError,
+                ),
                 constraints: BoxConstraints(
-                  maxHeight: 20,
+                  maxHeight: 30,
                   maxWidth: context.dynamicWidth(0.2),
                 ),
                 contentPadding:

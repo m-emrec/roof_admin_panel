@@ -1,9 +1,12 @@
 import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/models/membership_detail_model.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
@@ -86,6 +89,10 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   /// Finally, it resets the form fields to their initial values.
   /// This method is called when the user submits the form.
   Future<void> editMembershipDetails() async {
+    final validation = formKey.currentState?.validateGranularly();
+    Log.info('Validation: $validation');
+
+    if (_validateFields() == false) return;
     final model = _createEditedMembershipDetailModel;
 
     state = state.copyWith(
@@ -132,6 +139,41 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
         membershipEndDate: DateTime.parse(membershipEndDateController.text),
         role: roleController.value,
       );
+
+  String? _validateDates() {
+    final startDate = DateTime.parse(membershipStartDateController.text);
+    final endDate = DateTime.parse(membershipEndDateController.text);
+    if (ValidatorMethods(text: membershipStartDateController.text).emptyField !=
+        null) {
+      return "'Membership start date cannot be empty.'";
+    }
+    if (startDate.isAfter(endDate)) {
+      return "'Membership start date cannot be after end date.'";
+    }
+    return null;
+  }
+
+  bool _validateFields() {
+    final validators = {
+      LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr():
+          ValidatorMethods(text: memberNumberController.text)
+              .numberOnlyValidator,
+      LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate.tr():
+          _validateDates(),
+      LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr():
+          _validateDates(),
+      LocaleKeys.memberDetailView_membershipInfo_mentor.tr():
+          ValidatorMethods(text: mentorIdController.text).emptyField,
+    };
+
+    for (final element in validators.entries) {
+      if (element.value != null) {
+        Toast.showErrorToast(title: element.key, desc: element.value);
+        return false;
+      }
+    }
+    return true;
+  }
 
   @override
   void dispose() {
