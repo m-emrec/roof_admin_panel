@@ -11,12 +11,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/member_ship_info_field.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
-import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
-import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
-import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
-import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 part '_member_ship_info_card_item.dart';
+part '_membership_info_Section_text_field.dart';
+part 'membership_card_item_factory.dart';
 
 class MembershipInfoSection extends ConsumerWidget {
   const MembershipInfoSection();
@@ -46,80 +45,22 @@ class _MembershipInfoGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final membershipNotifierProvider =
-        ref.read(membershipDetailNotifierProvider.notifier);
-    return Form(
-      key: membershipNotifierProvider.formKey,
-      child: GridView(
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: context.responsiveSelector<int>(
-            mobile: 1,
-            desktop: 2,
-            tablet: 1,
-          ),
-          crossAxisSpacing: SpacingSizes.extraSmall,
-          mainAxisSpacing: SpacingSizes.medium,
-          mainAxisExtent: context.responsiveSelector<double>(
-            mobile: SpacingSizes.small,
-            desktop: SpacingSizes.small,
-            tablet: SpacingSizes.large,
-          ),
-        ),
-        children: [
-          // Membership Number
-          _MembershipInfoCardItem(
-            label: LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
-            child: _TextItem(
-              value: member?.memberNumber ?? "",
-              editStateLabel:
-                  LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
-              controller: membershipNotifierProvider.memberNumberController,
-              validator: (value) =>
-                  ValidatorMethods(text: value).numberOnlyValidator,
-            ),
-          ),
-          // Membership Start Date
-          _MembershipInfoCardItem(
-            label: LocaleKeys
-                .memberDetailView_membershipInfo_memberShipStartDate
-                .tr(),
-            child: _DateItem(
-              member?.membershipStartDate,
-              LocaleKeys.memberDetailView_membershipInfo_memberShipStartDate
-                  .tr(),
-              membershipNotifierProvider.membershipStartDateController,
-            ),
-          ),
-          // Membership End Date
-          _MembershipInfoCardItem(
-            label: LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate
-                .tr(),
-            child: _DateItem(
-              member?.membershipEndDate,
-              LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr(),
-              membershipNotifierProvider.membershipEndDateController,
-            ),
-          ),
-          // Membership Role
-          _MembershipInfoCardItem.notEditable(
-            label: LocaleKeys.memberDetailView_membershipInfo_memberShipDuration
-                .tr(),
-            child: _TextItem(
-              value: member?.membershipStartDate != null
-                  ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
-                  : "",
-            ),
-          ),
-          // Membership Role
-          _MembershipInfoCardItem.notEditable(
-            label: LocaleKeys.memberDetailView_membershipInfo_mentor.tr(),
-            child: const _TextItem(
-              value: "mentor widget",
-            ),
-          ),
-        ],
+    final crossAxisCount =
+        context.responsiveSelector<int>(mobile: 1, desktop: 2, tablet: 1);
+    final mainAxisExtent = context.responsiveSelector<double>(
+      mobile: SpacingSizes.small,
+      desktop: SpacingSizes.small,
+      tablet: SpacingSizes.large,
+    );
+    return GridView(
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        crossAxisSpacing: SpacingSizes.extraSmall,
+        mainAxisSpacing: SpacingSizes.medium,
+        mainAxisExtent: mainAxisExtent,
       ),
+      children: _MembershipCardItemFactory.factory(ref),
     );
   }
 }

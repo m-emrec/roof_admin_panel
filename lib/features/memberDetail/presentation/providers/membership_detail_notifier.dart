@@ -89,9 +89,6 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   /// Finally, it resets the form fields to their initial values.
   /// This method is called when the user submits the form.
   Future<void> editMembershipDetails() async {
-    final validation = formKey.currentState?.validateGranularly();
-    Log.info('Validation: $validation');
-
     if (_validateFields() == false) return;
     final model = _createEditedMembershipDetailModel;
 
@@ -166,9 +163,9 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
           ValidatorMethods(text: mentorIdController.text).emptyField,
     };
 
-    for (final element in validators.entries) {
-      if (element.value != null) {
-        Toast.showErrorToast(title: element.key, desc: element.value);
+    for (final validator in validators.entries) {
+      if (validator.value != null) {
+        Toast.showErrorToast(title: validator.key, desc: validator.value);
         return false;
       }
     }
