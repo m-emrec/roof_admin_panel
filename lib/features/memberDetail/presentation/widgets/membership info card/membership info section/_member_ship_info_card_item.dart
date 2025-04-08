@@ -34,7 +34,7 @@ class _MembershipInfoCardItem<T> extends ConsumerWidget {
                 .extension<MembershipInfoCardThemeExtension>()
                 ?.membershipInfoLabelTextStyle,
           ),
-        field.build(context, isEditing),
+        field.build(context, isEditing: isEditing),
       ],
     );
   }
