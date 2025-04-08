@@ -1,12 +1,12 @@
-part of 'membership_info_section.dart';
+part of '../membership_info_section.dart';
 
-class _MembershipCardItemFactory {
-  _MembershipCardItemFactory._();
+class _MembershipInfoFieldFactory {
+  _MembershipInfoFieldFactory._();
 
-  static List<MembershipInfoField<dynamic>> _membershipCardFields(
+  static List<BaseMembershipInfoField<dynamic>> _membershipCardFields(
     WidgetRef ref,
   ) {
-    final member = ref.watch(memberProvider);
+    final member = ref.watch(membershipDetailNotifierProvider);
     final membershipNotifierProvider =
         ref.read(membershipDetailNotifierProvider.notifier);
     return [
@@ -51,7 +51,7 @@ class _MembershipCardItemFactory {
   ) =>
       _membershipCardFields(ref)
           .map(
-            _MembershipInfoField.new,
+            _MembershipInfo.new,
           )
           .toList();
 }

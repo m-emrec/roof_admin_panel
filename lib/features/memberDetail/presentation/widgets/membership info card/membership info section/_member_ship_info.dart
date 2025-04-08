@@ -1,16 +1,16 @@
 part of 'membership_info_section.dart';
 
 ///
-class _MembershipInfoField extends ConsumerWidget {
+class _MembershipInfo extends ConsumerWidget {
   /// Used in the [MembershipInfoSection] to display the membership information
   /// in consistent layout.
   ///
   ///
-  const _MembershipInfoField(
+  const _MembershipInfo(
     this.field,
   );
 
-  final MembershipInfoField<dynamic> field;
+  final BaseMembershipInfoField<dynamic> field;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

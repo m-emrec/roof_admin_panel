@@ -25,14 +25,6 @@ final _editMembershipDetailUseCaseProvider =
   );
 });
 
-/// This provider used to provide the member detail across the [MemberDetailDialog]
-/// feature.
-/// It is used to store the member detail and it is disposed when the
-/// [MemberDetailDialog] feature is disposed.
-final memberProvider = StateProvider.autoDispose<UserModel?>((ref) {
-  return null;
-});
-
 /// This provider used to provide a boolean value to check if the
 /// [MemberDetailDialog] is in edit mode or not.
 /// It is used to store the edit mode value and it is disposed when the
@@ -55,7 +47,7 @@ final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
 /// Therefore, to ensure the state remains accessible during editing, we use
 /// a standard `StateNotifierProvider`.
 final membershipDetailNotifierProvider =
-    StateNotifierProvider.autoDispose<MembershipDetailNotifier, UserModel>(
+    StateNotifierProvider.autoDispose<MembershipDetailNotifier, UserModel?>(
         (ref) {
   return MembershipDetailNotifier(
     ref,

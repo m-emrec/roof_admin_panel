@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/models/membership_detail_model.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/views/member_detail.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
@@ -24,13 +25,18 @@ import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 /// - role
 /// - mentorId
 ///
-class MembershipDetailNotifier extends StateNotifier<UserModel> {
+class MembershipDetailNotifier extends StateNotifier<UserModel?> {
   /// Constructor for the [MembershipDetailNotifier].
   MembershipDetailNotifier(
     this.ref, {
     required EditMembershipDetailsUseCase editMembershipDetailsUseCase,
   })  : _editMembershipDetailsUseCase = editMembershipDetailsUseCase,
-        super(ref.watch(memberProvider) as UserModel) {
+        super(null);
+
+  /// Initializes the state with the given [member] and sets up the form key and text editing controllers.
+  /// This method called iin the [MemberDetailDialog] when the dialog is opened.
+  void initializeState(UserModel? member) {
+    state = member;
     _initializeControllers();
   }
 
@@ -65,17 +71,17 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   void _initializeControllers() {
     formKey = GlobalKey<FormState>();
     memberNumberController = TextEditingController(
-      text: state.memberNumber ?? '',
+      text: state?.memberNumber ?? '',
     );
     membershipStartDateController = TextEditingController(
-      text: state.membershipStartDate?.toString() ?? '',
+      text: state?.membershipStartDate?.toString() ?? '',
     );
     membershipEndDateController = TextEditingController(
-      text: state.membershipEndDate?.toString() ?? '',
+      text: state?.membershipEndDate?.toString() ?? '',
     );
-    roleController = ValueNotifier(state.role?.first ?? Role.member);
+    roleController = ValueNotifier(state?.role?.first ?? Role.member);
     mentorIdController = TextEditingController(
-      text: state.mentorId ?? '',
+      text: state?.mentorId ?? '',
     );
   }
 
@@ -92,7 +98,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
     if (_validateFields() == false) return;
     final model = _createEditedMembershipDetailModel;
 
-    state = state.copyWith(
+    state = state?.copyWith(
       membershipStartDate: model.membershipStartDate,
       membershipEndDate: model.membershipEndDate,
       memberNumber: model.memberNumber,
@@ -119,18 +125,18 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
   /// revert to the original values.
   void reset() {
     ref.read(isEditingProvider.notifier).state = false;
-    memberNumberController.text = state.memberNumber ?? '';
+    memberNumberController.text = state?.memberNumber ?? '';
     membershipStartDateController.text =
-        state.membershipStartDate?.toString() ?? '';
+        state?.membershipStartDate?.toString() ?? '';
     membershipEndDateController.text =
-        state.membershipEndDate?.toString() ?? '';
-    roleController.value = state.role?.first ?? Role.member;
-    mentorIdController.text = state.mentorId ?? '';
+        state?.membershipEndDate?.toString() ?? '';
+    roleController.value = state?.role?.first ?? Role.member;
+    mentorIdController.text = state?.mentorId ?? '';
   }
 
   EditedMembershipDetail get _createEditedMembershipDetailModel =>
       EditedMembershipDetail(
-        uid: state.uid ?? '',
+        uid: state?.uid ?? '',
         memberNumber: memberNumberController.text,
         membershipStartDate: DateTime.parse(membershipStartDateController.text),
         membershipEndDate: DateTime.parse(membershipEndDateController.text),

@@ -5,7 +5,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 
-/// The [MembershipInfoField] abstract class defines a common interface for
+/// The [BaseMembershipInfoField] abstract class defines a common interface for
 /// displaying and editing various types of membership-related information
 /// (e.g., text, date).
 ///
@@ -18,12 +18,12 @@ import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field
 /// Subclasses must implement the [build] method, which renders the field
 /// based on whether the UI is in editing mode or view-only mode.
 
-abstract base class MembershipInfoField<T> {
-  /// Constructor for the [MembershipInfoField] class.
+abstract base class BaseMembershipInfoField<T> {
+  /// Constructor for the [BaseMembershipInfoField] class.
   /// It initializes the `label`, `value`, `controller`, and `isEditable` properties.
   /// The `isEditable` property defaults to `true`, indicating that the field
   /// is editable unless specified otherwise.
-  const MembershipInfoField({
+  const BaseMembershipInfoField({
     required this.label,
     required this.value,
     required this.controller,
@@ -107,122 +107,5 @@ abstract base class MembershipInfoField<T> {
             ? editWidget
             : const SizedBox()
         : widget;
-  }
-}
-
-/// The [TextMembershipInfoField] class is a concrete implementation of
-/// [MembershipInfoField] for displaying and editing simple text-based
-/// membership data (e.g., member number, role).
-final class TextMembershipInfoField extends MembershipInfoField<String> {
-  /// A concrete implementation of [MembershipInfoField] for displaying and
-  /// editing simple text-based membership data (e.g. member number,).
-  ///
-  /// This class supports both editable and read-only configurations via
-  /// the default and `.notEditable` named constructors.
-  ///
-  /// When in editing mode and `isEditable` is true, it renders a
-  /// [MembershipInfoSectionTextField].
-  /// if `isEditable` is false, it will render an empty [SizedBox] and it will
-  /// be not shown in the UI.
-  ///
-  /// Otherwise, it shows a styled [Text] widget.
-  ///
-  ///
-  TextMembershipInfoField({
-    required super.label,
-    required super.value,
-    super.controller,
-  }) : super(isEditable: true);
-
-  /// A named constructor for creating a non-editable version of the
-  /// [TextMembershipInfoField].
-  /// This constructor sets `isEditable` to false, making the field
-  /// read-only.
-  /// It will render an empty [SizedBox] when in `isEditing`set to true
-  /// and it will be not shown in the UI.
-  TextMembershipInfoField.notEditable({
-    required super.label,
-    required super.value,
-    super.controller,
-  }) : super(isEditable: false);
-
-  @protected
-  @override
-  Widget editStateWidget(BuildContext context) {
-    return MembershipInfoSectionTextField(
-      editStateLabel: label,
-      controller: controller,
-    );
-  }
-
-  @override
-  @protected
-  Widget widget(BuildContext? context) {
-    if (context == null) {
-      return const SizedBox();
-    }
-    return Text(
-      value,
-      style: context.theme
-          .extension<MembershipInfoCardThemeExtension>()
-          ?.membershipInfoValueTextStyle,
-    );
-  }
-}
-
-/// The [DateMembershipInfoField] class is a concrete implementation of
-/// [MembershipInfoField] for displaying and editing date-based membership
-/// information (e.g., membership start or end date).
-final class DateMembershipInfoField extends MembershipInfoField<DateTime?> {
-  /// A concrete implementation of [MembershipInfoField] for handling date-based
-  /// fields (e.g. membership start or end date).
-  ///
-  /// Uses a [DateField] widget for editable fields when a controller is provided.
-  /// When `isEditable` is false or no controller is available, it renders nothing
-  /// in edit mode.
-  ///
-  /// In view-only mode, the field value is formatted using the `formatDate()`
-  /// extension and displayed as styled text.
-  ///
-  /// Use the `.notEditable` named constructor to define non-editable date fields
-  /// (e.g. calculated durations).
-  const DateMembershipInfoField({
-    required super.label,
-    required super.value,
-    super.controller,
-  }) : super(isEditable: true);
-
-  /// Use the `.notEditable` named constructor to define non-editable date fields
-  /// (e.g. calculated durations).
-  const DateMembershipInfoField.notEditable({
-    required super.label,
-    required super.value,
-    super.controller,
-  }) : super(isEditable: false);
-  @protected
-  @override
-  Widget editStateWidget(BuildContext context) {
-    return Wrap(
-      children: [
-        Text(
-          "$label: ",
-          style: context.theme
-              .extension<MembershipInfoCardThemeExtension>()
-              ?.membershipInfoLabelTextStyle,
-        ),
-        DateField(controller: controller!),
-      ],
-    );
-  }
-
-  @protected
-  @override
-  Widget widget(BuildContext context) {
-    return Text(
-      value?.formatDate(context) ?? " - ",
-      style: context.theme
-          .extension<MembershipInfoCardThemeExtension>()
-          ?.membershipInfoValueTextStyle,
-    );
   }
 }

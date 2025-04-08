@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/abou
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership_info_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
+import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 
 class MemberDetailDialog extends ConsumerStatefulWidget {
   ///
@@ -25,9 +26,11 @@ class MemberDetailDialog extends ConsumerStatefulWidget {
 class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(memberProvider.notifier).state = widget.member;
-    });
+    Future.microtask(
+      () => ref
+          .read(membershipDetailNotifierProvider.notifier)
+          .initializeState(widget.member),
+    );
     super.initState();
   }
 
@@ -43,7 +46,7 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
-        child: ref.watch(memberProvider) != null
+        child: ref.watch(membershipDetailNotifierProvider) != null
             ? SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -54,7 +57,7 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
                   ],
                 ),
               )
-            : const SizedBox(),
+            : const LoadingIndicator(),
       ).makeSelectable(),
       actions: const [],
     );

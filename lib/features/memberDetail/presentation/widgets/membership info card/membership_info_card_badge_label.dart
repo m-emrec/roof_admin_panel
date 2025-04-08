@@ -22,6 +22,7 @@ class _MembershipInfoCardBadge extends ConsumerWidget {
             ? const _EditStateBadge()
             : PopupMenuButton(
                 itemBuilder: _popMenuItemBuilder,
+
                 onSelected: (value) =>
                     _onSelected(value, ref), // Handle the selected value
               ),
@@ -40,16 +41,17 @@ class _MembershipInfoCardBadge extends ConsumerWidget {
   }
 
   List<PopupMenuEntry<_Value>> _popMenuItemBuilder(BuildContext context) => [
-        const PopupMenuItem(
+        PopupMenuItem(
           value: _Value.edit,
           child: Text(
-            'Edit',
+            LocaleKeys.memberDetailView_options_edit.tr(),
           ),
         ),
-        const PopupMenuItem(
+        const PopupMenuDivider(),
+        PopupMenuItem(
           value: _Value.delete,
           child: Text(
-            'Delete',
+            LocaleKeys.memberDetailView_options_ban.tr(),
           ),
         ),
       ];

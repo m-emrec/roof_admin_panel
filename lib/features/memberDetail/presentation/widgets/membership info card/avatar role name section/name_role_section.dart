@@ -16,8 +16,10 @@ class NameAndRoleSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(memberProvider.select((m) => m?.name));
-    final role = ref.watch(memberProvider.select((m) => m?.role));
+    final name =
+        ref.watch(membershipDetailNotifierProvider.select((m) => m?.name));
+    final role =
+        ref.watch(membershipDetailNotifierProvider.select((m) => m?.role));
     final roleKey =
         ref.watch(membershipDetailNotifierProvider.notifier).roleController;
 

@@ -14,7 +14,7 @@ class AboutSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final member = ref.watch(memberProvider);
+    final member = ref.watch(membershipDetailNotifierProvider);
     return MembersDetailSectionCard(
       child: Section(
         title: LocaleKeys.memberDetailView_about.tr(),

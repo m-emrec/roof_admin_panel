@@ -11,11 +11,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/member_ship_info_field.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/base_member_ship_info_field.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/date_membership_info_field.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/text_membership_info_field.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
-part '_member_ship_info_card_item.dart';
+part '_member_ship_info.dart';
 part '_membership_info_Section_text_field.dart';
-part 'membership_card_item_factory.dart';
+part 'membership_info_fields/_membership_info_field_factory.dart';
 
 /// A widget that displays the membership information in a card format.
 class MembershipInfoSection extends ConsumerWidget {
@@ -32,7 +34,7 @@ class MembershipInfoSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final member = ref.watch(memberProvider);
+    final member = ref.watch(membershipDetailNotifierProvider);
     return context.responsiveSelector<Widget>(
       mobile: _MembershipInfoGrid(
         member: member,
@@ -63,7 +65,7 @@ class _MembershipInfoGrid extends ConsumerWidget {
         mainAxisSpacing: SpacingSizes.medium,
         mainAxisExtent: mainAxisExtent(context),
       ),
-      children: _MembershipCardItemFactory.factory(ref),
+      children: _MembershipInfoFieldFactory.factory(ref),
     );
   }
 

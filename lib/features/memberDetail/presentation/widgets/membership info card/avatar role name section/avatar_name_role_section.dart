@@ -19,7 +19,8 @@ class AvatarNameRoleSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imageUrl = ref.watch(memberProvider.select((m) => m?.imageUrl));
+    final imageUrl =
+        ref.watch(membershipDetailNotifierProvider.select((m) => m?.imageUrl));
 
     return Flex(
       direction: context.responsiveSelector(
