@@ -5,7 +5,9 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/abou
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_section.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 
+///
 class AboutAndPersonalInfo extends StatelessWidget {
+  // ignore: public_member_api_docs
   const AboutAndPersonalInfo(this.member, {super.key});
   final UserModel? member;
   @override
@@ -27,15 +29,15 @@ class _Desktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Flexible(
-          child: AboutSection(member: member),
+          child: AboutSection(),
         ),
         Flexible(
           fit: FlexFit.tight,
-          child: PersonalInformationSection(member: member),
+          child: PersonalInformationSection(),
         ),
       ],
     );
@@ -54,10 +56,10 @@ class _Mobile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AboutSection(member: member),
+        const AboutSection(),
         SizedBox(
           width: context.dynamicWidth(0.9),
-          child: PersonalInformationSection(member: member),
+          child: const PersonalInformationSection(),
         ),
       ],
     );

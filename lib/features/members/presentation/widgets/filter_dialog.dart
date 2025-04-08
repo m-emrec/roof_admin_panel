@@ -33,7 +33,7 @@ class FilterDialog extends ConsumerWidget {
               // membership end duration ( slider )
               MembershipEndDurationFilter(),
               // role ( dropdown )
-              const RoleFilter(),
+              const MembersRoleFilter(),
             ],
           ),
         ),

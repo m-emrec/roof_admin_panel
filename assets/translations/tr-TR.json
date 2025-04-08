@@ -351,14 +351,23 @@
     "mentat":"Mentatı",
     "members":"Üyeleri"
    },
-   "buttons":{
+   "options":{
     "ban":"Üyeyi Banla",
     "areYouSure":"Bu üyeyi banlamak istediğinizden emin misiniz?",
     "edit":"Üyeyi Düzenle"
    },
+   "validationErrors":{
+    "memberNumber":"Üye numarası geçersiz.",
+    "startDateLaterThanEndDate":"Üyelik başlangıç tarihi, bitiş tarihinden sonra olamaz."
+   },
+   "success":{
+    "memberBanned":"Üye başarıyla banlandı.",
+    "memberUnbanned":"Üye banı kaldırıldı.",
+    "memberUpdated":"Üye bilgileri başarıyla güncellendi."
+   },
     "personalInfo": {
         "title":"Kişisel Bilgiler",
-    "phoneNumber":"Telefon Numarası",
+        "phoneNumber":"Telefon Numarası",
         "birthDate":"Doğum Tarihi",
         "gender":"Cinsiyet",
         "livingCity":"Yaşadığı Şehir",

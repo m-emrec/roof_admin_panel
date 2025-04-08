@@ -90,6 +90,7 @@ final class AppTheme {
   ThemeData get lightTheme => ThemeData(
         brightness: Brightness.light,
         useMaterial3: true,
+
         scaffoldBackgroundColor: AppColors.backgroundColor[80],
         primaryColor: AppColors.primaryColor[50],
         textTheme: TextStyles().textTheme,
@@ -106,6 +107,7 @@ final class AppTheme {
         extensions: _extensions,
         expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
         checkboxTheme: _CheckboxTheme(),
+
         progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
         floatingActionButtonTheme:
             _FloatingActionButtonTheme.floatingActionButtonTheme,

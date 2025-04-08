@@ -64,7 +64,7 @@ class MembersTableTitle extends ConsumerWidget {
               Permissions.canEdit,
               Permissions.canEditMembers,
             ],
-          ).actionIfAllowed,
+          ).call(),
           child: Text(LocaleKeys.membersView_addMember.tr()),
         ),
       ],

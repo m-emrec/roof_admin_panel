@@ -1,15 +1,16 @@
 import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_item.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/section_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/widgets/section%20widget/section_widget.dart';
 
 ///
-class PersonalInformationSection extends StatelessWidget {
+class PersonalInformationSection extends ConsumerWidget {
   /// This is the section which displays the personal information of the user.
   ///
   /// It contains the following information:
@@ -23,15 +24,14 @@ class PersonalInformationSection extends StatelessWidget {
   /// - [interests]
   ///
   const PersonalInformationSection({
-    required this.member,
     super.key,
   });
 
   ///
-  final UserModel? member;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final member = ref.watch(membershipDetailNotifierProvider);
     return MembersDetailSectionCard(
       child: Section(
         title: LocaleKeys.memberDetailView_personalInfo_title.tr(),

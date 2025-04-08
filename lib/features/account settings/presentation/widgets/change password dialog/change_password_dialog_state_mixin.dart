@@ -34,4 +34,13 @@ mixin ChangePasswordDialogStateMixin on ConsumerState<ChangePasswordDialog> {
     }
     return ValidatorMethods(text: text).validatePassword;
   }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    formKey.currentState?.dispose();
+
+    super.dispose();
+  }
 }
