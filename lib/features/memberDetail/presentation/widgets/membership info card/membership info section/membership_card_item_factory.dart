@@ -3,7 +3,7 @@ part of 'membership_info_section.dart';
 class _MembershipCardItemFactory {
   _MembershipCardItemFactory._();
 
-  static List<MembershipInfoField<dynamic>> _membershipCardItems(
+  static List<MembershipInfoField<dynamic>> _membershipCardFields(
     WidgetRef ref,
   ) {
     final member = ref.watch(memberProvider);
@@ -11,7 +11,6 @@ class _MembershipCardItemFactory {
         ref.read(membershipDetailNotifierProvider.notifier);
     return [
       // Membership Number
-
       TextMembershipInfoField(
         label: LocaleKeys.memberDetailView_membershipInfo_memberNumber.tr(),
         value: member?.memberNumber ?? "",
@@ -49,16 +48,10 @@ class _MembershipCardItemFactory {
 
   static List<Widget> factory(
     WidgetRef ref,
-  ) {
-    return _membershipCardItems(ref)
-        .map(
-          (item) => _MembershipInfoCardItem(
-            label: item.label,
-            value: item.value,
-            controller: item.controller,
-            field: item,
-          ),
-        )
-        .toList();
-  }
+  ) =>
+      _membershipCardFields(ref)
+          .map(
+            _MembershipInfoCardField.new,
+          )
+          .toList();
 }

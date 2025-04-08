@@ -1,24 +1,16 @@
 part of 'membership_info_section.dart';
 
 ///
-class _MembershipInfoCardItem<T> extends ConsumerWidget {
+class _MembershipInfoCardField extends ConsumerWidget {
   /// Used in the [MembershipInfoCard] to display the membership information
   /// in consistent layout.
   ///
   ///
-  const _MembershipInfoCardItem({
-    required this.label,
-    required this.value,
-    required this.field,
-    this.controller,
-  });
+  const _MembershipInfoCardField(
+    this.field,
+  );
 
   final MembershipInfoField<dynamic> field;
-
-  /// The label of the membership information
-  final String label;
-  final T value;
-  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +21,7 @@ class _MembershipInfoCardItem<T> extends ConsumerWidget {
       children: [
         if (!isEditing)
           Text(
-            "$label:",
+            "${field.label}:",
             style: context.theme
                 .extension<MembershipInfoCardThemeExtension>()
                 ?.membershipInfoLabelTextStyle,
