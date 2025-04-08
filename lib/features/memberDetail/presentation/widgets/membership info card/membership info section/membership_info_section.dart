@@ -17,8 +17,18 @@ part '_member_ship_info_card_item.dart';
 part '_membership_info_Section_text_field.dart';
 part 'membership_card_item_factory.dart';
 
+/// A widget that displays the membership information in a card format.
 class MembershipInfoSection extends ConsumerWidget {
-  const MembershipInfoSection();
+  /// Used in the [MembershipInfoCard] to display the membership information
+  /// in consistent layout.
+  /// This widget is responsive and adapts to different screen sizes.
+  ///
+  /// It uses a [GridView] to display the membership information in a grid layout.
+  ///
+  /// It display membership related information eg. membership number, start date etc.
+  ///
+  ///
+  const MembershipInfoSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,22 +55,25 @@ class _MembershipInfoGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final crossAxisCount =
-        context.responsiveSelector<int>(mobile: 1, desktop: 2, tablet: 1);
-    final mainAxisExtent = context.responsiveSelector<double>(
-      mobile: SpacingSizes.small,
-      desktop: SpacingSizes.small,
-      tablet: SpacingSizes.large,
-    );
     return GridView(
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
+        crossAxisCount: crossAxisCount(context),
         crossAxisSpacing: SpacingSizes.extraSmall,
         mainAxisSpacing: SpacingSizes.medium,
-        mainAxisExtent: mainAxisExtent,
+        mainAxisExtent: mainAxisExtent(context),
       ),
       children: _MembershipCardItemFactory.factory(ref),
     );
   }
+
+  int crossAxisCount(BuildContext context) =>
+      context.responsiveSelector<int>(mobile: 1, desktop: 2, tablet: 1);
+
+  double mainAxisExtent(BuildContext context) =>
+      context.responsiveSelector<double>(
+        mobile: SpacingSizes.small,
+        desktop: SpacingSizes.small,
+        tablet: SpacingSizes.large,
+      );
 }

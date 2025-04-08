@@ -24,7 +24,7 @@ final class Toast {
   }) =>
       _show(
         dismissible: dismissible,
-        backgroundColor: AppColors.accentError[20],
+        backgroundColor: AppColors.accentError[10],
         foregroundColor: AppColors.accentError[100],
         title: title,
         desc: desc,
@@ -41,7 +41,7 @@ final class Toast {
   }) =>
       _show(
         dismissible: dismissible,
-        backgroundColor: AppColors.accentSuccess[20],
+        backgroundColor: AppColors.accentSuccess[10],
         foregroundColor: AppColors.accentSuccess[100],
         title: title,
         desc: desc,
@@ -57,6 +57,13 @@ final class Toast {
     EdgeInsetsGeometry? margin,
   }) {
     return toastification.show(
+      boxShadow: const [
+        BoxShadow(
+          color: Colors.black12,
+          blurRadius: 10,
+          offset: Offset(0, 2),
+        ),
+      ],
       title: title != null
           ? Text(
               title,

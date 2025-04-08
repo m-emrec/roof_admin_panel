@@ -102,7 +102,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
     DataState.handleDataStateBasedAction(
       await _editMembershipDetailsUseCase(model),
       onSuccess: (_) => Toast.showSuccessToast(
-        desc: 'Membership details updated successfully.',
+        desc: LocaleKeys.memberDetailView_success_memberUpdated.tr(),
       ),
       onFailure: (error) {
         Toast.showErrorToast(
@@ -142,10 +142,12 @@ class MembershipDetailNotifier extends StateNotifier<UserModel> {
     final endDate = DateTime.parse(membershipEndDateController.text);
     if (ValidatorMethods(text: membershipStartDateController.text).emptyField !=
         null) {
-      return "'Membership start date cannot be empty.'";
+      return LocaleKeys.common_validationError_required.tr();
     }
     if (startDate.isAfter(endDate)) {
-      return "'Membership start date cannot be after end date.'";
+      return LocaleKeys
+          .memberDetailView_validationErrors_startDateLaterThanEndDate
+          .tr();
     }
     return null;
   }

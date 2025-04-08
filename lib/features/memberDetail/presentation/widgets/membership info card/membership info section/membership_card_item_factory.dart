@@ -51,7 +51,7 @@ class _MembershipCardItemFactory {
   ) =>
       _membershipCardFields(ref)
           .map(
-            _MembershipInfoCardField.new,
+            _MembershipInfoField.new,
           )
           .toList();
 }

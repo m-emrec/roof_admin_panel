@@ -1,12 +1,12 @@
 part of 'membership_info_section.dart';
 
 ///
-class _MembershipInfoCardField extends ConsumerWidget {
-  /// Used in the [MembershipInfoCard] to display the membership information
+class _MembershipInfoField extends ConsumerWidget {
+  /// Used in the [MembershipInfoSection] to display the membership information
   /// in consistent layout.
   ///
   ///
-  const _MembershipInfoCardField(
+  const _MembershipInfoField(
     this.field,
   );
 
