@@ -1,7 +1,7 @@
-import 'package:core/core.dart';
 import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:core/utils/constants/firebase/collection_enums.dart';
+import 'package:core/utils/constants/firebase/user_doc_enum.dart';
 
 class MentorshipWidgetService extends FirebaseUtils with FirestoreUtils {
   Future<Map<String, dynamic>?> getMentor(String mentorId) async {

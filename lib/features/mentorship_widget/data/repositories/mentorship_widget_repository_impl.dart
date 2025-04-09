@@ -4,7 +4,9 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_inf
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/mentor_entity.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/repositories/mentorship_widget_repository.dart';
 
+/// MentorshipWidgetRepositoryImpl is an implementation of the
 class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
+  /// constructor for the MentorshipWidgetRepositoryImpl class.
   MentorshipWidgetRepositoryImpl(this._mentorshipWidgetService);
 
   final MentorshipWidgetService _mentorshipWidgetService;
