@@ -38,11 +38,6 @@ class _MembershipInfoFieldFactory {
             ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
             : "",
       ),
-      // Membership Role
-      TextMembershipInfoField.notEditable(
-        label: LocaleKeys.memberDetailView_membershipInfo_mentor.tr(),
-        value: member?.mentorId ?? "",
-      ),
     ];
   }
 

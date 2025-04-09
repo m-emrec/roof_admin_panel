@@ -13,6 +13,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_c
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/base_member_ship_info_field.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/date_membership_info_field.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/mentor_membership_info_field.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/text_membership_info_field.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 part '_member_ship_info.dart';

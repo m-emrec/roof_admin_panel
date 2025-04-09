@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
 
 class MemberDetailDialog extends ConsumerStatefulWidget {
   ///
@@ -54,6 +55,9 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
                   children: [
                     const MembershipInfoCard(),
                     AboutAndPersonalInfo(widget.member),
+                    MentorshipWidget(
+                      widget.member!,
+                    ),
                   ],
                 ),
               )
