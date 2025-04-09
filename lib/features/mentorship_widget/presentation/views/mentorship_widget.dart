@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/datasources/mentorship_widget_service.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/repositories/mentorship_widget_repository_impl.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/mentor_pop_up_list.dart';
 
 class MentorshipWidget extends StatelessWidget {
   const MentorshipWidget(this.member, {super.key});
@@ -32,7 +32,7 @@ class MentorshipWidget extends StatelessWidget {
                 ),
               );
             }
-            return MemberList(
+            return MemberPopupList(
               members: snapshot.data!.resultData!.map((e) {
                 return UserInfoModel.fromEntity(e!);
               }).toList(),

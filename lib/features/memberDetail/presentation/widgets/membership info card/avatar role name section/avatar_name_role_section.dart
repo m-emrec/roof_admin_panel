@@ -21,7 +21,6 @@ class AvatarNameRoleSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final imageUrl =
         ref.watch(membershipDetailNotifierProvider.select((m) => m?.imageUrl));
-
     return Flex(
       direction: context.responsiveSelector(
         mobile: Axis.vertical,

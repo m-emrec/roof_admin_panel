@@ -55,9 +55,6 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
                   children: [
                     const MembershipInfoCard(),
                     AboutAndPersonalInfo(widget.member),
-                    MentorshipWidget(
-                      widget.member!,
-                    ),
                   ],
                 ),
               )
