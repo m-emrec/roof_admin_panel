@@ -4,12 +4,13 @@ import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/ment
 import 'package:roof_admin_panel/features/mentorship_widget/domain/repositories/mentorship_widget_repository.dart';
 
 ///
-class GetMentatUseCase extends UseCase<DataState<UserInfoEntity?>, String> {
+class GetMembersForMentorUseCase
+    extends UseCase<DataState<List<UserInfoEntity?>>, List<String>> {
   ///
-  GetMentatUseCase(this._repository);
+  GetMembersForMentorUseCase(this._repository);
   final MentorshipWidgetRepository _repository;
   @override
-  Future<DataState<UserInfoEntity?>> call(String params) {
-    return _repository.getMentat(params);
+  Future<DataState<List<UserInfoEntity?>>> call(List<String> params) {
+    return _repository.getMembersForMentor(params);
   }
 }

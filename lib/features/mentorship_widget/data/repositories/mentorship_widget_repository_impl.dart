@@ -11,10 +11,12 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
 
   final MentorshipWidgetService _mentorshipWidgetService;
   @override
-  Future<DataState<List<UserInfoEntity?>>> getMembers(List<String> memberIds) {
+  Future<DataState<List<UserInfoEntity?>>> getMembersForMentor(
+      List<String> memberIds) {
     return DataState.handleDataState<List<UserInfoEntity?>>(
-      () => _mentorshipWidgetService.getMembers(memberIds).then((value) {
-        if (value.isNotEmpty) {
+      () =>
+          _mentorshipWidgetService.getMembersForMentor(memberIds).then((value) {
+        if (value != null && value.isNotEmpty) {
           return value
               .map((e) => UserInfoModel.fromJson(e).toEntity())
               .toList();
@@ -26,9 +28,9 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   }
 
   @override
-  Future<DataState<UserInfoEntity?>> getMentat(String mentatId) {
+  Future<DataState<UserInfoEntity?>> getMentatForMentor(String mentatId) {
     return DataState.handleDataState<UserInfoEntity?>(
-      () => _mentorshipWidgetService.getMentat(mentatId).then((value) {
+      () => _mentorshipWidgetService.getMentatForMentor(mentatId).then((value) {
         if (value != null) {
           return UserInfoModel.fromJson(value).toEntity();
         } else {
@@ -39,9 +41,9 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   }
 
   @override
-  Future<DataState<UserInfoEntity?>> getMentor(String mentorId) async {
+  Future<DataState<UserInfoEntity?>> getMentorForMember(String mentorId) async {
     return DataState.handleDataState<UserInfoEntity?>(
-      () => _mentorshipWidgetService.getMentor(mentorId).then((value) {
+      () => _mentorshipWidgetService.getMentorForMember(mentorId).then((value) {
         if (value != null) {
           return UserInfoModel.fromJson(value).toEntity();
         } else {
@@ -52,10 +54,13 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   }
 
   @override
-  Future<DataState<List<UserInfoEntity>>> getMentors(List<String> mentorIds) {
+  Future<DataState<List<UserInfoEntity>>> getMentorsForMentat(
+    List<String> mentorIds,
+  ) {
     return DataState.handleDataState<List<UserInfoEntity>>(
-      () => _mentorshipWidgetService.getMentors(mentorIds).then((value) {
-        if (value.isNotEmpty) {
+      () =>
+          _mentorshipWidgetService.getMentorsForMentat(mentorIds).then((value) {
+        if (value != null && value.isNotEmpty) {
           return value
               .map((e) => UserInfoModel.fromJson(e).toEntity())
               .toList();

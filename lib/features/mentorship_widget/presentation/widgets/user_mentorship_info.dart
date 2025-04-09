@@ -40,12 +40,12 @@ class UserMentorshipInfo extends StatelessWidget {
   /// Creates a [UserMentorshipInfo] widget.
   ///
   const UserMentorshipInfo({
-    required this.user,
+    required this.mentor,
     super.key,
   });
 
   /// The user whose information is displayed.
-  final UserInfoModel user;
+  final UserInfoModel mentor;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -59,11 +59,11 @@ class UserMentorshipInfo extends StatelessWidget {
           spacing: SpacingSizes.extraSmall,
           children: [
             Avatar(
-              imageUrl: user.imageUrl,
+              imageUrl: mentor.imageUrl,
               radius: IconSizes.small.height,
             ),
             Text(
-              user.name,
+              mentor.name,
               style: context.textTheme.labelLarge?.copyWith(
                 color: AppColors.secondaryColor[90],
               ),

@@ -58,9 +58,25 @@ class MemberPopupList extends StatelessWidget {
       tooltip: "Show member list",
       itemBuilder: (context) {
         return [
-          /// TODO: PopupMenuItem(child: Mentat),
-          /// TODO: PopupMenuItem(enabled: false, child: SearchBar()),
-          ...members.map(
+          if (members.first?.uid.isNotEmpty ?? false)
+            PopupMenuItem(
+              child: ListTile(
+                tileColor: AppColors.secondaryColor[30],
+                shape: const StadiumBorder(),
+                title: Text(
+                  members.first?.name ?? " - ",
+                  style: context.textTheme.labelLarge?.copyWith(
+                    color: AppColors.secondaryColor[90],
+                  ),
+                ),
+                leading: Avatar(
+                  imageUrl: members.first?.imageUrl,
+                  radius: IconSizes.small.height,
+                  showShadow: false,
+                ).showClickMouseCursorOnWidget(),
+              ),
+            ),
+          ...members.getRange(1, members.length).map(
             (e) {
               return PopupMenuItem(
                 value: e,

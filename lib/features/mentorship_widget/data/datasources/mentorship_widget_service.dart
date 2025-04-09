@@ -4,7 +4,10 @@ import 'package:core/utils/constants/firebase/collection_enums.dart';
 import 'package:core/utils/constants/firebase/user_doc_enum.dart';
 
 class MentorshipWidgetService extends FirebaseUtils with FirestoreUtils {
-  Future<Map<String, dynamic>?> getMentor(String mentorId) async {
+  Future<Map<String, dynamic>?> getMentorForMember(String mentorId) async {
+    if (mentorId.isEmpty) {
+      return null;
+    }
     return getDocumentRef(collection: CollectionEnum.users, docId: mentorId)
         .get()
         .then((value) {
@@ -16,7 +19,10 @@ class MentorshipWidgetService extends FirebaseUtils with FirestoreUtils {
     });
   }
 
-  Future<Map<String, dynamic>?> getMentat(String mentatId) async {
+  Future<Map<String, dynamic>?> getMentatForMentor(String mentatId) async {
+    if (mentatId.isEmpty) {
+      return null;
+    }
     return getDocumentRef(collection: CollectionEnum.users, docId: mentatId)
         .get()
         .then((value) {
@@ -28,7 +34,12 @@ class MentorshipWidgetService extends FirebaseUtils with FirestoreUtils {
     });
   }
 
-  Future<List<Map<String, dynamic>>> getMentors(List<String> mentorIds) async {
+  Future<List<Map<String, dynamic>>?> getMentorsForMentat(
+    List<String> mentorIds,
+  ) async {
+    if (mentorIds.isEmpty) {
+      return null;
+    }
     return getCollectionRef(CollectionEnum.users)
         .where(UserDocEnum.uid.name, whereIn: mentorIds)
         .get()
@@ -41,7 +52,12 @@ class MentorshipWidgetService extends FirebaseUtils with FirestoreUtils {
     });
   }
 
-  Future<List<Map<String, dynamic>>> getMembers(List<String> memberIds) async {
+  Future<List<Map<String, dynamic>>?> getMembersForMentor(
+    List<String> memberIds,
+  ) async {
+    if (memberIds.isEmpty) {
+      return null;
+    }
     return getCollectionRef(CollectionEnum.users)
         .where(UserDocEnum.uid.name, whereIn: memberIds)
         .get()
