@@ -2,7 +2,7 @@ import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/mentor_pop_up_list.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// A widget that displays a horizontal stack of member avatars with an optional count indicator.
@@ -111,18 +111,76 @@ class AvatarStackButton extends StatelessWidget {
           Positioned(
             left: _totalCountAvatarOffset,
             child: CircleAvatar(
-              backgroundColor: AppColors.secondaryColor[90],
+              backgroundColor: AppColors.secondaryColor[40],
               radius: _avatarRadius,
               child: Text(
-                "+${members.length}",
+                "${members.length}",
                 style: context.textTheme.labelMedium?.copyWith(
-                  color: AppColors.secondaryColor[10],
+                  color: AppColors.secondaryColor[90],
                 ),
               ),
             ),
           ),
         ],
-      ),
+      ).b,
+    );
+  }
+}
+
+extension c on Widget {
+  Widget get b => CustomAnimation(child: this);
+}
+
+class CustomAnimation extends StatefulWidget {
+  const CustomAnimation({required this.child, super.key});
+  final Widget child;
+  @override
+  State<CustomAnimation> createState() => _CustomAnimationState();
+}
+
+class _CustomAnimationState extends State<CustomAnimation>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 1000),
+  );
+
+  Animation<T> tween<T>(T begin, T end) {
+    return controller.drive(Tween<T>(begin: begin, end: end));
+  }
+
+  @override
+  void initState() {
+    controller.forward();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        return SlideTransition(
+          position: tween<Offset>(
+            const Offset(0, 0.4),
+            Offset.zero,
+          ),
+          child: FadeTransition(
+            opacity: tween<double>(
+              0.5,
+              1,
+            ),
+            child: widget.child,
+          ),
+        );
+      },
     );
   }
 }

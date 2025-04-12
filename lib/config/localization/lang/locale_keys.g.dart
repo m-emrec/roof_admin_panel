@@ -2,9 +2,8 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
-  static const errors_phoneNumberCantStartWithZero =
-      'errors.phoneNumberCantStartWithZero';
+abstract class  LocaleKeys {
+  static const errors_phoneNumberCantStartWithZero = 'errors.phoneNumberCantStartWithZero';
   static const errors_user_is_not_guest = 'errors.user_is_not_guest';
   static const errors_email_not_verified = 'errors.email_not_verified';
   static const errors_too_many_requests = 'errors.too_many_requests';
@@ -12,14 +11,10 @@ abstract class LocaleKeys {
   static const errors_invalid_name = 'errors.invalid_name';
   static const errors_invalid_name_length = 'errors.invalid_name_length';
   static const errors_invalid_phone_number = 'errors.invalid_phone_number';
-  static const errors_invalid_phone_number_length =
-      'errors.invalid_phone_number_length';
-  static const errors_The_email_address_is_already_in_use_by_another_account =
-      'errors.The_email_address_is_already_in_use_by_another_account';
-  static const errors_The_email_address_is_badly_formatted =
-      'errors.The_email_address_is_badly_formatted';
-  static const errors_INVALID_LOGIN_CREDENTIALS =
-      'errors.INVALID_LOGIN_CREDENTIALS';
+  static const errors_invalid_phone_number_length = 'errors.invalid_phone_number_length';
+  static const errors_The_email_address_is_already_in_use_by_another_account = 'errors.The_email_address_is_already_in_use_by_another_account';
+  static const errors_The_email_address_is_badly_formatted = 'errors.The_email_address_is_badly_formatted';
+  static const errors_INVALID_LOGIN_CREDENTIALS = 'errors.INVALID_LOGIN_CREDENTIALS';
   static const errors_invalid_api_key = 'errors.invalid_api_key';
   static const errors_user_disabled = 'errors.user_disabled';
   static const errors_user_not_found = 'errors.user_not_found';
@@ -28,17 +23,13 @@ abstract class LocaleKeys {
   static const errors_invalid_email = 'errors.invalid_email';
   static const errors_operation_not_allowed = 'errors.operation_not_allowed';
   static const errors_weak_password = 'errors.weak_password';
-  static const errors_provider_already_linked =
-      'errors.provider_already_linked';
-  static const errors_credential_already_in_use =
-      'errors.credential_already_in_use';
+  static const errors_provider_already_linked = 'errors.provider_already_linked';
+  static const errors_credential_already_in_use = 'errors.credential_already_in_use';
   static const errors_requires_recent_login = 'errors.requires_recent_login';
   static const errors_user_mismatch = 'errors.user_mismatch';
   static const errors_provider_not_found = 'errors.provider_not_found';
-  static const errors_invalid_verification_code =
-      'errors.invalid_verification_code';
-  static const errors_invalid_verification_id =
-      'errors.invalid_verification_id';
+  static const errors_invalid_verification_code = 'errors.invalid_verification_code';
+  static const errors_invalid_verification_id = 'errors.invalid_verification_id';
   static const errors_captcha_check_failed = 'errors.captcha_check_failed';
   static const errors_app_not_authorized = 'errors.app_not_authorized';
   static const errors_expired_action_code = 'errors.expired_action_code';
@@ -48,14 +39,12 @@ abstract class LocaleKeys {
   static const errors_internal_error = 'errors.internal_error';
   static const errors_invalid_tenant_id = 'errors.invalid_tenant_id';
   static const errors_tenant_id_mismatch = 'errors.tenant_id_mismatch';
-  static const errors_unsupported_tenant_operation =
-      'errors.unsupported_tenant_operation';
+  static const errors_unsupported_tenant_operation = 'errors.unsupported_tenant_operation';
   static const errors_quota_exceeded = 'errors.quota_exceeded';
   static const errors_tenant_not_found = 'errors.tenant_not_found';
   static const errors_code_expired = 'errors.code_expired';
   static const errors_user_token_expired = 'errors.user_token_expired';
-  static const errors_provider_data_not_found =
-      'errors.provider_data_not_found';
+  static const errors_provider_data_not_found = 'errors.provider_data_not_found';
   static const errors_invalid_uid = 'errors.invalid_uid';
   static const errors_permission_denied = 'errors.permission_denied';
   static const errors_unauthenticated = 'errors.unauthenticated';
@@ -72,8 +61,7 @@ abstract class LocaleKeys {
   static const errors_data_loss = 'errors.data_loss';
   static const errors_cancelled = 'errors.cancelled';
   static const errors_unknown = 'errors.unknown';
-  static const errors_account_exists_with_different_credential =
-      'errors.account_exists_with_different_credential';
+  static const errors_account_exists_with_different_credential = 'errors.account_exists_with_different_credential';
   static const errors_invalid_credential = 'errors.invalid_credential';
   static const errors_popup_closed_by_user = 'errors.popup_closed_by_user';
   static const errors_popup_blocked = 'errors.popup_blocked';
@@ -82,14 +70,11 @@ abstract class LocaleKeys {
   static const errors_no_such_provider = 'errors.no_such_provider';
   static const errors_token_expired = 'errors.token_expired';
   static const errors_user_cancelled = 'errors.user_cancelled';
-  static const errors_web_storage_unsupported =
-      'errors.web_storage_unsupported';
+  static const errors_web_storage_unsupported = 'errors.web_storage_unsupported';
   static const errors_invalid_user_token = 'errors.invalid_user_token';
   static const errors_custom_token_mismatch = 'errors.custom_token_mismatch';
-  static const errors_dynamic_link_not_activated =
-      'errors.dynamic_link_not_activated';
-  static const errors_dynamic_link_not_match_config =
-      'errors.dynamic_link_not_match_config';
+  static const errors_dynamic_link_not_activated = 'errors.dynamic_link_not_activated';
+  static const errors_dynamic_link_not_match_config = 'errors.dynamic_link_not_match_config';
   static const errors_image_not_found = 'errors.image_not_found';
   static const errors = 'errors';
   static const permissions_canEdit = 'permissions.canEdit';
@@ -138,8 +123,7 @@ abstract class LocaleKeys {
   static const common_seeMore = 'common.seeMore';
   static const common_seeLess = 'common.seeLess';
   static const common_inputFields_name = 'common.inputFields.name';
-  static const common_inputFields_phoneNumber =
-      'common.inputFields.phoneNumber';
+  static const common_inputFields_phoneNumber = 'common.inputFields.phoneNumber';
   static const common_inputFields_email = 'common.inputFields.email';
   static const common_inputFields_password = 'common.inputFields.password';
   static const common_inputFields_role = 'common.inputFields.role';
@@ -155,33 +139,24 @@ abstract class LocaleKeys {
   static const common_date_select = 'common.date.select';
   static const common_date = 'common.date';
   static const common_gender = 'common.gender';
-  static const common_validationError_required =
-      'common.validationError.required';
+  static const common_validationError_required = 'common.validationError.required';
   static const common_validationError_length = 'common.validationError.length';
-  static const common_validationError_invalid =
-      'common.validationError.invalid';
+  static const common_validationError_invalid = 'common.validationError.invalid';
   static const common_validationError = 'common.validationError';
   static const common = 'common';
   static const auth_signin_pageTitle = 'auth.signin.pageTitle';
-  static const auth_signin_successfullySignedIn =
-      'auth.signin.successfullySignedIn';
+  static const auth_signin_successfullySignedIn = 'auth.signin.successfullySignedIn';
   static const auth_signin_email = 'auth.signin.email';
   static const auth_signin_password = 'auth.signin.password';
   static const auth_signin_showPassword = 'auth.signin.showPassword';
   static const auth_signin_pleaseVerifyEmail = 'auth.signin.pleaseVerifyEmail';
-  static const auth_signin_validationError_email =
-      'auth.signin.validationError.email';
-  static const auth_signin_validationError_password =
-      'auth.signin.validationError.password';
+  static const auth_signin_validationError_email = 'auth.signin.validationError.email';
+  static const auth_signin_validationError_password = 'auth.signin.validationError.password';
   static const auth_signin_validationError = 'auth.signin.validationError';
-  static const auth_signin_forgotPassword_pageTitle =
-      'auth.signin.forgotPassword.pageTitle';
-  static const auth_signin_forgotPassword_sendResetLink =
-      'auth.signin.forgotPassword.sendResetLink';
-  static const auth_signin_forgotPassword_resetLinkSent =
-      'auth.signin.forgotPassword.resetLinkSent';
-  static const auth_signin_forgotPassword_resetLinkFailed =
-      'auth.signin.forgotPassword.resetLinkFailed';
+  static const auth_signin_forgotPassword_pageTitle = 'auth.signin.forgotPassword.pageTitle';
+  static const auth_signin_forgotPassword_sendResetLink = 'auth.signin.forgotPassword.sendResetLink';
+  static const auth_signin_forgotPassword_resetLinkSent = 'auth.signin.forgotPassword.resetLinkSent';
+  static const auth_signin_forgotPassword_resetLinkFailed = 'auth.signin.forgotPassword.resetLinkFailed';
   static const auth_signin_forgotPassword = 'auth.signin.forgotPassword';
   static const auth_signin = 'auth.signin';
   static const auth = 'auth';
@@ -189,48 +164,31 @@ abstract class LocaleKeys {
   static const membersView_memberCount = 'membersView.memberCount';
   static const membersView_addMember = 'membersView.addMember';
   static const membersView_filters_title = 'membersView.filters.title';
-  static const membersView_filters_roleFilter =
-      'membersView.filters.roleFilter';
-  static const membersView_filters_roleFilterLabel =
-      'membersView.filters.roleFilterLabel';
+  static const membersView_filters_roleFilter = 'membersView.filters.roleFilter';
+  static const membersView_filters_roleFilterLabel = 'membersView.filters.roleFilterLabel';
   static const membersView_filters_ageFilter = 'membersView.filters.ageFilter';
-  static const membersView_filters_ageFilterLabel =
-      'membersView.filters.ageFilterLabel';
-  static const membersView_filters_memberShipEndDurationFilter =
-      'membersView.filters.memberShipEndDurationFilter';
-  static const membersView_filters_memberShipEndDurationFilterLabel =
-      'membersView.filters.memberShipEndDurationFilterLabel';
-  static const membersView_filters_clearFilters =
-      'membersView.filters.clearFilters';
-  static const membersView_filters_nothingFoundForFilter =
-      'membersView.filters.nothingFoundForFilter';
+  static const membersView_filters_ageFilterLabel = 'membersView.filters.ageFilterLabel';
+  static const membersView_filters_memberShipEndDurationFilter = 'membersView.filters.memberShipEndDurationFilter';
+  static const membersView_filters_memberShipEndDurationFilterLabel = 'membersView.filters.memberShipEndDurationFilterLabel';
+  static const membersView_filters_clearFilters = 'membersView.filters.clearFilters';
+  static const membersView_filters_nothingFoundForFilter = 'membersView.filters.nothingFoundForFilter';
   static const membersView_filters = 'membersView.filters';
   static const membersView_sort_memberNumber = 'membersView.sort.memberNumber';
   static const membersView_sort_name = 'membersView.sort.name';
-  static const membersView_sort_membershipEndDate =
-      'membersView.sort.membershipEndDate';
-  static const membersView_sort_membershipStartDate =
-      'membersView.sort.membershipStartDate';
-  static const membersView_sort_memberShipDuration =
-      'membersView.sort.memberShipDuration';
+  static const membersView_sort_membershipEndDate = 'membersView.sort.membershipEndDate';
+  static const membersView_sort_membershipStartDate = 'membersView.sort.membershipStartDate';
+  static const membersView_sort_memberShipDuration = 'membersView.sort.memberShipDuration';
   static const membersView_sort_age = 'membersView.sort.age';
   static const membersView_sort_ascending = 'membersView.sort.ascending';
   static const membersView_sort_descending = 'membersView.sort.descending';
   static const membersView_sort = 'membersView.sort';
-  static const membersView_tableColumnLabels_memberNumber =
-      'membersView.tableColumnLabels.memberNumber';
-  static const membersView_tableColumnLabels_name =
-      'membersView.tableColumnLabels.name';
-  static const membersView_tableColumnLabels_membershipEndDate =
-      'membersView.tableColumnLabels.membershipEndDate';
-  static const membersView_tableColumnLabels_phoneNumber =
-      'membersView.tableColumnLabels.phoneNumber';
-  static const membersView_tableColumnLabels_role =
-      'membersView.tableColumnLabels.role';
-  static const membersView_tableColumnLabels_age =
-      'membersView.tableColumnLabels.age';
-  static const membersView_tableColumnLabels_memberShipDuration =
-      'membersView.tableColumnLabels.memberShipDuration';
+  static const membersView_tableColumnLabels_memberNumber = 'membersView.tableColumnLabels.memberNumber';
+  static const membersView_tableColumnLabels_name = 'membersView.tableColumnLabels.name';
+  static const membersView_tableColumnLabels_membershipEndDate = 'membersView.tableColumnLabels.membershipEndDate';
+  static const membersView_tableColumnLabels_phoneNumber = 'membersView.tableColumnLabels.phoneNumber';
+  static const membersView_tableColumnLabels_role = 'membersView.tableColumnLabels.role';
+  static const membersView_tableColumnLabels_age = 'membersView.tableColumnLabels.age';
+  static const membersView_tableColumnLabels_memberShipDuration = 'membersView.tableColumnLabels.memberShipDuration';
   static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
   static const membersView = 'membersView';
   static const addMember_pageTitle = 'addMember.pageTitle';
@@ -263,61 +221,41 @@ abstract class LocaleKeys {
   static const feedback_reportedBy = 'feedback.reportedBy';
   static const feedback_noFeedback = 'feedback.noFeedback';
   static const feedback_noFeedbackForFilter = 'feedback.noFeedbackForFilter';
-  static const feedback_filter_stateFilter_all =
-      'feedback.filter.stateFilter.all';
-  static const feedback_filter_stateFilter_responded =
-      'feedback.filter.stateFilter.responded';
-  static const feedback_filter_stateFilter_notResponded =
-      'feedback.filter.stateFilter.notResponded';
+  static const feedback_filter_stateFilter_all = 'feedback.filter.stateFilter.all';
+  static const feedback_filter_stateFilter_responded = 'feedback.filter.stateFilter.responded';
+  static const feedback_filter_stateFilter_notResponded = 'feedback.filter.stateFilter.notResponded';
   static const feedback_filter_stateFilter = 'feedback.filter.stateFilter';
   static const feedback_filter_typeFilter = 'feedback.filter.typeFilter';
   static const feedback_filter = 'feedback.filter';
   static const feedback_aboutPerson_title = 'feedback.aboutPerson.title';
-  static const feedback_aboutPerson_aboutAMember =
-      'feedback.aboutPerson.aboutAMember';
-  static const feedback_aboutPerson_aboutAnAdmin =
-      'feedback.aboutPerson.aboutAnAdmin';
-  static const feedback_aboutPerson_inappropriateBehavior =
-      'feedback.aboutPerson.inappropriateBehavior';
+  static const feedback_aboutPerson_aboutAMember = 'feedback.aboutPerson.aboutAMember';
+  static const feedback_aboutPerson_aboutAnAdmin = 'feedback.aboutPerson.aboutAnAdmin';
+  static const feedback_aboutPerson_inappropriateBehavior = 'feedback.aboutPerson.inappropriateBehavior';
   static const feedback_aboutPerson = 'feedback.aboutPerson';
   static const feedback_aboutApp_title = 'feedback.aboutApp.title';
   static const feedback_aboutApp_bugReport = 'feedback.aboutApp.bugReport';
-  static const feedback_aboutApp_featureRequest =
-      'feedback.aboutApp.featureRequest';
-  static const feedback_aboutApp_performanceIssue =
-      'feedback.aboutApp.performanceIssue';
+  static const feedback_aboutApp_featureRequest = 'feedback.aboutApp.featureRequest';
+  static const feedback_aboutApp_performanceIssue = 'feedback.aboutApp.performanceIssue';
   static const feedback_aboutApp = 'feedback.aboutApp';
   static const feedback_aboutEvent_title = 'feedback.aboutEvent.title';
-  static const feedback_aboutEvent_poorOrganization =
-      'feedback.aboutEvent.poorOrganization';
-  static const feedback_aboutEvent_cancellation =
-      'feedback.aboutEvent.cancellation';
-  static const feedback_aboutEvent_misinformation =
-      'feedback.aboutEvent.misinformation';
+  static const feedback_aboutEvent_poorOrganization = 'feedback.aboutEvent.poorOrganization';
+  static const feedback_aboutEvent_cancellation = 'feedback.aboutEvent.cancellation';
+  static const feedback_aboutEvent_misinformation = 'feedback.aboutEvent.misinformation';
   static const feedback_aboutEvent = 'feedback.aboutEvent';
-  static const feedback_privacyAndSecurity_title =
-      'feedback.privacyAndSecurity.title';
-  static const feedback_privacyAndSecurity_dataLeak =
-      'feedback.privacyAndSecurity.dataLeak';
-  static const feedback_privacyAndSecurity_unauthorizedAccess =
-      'feedback.privacyAndSecurity.unauthorizedAccess';
-  static const feedback_privacyAndSecurity_accountBreach =
-      'feedback.privacyAndSecurity.accountBreach';
+  static const feedback_privacyAndSecurity_title = 'feedback.privacyAndSecurity.title';
+  static const feedback_privacyAndSecurity_dataLeak = 'feedback.privacyAndSecurity.dataLeak';
+  static const feedback_privacyAndSecurity_unauthorizedAccess = 'feedback.privacyAndSecurity.unauthorizedAccess';
+  static const feedback_privacyAndSecurity_accountBreach = 'feedback.privacyAndSecurity.accountBreach';
   static const feedback_privacyAndSecurity = 'feedback.privacyAndSecurity';
   static const feedback_paymentIssues_title = 'feedback.paymentIssues.title';
-  static const feedback_paymentIssues_incorrectCharge =
-      'feedback.paymentIssues.incorrectCharge';
-  static const feedback_paymentIssues_failedTransaction =
-      'feedback.paymentIssues.failedTransaction';
-  static const feedback_paymentIssues_refundRequest =
-      'feedback.paymentIssues.refundRequest';
+  static const feedback_paymentIssues_incorrectCharge = 'feedback.paymentIssues.incorrectCharge';
+  static const feedback_paymentIssues_failedTransaction = 'feedback.paymentIssues.failedTransaction';
+  static const feedback_paymentIssues_refundRequest = 'feedback.paymentIssues.refundRequest';
   static const feedback_paymentIssues = 'feedback.paymentIssues';
   static const feedback_aboutCommunity_title = 'feedback.aboutCommunity.title';
   static const feedback_aboutCommunity_spam = 'feedback.aboutCommunity.spam';
-  static const feedback_aboutCommunity_offensiveContent =
-      'feedback.aboutCommunity.offensiveContent';
-  static const feedback_aboutCommunity_threats =
-      'feedback.aboutCommunity.threats';
+  static const feedback_aboutCommunity_offensiveContent = 'feedback.aboutCommunity.offensiveContent';
+  static const feedback_aboutCommunity_threats = 'feedback.aboutCommunity.threats';
   static const feedback_aboutCommunity = 'feedback.aboutCommunity';
   static const feedback_general_title = 'feedback.general.title';
   static const feedback_general_another = 'feedback.general.another';
@@ -329,20 +267,13 @@ abstract class LocaleKeys {
   static const guestsView_approveAGuest = 'guestsView.approveAGuest';
   static const guestsView_removeAGuest = 'guestsView.removeAGuest';
   static const guestsView_noGuest = 'guestsView.noGuest';
-  static const guestsView_tableColumnLabels_name =
-      'guestsView.tableColumnLabels.name';
-  static const guestsView_tableColumnLabels_phoneNumber =
-      'guestsView.tableColumnLabels.phoneNumber';
-  static const guestsView_tableColumnLabels_age =
-      'guestsView.tableColumnLabels.age';
-  static const guestsView_tableColumnLabels_gender =
-      'guestsView.tableColumnLabels.gender';
-  static const guestsView_tableColumnLabels_guestStartDate =
-      'guestsView.tableColumnLabels.guestStartDate';
-  static const guestsView_tableColumnLabels_joinedEventCount =
-      'guestsView.tableColumnLabels.joinedEventCount';
-  static const guestsView_tableColumnLabels_role =
-      'guestsView.tableColumnLabels.role';
+  static const guestsView_tableColumnLabels_name = 'guestsView.tableColumnLabels.name';
+  static const guestsView_tableColumnLabels_phoneNumber = 'guestsView.tableColumnLabels.phoneNumber';
+  static const guestsView_tableColumnLabels_age = 'guestsView.tableColumnLabels.age';
+  static const guestsView_tableColumnLabels_gender = 'guestsView.tableColumnLabels.gender';
+  static const guestsView_tableColumnLabels_guestStartDate = 'guestsView.tableColumnLabels.guestStartDate';
+  static const guestsView_tableColumnLabels_joinedEventCount = 'guestsView.tableColumnLabels.joinedEventCount';
+  static const guestsView_tableColumnLabels_role = 'guestsView.tableColumnLabels.role';
   static const guestsView_tableColumnLabels = 'guestsView.tableColumnLabels';
   static const guestsView = 'guestsView';
   static const managersView_pageTitle = 'managersView.pageTitle';
@@ -351,109 +282,64 @@ abstract class LocaleKeys {
   static const managersView_noManager = 'managersView.noManager';
   static const managersView_updateManager = 'managersView.updateManager';
   static const managersView_deleteManager = 'managersView.deleteManager';
-  static const managersView_deleteManagerConfirmation =
-      'managersView.deleteManagerConfirmation';
+  static const managersView_deleteManagerConfirmation = 'managersView.deleteManagerConfirmation';
   static const managersView = 'managersView';
   static const accountSettingView_pageTitle = 'accountSettingView.pageTitle';
-  static const accountSettingView_changeEmail =
-      'accountSettingView.changeEmail';
-  static const accountSettingView_changePassword =
-      'accountSettingView.changePassword';
+  static const accountSettingView_changeEmail = 'accountSettingView.changeEmail';
+  static const accountSettingView_changePassword = 'accountSettingView.changePassword';
   static const accountSettingView_changeName = 'accountSettingView.changeName';
-  static const accountSettingView_changeProfilePicture =
-      'accountSettingView.changeProfilePicture';
-  static const accountSettingView_inputFields_newEmail =
-      'accountSettingView.inputFields.newEmail';
-  static const accountSettingView_inputFields_newPassword =
-      'accountSettingView.inputFields.newPassword';
-  static const accountSettingView_inputFields_confirmPassword =
-      'accountSettingView.inputFields.confirmPassword';
-  static const accountSettingView_inputFields =
-      'accountSettingView.inputFields';
-  static const accountSettingView_validators_confirmPassword =
-      'accountSettingView.validators.confirmPassword';
+  static const accountSettingView_changeProfilePicture = 'accountSettingView.changeProfilePicture';
+  static const accountSettingView_inputFields_newEmail = 'accountSettingView.inputFields.newEmail';
+  static const accountSettingView_inputFields_newPassword = 'accountSettingView.inputFields.newPassword';
+  static const accountSettingView_inputFields_confirmPassword = 'accountSettingView.inputFields.confirmPassword';
+  static const accountSettingView_inputFields = 'accountSettingView.inputFields';
+  static const accountSettingView_validators_confirmPassword = 'accountSettingView.validators.confirmPassword';
   static const accountSettingView_validators = 'accountSettingView.validators';
-  static const accountSettingView_changeEmailSuccess =
-      'accountSettingView.changeEmailSuccess';
-  static const accountSettingView_changePasswordSuccess =
-      'accountSettingView.changePasswordSuccess';
-  static const accountSettingView_changeNameSuccess =
-      'accountSettingView.changeNameSuccess';
-  static const accountSettingView_logOutConfirmation =
-      'accountSettingView.logOutConfirmation';
+  static const accountSettingView_changeEmailSuccess = 'accountSettingView.changeEmailSuccess';
+  static const accountSettingView_changePasswordSuccess = 'accountSettingView.changePasswordSuccess';
+  static const accountSettingView_changeNameSuccess = 'accountSettingView.changeNameSuccess';
+  static const accountSettingView_logOutConfirmation = 'accountSettingView.logOutConfirmation';
   static const accountSettingView_logOut = 'accountSettingView.logOut';
   static const accountSettingView = 'accountSettingView';
   static const memberDetailView_about = 'memberDetailView.about';
-  static const memberDetailView_membershipInfo_memberNumber =
-      'memberDetailView.membershipInfo.memberNumber';
-  static const memberDetailView_membershipInfo_memberShipStartDate =
-      'memberDetailView.membershipInfo.memberShipStartDate';
-  static const memberDetailView_membershipInfo_memberShipEndDate =
-      'memberDetailView.membershipInfo.memberShipEndDate';
-  static const memberDetailView_membershipInfo_memberShipDuration =
-      'memberDetailView.membershipInfo.memberShipDuration';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_seeList =
-      'memberDetailView.membershipInfo.mentorshipMemberList.seeList';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_mentat =
-      'memberDetailView.membershipInfo.mentorshipMemberList.mentat';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_members =
-      'memberDetailView.membershipInfo.mentorshipMemberList.members';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_mentors =
-      'memberDetailView.membershipInfo.mentorshipMemberList.mentors';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatForMentor =
-      'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMentatForMentör';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_notMentorsForMentat =
-      'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.notMentorsForMentat';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentorForMember =
-      'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMentorForMember';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMembersForMEntor =
-      'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMembersForMEntor';
-  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState =
-      'memberDetailView.membershipInfo.mentorshipMemberList.emptyState';
-  static const memberDetailView_membershipInfo_mentorshipMemberList =
-      'memberDetailView.membershipInfo.mentorshipMemberList';
-  static const memberDetailView_membershipInfo =
-      'memberDetailView.membershipInfo';
+  static const memberDetailView_membershipInfo_memberNumber = 'memberDetailView.membershipInfo.memberNumber';
+  static const memberDetailView_membershipInfo_memberShipStartDate = 'memberDetailView.membershipInfo.memberShipStartDate';
+  static const memberDetailView_membershipInfo_memberShipEndDate = 'memberDetailView.membershipInfo.memberShipEndDate';
+  static const memberDetailView_membershipInfo_memberShipDuration = 'memberDetailView.membershipInfo.memberShipDuration';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_seeList = 'memberDetailView.membershipInfo.mentorshipMemberList.seeList';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_mentat = 'memberDetailView.membershipInfo.mentorshipMemberList.mentat';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_members = 'memberDetailView.membershipInfo.mentorshipMemberList.members';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_mentors = 'memberDetailView.membershipInfo.mentorshipMemberList.mentors';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatForMentor = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMentatForMentor';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_notMentorsForMentat = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.notMentorsForMentat';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentorForMember = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMentorForMember';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMembersForMentor = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMembersForMentor';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatAndMembersForMentor = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState.noMentatAndMembersForMentor';
+  static const memberDetailView_membershipInfo_mentorshipMemberList_emptyState = 'memberDetailView.membershipInfo.mentorshipMemberList.emptyState';
+  static const memberDetailView_membershipInfo_mentorshipMemberList = 'memberDetailView.membershipInfo.mentorshipMemberList';
+  static const memberDetailView_membershipInfo = 'memberDetailView.membershipInfo';
   static const memberDetailView_options_ban = 'memberDetailView.options.ban';
-  static const memberDetailView_options_areYouSure =
-      'memberDetailView.options.areYouSure';
+  static const memberDetailView_options_areYouSure = 'memberDetailView.options.areYouSure';
   static const memberDetailView_options_edit = 'memberDetailView.options.edit';
   static const memberDetailView_options = 'memberDetailView.options';
-  static const memberDetailView_validationErrors_memberNumber =
-      'memberDetailView.validationErrors.memberNumber';
-  static const memberDetailView_validationErrors_startDateLaterThanEndDate =
-      'memberDetailView.validationErrors.startDateLaterThanEndDate';
-  static const memberDetailView_validationErrors =
-      'memberDetailView.validationErrors';
-  static const memberDetailView_success_memberBanned =
-      'memberDetailView.success.memberBanned';
-  static const memberDetailView_success_memberUnbanned =
-      'memberDetailView.success.memberUnbanned';
-  static const memberDetailView_success_memberUpdated =
-      'memberDetailView.success.memberUpdated';
+  static const memberDetailView_validationErrors_memberNumber = 'memberDetailView.validationErrors.memberNumber';
+  static const memberDetailView_validationErrors_startDateLaterThanEndDate = 'memberDetailView.validationErrors.startDateLaterThanEndDate';
+  static const memberDetailView_validationErrors = 'memberDetailView.validationErrors';
+  static const memberDetailView_success_memberBanned = 'memberDetailView.success.memberBanned';
+  static const memberDetailView_success_memberUnbanned = 'memberDetailView.success.memberUnbanned';
+  static const memberDetailView_success_memberUpdated = 'memberDetailView.success.memberUpdated';
   static const memberDetailView_success = 'memberDetailView.success';
-  static const memberDetailView_personalInfo_title =
-      'memberDetailView.personalInfo.title';
-  static const memberDetailView_personalInfo_phoneNumber =
-      'memberDetailView.personalInfo.phoneNumber';
-  static const memberDetailView_personalInfo_birthDate =
-      'memberDetailView.personalInfo.birthDate';
-  static const memberDetailView_personalInfo_gender =
-      'memberDetailView.personalInfo.gender';
-  static const memberDetailView_personalInfo_livingCity =
-      'memberDetailView.personalInfo.livingCity';
-  static const memberDetailView_personalInfo_livingTown =
-      'memberDetailView.personalInfo.livingTown';
-  static const memberDetailView_personalInfo_workingCity =
-      'memberDetailView.personalInfo.workingCity';
-  static const memberDetailView_personalInfo_workingTown =
-      'memberDetailView.personalInfo.workingTown';
-  static const memberDetailView_personalInfo_occupation =
-      'memberDetailView.personalInfo.occupation';
-  static const memberDetailView_personalInfo_interests =
-      'memberDetailView.personalInfo.interests';
-  static const memberDetailView_personalInfo_hobbies =
-      'memberDetailView.personalInfo.hobbies';
+  static const memberDetailView_personalInfo_title = 'memberDetailView.personalInfo.title';
+  static const memberDetailView_personalInfo_phoneNumber = 'memberDetailView.personalInfo.phoneNumber';
+  static const memberDetailView_personalInfo_birthDate = 'memberDetailView.personalInfo.birthDate';
+  static const memberDetailView_personalInfo_gender = 'memberDetailView.personalInfo.gender';
+  static const memberDetailView_personalInfo_livingCity = 'memberDetailView.personalInfo.livingCity';
+  static const memberDetailView_personalInfo_livingTown = 'memberDetailView.personalInfo.livingTown';
+  static const memberDetailView_personalInfo_workingCity = 'memberDetailView.personalInfo.workingCity';
+  static const memberDetailView_personalInfo_workingTown = 'memberDetailView.personalInfo.workingTown';
+  static const memberDetailView_personalInfo_occupation = 'memberDetailView.personalInfo.occupation';
+  static const memberDetailView_personalInfo_interests = 'memberDetailView.personalInfo.interests';
+  static const memberDetailView_personalInfo_hobbies = 'memberDetailView.personalInfo.hobbies';
   static const memberDetailView_personalInfo = 'memberDetailView.personalInfo';
   static const memberDetailView = 'memberDetailView';
   static const notFoundPage_pageTitle = 'notFoundPage.pageTitle';
@@ -461,4 +347,5 @@ abstract class LocaleKeys {
   static const notFoundPage_goHome = 'notFoundPage.goHome';
   static const notFoundPage_goBack = 'notFoundPage.goBack';
   static const notFoundPage = 'notFoundPage';
+
 }

@@ -46,6 +46,8 @@ final _getMentorsForMentatProvider =
   );
 });
 
+/// A provider that exposes the [MentorshipWidgetStateNotifier] as a state notifier
+/// for managing the state of mentorship-related data.
 final mentorshipStateNotifierProvider = StateNotifierProvider<
     MentorshipWidgetStateNotifier, AsyncValue<List<UserInfoModel>>>((ref) {
   return MentorshipWidgetStateNotifier(

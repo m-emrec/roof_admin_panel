@@ -356,7 +356,8 @@
             "noMentatForMentor": "Bu mentör'ün mentatı yok.",
             "notMentorsForMentat": "Bu mentat'ın mentörleri yok.",
             "noMentorForMember": "Bu üyenin mentörü yok.",
-            "noMembersForMentor": "Bu mentör'ün üyeleri yok."
+            "noMembersForMentor": "Bu mentör'ün üyeleri yok.",
+            "noMentatAndMembersForMentor": "Bu mentör'ün mentatı ve üyeleri yok."
         }
     }
    },
