@@ -1,9 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/data/datasources/mentorship_widget_service.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/data/repositories/mentorship_widget_repository_impl.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/mentor_pop_up_list.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/user_mentorship_info.dart';
@@ -43,7 +40,7 @@ class _MentorshipWidgetState extends ConsumerState<MentorshipWidget> {
             return const Text("No members found");
           }
           return MemberPopupList(
-            members: data,
+            users: data,
           );
         } else {
           if (data.isEmpty) {

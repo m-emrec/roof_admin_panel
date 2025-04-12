@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 
 /// This is the title widget.
 ///
@@ -22,7 +22,7 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
+    return context.responsiveSelector(
       desktop: Text(
         title,
         style: context.textTheme.headlineSmall,

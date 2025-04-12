@@ -1,5 +1,7 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/app_paddings.dart';
+import 'package:core/utils/constants/enums/roles.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/avatar_stack_button.dart';
@@ -47,10 +49,15 @@ class MemberPopupList extends StatelessWidget {
   /// Creates a [MemberPopupList] widget.
   ///
   const MemberPopupList({
-    required this.members,
+    required this.users,
     super.key,
   });
-  final List<UserInfoModel?> members;
+  final List<UserInfoModel?> users;
+
+  UserInfoModel? get mentat =>
+      users.first?.uid.isNotEmpty ?? false ? users.first : null;
+
+  List<UserInfoModel?> get members => users.sublist(1);
 
   @override
   Widget build(BuildContext context) {
@@ -58,40 +65,19 @@ class MemberPopupList extends StatelessWidget {
       tooltip: "Show member list",
       itemBuilder: (context) {
         return [
-          if (members.first?.uid.isNotEmpty ?? false)
+          if (mentat != null)
             PopupMenuItem(
-              child: ListTile(
-                tileColor: AppColors.secondaryColor[30],
-                shape: const StadiumBorder(),
-                title: Text(
-                  members.first?.name ?? " - ",
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: AppColors.secondaryColor[90],
-                  ),
-                ),
-                leading: Avatar(
-                  imageUrl: members.first?.imageUrl,
-                  radius: IconSizes.small.height,
-                  showShadow: false,
-                ).showClickMouseCursorOnWidget(),
+              value: mentat?.uid,
+              child: _Tile.mentat(
+                user: mentat,
               ),
             ),
-          ...members.getRange(1, members.length).map(
-            (e) {
+          ...members.map(
+            (user) {
               return PopupMenuItem(
-                value: e,
-                child: ListTile(
-                  title: Text(
-                    e?.name ?? " - ",
-                    style: context.textTheme.labelLarge?.copyWith(
-                      color: AppColors.secondaryColor[30],
-                    ),
-                  ),
-                  leading: Avatar(
-                    imageUrl: e?.imageUrl,
-                    radius: IconSizes.small.height,
-                    showShadow: false,
-                  ).showClickMouseCursorOnWidget(),
+                value: user?.uid,
+                child: _Tile.member(
+                  user: user,
                 ),
               );
             },
@@ -101,6 +87,57 @@ class MemberPopupList extends StatelessWidget {
       child: AvatarStackButton(
         members: members,
       ),
+    );
+  }
+}
+
+class _Tile extends StatelessWidget {
+  _Tile.member({
+    this.user,
+  })  : tileColor = null,
+        textColor = AppColors.secondaryColor[30],
+        shape = null,
+        trailing = null;
+  _Tile.mentat({
+    this.user,
+  })  : tileColor = AppColors.secondaryColor[30],
+        textColor = AppColors.secondaryColor[90],
+        shape = const StadiumBorder(),
+        trailing = Role.mentat.localizedText("");
+
+  final UserInfoModel? user;
+
+  final Color? tileColor;
+  final Color? textColor;
+  final ShapeBorder? shape;
+  final String? trailing;
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      shape: shape,
+      tileColor: tileColor,
+      title: Text(
+        user?.name ?? " - ",
+        style: context.textTheme.labelLarge?.copyWith(
+          color: textColor,
+        ),
+      ),
+      trailing: trailing != null
+          ? Padding(
+              padding: const AppPadding.smallOnlyPadding(right: true),
+              child: Text(
+                trailing ?? "",
+                style: context.textTheme.labelSmall?.copyWith(
+                  color: textColor,
+                ),
+              ),
+            )
+          : null,
+      leading: Avatar(
+        imageUrl: user?.imageUrl,
+        radius: IconSizes.small.height,
+        showShadow: false,
+      ).showClickMouseCursorOnWidget(),
     );
   }
 }

@@ -60,8 +60,9 @@ class MentorshipWidgetStateNotifier
       onSuccess: (data) {
         if (data.resultData == null) {
           mentat = UserInfoModel(uid: "", name: "");
+        } else {
+          mentat = UserInfoModel.fromEntity(data.resultData!);
         }
-        mentat = UserInfoModel.fromEntity(data.resultData!);
       },
       onFailure: (fail) {
         state = AsyncError(

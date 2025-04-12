@@ -3,6 +3,7 @@ import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about_section.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_section.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 
 ///
@@ -12,7 +13,7 @@ class AboutAndPersonalInfo extends StatelessWidget {
   final UserModel? member;
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
+    return context.responsiveSelector(
       mobile: _Mobile(member),
       tablet: _Mobile(member),
       desktop: _Desktop(member),
