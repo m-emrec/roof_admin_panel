@@ -4,13 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-      
         
         {
             "name": "roof_admin_panel",
             "request": "launch",
             "type": "dart",
             "args": [
+              
         "--web-hostname", "127.0.0.1",
         // "--web-port", "8080"
       ]
@@ -33,7 +33,14 @@
             "args": [
         "--web-hostname", "0.0.0.0",
         "--web-port", "8080"
-      ]
+      ]       
         }
+        
+    ],
+    "compounds": [
+      {
+        "name": "Start App + Cacheless Chrome",
+        "configurations": ["roof_admin_panel", "Launch Chrome"]
+      }
     ]
 }

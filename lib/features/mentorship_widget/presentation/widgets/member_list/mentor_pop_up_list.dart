@@ -2,10 +2,13 @@ import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/enums/roles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/avatar_stack_button.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
+import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
@@ -50,8 +53,10 @@ class MemberPopupList extends StatelessWidget {
   ///
   const MemberPopupList({
     required this.users,
+    required this.role,
     super.key,
   });
+  final List<Role?> role;
   final List<UserInfoModel?> users;
 
   UserInfoModel? get mentat =>
@@ -62,7 +67,16 @@ class MemberPopupList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      tooltip: "Show member list",
+      tooltip: LocaleKeys
+          .memberDetailView_membershipInfo_mentorshipMemberList_seeList
+          .tr(
+        args: [
+          if (role.isMentat)
+            Role.mentor.localizedText("")
+          else
+            Role.member.localizedText(""),
+        ],
+      ),
       itemBuilder: (context) {
         return [
           if (mentat != null)
@@ -71,7 +85,24 @@ class MemberPopupList extends StatelessWidget {
               child: _Tile.mentat(
                 user: mentat,
               ),
+            )
+          else
+            PopupMenuItem<void>(
+              enabled: false,
+              child: Text(
+                LocaleKeys
+                    .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatForMentor
+                    .tr(),
+              ),
             ),
+          PopupMenuItem<void>(
+            enabled: false,
+            child: Text(
+              LocaleKeys
+                  .memberDetailView_membershipInfo_mentorshipMemberList_members
+                  .tr(),
+            ),
+          ),
           ...members.map(
             (user) {
               return PopupMenuItem(

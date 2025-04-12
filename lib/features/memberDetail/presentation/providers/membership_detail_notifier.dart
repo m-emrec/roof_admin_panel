@@ -167,8 +167,8 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
           _validateDates(),
       LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr():
           _validateDates(),
-      LocaleKeys.memberDetailView_membershipInfo_mentor.tr():
-          ValidatorMethods(text: mentorIdController.text).emptyField,
+      // LocaleKeys.memberDetailView_membershipInfo_mentor.tr():
+      //     ValidatorMethods(text: mentorIdController.text).emptyField,
     };
 
     for (final validator in validators.entries) {

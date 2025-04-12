@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/mentor_entity.dart';
@@ -19,7 +18,7 @@ class MentorshipWidgetStateNotifier
         _getMentatForMentorUseCase = getMentatForMentorUseCase,
         _getMentorsForMentatUseCase = getMentorsForMentatUseCase,
         _getMentorForMemberUseCase = getMentorForMemberUseCase,
-        super(const AsyncLoading()) {}
+        super(const AsyncLoading());
 
   final GetMembersForMentorUseCase _getMembersForMentorUseCase;
   final GetMentatForMentorUseCase _getMentatForMentorUseCase;

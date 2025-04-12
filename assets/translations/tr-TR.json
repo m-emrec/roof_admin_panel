@@ -347,9 +347,18 @@
     "memberShipStartDate":"Üyelik Başlangıç Tarihi",
     "memberShipEndDate":"Üyelik Bitiş Tarihi",
     "memberShipDuration":"Üyelik Süresi",
-    "mentor":"Mentörü",
-    "mentat":"Mentatı",
-    "members":"Üyeleri"
+    "mentorshipMemberList":{
+        "seeList": "{} listesini gör",
+        "mentat":"Mentatı",
+        "members":"Üyeleri",
+        "mentors":"Mentorleri",
+        "emptyState":{
+            "noMentatForMentor": "Bu mentör'ün mentatı yok.",
+            "notMentorsForMentat": "Bu mentat'ın mentörleri yok.",
+            "noMentorForMember": "Bu üyenin mentörü yok.",
+            "noMembersForMentor": "Bu mentör'ün üyeleri yok."
+        }
+    }
    },
    "options":{
     "ban":"Üyeyi Banla",

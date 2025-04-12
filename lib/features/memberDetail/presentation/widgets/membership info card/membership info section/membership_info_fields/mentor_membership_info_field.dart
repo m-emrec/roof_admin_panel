@@ -6,10 +6,9 @@ import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/m
 final class MentorMembershipInfoField
     extends BaseMembershipInfoField<UserModel> {
   MentorMembershipInfoField({
-    required super.label,
     required super.value,
     super.controller,
-  });
+  }) : super(label: "");
 
   @override
   Widget editStateWidget(BuildContext context) {
