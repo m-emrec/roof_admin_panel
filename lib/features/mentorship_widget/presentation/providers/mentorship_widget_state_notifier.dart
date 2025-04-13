@@ -60,12 +60,10 @@ class MentorshipWidgetStateNotifier
   /// Loads the mentor's members and mentat.
   /// Ensures the mentat appears at the top of the list for UI distinction.
   Future<void> _mentor() async {
-    final List<UserInfoModel> members;
     await _getMembersForMentor();
-    members = state.valueOrNull ?? [];
 
     final mentat = await _getMentatForMentor();
-    state = AsyncData([mentat, ...members]);
+    state = AsyncData([mentat, ...state.valueOrNull ?? []]);
   }
 
   /// Fetches members for the current mentor and updates the state.

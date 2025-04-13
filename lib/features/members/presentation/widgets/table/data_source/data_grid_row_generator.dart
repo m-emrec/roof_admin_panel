@@ -40,6 +40,10 @@ mixin DataGridRowGenerator on DataGridSource {
                 columnName: MemberTableNames.role.name,
                 value: e.role?.map((e) => e?.localizedText()).toList(),
               ),
+              DataGridCell<UserModel>(
+                columnName: MemberTableNames.x.name,
+                value: e,
+              ),
               DataGridCell<int>(
                 columnName: MemberTableNames.age.name,
                 value: e.birthDate?.getAge(),

@@ -60,7 +60,7 @@ class UserMentorshipInfo extends StatelessWidget {
           children: [
             Avatar(
               imageUrl: mentor.imageUrl,
-              radius: IconSizes.small.height,
+              radius: 12,
             ),
             Text(
               mentor.name,

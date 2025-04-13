@@ -21,6 +21,7 @@ class CustomTable extends StatefulWidget {
     this.rowsPerPage = 10,
     this.controller,
     this.onSelectionChanged,
+    this.selectionManager,
     super.key,
   });
 
@@ -46,6 +47,14 @@ class CustomTable extends StatefulWidget {
   /// The callback function that is called when the selection is changed.
   final void Function(List<DataGridRow>, List<DataGridRow>)? onSelectionChanged;
 
+  /// The selection manager of the table.
+  ///
+  /// This manager is used to manage the selection of the table.
+  ///
+  /// It is [_CustomTableSelectionManager] by default.
+  ///
+  /// override this to use a custom selection manager.
+  final RowSelectionManager? selectionManager;
   @override
   State<CustomTable> createState() => _CustomTableState();
 }
@@ -87,16 +96,17 @@ class _CustomTableState extends State<CustomTable>
               selectionMode: SelectionMode.multiple,
               navigationMode: GridNavigationMode.cell,
               source: widget.source,
-              selectionManager: _CustomTableSelectionManager(),
+              selectionManager:
+                  widget.selectionManager ?? _CustomTableSelectionManager(),
               allowEditing: true,
 
               /// If the width of the table is less than the minimum width,
               /// the column width mode is set to auto, otherwise it is set to fill.
               /// This is done to prevent the table from overflowing.
-              columnWidthMode:
-                  constraints.maxWidth < (theme?.minTableWidth ?? 700)
-                      ? ColumnWidthMode.auto
-                      : ColumnWidthMode.fill,
+              // columnWidthMode:
+              //     constraints.maxWidth < (theme?.minTableWidth ?? 700)
+              //         ? ColumnWidthMode.auto
+              //         : ColumnWidthMode.fill,
               columns: widget.columns,
             ),
           ),

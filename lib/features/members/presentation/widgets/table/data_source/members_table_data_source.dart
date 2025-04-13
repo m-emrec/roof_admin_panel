@@ -6,7 +6,6 @@ import 'package:roof_admin_panel/features/members/presentation/providers/provide
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/cell_builder.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/data_grid_row_generator.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/table_sorter.dart';
-import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 /// This is the data source for the members table.
@@ -40,10 +39,11 @@ class MembersTableDataSource extends DataGridSource
       await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
             users.value?.last.uid ?? '',
           );
-      generateUserDataGridRows(
-        ref.read(membersViewModelProvider).value ?? [],
+      ref.read(membersViewModelProvider).whenData(
+        (value) {
+          generateUserDataGridRows(value ?? []);
+        },
       );
-      // ref.read(filterNotifierProvider).revertUnappliedFilters();
       ref.read(filterNotifierProvider).revertUnappliedFilters();
       ref.read(filterNotifierProvider).applyFilters();
     }

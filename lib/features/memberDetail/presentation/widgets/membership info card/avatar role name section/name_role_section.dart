@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/mentor_membership_info_field.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 import 'package:roof_admin_panel/product/widgets/role_selection_drop_down.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
@@ -47,7 +48,9 @@ class NameAndRoleSection extends ConsumerWidget {
         // Membership Role
         MentorMembershipInfoField(
           value: ref.watch(membershipDetailNotifierProvider) ?? UserModel(),
-        ).build(context, isEditing: ref.watch(isEditingProvider)),
+        )
+            .build(context, isEditing: ref.watch(isEditingProvider))
+            .scaleAnimation(),
       ],
     );
   }

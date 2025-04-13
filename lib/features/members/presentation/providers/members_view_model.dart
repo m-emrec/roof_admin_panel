@@ -66,8 +66,9 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   Future<void> fetchNext20Users(String lastUserId) async {
     DataState.handleDataStateBasedAction(
       await _fetchNext20UsersUseCase(lastUserId),
-      onSuccess: (result) =>
-          state = AsyncData([...state.value!, ...result.resultData!]),
+      onSuccess: (result) {
+        state = AsyncData([...state.value!, ...result.resultData!]);
+      },
       onFailure: (result) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
       ),

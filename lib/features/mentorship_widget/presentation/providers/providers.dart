@@ -1,3 +1,4 @@
+import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/datasources/mentorship_widget_service.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
@@ -14,7 +15,7 @@ final _serviceProvider = Provider.autoDispose<MentorshipWidgetService>((ref) {
 });
 
 final _mentorshipWidgetRepositoryProvider =
-    Provider.autoDispose<MentorshipWidgetRepository>((ref) {
+    Provider<MentorshipWidgetRepository>((ref) {
   return MentorshipWidgetRepositoryImpl(ref.read(_serviceProvider));
 });
 
@@ -48,12 +49,14 @@ final _getMentorsForMentatProvider =
 
 /// A provider that exposes the [MentorshipWidgetStateNotifier] as a state notifier
 /// for managing the state of mentorship-related data.
-final mentorshipStateNotifierProvider = StateNotifierProvider<
-    MentorshipWidgetStateNotifier, AsyncValue<List<UserInfoModel>>>((ref) {
+final mentorshipStateNotifierProvider = StateNotifierProvider.family<
+    MentorshipWidgetStateNotifier,
+    AsyncValue<List<UserInfoModel>>,
+    UserModel>((ref, user) {
   return MentorshipWidgetStateNotifier(
     getMembersForMentorUseCase: ref.read(_getMembersForMentorUseCaseProvider),
     getMentatForMentorUseCase: ref.read(_getMentatForMentorUseCaseProvider),
     getMentorsForMentatUseCase: ref.read(_getMentorsForMentatProvider),
     getMentorForMemberUseCase: ref.read(_getMentorForMemberUseCaseProvider),
-  );
+  )..setUser(user);
 });

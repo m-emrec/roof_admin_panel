@@ -51,7 +51,7 @@ class TableDateItem extends StatelessWidget {
             // If the membership is about to expire, the text color is set to red.
             color: showIsMembershipExpiringSoon
                 ? ConstantValues.isMembershipExpiringSoon(date)
-                    ? AppColors.accentError[60]
+                    ? AppColors.accentError[90]
                     : null
                 : null,
           ),

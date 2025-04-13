@@ -137,7 +137,7 @@ class MemberPopupList extends StatelessWidget {
         ];
       },
       child: AvatarStackButton(
-        members: users,
+        members: mentat == null ? members : users,
       ),
     );
   }

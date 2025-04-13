@@ -182,7 +182,6 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
 
   @override
   void dispose() {
-    Log.info('MembershipDetailNotifier disposed');
     // formKey.currentContext.dis
     memberNumberController.dispose();
     membershipStartDateController.dispose();

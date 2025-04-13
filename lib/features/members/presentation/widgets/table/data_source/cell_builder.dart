@@ -1,6 +1,11 @@
+import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/constant_values.dart';
+import 'package:core/utils/logger/logger.dart';
+import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/models/table_name_field_model.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
 import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_cell_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
@@ -20,6 +25,9 @@ mixin CellBuilder {
         if (value is DateTime) {
           return _cell(
             TableDateItem(date: value),
+            color: ConstantValues.isMembershipExpiringSoon(value)
+                ? AppColors.accentError[10]
+                : null,
           );
         }
       case MemberTableNames.age:
@@ -47,8 +55,12 @@ mixin CellBuilder {
             userName: value.name,
             phoneNumber: value.phoneNumber,
             imageUrl: value.imageUrl,
-          ).showClickMouseCursorOnWidget(),
-        );
+          ),
+        ).showClickMouseCursorOnWidget();
+      case MemberTableNames.x:
+        value as UserModel;
+
+        return _cell(MentorshipWidget(value));
 
       /// I use default case here because rest of the fields are
       /// [TableRowItem]
@@ -65,8 +77,9 @@ mixin CellBuilder {
   }
 
   /// Builds the cell widget
-  Container _cell(Widget child) {
+  Container _cell(Widget child, {Color? color}) {
     return Container(
+      color: color,
       alignment: Alignment.center,
       child: child,
     );

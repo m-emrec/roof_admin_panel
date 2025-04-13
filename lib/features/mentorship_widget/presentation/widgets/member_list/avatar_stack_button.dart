@@ -3,7 +3,6 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
-import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// A widget that displays a horizontal stack of member avatars with an optional count indicator.
@@ -123,9 +122,7 @@ class AvatarStackButton extends StatelessWidget {
             ),
           ),
         ],
-      ).fadeAnimation().scaleAnimation(begin: 0.5).slideAnimationX(
-            begin: -0.2,
-          ),
+      ),
     );
   }
 }

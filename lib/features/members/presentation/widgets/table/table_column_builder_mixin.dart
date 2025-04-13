@@ -7,22 +7,27 @@ mixin _TableColumnBuilderMixin {
     MemberTableNames.memberName,
     MemberTableNames.membershipEndDate,
     MemberTableNames.role,
+    MemberTableNames.x,
     MemberTableNames.age,
     MemberTableNames.membershipDuration,
   ];
 
   ///
   List<GridColumn> buildColumns() {
-    return _tableNames
-        .map(
-          (e) => GridColumn(
-            columnName: e.name,
-            label: ColumnTitle(
-              title: e.toLocale,
-            ),
-            columnWidthMode: ColumnWidthMode.auto,
+    return _tableNames.map(
+      (e) {
+        final columnWidthMode = e == MemberTableNames.x
+            ? ColumnWidthMode.none
+            : ColumnWidthMode.auto;
+
+        return GridColumn(
+          columnName: e.name,
+          label: ColumnTitle(
+            title: e.toLocale,
           ),
-        )
-        .toList();
+          columnWidthMode: columnWidthMode,
+        );
+      },
+    ).toList();
   }
 }
