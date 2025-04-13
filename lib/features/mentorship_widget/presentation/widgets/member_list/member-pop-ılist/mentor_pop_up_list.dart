@@ -79,15 +79,22 @@ class MemberPopupList extends StatelessWidget {
   /// exists (e.g. no `uid` is available), this will return `null`.
   ///
   /// Used in [MemberPopupList] to display a mentat at the top of the popup list.
-  UserInfoModel? get mentat =>
-      users.first?.uid.isNotEmpty ?? false ? users.first : null;
+  UserInfoModel? get mentat => role.isMentat
+      ? null
+      : users.first?.uid.isNotEmpty ?? false
+          ? users.first
+          : null;
 
   /// Returns the list of members excluding the mentat.
   ///
   /// If the user is a mentor, the first item in the `users` list is assumed
   /// to be the mentat. This getter returns all other users as members.
   /// If there are no members beyond the mentat, an empty list is returned.
-  List<UserInfoModel?> get members => users.length > 1 ? users.sublist(1) : [];
+  List<UserInfoModel?> get members => role.isMentat
+      ? users
+      : users.length > 1
+          ? users.sublist(1)
+          : [];
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +112,12 @@ class MemberPopupList extends StatelessWidget {
       itemBuilder: (context) {
         return [
           // mentat
-          _MentorshipPopupMenuItem.mentat(
-            context,
-            user: mentat,
-            value: mentat?.uid,
-          ),
+          if (role.isMentor)
+            _MentorshipPopupMenuItem.mentat(
+              context,
+              user: mentat,
+              value: mentat?.uid,
+            ),
           // title
           _label(),
           // members || mentors

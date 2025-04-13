@@ -71,7 +71,10 @@ class _MentorshipWidgetState extends ConsumerState<MentorshipWidget> {
           return const SizedBox();
         }
         if (data.isEmpty) {
-          return _MentorshipWidgetEmptyState(roles: roles);
+          return ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: context.dynamicWidth(0.2)),
+            child: _MentorshipWidgetEmptyState(roles: roles),
+          );
         }
         if (shouldShowMentorshipList) {
           return MemberPopupList(
