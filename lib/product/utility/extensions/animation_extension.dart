@@ -61,6 +61,18 @@ extension AnimationExtension on Widget {
         ),
       );
 
+  /// Applies a slide animation to the widget along the X-axis.
+  Widget slideAnimationX({
+    double begin = 0,
+    double end = 0,
+    Duration duration = const Duration(milliseconds: 500),
+  }) =>
+      slideAnimation(
+        begin: Offset(begin, 0),
+        end: Offset(end, 0),
+        duration: duration,
+      );
+
   /// Applies a scale animation to the widget.
   /// The animation starts from the specified [begin] scale and ends at the specified [end] scale.
   /// The [duration] parameter controls how long the animation lasts.

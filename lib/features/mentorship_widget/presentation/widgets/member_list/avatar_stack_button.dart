@@ -123,7 +123,9 @@ class AvatarStackButton extends StatelessWidget {
             ),
           ),
         ],
-      ).fadeAnimation().scaleAnimation(begin: 0.5),
+      ).fadeAnimation().scaleAnimation(begin: 0.5).slideAnimationX(
+            begin: -0.2,
+          ),
     );
   }
 }
