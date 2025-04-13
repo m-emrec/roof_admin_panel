@@ -1,5 +1,33 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/screen_type.dart';
+
+class Responsive {
+  factory Responsive() => _instance;
+  Responsive._internal();
+
+  static final Responsive _instance = Responsive._internal();
+
+  ScreenType _lastScreenType = ScreenType.mobile;
+  ScreenType get lastScreenType => _lastScreenType;
+
+  // T get
+
+  bool didChange(ScreenType currentType) {
+    if (_lastScreenType != currentType) {
+      _lastScreenType = currentType;
+      Log.warning("didChange: $_lastScreenType");
+
+      return true;
+    }
+    return false;
+  }
+}
+
+final c = StateProvider<ScreenType>((ref) {
+  return ScreenType.mobile;
+});
 
 ///
 extension ContextResponsiveExtension on BuildContext {
@@ -33,13 +61,39 @@ extension ContextResponsiveExtension on BuildContext {
     required T desktop,
     T? tablet,
   }) {
-    switch (getScreenType()) {
+    // ProviderScope.containerOf(this).read(c(this).notifier).state = true;
+
+    final newScreenType = getScreenType();
+    bool didChange = false;
+    // ProviderScope.containerOf(this).listen(
+    //   c,
+    //   (_, n) {
+    //     if (n != newScreenType) {
+    //       n = newScreenType;
+    //       didChange = true;
+    //       Responsive()._lastScreenType = n;
+    //     }
+    //   },
+    //   fireImmediately: true,
+    // );
+    // if (didChange) {
+    switch (newScreenType) {
       case ScreenType.mobile:
+        // ProviderScope.containerOf(this).read(c.notifier).state =
+        //     ScreenType.mobile;
         return mobile;
+
       case ScreenType.tablet:
+        // ProviderScope.containerOf(this).read(c.notifier).state =
+        //     ScreenType.tablet;
+
         return tablet ?? desktop;
       case ScreenType.desktop:
+        // ProviderScope.containerOf(this).read(c.notifier).state =
+        //     ScreenType.desktop;
         return desktop;
     }
+    // }
+    // return Responsive()._lastScreenType;
   }
 }

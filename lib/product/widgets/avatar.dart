@@ -25,6 +25,36 @@ class Avatar extends StatelessWidget {
   final double? radius;
 
   final bool showShadow;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: (radius ?? 24) * 2,
+      height: (radius ?? 24) * 2,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        boxShadow: showShadow ? _boxShadow : null,
+        border: Border.all(
+          color: AppColors.secondaryColor[40] ?? Colors.transparent,
+          width: 2,
+        ),
+        shape: BoxShape.circle,
+      ),
+      child: ClipOval(
+        child: Image.network(
+          imageUrl ?? "",
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) =>
+              Image.asset(Assets.images.maleAvatar.path),
+          filterQuality: FilterQuality.high,
+          width: (radius ?? 24) * 2,
+          height: (radius ?? 24) * 2,
+          // webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
+        ),
+      ),
+    );
+  }
+
   static const List<BoxShadow> _boxShadow = [
     BoxShadow(
       color: Color(0xF992BBA2),
@@ -47,22 +77,4 @@ class Avatar extends StatelessWidget {
       blurRadius: 10,
     ),
   ];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: (radius ?? 24) * 2,
-      height: (radius ?? 24) * 2,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        boxShadow: showShadow ? _boxShadow : null,
-        shape: BoxShape.circle,
-      ),
-      child: Image.network(
-        imageUrl ?? "",
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) =>
-            Image.asset(Assets.images.maleAvatar.path),
-      ),
-    );
-  }
 }

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
