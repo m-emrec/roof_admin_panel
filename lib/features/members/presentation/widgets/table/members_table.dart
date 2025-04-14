@@ -10,6 +10,7 @@ import 'package:roof_admin_panel/features/members/presentation/enums/table_names
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table_selection_maanger.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 import 'package:roof_admin_panel/product/widgets/table/custom_table.dart';
 import 'package:roof_admin_panel/product/widgets/table/header_item.dart';
@@ -48,7 +49,7 @@ class MembersTable extends ConsumerWidget
             ),
             source: tableSource,
             rowsPerPage: 20,
-            columns: buildColumns(),
+            columns: buildColumns(context),
           );
   }
 }

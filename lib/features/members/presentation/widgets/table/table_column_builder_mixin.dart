@@ -13,12 +13,24 @@ mixin _TableColumnBuilderMixin {
   ];
 
   ///
-  List<GridColumn> buildColumns() {
+  List<GridColumn> buildColumns(BuildContext context) {
     return _tableNames.map(
       (e) {
-        final columnWidthMode = e == MemberTableNames.x
-            ? ColumnWidthMode.none
-            : ColumnWidthMode.auto;
+        ColumnWidthMode columnWidthMode;
+        switch (e) {
+          case MemberTableNames.memberName:
+            columnWidthMode = ColumnWidthMode.auto;
+
+          case MemberTableNames.x:
+            columnWidthMode = ColumnWidthMode.none;
+          // ignore: no_default_cases
+          default:
+            columnWidthMode = context.responsiveSelector(
+              mobile: ColumnWidthMode.auto,
+              tablet: ColumnWidthMode.auto,
+              desktop: ColumnWidthMode.fill,
+            );
+        }
 
         return GridColumn(
           columnName: e.name,
