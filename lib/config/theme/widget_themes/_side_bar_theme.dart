@@ -31,7 +31,7 @@ final class _SideBarTheme {
         iconSize: IconSizes.small,
         selectedItemColor: AppColors.backgroundColor[40],
         unSelectedItemColor: Colors.transparent,
-        textStyle: ctx.textTheme.labelMedium,
+        textStyle: TextStyles().textTheme.labelMedium,
         boxShadow: [
           BoxShadow(
             color: AppColors.backgroundColor[30] ?? Colors.transparent,

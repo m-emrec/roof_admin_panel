@@ -112,7 +112,7 @@ final class AppTheme {
         floatingActionButtonTheme:
             _FloatingActionButtonTheme.floatingActionButtonTheme,
         datePickerTheme: _DatePickerTheme(),
-        tooltipTheme: _TooltipTheme.tooltipTheme,
+        tooltipTheme: _TooltipTheme.tooltipTheme(_context),
         chipTheme: _ChipTheme(),
         dataTableTheme: const DataTableThemeData(
           headingRowAlignment: MainAxisAlignment.start,

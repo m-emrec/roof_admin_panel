@@ -28,7 +28,7 @@ extension AnimationExtension on Widget {
   Widget fadeAnimation({
     double begin = 0,
     double end = 1,
-    Duration duration = const Duration(milliseconds: 500),
+    Duration duration = const Duration(milliseconds: 300),
   }) =>
       CustomAnimationBuilder(
         duration: duration,
@@ -50,7 +50,7 @@ extension AnimationExtension on Widget {
   Widget slideAnimation({
     Offset begin = const Offset(0, 0.5),
     Offset end = Offset.zero,
-    Duration duration = const Duration(milliseconds: 500),
+    Duration duration = const Duration(milliseconds: 300),
   }) =>
       CustomAnimationBuilder(
         duration: duration,
@@ -65,7 +65,7 @@ extension AnimationExtension on Widget {
   Widget slideAnimationX({
     double begin = 0,
     double end = 0,
-    Duration duration = const Duration(milliseconds: 500),
+    Duration duration = const Duration(milliseconds: 300),
   }) =>
       slideAnimation(
         begin: Offset(begin, 0),
@@ -84,7 +84,7 @@ extension AnimationExtension on Widget {
   Widget scaleAnimation({
     double begin = 0,
     double end = 1,
-    Duration duration = const Duration(milliseconds: 500),
+    Duration duration = const Duration(milliseconds: 300),
     Alignment alignment = Alignment.center,
   }) =>
       CustomAnimationBuilder(
