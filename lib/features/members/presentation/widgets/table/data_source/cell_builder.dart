@@ -2,7 +2,9 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/constant_values.dart';
 import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/models/table_name_field_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
@@ -26,7 +28,9 @@ mixin CellBuilder {
           return _cell(
             TableDateItem(date: value),
             color: ConstantValues.isMembershipExpiringSoon(value)
-                ? AppColors.accentError[10]
+                ? AppColors.accentError[10]?.withValues(
+                    alpha: 0.3,
+                  )
                 : null,
           );
         }
@@ -51,16 +55,21 @@ mixin CellBuilder {
       case MemberTableNames.memberName:
         value as TableNameFieldModel;
         return _cell(
-          TableUserAvatar(
-            userName: value.name,
-            phoneNumber: value.phoneNumber,
-            imageUrl: value.imageUrl,
+          Tooltip(
+            message: LocaleKeys.membersView_seeMemberDetail.tr(),
+            child: TableUserAvatar(
+              userName: value.name,
+              phoneNumber: value.phoneNumber,
+              imageUrl: value.imageUrl,
+            ),
           ),
         ).showClickMouseCursorOnWidget();
       case MemberTableNames.x:
         value as UserModel;
 
-        return _cell(MentorshipWidget(value));
+        return _cell(
+          FittedBox(fit: BoxFit.fitHeight, child: MentorshipWidget(value)),
+        );
 
       /// I use default case here because rest of the fields are
       /// [TableRowItem]
