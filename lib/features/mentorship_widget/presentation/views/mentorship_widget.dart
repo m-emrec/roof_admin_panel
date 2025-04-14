@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/user_mentorship_info.dart';
@@ -45,10 +46,11 @@ class MentorshipWidget extends ConsumerWidget {
     return AsyncDataBuilder(
       provider: mentorshipStateNotifierProvider(user),
       data: (data) {
+        // Log.debug("# $data");
         if (roles.isEmpty) {
           return const SizedBox();
         }
-        if (data.isEmpty) {
+        if (data == null) {
           return ConstrainedBox(
             constraints: BoxConstraints(maxWidth: context.dynamicWidth(0.2)),
             child: _MentorshipWidgetEmptyState(roles: roles),
@@ -56,11 +58,10 @@ class MentorshipWidget extends ConsumerWidget {
         }
         if (shouldShowMentorshipList) {
           return MemberPopupList(
-            users: data,
-            role: roles,
+            user: data,
           );
         } else {
-          return UserMentorshipInfo(mentor: data.first);
+          return UserMentorshipInfo(user: data as MemberInfo);
         }
       },
       skeletonWidget: const Text("data"),

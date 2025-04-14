@@ -4,10 +4,9 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/datasources/men
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/repositories/mentorship_widget_repository_impl.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/repositories/mentorship_widget_repository.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_members_for_mentor_use_case.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_mentat_for_mentor_use_case.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_mentor_for_member_use_case.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_mentors_for_mentat_use_case.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_member_use_case.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentat_use_case.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/mentorship_widget_state_notifier.dart';
 
 final _serviceProvider = Provider.autoDispose<MentorshipWidgetService>((ref) {
@@ -19,30 +18,20 @@ final _mentorshipWidgetRepositoryProvider =
   return MentorshipWidgetRepositoryImpl(ref.read(_serviceProvider));
 });
 
-final _getMembersForMentorUseCaseProvider =
-    Provider<GetMembersForMentorUseCase>((ref) {
-  return GetMembersForMentorUseCase(
+final _getIfMentorUseCaseProvider = Provider<GetIfMentorUseCase>((ref) {
+  return GetIfMentorUseCase(
     ref.read(_mentorshipWidgetRepositoryProvider),
   );
 });
 
-final _getMentatForMentorUseCaseProvider =
-    Provider<GetMentatForMentorUseCase>((ref) {
-  return GetMentatForMentorUseCase(
+final _getIfMemberUseCaseProvider = Provider<GetIfMemberUseCase>((ref) {
+  return GetIfMemberUseCase(
     ref.read(_mentorshipWidgetRepositoryProvider),
   );
 });
 
-final _getMentorForMemberUseCaseProvider =
-    Provider<GetMentorForMemberUseCase>((ref) {
-  return GetMentorForMemberUseCase(
-    ref.read(_mentorshipWidgetRepositoryProvider),
-  );
-});
-
-final _getMentorsForMentatProvider =
-    Provider<GetMentorsForMentatUseCase>((ref) {
-  return GetMentorsForMentatUseCase(
+final _getIfMentatProvider = Provider<GetIfMentatUseCase>((ref) {
+  return GetIfMentatUseCase(
     ref.read(_mentorshipWidgetRepositoryProvider),
   );
 });
@@ -51,12 +40,11 @@ final _getMentorsForMentatProvider =
 /// for managing the state of mentorship-related data.
 final mentorshipStateNotifierProvider = StateNotifierProvider.family<
     MentorshipWidgetStateNotifier,
-    AsyncValue<List<UserInfoModel>>,
+    AsyncValue<UserInfoModel?>,
     UserModel>((ref, user) {
   return MentorshipWidgetStateNotifier(
-    getMembersForMentorUseCase: ref.read(_getMembersForMentorUseCaseProvider),
-    getMentatForMentorUseCase: ref.read(_getMentatForMentorUseCaseProvider),
-    getMentorsForMentatUseCase: ref.read(_getMentorsForMentatProvider),
-    getMentorForMemberUseCase: ref.read(_getMentorForMemberUseCaseProvider),
+    getMembersForMentorUseCase: ref.read(_getIfMentorUseCaseProvider),
+    getMentorsForMentatUseCase: ref.read(_getIfMentatProvider),
+    getMentorForMemberUseCase: ref.read(_getIfMemberUseCaseProvider),
   )..setUser(user);
 });

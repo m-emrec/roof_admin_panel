@@ -1,6 +1,8 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
@@ -38,12 +40,12 @@ class AvatarStackButton extends StatelessWidget {
   /// Creates a [AvatarStackButton] widget.
   ///
   const AvatarStackButton({
-    required this.members,
+    required this.user,
     super.key,
   });
 
   /// The list of members to display.
-  final List<UserInfoModel?> members;
+  final UserInfoModel? user;
 
   /// The maximum number of members to display in the button.
   /// This is a constant value that determines how many avatars will be shown
@@ -58,11 +60,21 @@ class AvatarStackButton extends StatelessWidget {
   ///
   /// This is used to determine how many avatars to show in the horizontal stack.
   int get length {
-    if (members.length > _maxMembers) {
-      return _maxMembers;
+    int length = 0;
+    if (isMentat) {
+      (user as MentatInfo).mentors.length > _maxMembers
+          ? length = _maxMembers
+          : length = (user as MentatInfo).mentors.length;
+    } else {
+      (user as MentorInfo).members.length > _maxMembers
+          ? length = _maxMembers
+          : length = (user as MentorInfo).members.length;
     }
-    return members.length;
+
+    return length;
   }
+
+  bool get isMentat => user is MentatInfo;
 
   /// The height of the button and avatars.
   /// This is a fixed value that determines the vertical size of the button.
@@ -91,6 +103,15 @@ class AvatarStackButton extends StatelessWidget {
 
   double get _totalCountAvatarOffset =>
       _userAvatarOffset(length) + _avatarRadius / 2;
+
+  List<UserInfoModel?> get members {
+    if (isMentat) {
+      return (user as MentatInfo).mentors;
+    } else {
+      return (user as MentorInfo).members;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

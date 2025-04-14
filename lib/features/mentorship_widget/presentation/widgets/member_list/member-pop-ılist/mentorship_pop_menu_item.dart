@@ -87,7 +87,7 @@ class _MentorshipPopupMenuItem extends PopupMenuItem<String> {
     );
   }
 
-  bool get hasNoUser => user == null;
+  bool get hasNoUser => user == null || user?.uid == null;
   final BuildContext context;
   final UserInfoModel? user;
 

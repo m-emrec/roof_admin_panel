@@ -5,10 +5,11 @@ import 'package:core/utils/constants/enums/roles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/avatar_stack_button.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
-import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 part 'mentorship_pop_menu_item.dart';
@@ -53,24 +54,16 @@ class MemberPopupList extends StatelessWidget {
   /// Creates a [MemberPopupList] widget.
   ///
   const MemberPopupList({
-    required this.users,
-    required this.role,
+    required this.user,
     super.key,
   });
-
-  /// The roles of the user displayed in MemberDetail.
-  ///
-  /// This list typically contains the role(s) associated with the user whose
-  /// profile is being viewed in the MemberDetail section. It determines how
-  /// labels and tooltips are localized and shown in the [MemberPopupList].
-  final List<Role?> role;
 
   /// The list of users associated with the current mentor or mentat.
   ///
   /// For mentors, the first user is expected to be the mentat, followed by their members.
   /// For mentats, this list contains the mentors or members they are mentoring.
   /// Used to build both the mentat and member sections of the popup list.
-  final List<UserInfoModel?> users;
+  final UserInfoModel user;
 
   /// Returns the `mentat` for the current mentor, if available.
   ///
@@ -79,22 +72,10 @@ class MemberPopupList extends StatelessWidget {
   /// exists (e.g. no `uid` is available), this will return `null`.
   ///
   /// Used in [MemberPopupList] to display a mentat at the top of the popup list.
-  UserInfoModel? get mentat => role.isMentat
-      ? null
-      : users.first?.uid.isNotEmpty ?? false
-          ? users.first
-          : null;
+  UserInfoModel? get mentat =>
+      user is MentorInfo ? (user as MentorInfo).mentat : null;
 
-  /// Returns the list of members excluding the mentat.
-  ///
-  /// If the user is a mentor, the first item in the `users` list is assumed
-  /// to be the mentat. This getter returns all other users as members.
-  /// If there are no members beyond the mentat, an empty list is returned.
-  List<UserInfoModel?> get members => role.isMentat
-      ? users
-      : users.length > 1
-          ? users.sublist(1)
-          : [];
+  bool get isMentat => user is MentatInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -103,41 +84,44 @@ class MemberPopupList extends StatelessWidget {
           .memberDetailView_membershipInfo_mentorshipMemberList_seeList
           .tr(
         args: [
-          if (role.isMentat)
+          if (isMentat)
             Role.mentor.localizedText("")
           else
             Role.member.localizedText(""),
         ],
       ),
       itemBuilder: (context) {
-        return [
-          // mentat
-          if (role.isMentor)
+        if (isMentat) {
+          return [
+            _label(),
+            ...(user as MentatInfo).mentors.map(
+                  (e) => _MentorshipPopupMenuItem.member(
+                    context,
+                    user: e,
+                    value: e?.uid,
+                  ),
+                ),
+          ];
+        } else {
+          return [
             _MentorshipPopupMenuItem.mentat(
               context,
-              user: mentat,
-              value: mentat?.uid,
+              user: (user as MentorInfo).mentat,
+              value: (user as MentorInfo).mentat?.uid,
             ),
-          // title
-          _label(),
-          // members || mentors
-          if (members.isEmpty)
-            _MentorshipPopupMenuItem.member(
-              context,
-            ).emptyState(),
-          ...members.map(
-            (user) {
-              return _MentorshipPopupMenuItem.member(
-                context,
-                user: user,
-                value: user?.uid,
-              );
-            },
-          ),
-        ];
+            _label(),
+            ...(user as MentorInfo).members.map(
+                  (e) => _MentorshipPopupMenuItem.member(
+                    context,
+                    user: e,
+                    value: e?.uid,
+                  ),
+                ),
+          ];
+        }
       },
       child: AvatarStackButton(
-        members: mentat == null ? members : users,
+        user: user,
       ),
     );
   }
@@ -147,13 +131,13 @@ class MemberPopupList extends StatelessWidget {
       enabled: false,
       child: Text(
         tr(
-          role.isMentat
+          isMentat
               ? LocaleKeys
                   .memberDetailView_membershipInfo_mentorshipMemberList_mentors
               : LocaleKeys
                   .memberDetailView_membershipInfo_mentorshipMemberList_members,
           args: [
-            if (role.isMentat)
+            if (isMentat)
               Role.mentat.localizedText("")
             else
               Role.mentor.localizedText(""),

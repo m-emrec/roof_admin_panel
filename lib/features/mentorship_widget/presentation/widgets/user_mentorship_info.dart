@@ -3,7 +3,9 @@ import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
@@ -40,12 +42,12 @@ class UserMentorshipInfo extends StatelessWidget {
   /// Creates a [UserMentorshipInfo] widget.
   ///
   const UserMentorshipInfo({
-    required this.mentor,
+    required this.user,
     super.key,
   });
 
   /// The user whose information is displayed.
-  final UserInfoModel mentor;
+  final MemberInfo user;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -59,11 +61,11 @@ class UserMentorshipInfo extends StatelessWidget {
           spacing: SpacingSizes.extraSmall,
           children: [
             Avatar(
-              imageUrl: mentor.imageUrl,
+              imageUrl: user.mentor?.imageUrl,
               radius: 12,
             ),
             Text(
-              mentor.name,
+              user.mentor?.name ?? "",
               style: context.textTheme.labelLarge?.copyWith(
                 color: AppColors.secondaryColor[90],
               ),

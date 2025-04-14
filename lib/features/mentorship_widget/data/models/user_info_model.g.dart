@@ -8,8 +8,8 @@ part of 'user_info_model.dart';
 
 UserInfoModel _$UserInfoModelFromJson(Map<String, dynamic> json) =>
     UserInfoModel(
-      uid: json['uid'] as String,
-      name: json['name'] as String,
+      uid: json['uid'] as String?,
+      name: json['name'] as String?,
       imageUrl: json['imageUrl'] as String?,
     );
 

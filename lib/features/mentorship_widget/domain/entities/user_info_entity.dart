@@ -1,12 +1,12 @@
 class UserInfoEntity {
   UserInfoEntity({
-    required this.uid,
-    required this.name,
+    this.uid,
+    this.name,
     this.imageUrl,
   });
 
-  final String uid;
+  final String? uid;
 
-  final String name;
+  final String? name;
   final String? imageUrl;
 }

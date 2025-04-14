@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/mentor_entity.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/user_info_entity.dart';
 part 'user_info_model.g.dart';
 
 @JsonSerializable()
 class UserInfoModel extends UserInfoEntity {
-  factory UserInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$UserInfoModelFromJson(json);
+  factory UserInfoModel.fromJson(Map<String, dynamic>? json) =>
+      _$UserInfoModelFromJson(json ?? const {});
   UserInfoModel({
-    required super.uid,
-    required super.name,
+    super.uid,
+    super.name,
     super.imageUrl,
   });
 
@@ -19,14 +19,4 @@ class UserInfoModel extends UserInfoEntity {
       imageUrl: entity.imageUrl,
     );
   }
-
-  UserInfoEntity toEntity() {
-    return UserInfoEntity(
-      uid: uid,
-      name: name,
-      imageUrl: imageUrl,
-    );
-  }
-
-  Map<String, dynamic> toJson() => _$UserInfoModelToJson(this);
 }
