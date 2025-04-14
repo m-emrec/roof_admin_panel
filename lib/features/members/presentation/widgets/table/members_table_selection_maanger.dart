@@ -31,7 +31,8 @@ class MembersTableSelectionManager extends RowSelectionManager {
 
   T _getValue<T>(RowColumnIndex rowColumnIndex) {
     final table = ref.read(membersTableSourceProvider);
-    final cell = table.rows[rowColumnIndex.rowIndex - 1]
+
+    final cell = table.effectiveRows[rowColumnIndex.rowIndex - 1]
         .getCells()[rowColumnIndex.columnIndex - 1];
     return cell.value as T;
   }
