@@ -163,6 +163,7 @@ abstract class  LocaleKeys {
   static const membersView_pageTitle = 'membersView.pageTitle';
   static const membersView_memberCount = 'membersView.memberCount';
   static const membersView_addMember = 'membersView.addMember';
+  static const membersView_seeMemberDetail = 'membersView.seeMemberDetail';
   static const membersView_filters_title = 'membersView.filters.title';
   static const membersView_filters_roleFilter = 'membersView.filters.roleFilter';
   static const membersView_filters_roleFilterLabel = 'membersView.filters.roleFilterLabel';

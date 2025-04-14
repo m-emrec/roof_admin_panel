@@ -176,6 +176,7 @@
         "pageTitle": "Üyeler",
         "memberCount": "{} Üye",
         "addMember": "Üye Ekle",
+        "seeMemberDetail": "Üye Detayını Gör",
         "filters":{
             "title": "Filtrele",
             "roleFilter": "{} Rolündekiler",
