@@ -26,7 +26,7 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return Flexible(
+            return Expanded(
               child: MembersTable(),
             );
           },
