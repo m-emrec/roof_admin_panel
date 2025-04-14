@@ -63,6 +63,10 @@ class MentorshipWidgetStateNotifier
     await _getMembersForMentor();
 
     final mentat = await _getMentatForMentor();
+    if (mentat.uid.isEmpty && (state.valueOrNull?.isEmpty ?? true)) {
+      state = const AsyncData([]);
+      return;
+    }
     state = AsyncData([mentat, ...state.valueOrNull ?? []]);
   }
 
