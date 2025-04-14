@@ -1,5 +1,5 @@
-import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
+import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,7 +50,8 @@ class NameAndRoleSection extends ConsumerWidget {
           value: ref.watch(membershipDetailNotifierProvider) ?? UserModel(),
         )
             .build(context, isEditing: ref.watch(isEditingProvider))
-            .scaleAnimation(),
+            .fadeAnimation()
+            .slideAnimation(),
       ],
     );
   }

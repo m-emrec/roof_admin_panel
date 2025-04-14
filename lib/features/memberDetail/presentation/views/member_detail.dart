@@ -47,13 +47,13 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
         child: ref.watch(membershipDetailNotifierProvider) != null
-            ? SingleChildScrollView(
+            ? const SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const MembershipInfoCard(),
-                    AboutAndPersonalInfo(widget.member),
+                    MembershipInfoCard(),
+                    AboutAndPersonalInfo(),
                   ],
                 ),
               )
