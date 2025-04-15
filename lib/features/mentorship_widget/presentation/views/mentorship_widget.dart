@@ -64,7 +64,7 @@ class MentorshipWidget extends ConsumerWidget {
           return UserMentorshipInfo(user: data as MemberInfo);
         }
       },
-      skeletonWidget: const Text("data"),
+      // skeletonWidget: const Text("data"),
     );
   }
 }
