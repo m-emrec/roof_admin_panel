@@ -59,40 +59,44 @@ class MentorshipWidgetStateNotifier
 
   /// Loads the mentor's members and mentat.
   Future<void> _getIfMentor() async {
-    DataState.handleDataStateBasedAction(
-      await _getIfMentorUseCase(
+    await _emitStateFromDataState(
+      _getIfMentorUseCase(
         memberIds: _user?.members ?? [],
         mentatId: _user?.mentatId ?? "",
       ),
-      onSuccess: (data) => _emitSuccessState(
-        data.resultData,
-        MentorInfo.fromEntity,
-      ),
-      onFailure: _emitErrorState,
+      MentorInfo.fromEntity,
     );
   }
 
   /// Fetches the mentor assigned to a member.
   /// Used when the current user has a member role.
   Future<void> _getIfMember() async {
-    DataState.handleDataStateBasedAction(
-      await _getIfMemberUseCase(_user?.mentorId ?? ""),
-      onSuccess: (data) => _emitSuccessState(
-        data.resultData,
-        MemberInfo.fromEntity,
-      ),
-      onFailure: _emitErrorState,
+    await _emitStateFromDataState(
+      _getIfMemberUseCase(_user?.mentorId ?? ""),
+      MemberInfo.fromEntity,
     );
   }
 
   /// Fetches all mentors assigned to the current mentat.
   /// Used when the current user has a mentat role.
   Future<void> _getIfMentat() async {
+    await _emitStateFromDataState(
+      _getIfMentatUseCase(_user?.mentors ?? []),
+      MentatInfo.fromEntity,
+    );
+  }
+
+  /// Emits a state based on the provided [dataState].
+  /// Uses the [fromEntity] function to convert the result data to a [UserInfoModel].
+  Future<void> _emitStateFromDataState<T>(
+    Future<DataState<T?>> dataState,
+    UserInfoModel Function(T) fromEntity,
+  ) async {
     DataState.handleDataStateBasedAction(
-      await _getIfMentatUseCase(_user?.mentors ?? []),
+      await dataState,
       onSuccess: (data) => _emitSuccessState(
         data.resultData,
-        MentatInfo.fromEntity,
+        fromEntity,
       ),
       onFailure: _emitErrorState,
     );
