@@ -3,7 +3,7 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_inf
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/mentor_info_entity.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/user_info_entity.dart';
 
-class MentorInfo extends MentorInfoEntity implements BaseUserInfo {
+class MentorInfo extends MentorInfoEntity implements AbstractUserInfo {
   MentorInfo({
     required this.members,
     required this.mentat,

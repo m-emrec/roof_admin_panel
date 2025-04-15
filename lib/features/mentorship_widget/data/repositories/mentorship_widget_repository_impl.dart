@@ -31,10 +31,11 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
 
   @override
   Future<DataState<MentatInfoEntity?>> getForMentat(
-      List<String> mentorIds) async {
+    List<String> mentorIds,
+  ) async {
     return DataState.handleDataState<MentatInfoEntity?>(() async {
       final mentatJson =
-          await _mentorshipWidgetService.getMentorsForMentat(mentorIds);
+          await _mentorshipWidgetService.fetchMentorsForMentat(mentorIds);
       if (mentatJson != null && mentatJson.isNotEmpty) {
         return MentatInfo.fromJson(mentatJson);
       } else {
@@ -57,66 +58,4 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
       );
     });
   }
-
-  // @override
-  // Future<DataState<List<UserInfoEntity?>>> getMembersForMentor(
-  //   List<String> memberIds,
-  // ) {
-  //   return DataState.handleDataState<List<UserInfoEntity?>>(
-  //     () =>
-  //         _mentorshipWidgetService.getMembersForMentor(memberIds).then((value) {
-  //       if (value != null && value.isNotEmpty) {
-  //         return value
-  //             .map((e) => UserInfoModel.fromJson(e).toEntity())
-  //             .toList();
-  //       } else {
-  //         return [];
-  //       }
-  //     }),
-  //   );
-  // }
-
-  // @override
-  // Future<DataState<UserInfoEntity?>> getIfMentor(String mentatId) {
-  //   return DataState.handleDataState<UserInfoEntity?>(
-  //     () => _mentorshipWidgetService.getMentatForMentor(mentatId).then((value) {
-  //       if (value != null) {
-  //         return UserInfoModel.fromJson(value).toEntity();
-  //       } else {
-  //         return null;
-  //       }
-  //     }),
-  //   );
-  // }
-
-  // @override
-  // Future<DataState<UserInfoEntity?>> getIfMember(String mentorId) async {
-  //   return DataState.handleDataState<UserInfoEntity?>(
-  //     () => _mentorshipWidgetService.getMentorForMember(mentorId).then((value) {
-  //       if (value != null) {
-  //         return UserInfoModel.fromJson(value).toEntity();
-  //       } else {
-  //         return null;
-  //       }
-  //     }),
-  //   );
-  // }
-
-  // @override
-  // Future<DataState<List<UserInfoEntity>>> getIfMentat(
-  //   List<String> mentorIds,
-  // ) {
-  //   return DataState.handleDataState<List<UserInfoEntity>>(
-  //     () =>
-  //         _mentorshipWidgetService.getMentorsForMentat(mentorIds).then((value) {
-  //       if (value != null && value.isNotEmpty) {
-  //         return value
-  //             .map((e) => UserInfoModel.fromJson(e).toEntity())
-  //             .toList();
-  //       } else {
-  //         return [];
-  //       }
-  //     }),
-  //   );
-  // }
 }

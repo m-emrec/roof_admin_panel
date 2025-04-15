@@ -64,7 +64,7 @@ class MemberPopupList extends StatelessWidget {
   /// For mentors, the first user is expected to be the mentat, followed by their members.
   /// For mentats, this list contains the mentors or members they are mentoring.
   /// Used to build both the mentat and member sections of the popup list.
-  final BaseUserInfo user;
+  final AbstractUserInfo user;
 
   /// Returns the `mentat` for the current mentor, if available.
   ///

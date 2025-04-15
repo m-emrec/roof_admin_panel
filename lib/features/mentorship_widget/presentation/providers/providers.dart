@@ -40,7 +40,7 @@ final _getIfMentatProvider = Provider<GetIfMentatUseCase>((ref) {
 /// for managing the state of mentorship-related data.
 final mentorshipStateNotifierProvider = StateNotifierProvider.family<
     MentorshipWidgetStateNotifier,
-    AsyncValue<BaseUserInfo?>,
+    AsyncValue<AbstractUserInfo?>,
     UserModel>((ref, user) {
   return MentorshipWidgetStateNotifier(
     getMembersForMentorUseCase: ref.read(_getIfMentorUseCaseProvider),

@@ -46,7 +46,7 @@ class AvatarStackButton extends StatelessWidget {
   });
 
   /// The list of members to display.
-  final BaseUserInfo? user;
+  final AbstractUserInfo? user;
 
   /// The maximum number of members to display in the button.
   /// This is a constant value that determines how many avatars will be shown

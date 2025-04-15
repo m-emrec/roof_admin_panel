@@ -6,7 +6,7 @@ import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/user
 part 'member_info.g.dart';
 
 @JsonSerializable()
-class MemberInfo extends MemberInfoEntity implements BaseUserInfo {
+class MemberInfo extends MemberInfoEntity implements AbstractUserInfo {
   MemberInfo({
     this.mentor,
   }) : super(

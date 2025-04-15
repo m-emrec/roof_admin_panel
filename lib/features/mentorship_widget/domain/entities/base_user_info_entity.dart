@@ -1,1 +1,1 @@
-abstract class BaseUserInfoEntity {}
+abstract class AbstractUserInfoEntity {}

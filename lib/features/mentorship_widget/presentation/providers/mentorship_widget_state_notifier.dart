@@ -14,7 +14,7 @@ import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart'
 /// It fetches relevant user data (members, mentors, or mentats) based on the user's role.
 /// Uses [AsyncValue] to manage loading, success, and error states for the UI.
 class MentorshipWidgetStateNotifier
-    extends StateNotifier<AsyncValue<BaseUserInfo?>> {
+    extends StateNotifier<AsyncValue<AbstractUserInfo?>> {
   /// Constructor for [MentorshipWidgetStateNotifier].
   MentorshipWidgetStateNotifier({
     required GetIfMentorUseCase getMembersForMentorUseCase,
@@ -91,7 +91,7 @@ class MentorshipWidgetStateNotifier
   /// Uses the [fromEntity] function to convert the result data to a [UserInfoModel].
   Future<void> _emitStateFromDataState<T>(
     Future<DataState<T?>> dataState,
-    BaseUserInfo Function(T) fromEntity,
+    AbstractUserInfo Function(T) fromEntity,
   ) async {
     DataState.handleDataStateBasedAction(
       await dataState,
@@ -109,7 +109,7 @@ class MentorshipWidgetStateNotifier
   /// If the result data is not null, emits a success state with the converted data.
   void _emitSuccessState<T>(
     T? resultData,
-    BaseUserInfo Function(T) fromEntity,
+    AbstractUserInfo Function(T) fromEntity,
   ) {
     if (resultData != null) {
       state = AsyncData(
