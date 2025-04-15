@@ -17,19 +17,19 @@ class InfoColumn extends StatelessWidget {
       children: [
         // name
         Text(
-          CurrentManager.instance.managerModelNotifier.value.name,
+          CurrentUser.instance.managerModelNotifier.value.name,
           style:
               context.theme.extension<UserCardThemeExtension>()?.nameTextStyle,
         ),
         // email
         Text(
-          CurrentManager.instance.managerModelNotifier.value.email,
+          CurrentUser.instance.managerModelNotifier.value.email,
           style:
               context.theme.extension<UserCardThemeExtension>()?.emailTextStyle,
         ),
         // role
         Text(
-          CurrentManager.instance.managerModelNotifier.value.role.name,
+          CurrentUser.instance.managerModelNotifier.value.role.name,
           style:
               context.theme.extension<UserCardThemeExtension>()?.roleTextStyle,
         ),

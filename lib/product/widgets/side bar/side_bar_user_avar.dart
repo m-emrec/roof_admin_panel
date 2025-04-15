@@ -47,7 +47,7 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: CurrentManager.instance.managerModelNotifier,
+      valueListenable: CurrentUser.instance.managerModelNotifier,
       builder: (context, user, child) => ListTile(
         onTap: () => context.goNamed(AccountSettingsRoute().name),
         title: Text(user.name, style: context.textTheme.labelMedium),
@@ -66,7 +66,7 @@ class _CollapsedSideBarUserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: CurrentManager.instance.managerModelNotifier,
+      valueListenable: CurrentUser.instance.managerModelNotifier,
       builder: (context, user, child) => Padding(
         padding: const AppPadding.horizontalxsSymmetric() +
             const AppPadding.verticalxsSymmetric(),

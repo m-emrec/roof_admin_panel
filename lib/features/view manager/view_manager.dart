@@ -1,6 +1,9 @@
+import 'package:core/extensions/context_extension.dart';
+import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
@@ -37,24 +40,28 @@ class _ViewManagerState extends State<ViewManager> {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: FutureBuilder(
-        future: CurrentManager.init(),
+        future: CurrentUser.init(),
         builder: (context, snapshot) {
-          if (CurrentManager.instance.managerModelNotifier.value.uid.isEmpty) {
+          if (CurrentUser.instance.managerModelNotifier.value.uid.isEmpty) {
             return const _LoadingView();
           }
           return Scaffold(
             backgroundColor: AppColors.backgroundColor[80],
-            body: Row(
-              children: [
-                const SideBar(),
-                Flexible(
-                  child: Padding(
-                    padding: const AppPadding.horizontalLSymmetric() +
-                        const AppPadding.mediumOnlyPadding(top: true),
-                    child: widget.child,
+            body: SizedBox(
+              height: context.dynamicHeight(1),
+              width: context.dynamicWidth(1),
+              child: Row(
+                children: [
+                  const SideBar(),
+                  Flexible(
+                    child: Padding(
+                      padding: const AppPadding.horizontalLSymmetric() +
+                          const AppPadding.mediumOnlyPadding(top: true),
+                      child: widget.child,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

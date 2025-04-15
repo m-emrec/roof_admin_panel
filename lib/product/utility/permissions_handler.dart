@@ -20,9 +20,9 @@ abstract class PermissionHandler {
   /// The required permissions for the action or widget.
   final List<Permissions> necessaryPermissions;
 
-  /// The current user's permissions, fetched from [CurrentManager].
+  /// The current user's permissions, fetched from [CurrentUser].
   final List<Permissions> _currentUserPermissions =
-      CurrentManager.instance.managerModelNotifier.value.role.permissions;
+      CurrentUser.instance.managerModelNotifier.value.role.permissions;
 
   /// Checks if the user has at least one of the required permissions.
   ///
