@@ -5,6 +5,7 @@ import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
@@ -68,6 +69,7 @@ class UserMentorshipInfo extends StatelessWidget {
               user.mentor?.name ?? "",
               style: context.textTheme.labelLarge?.copyWith(
                 color: AppColors.secondaryColor[90],
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
