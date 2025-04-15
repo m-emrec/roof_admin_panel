@@ -24,9 +24,9 @@ class MentorInfo extends MentorInfoEntity implements UserInfoModel {
     );
   }
 
-  factory MentorInfo.fromEntity({
-    required MentorInfoEntity entity,
-  }) {
+  factory MentorInfo.fromEntity(
+    MentorInfoEntity entity,
+  ) {
     return MentorInfo(
       mentat: UserInfoModel.fromEntity(entity.mentat!),
       members: entity.members
