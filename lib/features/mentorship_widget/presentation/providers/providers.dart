@@ -1,7 +1,7 @@
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/datasources/mentorship_widget_service.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/repositories/mentorship_widget_repository_impl.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/repositories/mentorship_widget_repository.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_member_use_case.dart';
@@ -40,7 +40,7 @@ final _getIfMentatProvider = Provider<GetIfMentatUseCase>((ref) {
 /// for managing the state of mentorship-related data.
 final mentorshipStateNotifierProvider = StateNotifierProvider.family<
     MentorshipWidgetStateNotifier,
-    AsyncValue<UserInfoModel?>,
+    AsyncValue<BaseUserInfo?>,
     UserModel>((ref, user) {
   return MentorshipWidgetStateNotifier(
     getMembersForMentorUseCase: ref.read(_getIfMentorUseCaseProvider),

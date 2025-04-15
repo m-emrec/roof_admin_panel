@@ -7,8 +7,10 @@ class GetIfMentorUseCase {
   ///
   GetIfMentorUseCase(this._repository);
   final MentorshipWidgetRepository _repository;
-  Future<DataState<MentorInfoEntity?>> call(
-      {required String mentatId, required List<String> memberIds}) {
-    return _repository.getIfMentor(mentatId, memberIds);
+  Future<DataState<MentorInfoEntity?>> call({
+    required String mentatId,
+    required List<String> memberIds,
+  }) {
+    return _repository.getForMentor(mentatId, memberIds);
   }
 }

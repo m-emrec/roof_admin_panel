@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
@@ -13,7 +14,7 @@ import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart'
 /// It fetches relevant user data (members, mentors, or mentats) based on the user's role.
 /// Uses [AsyncValue] to manage loading, success, and error states for the UI.
 class MentorshipWidgetStateNotifier
-    extends StateNotifier<AsyncValue<UserInfoModel?>> {
+    extends StateNotifier<AsyncValue<BaseUserInfo?>> {
   /// Constructor for [MentorshipWidgetStateNotifier].
   MentorshipWidgetStateNotifier({
     required GetIfMentorUseCase getMembersForMentorUseCase,
@@ -90,7 +91,7 @@ class MentorshipWidgetStateNotifier
   /// Uses the [fromEntity] function to convert the result data to a [UserInfoModel].
   Future<void> _emitStateFromDataState<T>(
     Future<DataState<T?>> dataState,
-    UserInfoModel Function(T) fromEntity,
+    BaseUserInfo Function(T) fromEntity,
   ) async {
     DataState.handleDataStateBasedAction(
       await dataState,
@@ -108,7 +109,7 @@ class MentorshipWidgetStateNotifier
   /// If the result data is not null, emits a success state with the converted data.
   void _emitSuccessState<T>(
     T? resultData,
-    UserInfoModel Function(T) fromEntity,
+    BaseUserInfo Function(T) fromEntity,
   ) {
     if (resultData != null) {
       state = AsyncData(

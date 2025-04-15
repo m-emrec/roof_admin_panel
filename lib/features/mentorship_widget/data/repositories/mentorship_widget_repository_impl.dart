@@ -16,7 +16,7 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   final MentorshipWidgetService _mentorshipWidgetService;
 
   @override
-  Future<DataState<MemberInfoEntity?>> getIfMember(String mentorId) {
+  Future<DataState<MemberInfoEntity?>> getForMember(String mentorId) {
     return DataState.handleDataState(
       () =>
           _mentorshipWidgetService.fetchMentorForMember(mentorId).then((value) {
@@ -30,7 +30,7 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   }
 
   @override
-  Future<DataState<MentatInfoEntity?>> getIfMentat(
+  Future<DataState<MentatInfoEntity?>> getForMentat(
       List<String> mentorIds) async {
     return DataState.handleDataState<MentatInfoEntity?>(() async {
       final mentatJson =
@@ -44,7 +44,7 @@ class MentorshipWidgetRepositoryImpl implements MentorshipWidgetRepository {
   }
 
   @override
-  Future<DataState<MentorInfoEntity?>> getIfMentor(
+  Future<DataState<MentorInfoEntity?>> getForMentor(
     String mentatId,
     List<String> memberIds,
   ) {

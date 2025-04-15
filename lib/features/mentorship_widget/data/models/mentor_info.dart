@@ -1,8 +1,9 @@
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/mentor_info_entity.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/user_info_entity.dart';
 
-class MentorInfo extends MentorInfoEntity implements UserInfoModel {
+class MentorInfo extends MentorInfoEntity implements BaseUserInfo {
   MentorInfo({
     required this.members,
     required this.mentat,

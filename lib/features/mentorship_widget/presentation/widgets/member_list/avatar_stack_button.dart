@@ -1,6 +1,7 @@
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
@@ -45,7 +46,7 @@ class AvatarStackButton extends StatelessWidget {
   });
 
   /// The list of members to display.
-  final UserInfoModel? user;
+  final BaseUserInfo? user;
 
   /// The maximum number of members to display in the button.
   /// This is a constant value that determines how many avatars will be shown

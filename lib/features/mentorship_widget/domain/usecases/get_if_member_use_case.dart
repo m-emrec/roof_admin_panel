@@ -10,6 +10,6 @@ class GetIfMemberUseCase extends UseCase<DataState<MemberInfoEntity?>, String> {
   final MentorshipWidgetRepository _repository;
   @override
   Future<DataState<MemberInfoEntity?>> call(String params) {
-    return _repository.getIfMember(params);
+    return _repository.getForMember(params);
   }
 }

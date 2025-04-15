@@ -5,6 +5,7 @@ import 'package:core/utils/constants/enums/roles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
@@ -63,7 +64,7 @@ class MemberPopupList extends StatelessWidget {
   /// For mentors, the first user is expected to be the mentat, followed by their members.
   /// For mentats, this list contains the mentors or members they are mentoring.
   /// Used to build both the mentat and member sections of the popup list.
-  final UserInfoModel user;
+  final BaseUserInfo user;
 
   /// Returns the `mentat` for the current mentor, if available.
   ///

@@ -11,6 +11,6 @@ class GetIfMentatUseCase
   final MentorshipWidgetRepository _repository;
   @override
   Future<DataState<MentatInfoEntity?>> call(List<String> params) {
-    return _repository.getIfMentat(params);
+    return _repository.getForMentat(params);
   }
 }
