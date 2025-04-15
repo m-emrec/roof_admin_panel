@@ -4,10 +4,9 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_i
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/entities/user_info_entity.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_member_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentat_use_case.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentor_use_case.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 
 /// [MentorshipWidgetStateNotifier] manages the state of the mentorship system UI.
@@ -15,6 +14,7 @@ import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart'
 /// Uses [AsyncValue] to manage loading, success, and error states for the UI.
 class MentorshipWidgetStateNotifier
     extends StateNotifier<AsyncValue<UserInfoModel?>> {
+  /// Constructor for [MentorshipWidgetStateNotifier].
   MentorshipWidgetStateNotifier({
     required GetIfMentorUseCase getMembersForMentorUseCase,
     required GetIfMentatUseCase getMentorsForMentatUseCase,
@@ -58,28 +58,17 @@ class MentorshipWidgetStateNotifier
   }
 
   /// Loads the mentor's members and mentat.
-  /// Ensures the mentat appears at the top of the list for UI distinction.
   Future<void> _getIfMentor() async {
     DataState.handleDataStateBasedAction(
       await _getIfMentorUseCase(
         memberIds: _user?.members ?? [],
         mentatId: _user?.mentatId ?? "",
       ),
-      onSuccess: (data) {
-        if (data.resultData != null) {
-          state = AsyncData(MentorInfo.fromEntity(entity: data.resultData!));
-        } else {
-          state = const AsyncData(null);
-        }
-      },
-      onFailure: (fail) {
-        state = AsyncError(
-          AppErrorText.errorMessageConverter(
-            fail?.errorMessage,
-          ),
-          StackTrace.current,
-        );
-      },
+      onSuccess: (data) => _emitSuccessState(
+        data.resultData,
+        MentorInfo.fromEntity,
+      ),
+      onFailure: _emitErrorState,
     );
   }
 
@@ -88,23 +77,11 @@ class MentorshipWidgetStateNotifier
   Future<void> _getIfMember() async {
     DataState.handleDataStateBasedAction(
       await _getIfMemberUseCase(_user?.mentorId ?? ""),
-      onSuccess: (data) {
-        if (data.resultData != null) {
-          state = AsyncData(
-            MemberInfo.fromEntity(data.resultData!),
-          );
-        } else {
-          state = const AsyncData(null);
-        }
-      },
-      onFailure: (fail) {
-        state = AsyncError(
-          AppErrorText.errorMessageConverter(
-            fail?.errorMessage,
-          ),
-          StackTrace.current,
-        );
-      },
+      onSuccess: (data) => _emitSuccessState(
+        data.resultData,
+        MemberInfo.fromEntity,
+      ),
+      onFailure: _emitErrorState,
     );
   }
 
@@ -113,23 +90,40 @@ class MentorshipWidgetStateNotifier
   Future<void> _getIfMentat() async {
     DataState.handleDataStateBasedAction(
       await _getIfMentatUseCase(_user?.mentors ?? []),
-      onSuccess: (data) {
-        if (data.resultData != null) {
-          state = AsyncData(
-            MentatInfo.fromEntity(data.resultData!),
-          );
-        } else {
-          state = const AsyncData(null);
-        }
-      },
-      onFailure: (fail) {
-        state = AsyncError(
-          AppErrorText.errorMessageConverter(
-            fail?.errorMessage,
-          ),
-          StackTrace.current,
-        );
-      },
+      onSuccess: (data) => _emitSuccessState(
+        data.resultData,
+        MentatInfo.fromEntity,
+      ),
+      onFailure: _emitErrorState,
+    );
+  }
+
+  /// Emits a success state with the provided result data.
+  /// Converts the result data to a [UserInfoModel] using the provided [fromEntity] function.
+  /// If the result data is null, emits a success state with null data.
+  /// If the result data is not null, emits a success state with the converted data.
+  void _emitSuccessState<T>(
+    T? resultData,
+    UserInfoModel Function(T) fromEntity,
+  ) {
+    if (resultData != null) {
+      state = AsyncData(
+        fromEntity(resultData),
+      );
+    } else {
+      state = const AsyncData(null);
+    }
+  }
+
+  /// Emits an error state with a user-friendly error message.
+  /// Uses [AppErrorText.errorMessageConverter] to convert the error message.
+  /// The error message is derived from the [DataFailed] object.
+  void _emitErrorState(DataFailed<dynamic>? fail) {
+    state = AsyncError(
+      AppErrorText.errorMessageConverter(
+        fail?.errorMessage,
+      ),
+      StackTrace.current,
     );
   }
 }
