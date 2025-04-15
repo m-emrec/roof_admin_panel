@@ -19,6 +19,7 @@ class MembersView extends ConsumerWidget {
     return Column(
       spacing: SpacingSizes.extraSmall,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const MembersTableTitle(),
         const FilterAndSortRow(),
@@ -26,9 +27,7 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return Expanded(
-              child: MembersTable(),
-            );
+            return Expanded(child: MembersTable());
           },
           skeletonWidget: const _LoadingView(),
           skeletonType: SkeletonType.single,
