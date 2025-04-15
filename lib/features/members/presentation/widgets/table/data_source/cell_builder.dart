@@ -68,7 +68,12 @@ mixin CellBuilder {
         value as UserModel;
 
         return _cell(
-          FittedBox(fit: BoxFit.fitHeight, child: MentorshipWidget(value)),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: FittedBox(
+              child: MentorshipWidget(value),
+            ),
+          ),
         );
 
       /// I use default case here because rest of the fields are
