@@ -1,6 +1,5 @@
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/constant_values.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +69,7 @@ mixin CellBuilder {
         return _cell(
           Padding(
             padding: const EdgeInsets.all(8),
-            child: FittedBox(
-              child: MentorshipWidget(value),
-            ),
+            child: MentorshipWidget(value),
           ),
         );
 

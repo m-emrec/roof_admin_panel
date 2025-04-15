@@ -6,24 +6,25 @@ class _MentorshipWidgetEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Text(
+      _emptyStateText,
+      style: context.textTheme.labelMedium,
+    );
+  }
+
+  String get _emptyStateText {
     if (roles.isMentor) {
-      return Text(
-        LocaleKeys
-            .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatAndMembersForMentor
-            .tr(),
-      );
+      return LocaleKeys
+          .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentatAndMembersForMentor
+          .tr();
     } else if (roles.isMentat) {
-      return Text(
-        LocaleKeys
-            .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_notMentorsForMentat
-            .tr(),
-      );
+      return LocaleKeys
+          .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_notMentorsForMentat
+          .tr();
     } else {
-      return Text(
-        LocaleKeys
-            .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentorForMember
-            .tr(),
-      );
+      return LocaleKeys
+          .memberDetailView_membershipInfo_mentorshipMemberList_emptyState_noMentorForMember
+          .tr();
     }
   }
 }

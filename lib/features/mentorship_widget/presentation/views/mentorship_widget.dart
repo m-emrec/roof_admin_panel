@@ -2,8 +2,12 @@ import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:marquee/marquee.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_user_info_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/user_mentorship_info.dart';
@@ -40,23 +44,17 @@ class MentorshipWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final roles = user.role ?? [];
-    final shouldShowMentorshipList =
-        roles.isMentor == true || roles.isMentat == true;
 
     return AsyncDataBuilder(
       provider: mentorshipStateNotifierProvider(user),
       data: (data) {
-        // Log.debug("# $data");
         if (roles.isEmpty) {
           return const SizedBox();
         }
         if (data == null) {
-          return ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: context.dynamicWidth(0.2)),
-            child: _MentorshipWidgetEmptyState(roles: roles),
-          );
+          return _MentorshipWidgetEmptyState(roles: roles);
         }
-        if (shouldShowMentorshipList) {
+        if (_shouldShowMentorshipList(data)) {
           return MemberPopupList(
             user: data,
           );
@@ -64,7 +62,11 @@ class MentorshipWidget extends ConsumerWidget {
           return UserMentorshipInfo(user: data as MemberInfo);
         }
       },
-      // skeletonWidget: const Text("data"),
     );
+  }
+
+  bool _shouldShowMentorshipList(AbstractUserInfo data) {
+    if (data is MentorInfo || data is MentatInfo) return true;
+    return false;
   }
 }

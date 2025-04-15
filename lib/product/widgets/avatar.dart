@@ -49,7 +49,6 @@ class Avatar extends StatelessWidget {
           filterQuality: FilterQuality.high,
           width: (radius ?? 24) * 2,
           height: (radius ?? 24) * 2,
-          // webHtmlElementStrategy: WebHtmlElementStrategy.prefer,
         ),
       ),
     );

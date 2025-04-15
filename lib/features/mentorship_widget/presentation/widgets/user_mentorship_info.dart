@@ -1,14 +1,15 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:marquee/marquee.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
-import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animated_text_Extension.dart';
+import 'package:roof_admin_panel/product/widgets/animated-text/animated_text.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// A widget that displays the user's mentorship counterpart (either their mentor or mentat) in a compact row.
@@ -51,30 +52,38 @@ class UserMentorshipInfo extends StatelessWidget {
   final MemberInfo user;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: const AppBorderRadius.large(),
-      hoverColor: AppColors.secondaryColor[10],
-      onTap: () {},
-      child: Padding(
-        padding: const AppPadding.xxsmallOnlyPadding(right: true),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          spacing: SpacingSizes.extraSmall,
-          children: [
-            Avatar(
-              imageUrl: user.mentor?.imageUrl,
-              radius: 12,
+    return LayoutBuilder(
+      builder: (context, c) {
+        return InkWell(
+          borderRadius: const AppBorderRadius.large(),
+          hoverColor: AppColors.secondaryColor[10],
+          onTap: () {},
+          child: Padding(
+            padding: const AppPadding.xxsmallOnlyPadding(right: true),
+            child: Row(
+              // mainAxisSize: MainAxisSize.min,
+              spacing: SpacingSizes.extraSmall,
+              children: [
+                Avatar(
+                  imageUrl: user.mentor?.imageUrl,
+                  radius: 12,
+                ),
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: c.maxWidth * 0.5,
+                  ),
+                  child: Text(
+                    user.mentor?.name ?? "",
+                    style: context.textTheme.labelLarge?.copyWith(
+                      color: AppColors.secondaryColor[90],
+                    ),
+                  ).animatedText,
+                ),
+              ],
             ),
-            Text(
-              user.mentor?.name ?? "",
-              style: context.textTheme.labelLarge?.copyWith(
-                color: AppColors.secondaryColor[90],
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
