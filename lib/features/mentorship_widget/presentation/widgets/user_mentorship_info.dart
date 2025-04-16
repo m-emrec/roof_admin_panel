@@ -5,7 +5,7 @@ import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_info.dart';
-import 'package:roof_admin_panel/product/utility/extensions/animated_text_Extension.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animated_text_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// A widget that displays the user's mentorship counterpart (either their mentor or mentat) in a compact row.

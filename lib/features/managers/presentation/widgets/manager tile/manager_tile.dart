@@ -7,7 +7,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/delete_manager_dialog.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/update_manager_dialog.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/extensions/animated_text_Extension.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animated_text_extension.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
