@@ -206,7 +206,8 @@
             "phoneNumber": "Telefon Numarası",
             "role": "Rol",
             "age": "Yaş",
-            "memberShipDuration": "Ne Zamandır Üye"
+            "memberShipDuration": "Ne Zamandır Üye",
+            "mentor":"Mentör"
         }
     },
     "addMember": {

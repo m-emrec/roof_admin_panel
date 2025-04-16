@@ -64,7 +64,7 @@ mixin CellBuilder {
             ),
           ),
         ).showClickMouseCursorOnWidget();
-      case MemberTableNames.x:
+      case MemberTableNames.mentor:
         value as UserModel;
 
         return _cell(

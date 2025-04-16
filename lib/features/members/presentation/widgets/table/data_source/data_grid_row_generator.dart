@@ -41,7 +41,7 @@ mixin DataGridRowGenerator on DataGridSource {
                 value: e.role?.map((e) => e?.localizedText()).toList(),
               ),
               DataGridCell<UserModel>(
-                columnName: MemberTableNames.x.name,
+                columnName: MemberTableNames.mentor.name,
                 value: e,
               ),
               DataGridCell<int>(

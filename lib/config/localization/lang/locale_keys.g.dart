@@ -190,6 +190,7 @@ abstract class  LocaleKeys {
   static const membersView_tableColumnLabels_role = 'membersView.tableColumnLabels.role';
   static const membersView_tableColumnLabels_age = 'membersView.tableColumnLabels.age';
   static const membersView_tableColumnLabels_memberShipDuration = 'membersView.tableColumnLabels.memberShipDuration';
+  static const membersView_tableColumnLabels_mentor = 'membersView.tableColumnLabels.mentor';
   static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
   static const membersView = 'membersView';
   static const addMember_pageTitle = 'addMember.pageTitle';

@@ -10,7 +10,7 @@ enum MemberTableNames {
   role,
   age,
   membershipDuration,
-  x,
+  mentor,
   ;
 
   static final _locale = {
@@ -23,7 +23,7 @@ enum MemberTableNames {
     age: LocaleKeys.membersView_tableColumnLabels_age.tr(),
     membershipDuration:
         LocaleKeys.membersView_tableColumnLabels_memberShipDuration.tr(),
-    x: "X",
+    mentor: LocaleKeys.membersView_tableColumnLabels_mentor.tr(),
   };
 
   static MemberTableNames toTableNamesEnum(String tableName) {
@@ -42,8 +42,8 @@ enum MemberTableNames {
         return MemberTableNames.age;
       case 'membershipDuration':
         return MemberTableNames.membershipDuration;
-      case 'x':
-        return MemberTableNames.x;
+      case 'mentor':
+        return MemberTableNames.mentor;
       default:
         return MemberTableNames.memberNumber;
     }

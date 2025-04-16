@@ -7,7 +7,7 @@ mixin _TableColumnBuilderMixin {
     MemberTableNames.memberName,
     MemberTableNames.membershipEndDate,
     MemberTableNames.role,
-    MemberTableNames.x,
+    MemberTableNames.mentor,
     MemberTableNames.age,
     MemberTableNames.membershipDuration,
   ];
@@ -21,7 +21,7 @@ mixin _TableColumnBuilderMixin {
           case MemberTableNames.memberName:
             columnWidthMode = ColumnWidthMode.auto;
 
-          case MemberTableNames.x:
+          case MemberTableNames.mentor:
             columnWidthMode = ColumnWidthMode.none;
           // ignore: no_default_cases
           default:
