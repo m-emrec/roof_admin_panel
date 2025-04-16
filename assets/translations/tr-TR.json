@@ -355,11 +355,11 @@
         "members":"Üyeleri",
         "mentors":"Mentorleri",
         "emptyState":{
-            "noMentatForMentor": "Bu mentör'ün mentatı yok.",
-            "notMentorsForMentat": "Bu mentat'ın mentörleri yok.",
-            "noMentorForMember": "Bu üyenin mentörü yok.",
-            "noMembersForMentor": "Bu mentör'ün üyeleri yok.",
-            "noMentatAndMembersForMentor": "Bu mentör'ün mentatı ve üyeleri yok."
+            "noMentatForMentor": "Mentatı yok.",
+            "notMentorsForMentat": "Mentörü yok.",
+            "noMentorForMember": "Mentörü yok.",
+            "noMembersForMentor": "üyesi yok.",
+            "noMentatAndMembersForMentor": "Mentatı ve üyesi yok."
         }
     }
    },
