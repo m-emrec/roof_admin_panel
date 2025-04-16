@@ -17,6 +17,7 @@ part 'strategies/mentor_popup_content_strategy.dart';
 part 'strategies/mentat_popup_content_strategy.dart';
 part 'strategies/mentorship_popup_content_strategy.dart';
 
+///
 class MentorshipPopupList extends StatelessWidget {
   ///
   /// Creates a [MentorshipPopupList] widget.
@@ -26,8 +27,10 @@ class MentorshipPopupList extends StatelessWidget {
     super.key,
   });
 
+  ///
   final AbstractUserInfo user;
 
+  ///
   MentorshipPopupContentStrategy get popupContentStrategy =>
       MentorshipPopupContentStrategy.of(user);
 

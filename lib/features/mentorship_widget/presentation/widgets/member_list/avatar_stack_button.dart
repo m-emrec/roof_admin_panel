@@ -63,21 +63,19 @@ class AvatarStackButton extends StatelessWidget {
   /// Otherwise, it returns the actual length of the list.
   ///
   /// This is used to determine how many avatars to show in the horizontal stack.
-  int get length {
-    int length = 0;
-    if (isMentat) {
-      _mentat.mentors.length > _maxMembers
-          ? length = _maxMembers
-          : length = _mentat.mentors.length;
-    } else {
-      _mentor.members.length > _maxMembers
-          ? length = _maxMembers
-          : length = _mentor.members.length;
-    }
+  int get length =>
+      _members.length > _maxMembers ? _maxMembers : _members.length;
 
-    return length;
+  List<UserInfoModel?> get _members {
+    if (isMentat) {
+      return _mentat.mentors;
+    } else {
+      return _mentor.members;
+    }
   }
 
+  /// A boolean value indicating whether the user is a mentat.
+  /// This is used to determine the type of user and adjust the UI accordingly.
   bool get isMentat => user is MentatInfo;
 
   /// The height of the button and avatars.
@@ -108,14 +106,6 @@ class AvatarStackButton extends StatelessWidget {
   double get _totalCountAvatarOffset =>
       _userAvatarOffset(length) + _avatarRadius / 2;
 
-  List<UserInfoModel?> get members {
-    if (isMentat) {
-      return _mentat.mentors;
-    } else {
-      return _mentor.members;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -124,47 +114,56 @@ class AvatarStackButton extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          if (!isMentat && _mentor.mentat?.uid != null)
-            Positioned(
-              left: _userAvatarOffset(0),
-              child: DecoratedBox(
-                position: DecorationPosition.foreground,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.red,
-                    width: 2,
-                  ),
-                  shape: BoxShape.circle,
-                ),
-                child: Avatar(
-                  imageUrl: _mentor.mentat?.imageUrl,
-                  radius: _avatarRadius,
-                ),
-              ),
-            ),
-          ...members.getRange(0, length).map((e) {
-            return Positioned(
-              left: _userAvatarOffset(members.indexOf(e) + 1),
-              child: Avatar(
-                imageUrl: e?.imageUrl,
-                radius: _avatarRadius,
-              ),
-            );
-          }),
-          Positioned(
-            left: _totalCountAvatarOffset,
-            child: CircleAvatar(
-              backgroundColor: AppColors.secondaryColor[40],
-              radius: _avatarRadius,
-              child: Text(
-                "${members.length}",
-                style: context.textTheme.labelMedium?.copyWith(
-                  color: AppColors.secondaryColor[90],
-                ),
-              ),
-            ),
-          ),
+          if (!isMentat && _mentor.mentat?.uid != null) _mentatAvatar(),
+          ..._members.getRange(0, length).map(_memberAvatar),
+          _totalCountAvatar(context),
         ],
+      ),
+    );
+  }
+
+  Positioned _totalCountAvatar(BuildContext context) {
+    return Positioned(
+      left: _totalCountAvatarOffset,
+      child: CircleAvatar(
+        backgroundColor: AppColors.secondaryColor[40],
+        radius: _avatarRadius,
+        child: Text(
+          "${_members.length}",
+          style: context.textTheme.labelMedium?.copyWith(
+            color: AppColors.secondaryColor[90],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Positioned _memberAvatar(UserInfoModel? e) {
+    return Positioned(
+      left: _userAvatarOffset(_members.indexOf(e) + 1),
+      child: Avatar(
+        imageUrl: e?.imageUrl,
+        radius: _avatarRadius,
+      ),
+    );
+  }
+
+  Positioned _mentatAvatar() {
+    return Positioned(
+      left: _userAvatarOffset(0),
+      child: DecoratedBox(
+        position: DecorationPosition.foreground,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.red,
+            width: 2,
+          ),
+          shape: BoxShape.circle,
+        ),
+        child: Avatar(
+          imageUrl: _mentor.mentat?.imageUrl,
+          radius: _avatarRadius,
+        ),
       ),
     );
   }
