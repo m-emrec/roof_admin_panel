@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/guests/data/models/guest.dart';
 import 'package:roof_admin_panel/features/guests/domain/entities/guest_table_names.dart';
 import 'package:roof_admin_panel/features/guests/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/widgets/table/custom_table.dart';
 import 'package:roof_admin_panel/product/widgets/table/header_item.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -22,9 +23,8 @@ class GuestsTable extends ConsumerWidget with _TableColumnBuilderMixin {
     return CustomTable(
       onSelectionChanged: (added, removed) =>
           _GuestsTableUtils(added, removed, ref).onSelectionChanged(),
-      // onCellTap: (p0) => Log.debug('Cell Tapped: $p0'),
       source: ref.watch(guestsTableSourceProvider),
-      columns: buildColumns(),
+      columns: buildColumns(context),
     );
   }
 }
@@ -41,7 +41,7 @@ mixin _TableColumnBuilderMixin {
   ];
 
   ///
-  List<GridColumn> buildColumns() {
+  List<GridColumn> buildColumns(BuildContext context) {
     return _tableNames.map(
       (e) {
         final bool visibility;
@@ -57,7 +57,11 @@ mixin _TableColumnBuilderMixin {
           label: ColumnTitle(
             title: e.toLocale,
           ),
-          columnWidthMode: ColumnWidthMode.fill,
+          columnWidthMode: context.responsiveSelector(
+            mobile: ColumnWidthMode.auto,
+            tablet: ColumnWidthMode.auto,
+            desktop: ColumnWidthMode.fill,
+          ),
           allowEditing: false,
         );
       },
