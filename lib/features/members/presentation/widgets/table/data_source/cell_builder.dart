@@ -1,4 +1,5 @@
 import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/constant_values.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -68,7 +69,7 @@ mixin CellBuilder {
 
         return _cell(
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const AppPadding.horizontalxsSymmetric(),
             child: MentorshipWidget(value),
           ),
         );

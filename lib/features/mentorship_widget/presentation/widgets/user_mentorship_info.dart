@@ -53,7 +53,7 @@ class UserMentorshipInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, c) {
+      builder: (context, constraints) {
         return InkWell(
           borderRadius: const AppBorderRadius.large(),
           hoverColor: AppColors.secondaryColor[10],
@@ -61,7 +61,6 @@ class UserMentorshipInfo extends StatelessWidget {
           child: Padding(
             padding: const AppPadding.xxsmallOnlyPadding(right: true),
             child: Row(
-              // mainAxisSize: MainAxisSize.min,
               spacing: SpacingSizes.extraSmall,
               children: [
                 Avatar(
@@ -70,10 +69,11 @@ class UserMentorshipInfo extends StatelessWidget {
                 ),
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxWidth: c.maxWidth * 0.5,
+                    maxWidth: constraints.maxWidth * 0.5,
                   ),
                   child: Text(
                     user.mentor?.name ?? "",
+                    maxLines: 1,
                     style: context.textTheme.labelLarge?.copyWith(
                       color: AppColors.secondaryColor[90],
                     ),

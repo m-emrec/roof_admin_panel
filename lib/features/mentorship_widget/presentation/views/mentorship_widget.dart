@@ -9,7 +9,7 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_i
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/pop-up-listr/mentorship_pop_up_list.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/user_mentorship_info.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
@@ -55,7 +55,7 @@ class MentorshipWidget extends ConsumerWidget {
           return _MentorshipWidgetEmptyState(roles: roles);
         }
         if (_shouldShowMentorshipList(data)) {
-          return MemberPopupList(
+          return MentorshipPopupList(
             user: data,
           );
         } else {

@@ -5,12 +5,12 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/base_use
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentat_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/mentor_info.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/data/models/user_info_model.dart';
-import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/member-pop-%C4%B1list/mentor_pop_up_list.dart';
+import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/pop-up-listr/mentorship_pop_up_list.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// A widget that displays a horizontal stack of member avatars with an optional count indicator.
 ///
-/// [MemberPopupList] is used as the clickable trigger for the [MemberPopupList] popup menu.
+/// [MentorshipPopupList] is used as the clickable trigger for the [MentorshipPopupList] popup menu.
 /// It visually summarizes a group of users (e.g., mentats or mentors) using their profile pictures
 /// in a compact, overlapping layout.
 ///
@@ -34,7 +34,7 @@ import 'package:roof_admin_panel/product/widgets/avatar.dart';
 /// Typically used in mentor or mentat UIs to represent assigned members at a glance.
 ///
 /// See also:
-/// - [MemberPopupList]: The parent widget that wraps this button in a popup menu.
+/// - [MentorshipPopupList]: The parent widget that wraps this button in a popup menu.
 /// - [Avatar]: Used for rendering each member's profile image.
 class AvatarStackButton extends StatelessWidget {
   ///
@@ -55,6 +55,9 @@ class AvatarStackButton extends StatelessWidget {
   /// This is used to ensure that the button does not become too wide.
   int get _maxMembers => 5;
 
+  MentatInfo get _mentat => user as MentatInfo;
+  MentorInfo get _mentor => user as MentorInfo;
+
   /// The number of members to display on the button.
   /// If the list exceeds [_maxMembers], it will be capped at that number.
   /// Otherwise, it returns the actual length of the list.
@@ -63,13 +66,13 @@ class AvatarStackButton extends StatelessWidget {
   int get length {
     int length = 0;
     if (isMentat) {
-      (user as MentatInfo).mentors.length > _maxMembers
+      _mentat.mentors.length > _maxMembers
           ? length = _maxMembers
-          : length = (user as MentatInfo).mentors.length;
+          : length = _mentat.mentors.length;
     } else {
-      (user as MentorInfo).members.length > _maxMembers
+      _mentor.members.length > _maxMembers
           ? length = _maxMembers
-          : length = (user as MentorInfo).members.length;
+          : length = _mentor.members.length;
     }
 
     return length;
@@ -107,9 +110,9 @@ class AvatarStackButton extends StatelessWidget {
 
   List<UserInfoModel?> get members {
     if (isMentat) {
-      return (user as MentatInfo).mentors;
+      return _mentat.mentors;
     } else {
-      return (user as MentorInfo).members;
+      return _mentor.members;
     }
   }
 
@@ -121,9 +124,27 @@ class AvatarStackButton extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
+          if (!isMentat && _mentor.mentat?.uid != null)
+            Positioned(
+              left: _userAvatarOffset(0),
+              child: DecoratedBox(
+                position: DecorationPosition.foreground,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.red,
+                    width: 2,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: Avatar(
+                  imageUrl: _mentor.mentat?.imageUrl,
+                  radius: _avatarRadius,
+                ),
+              ),
+            ),
           ...members.getRange(0, length).map((e) {
             return Positioned(
-              left: _userAvatarOffset(members.indexOf(e)),
+              left: _userAvatarOffset(members.indexOf(e) + 1),
               child: Avatar(
                 imageUrl: e?.imageUrl,
                 radius: _avatarRadius,
