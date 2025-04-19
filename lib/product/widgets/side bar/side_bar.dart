@@ -12,7 +12,6 @@ import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/account_settings_route.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
-import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_control_button.dart';
@@ -59,7 +58,7 @@ class _SideBarState extends State<SideBar>
           children: [
             SideBarControlButton(animationController: animationController),
             Column(
-              spacing: SpacingSizes.extraSmall,
+              // spacing: SpacingSizes.extraSmall,
               children: [
                 SideBarUserAvatar(),
                 ...SideBarItemsBuilder.create(context),

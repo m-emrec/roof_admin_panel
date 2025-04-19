@@ -27,16 +27,19 @@ final class _SideBarTheme {
       SideBarThemeExtension(
         expandedWidth: 200,
         collapsedWidth: 64,
-        backgroundColor: AppColors.backgroundColor[80],
+        backgroundColor: AppColors.primaryColor[80],
         iconSize: IconSizes.small,
-        selectedItemColor: AppColors.backgroundColor[40],
+        selectedItemColor: AppColors.backgroundColor[80],
         unSelectedItemColor: Colors.transparent,
-        textStyle: TextStyles().textTheme.labelMedium,
+        textStyle: TextStyles().textTheme.labelMedium?.copyWith(
+              color: AppColors.neutralGray500[10],
+            ),
+        selectedTextStyle: TextStyles().textTheme.labelMedium,
         boxShadow: [
           BoxShadow(
-            color: AppColors.backgroundColor[30] ?? Colors.transparent,
+            color: AppColors.secondaryColor[50] ?? Colors.transparent,
             blurRadius: 2,
-            offset: const Offset(0.5, 0),
+            offset: const Offset(1, 0),
           ),
         ],
       );

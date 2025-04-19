@@ -27,7 +27,15 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return Expanded(child: MembersTable());
+            return Expanded(
+              child: Padding(
+                padding: AppPadding.verticalMSymmetric(),
+                child: Card(
+                  color: context.theme.scaffoldBackgroundColor,
+                  child: MembersTable(),
+                ),
+              ),
+            );
           },
           skeletonWidget: const _LoadingView(),
           skeletonType: SkeletonType.single,

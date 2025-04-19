@@ -33,5 +33,5 @@ final class SignInRoute extends BaseRouteClass {
       (context, state) => const SignIn();
 
   @override
-  String get path => "/sign-in";
+  String get path => '/giris-yap';
 }

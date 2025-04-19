@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/error_manager.dart';
 import 'package:core/resources/use_case.dart';
@@ -56,6 +57,7 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
         desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
       ),
     );
+    Log.debug(state.value!.first.toJson());
   }
 
   /// This method fetches the next 20 users from the use case.

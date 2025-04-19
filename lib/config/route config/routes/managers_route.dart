@@ -20,7 +20,7 @@ final class ManagersRoute extends BaseRouteClass {
             child: const ManagersView(),
             necessaryPermissions: [
               Permissions.canReadManagers,
-              Permissions.canRead
+              Permissions.canRead,
             ],
           ).visibleOrPermissionInfo;
 

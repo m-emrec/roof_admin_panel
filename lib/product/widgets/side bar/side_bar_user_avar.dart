@@ -50,7 +50,15 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
       valueListenable: CurrentUser.instance.managerModelNotifier,
       builder: (context, user, child) => ListTile(
         onTap: () => context.goNamed(AccountSettingsRoute().name),
-        title: Text(user.name, style: context.textTheme.labelMedium),
+        title: Text(
+          user.name,
+          style: SideBarController()
+                  .isItemSelected(context, AccountSettingsRoute().path)
+              ? context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.selectedTextStyle
+              : context.theme.extension<SideBarThemeExtension>()?.textStyle,
+        ),
         leading: Avatar(
           imageUrl: user.imageUrl,
           radius: 12,

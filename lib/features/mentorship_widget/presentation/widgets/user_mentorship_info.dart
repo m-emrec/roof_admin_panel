@@ -8,11 +8,10 @@ import 'package:roof_admin_panel/features/mentorship_widget/data/models/member_i
 import 'package:roof_admin_panel/product/utility/extensions/animated_text_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
-/// A widget that displays the user's mentorship counterpart (either their mentor or mentat) in a compact row.
+/// A widget that displays the user's mentorship counterpart (their mentor) in a compact row.
 ///
 /// `UserMentorshipInfo` is designed to show the related user's avatar and name based on the role of the current user:
 /// - If the current user is a **member** or **admin**, it shows their **mentor**.
-/// - If the current user is a **mentor**, it shows their assigned **mentat**.
 ///
 /// This widget is typically used in mentorship-related UIs to provide a quick visual reference to the user's
 /// direct counterpart in the mentoring relationship.

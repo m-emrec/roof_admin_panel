@@ -20,9 +20,13 @@ mixin _TableColumnBuilderMixin {
         switch (e) {
           case MemberTableNames.memberName:
             columnWidthMode = ColumnWidthMode.auto;
+          case MemberTableNames.memberNumber:
+            columnWidthMode = ColumnWidthMode.fitByColumnName;
 
           case MemberTableNames.mentor:
             columnWidthMode = ColumnWidthMode.none;
+
+          ///
           // ignore: no_default_cases
           default:
             columnWidthMode = context.responsiveSelector(

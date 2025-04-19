@@ -1,9 +1,7 @@
-import 'package:core/extensions/context_extension.dart';
 import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
