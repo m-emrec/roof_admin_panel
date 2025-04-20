@@ -1,4 +1,3 @@
-import 'package:core/core.dart';
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,47 +13,49 @@ import 'package:roof_admin_panel/features/add-mentor/presentation/providers/add_
 import 'package:roof_admin_panel/features/add-mentor/presentation/providers/selection_notifier.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 
-final _serviceProvider = Provider<AddMentorService>((ref) {
+final _serviceProvider = Provider.autoDispose<AddMentorService>((ref) {
   return AddMentorService();
 });
 
-final _repositoryProvider = Provider<AddMentorRepository>((ref) {
+final _repositoryProvider = Provider.autoDispose<AddMentorRepository>((ref) {
   return AddMentorRepositoryImpl(ref.read(_serviceProvider));
 });
 
-final _fetchMentorsUseCaseProvider = Provider<FetchMentorsUseCase>((ref) {
+final _fetchMentorsUseCaseProvider =
+    Provider.autoDispose<FetchMentorsUseCase>((ref) {
   return FetchMentorsUseCase(
     ref.read(_repositoryProvider),
   );
 });
 
 final _fetchMentorsWithoutMentatUseCaseProvider =
-    Provider<FetchMentorsWithoutMentatUseCase>((ref) {
+    Provider.autoDispose<FetchMentorsWithoutMentatUseCase>((ref) {
   return FetchMentorsWithoutMentatUseCase(
     ref.read(_repositoryProvider),
   );
 });
 
 final _fetchMembersWithoutMentorUseCaseProvider =
-    Provider<FetchMembersWithoutMentorUseCase>((ref) {
+    Provider.autoDispose<FetchMembersWithoutMentorUseCase>((ref) {
   return FetchMembersWithoutMentorUseCase(
     ref.read(_repositoryProvider),
   );
 });
 
-final _fetchMentatsUseCaseProvider = Provider<FetchMentatsUseCase>((ref) {
+final _fetchMentatsUseCaseProvider =
+    Provider.autoDispose<FetchMentatsUseCase>((ref) {
   return FetchMentatsUseCase(
     ref.read(_repositoryProvider),
   );
 });
 
-final shouldFetchMentatsProvider = StateProvider<bool>((ref) {
+final shouldFetchMentatsProvider = StateProvider.autoDispose<bool>((ref) {
   return false;
 });
 
 /// This provider is used to fetch the list of users for the add mentor dialog.
 /// It uses the [AddMentorUserListNotifier] to manage the state of the list.
-final addMentorUsersNotifierProvider = StateNotifierProvider.family<
+final addMentorUsersNotifierProvider = StateNotifierProvider.autoDispose.family<
     AddMentorUserListNotifier,
     AsyncValue<List<AddMentorModel>>,
     List<Role?>>((ref, role) {
@@ -81,7 +82,8 @@ final selectionNotifierProvider =
 
 /// This provider is used to determine if a user is selected based on their UID.
 /// It uses the [selectionNotifierProvider] to check the selection state.
-final isSelectedProvider = StateProvider.family<bool, String>((ref, uid) {
+final isSelectedProvider =
+    StateProvider.autoDispose.family<bool, String>((ref, uid) {
   final state = ref.watch(selectionNotifierProvider);
   if (state == null) return false;
 
