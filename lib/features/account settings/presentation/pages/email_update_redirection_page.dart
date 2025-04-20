@@ -7,7 +7,7 @@ import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/main-shell-route/main_shell_route.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
@@ -35,7 +35,7 @@ class EmailUpdateRedirectionPage extends ConsumerWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.data is DataSuccess) {
-              context.goNamed(const MainRoute().name);
+              context.goNamed(const MainShellRoute().name);
               return Center(
                 child:
                     Text('Email updated successfully redirecting... || $uid'),
@@ -83,7 +83,7 @@ class _Error extends StatelessWidget {
                     color: AppColors.backgroundColor,
                   ),
                   onPressed: () {
-                    context.goNamed(const MainRoute().name);
+                    context.goNamed(const MainShellRoute().name);
                   },
                   label: const Text('Go Home'),
                 ),

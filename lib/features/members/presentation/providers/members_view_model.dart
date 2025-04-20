@@ -57,7 +57,6 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
         desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
       ),
     );
-    Log.debug(state.value!.first.toJson());
   }
 
   /// This method fetches the next 20 users from the use case.

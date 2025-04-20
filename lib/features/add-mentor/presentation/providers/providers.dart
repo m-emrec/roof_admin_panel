@@ -1,0 +1,84 @@
+import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/logger/logger.dart';
+import 'package:core/utils/models/user_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/add-mentor/data/datasources/add_mentor_service.dart';
+import 'package:roof_admin_panel/features/add-mentor/data/models/add_mentor_model.dart';
+import 'package:roof_admin_panel/features/add-mentor/data/repositories/add_mentor_repository_impl.dart';
+import 'package:roof_admin_panel/features/add-mentor/domain/repositories/add_mentor_repository.dart';
+import 'package:roof_admin_panel/features/add-mentor/domain/usecases/fetch_member_without_mentor_use_case.dart';
+import 'package:roof_admin_panel/features/add-mentor/domain/usecases/fetch_mentats_use_case.dart';
+import 'package:roof_admin_panel/features/add-mentor/domain/usecases/fetch_mentors_use_case.dart';
+import 'package:roof_admin_panel/features/add-mentor/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
+import 'package:roof_admin_panel/features/add-mentor/presentation/providers/add_mentor_users_list_notifier.dart';
+import 'package:roof_admin_panel/features/add-mentor/presentation/providers/selection_notifier.dart';
+import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+
+final _serviceProvider = Provider<AddMentorService>((ref) {
+  return AddMentorService();
+});
+
+final _repositoryProvider = Provider<AddMentorRepository>((ref) {
+  return AddMentorRepositoryImpl(ref.read(_serviceProvider));
+});
+
+final _fetchMentorsUseCaseProvider = Provider<FetchMentorsUseCase>((ref) {
+  return FetchMentorsUseCase(
+    ref.read(_repositoryProvider),
+  );
+});
+
+final _fetchMentorsWithoutMentatUseCaseProvider =
+    Provider<FetchMentorsWithoutMentatUseCase>((ref) {
+  return FetchMentorsWithoutMentatUseCase(
+    ref.read(_repositoryProvider),
+  );
+});
+
+final _fetchMembersWithoutMentorUseCaseProvider =
+    Provider<FetchMembersWithoutMentorUseCase>((ref) {
+  return FetchMembersWithoutMentorUseCase(
+    ref.read(_repositoryProvider),
+  );
+});
+
+final _fetchMentatsUseCaseProvider = Provider<FetchMentatsUseCase>((ref) {
+  return FetchMentatsUseCase(
+    ref.read(_repositoryProvider),
+  );
+});
+
+final addMentorUsersNotifierProvider = StateNotifierProvider.family.autoDispose<
+    AddMentorUserListNotifier,
+    AsyncValue<List<AddMentorModel>>,
+    List<Role?>>((ref, role) {
+  return AddMentorUserListNotifier(
+    fetchMentorsUseCase: ref.read(_fetchMentorsUseCaseProvider),
+    fetchMentorsWithoutMentatUseCase:
+        ref.read(_fetchMentorsWithoutMentatUseCaseProvider),
+    fetchMembersWithoutMentorUseCase:
+        ref.read(_fetchMembersWithoutMentorUseCaseProvider),
+    fetchMentatsUseCase: ref.read(_fetchMentatsUseCaseProvider),
+  )..setRole(role);
+});
+
+final selectionNotifierProvider =
+    StateNotifierProvider<SelectionNotifier, UserModel?>((ref) {
+  return SelectionNotifier();
+});
+
+final isSelectedProvider = StateProvider.family<bool, String>((ref, uid) {
+  final state = ref.watch(selectionNotifierProvider);
+  if (state == null) return false;
+
+  final roles = state.role;
+
+  if (roles?.isMentat ?? false) {
+    return state.mentors != null && state.mentors!.contains(uid);
+  } else if (roles?.isMentor ?? false) {
+    return state.members != null && state.members!.contains(uid);
+  } else {
+    /// This is the case for a member or admin
+    return state.mentorId != null && state.mentorId == uid;
+  }
+});
