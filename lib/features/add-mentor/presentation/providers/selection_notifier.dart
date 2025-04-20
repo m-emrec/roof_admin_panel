@@ -1,12 +1,15 @@
 import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/logger/logger.dart';
 
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 
 class SelectionNotifier extends StateNotifier<UserModel?> {
-  SelectionNotifier() : super(null);
-
+  SelectionNotifier(
+    this.shouldSelectMentat,
+  ) : super(null);
+  final bool shouldSelectMentat;
   List<Role?> _roles = [];
 
   void initializeState(UserModel user) {
@@ -16,11 +19,15 @@ class SelectionNotifier extends StateNotifier<UserModel?> {
 
   void select(String uids) {
     if (state == null) return;
-
     if (_roles.isMentat) {
       _selectMentorsToMentat(uids);
     } else if (_roles.isMentor) {
-      _selectMembersToMentor(uids);
+      if (shouldSelectMentat) {
+        _selectMentatToMentor(uids);
+      } else {
+        /// This is the case for a mentor
+        _selectMembersToMentor(uids);
+      }
     } else {
       /// This is the case for a member or admin
       _selectMentorToMember(uids);

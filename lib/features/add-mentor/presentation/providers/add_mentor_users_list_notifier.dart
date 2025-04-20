@@ -14,6 +14,7 @@ import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart'
 class AddMentorUserListNotifier
     extends StateNotifier<AsyncValue<List<AddMentorModel>>> {
   AddMentorUserListNotifier({
+    required this.shouldFetchMentatsProvider,
     required FetchMentorsUseCase fetchMentorsUseCase,
     required FetchMentorsWithoutMentatUseCase fetchMentorsWithoutMentatUseCase,
     required FetchMembersWithoutMentorUseCase fetchMembersWithoutMentorUseCase,
@@ -28,6 +29,7 @@ class AddMentorUserListNotifier
   final FetchMentorsWithoutMentatUseCase _fetchMentorsWithoutMentatUseCase;
   final FetchMembersWithoutMentorUseCase _fetchMembersWithoutMentorUseCase;
   final FetchMentatsUseCase _fetchMentatsUseCase;
+  final bool shouldFetchMentatsProvider;
 
   List<Role?> _role = [];
   void setRole(List<Role?> role) {
@@ -44,7 +46,11 @@ class AddMentorUserListNotifier
     } else if (_role.isMentat) {
       await _fetchMentorsWithoutMentat();
     } else if (_role.isMentor) {
-      await _fetchMembersWithoutMentor();
+      if (shouldFetchMentatsProvider) {
+        await _fetchMentats();
+      } else {
+        await _fetchMembersWithoutMentor();
+      }
     } else {
       await _fetchMentors();
     }

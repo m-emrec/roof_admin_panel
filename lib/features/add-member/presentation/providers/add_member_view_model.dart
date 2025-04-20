@@ -5,7 +5,6 @@ import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_membe
 import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentats_use_case.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentors_use_case.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
-import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
 class AddMemberViewModel extends ChangeNotifier {
@@ -38,6 +37,7 @@ class AddMemberViewModel extends ChangeNotifier {
   ///  Sets the role for the user
   void setRole(Role role) {
     user = user.copyWith(role: [role]);
+
     notifyListeners();
   }
 
@@ -57,71 +57,27 @@ class AddMemberViewModel extends ChangeNotifier {
   /// rest of the values will be null
   ///
   /// ...
-  void roleBasedAction(List<String> value) {
-    switch (roleBasedActionName) {
-      case RoleBasedActionNames.setMentorId:
-        user = UserModel(mentorId: value.first, role: user.role);
-
-      case RoleBasedActionNames.setMentatId:
-        user = UserModel(
-          role: user.role,
-          mentatId: value.first,
-        );
-
-      case RoleBasedActionNames.setMembers:
-        user = UserModel(
-          role: user.role,
-          members: value,
-        );
-
-      case RoleBasedActionNames.setMentors:
-        user = UserModel(
-          role: user.role,
-          mentors: value,
-        );
+  void roleBasedAction(UserModel userModel) {
+    if (user.role?.contains(Role.member) == true ||
+        user.role?.contains(Role.admin) == true) {
+      user = user.copyWith(
+        mentorId: userModel.mentorId,
+        role: user.role,
+      );
+    } else if (user.role?.contains(Role.mentat) == true) {
+      user = user.copyWith(
+        mentors: userModel.mentors,
+        role: user.role,
+      );
+    } else if (user.role?.contains(Role.mentor) == true) {
+      user = user.copyWith(
+        members: userModel.members,
+        mentatId: userModel.mentatId,
+        role: user.role,
+      );
     }
+
     notifyListeners();
-  }
-
-  /// Sets the roleBasedActionName
-  void _setRoleBaseActionName(RoleBasedActionNames val) {
-    roleBasedActionName = val;
-    notifyListeners();
-  }
-
-  /// Fetches the members without mentor
-  Future<List<UserModel>> fetchMembersWithoutMentor() async {
-    _setRoleBaseActionName(RoleBasedActionNames.setMembers);
-
-    final dataState = await _fetchMembersWithoutMentorUseCase(const NoParams());
-    await Toast.toastDataStateMessageWrapper(dataState: dataState);
-    return dataState.resultData ?? [];
-  }
-
-  /// Fetches the  mentors
-  Future<List<UserModel>> fetchMentors() async {
-    _setRoleBaseActionName(RoleBasedActionNames.setMentorId);
-    final dataState = await _fetchMentorsUseCase(const NoParams());
-    await Toast.toastDataStateMessageWrapper(dataState: dataState);
-    return dataState.resultData ?? [];
-  }
-
-  /// Fetches the mentats
-  Future<List<UserModel>> fetchMentats() async {
-    _setRoleBaseActionName(RoleBasedActionNames.setMentatId);
-
-    final dataState = await _fetchMentatsUseCase(const NoParams());
-    await Toast.toastDataStateMessageWrapper(dataState: dataState);
-    return dataState.resultData ?? [];
-  }
-
-  /// Fetches the mentors without mentat
-  Future<List<UserModel>> fetchMentorsWithoutMentat() async {
-    _setRoleBaseActionName(RoleBasedActionNames.setMentors);
-
-    final dataState = await _fetchMentorsWithoutMentatUseCase(const NoParams());
-    await Toast.toastDataStateMessageWrapper(dataState: dataState);
-    return dataState.resultData ?? [];
   }
 
   UserModel _setUser(UserModel userModel) {

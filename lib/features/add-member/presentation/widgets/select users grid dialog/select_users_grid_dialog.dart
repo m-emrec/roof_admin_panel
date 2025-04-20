@@ -44,7 +44,7 @@ class _SelectsUsersGridDialogState
   final List<String> selectedUserList = [];
 
   void onTapAdd() {
-    ref.read(addMemberProvider).roleBasedAction(selectedUserList);
+    // ref.read(addMemberProvider).roleBasedAction(selectedUserList);
     CustomAlertDialog.hideAlertDialog(context);
   }
 
