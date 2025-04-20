@@ -9,9 +9,22 @@ import 'package:roof_admin_panel/product/utility/extensions/animated_text_extens
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
+/// A widget that represents an item in the "Select Users" dialog.
+///
+/// This widget is used to display user data
+/// within the dialog for selecting users.
+///
+/// - [data]: The user data to be displayed in the item.
+/// - [role]: The role of the user, which determines the appearance and behavior of the item.
 class SelectUsersDialogItem extends ConsumerWidget {
+  /// Creates an instance of [SelectUsersDialogItem].
+  ///
   const SelectUsersDialogItem(this.data, this.role, {super.key});
+
+  /// [data] contains the details of the mentor being added.
   final AddMentorModel data;
+
+  /// [role] is a list of roles associated with the user, where each role can be nullable.
   final List<Role?> role;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

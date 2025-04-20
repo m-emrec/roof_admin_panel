@@ -1,5 +1,4 @@
 import 'package:core/utils/constants/enums/roles.dart';
-import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/add-mentor/data/datasources/add_mentor_service.dart';
@@ -48,6 +47,8 @@ final _fetchMentatsUseCaseProvider = Provider<FetchMentatsUseCase>((ref) {
   );
 });
 
+/// This provider is used to fetch the list of users for the add mentor dialog.
+/// It uses the [AddMentorUserListNotifier] to manage the state of the list.
 final addMentorUsersNotifierProvider = StateNotifierProvider.family.autoDispose<
     AddMentorUserListNotifier,
     AsyncValue<List<AddMentorModel>>,
@@ -62,11 +63,16 @@ final addMentorUsersNotifierProvider = StateNotifierProvider.family.autoDispose<
   )..setRole(role);
 });
 
+/// This provider is used to manage the selection of users in the add mentor
+/// dialog.
+/// It uses the [SelectionNotifier] to handle the selection state.
 final selectionNotifierProvider =
     StateNotifierProvider<SelectionNotifier, UserModel?>((ref) {
   return SelectionNotifier();
 });
 
+/// This provider is used to determine if a user is selected based on their UID.
+/// It uses the [selectionNotifierProvider] to check the selection state.
 final isSelectedProvider = StateProvider.family<bool, String>((ref, uid) {
   final state = ref.watch(selectionNotifierProvider);
   if (state == null) return false;

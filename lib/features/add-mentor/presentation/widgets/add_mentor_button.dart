@@ -5,13 +5,35 @@ import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/select
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
+/// A widget that displays a button for adding a mentor or other roles based on the given user's role.
+///
+/// This widget is designed to handle user role-based actions and requires a [user] and a [selectedUsers] notifier.
+///
+/// - [user]: The user whose role determines the button's label and functionality. If null, the button will have no label.
+/// - [selectedUsers]: A [ValueNotifier] used to notify the parent widget of the selected user.
+///
+/// When the button is pressed, it opens a dialog ([SelectUsersDialog]) to select a user.
+/// If a user is selected, the [selectedUsers] notifier is updated with the selected user.
+///
+/// The button's label is determined by the user's role:
+/// - If the user is a "Mentat", the label will be "Add mentor".
+/// - If the user is a "Mentor", the label will be "Add mentat/member".
+/// - For other roles, the label defaults to "Add mentor".
+///
 class AddMentorButton extends ConsumerWidget {
+  /// Creates an instance of [AddMentorButton].
+  ///
   const AddMentorButton({
     required this.selectedUsers,
+    required this.user,
     super.key,
-    this.user,
   });
-  final UserModel? user;
+
+  /// A nullable [UserModel] representing the user associated with this widget.
+  final UserModel user;
+
+  /// A [ValueNotifier] that holds the currently selected [UserModel].
+  /// This allows for reactive updates when the selected user changes.
   final ValueNotifier<UserModel> selectedUsers;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,11 +53,9 @@ class AddMentorButton extends ConsumerWidget {
   }
 
   String get getLabel {
-    if (user == null) {
-      return "";
-    } else if (user!.isMentat) {
+    if (user.isMentat) {
       return "Add mentor";
-    } else if (user!.isMentor) {
+    } else if (user.isMentor) {
       return "Add mentat/member";
     } else {
       return "Add mentor";
