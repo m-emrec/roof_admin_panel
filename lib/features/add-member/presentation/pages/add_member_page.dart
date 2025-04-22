@@ -7,7 +7,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/pages/add_member_page_mixin.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/member_number_field.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/member_ship_duration_drop_down.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/widgets/role_dropdown_and_role_based_button.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/role_dropdown_and_add_mentor_button.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
@@ -63,7 +63,7 @@ class _AddMemberPageState extends State<AddMemberPage> with AddMemberPageMixin {
                   controller: phoneNumberController,
                   phoneCodeController: phoneCodeController,
                 ),
-                const RoleDropDownAndRoleBasedButton(),
+                const RoleDropdownAndAddMentorButton(),
                 GenderDropDown(
                   controller: genderController,
                 ),

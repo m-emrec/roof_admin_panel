@@ -1,31 +1,19 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
-import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_members_without_mentor_use_case.dart';
-import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentats_use_case.dart';
-import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentors_use_case.dart';
-import 'package:roof_admin_panel/features/add-member/domain/usecases/fetch_mentors_without_mentat_use_case.dart';
 
 ///
 class AddMemberViewModel extends ChangeNotifier {
   ///
   AddMemberViewModel({
     required AddNewMemberUseCase addNewUserUseCase,
-    required FetchMembersWithoutMentorUseCase fetchMembersWithoutMentorUseCase,
-    required FetchMentorsWithoutMentatUseCase fetchMentorsWithoutMentatUseCase,
-    required FetchMentatsUseCase fetchMentatsUseCase,
-    required FetchMentorsUseCase fetchMentorsUseCase,
-  })  : _addNewUserUseCase = addNewUserUseCase,
-        _fetchMembersWithoutMentorUseCase = fetchMembersWithoutMentorUseCase,
-        _fetchMentorsWithoutMentatUseCase = fetchMentorsWithoutMentatUseCase,
-        _fetchMentatsUseCase = fetchMentatsUseCase,
-        _fetchMentorsUseCase = fetchMentorsUseCase;
+  }) : _addNewUserUseCase = addNewUserUseCase;
 
-  final FetchMembersWithoutMentorUseCase _fetchMembersWithoutMentorUseCase;
-  final FetchMentorsWithoutMentatUseCase _fetchMentorsWithoutMentatUseCase;
-  final FetchMentatsUseCase _fetchMentatsUseCase;
-  final FetchMentorsUseCase _fetchMentorsUseCase;
   final AddNewMemberUseCase _addNewUserUseCase;
+
+  ValueNotifier<UserModel> get selectedUsers => ValueNotifier(
+        user,
+      );
 
   /// This variable holds the user data
   ///
@@ -58,21 +46,31 @@ class AddMemberViewModel extends ChangeNotifier {
   ///
   /// ...
   void roleBasedAction(UserModel userModel) {
+    Log.debug("RoleBasedAction: ${userModel}");
+
     if (user.role?.contains(Role.member) == true ||
         user.role?.contains(Role.admin) == true) {
       user = user.copyWith(
         mentorId: userModel.mentorId,
+        mentatId: "",
+        members: [],
+        mentors: [],
         role: user.role,
       );
     } else if (user.role?.contains(Role.mentat) == true) {
       user = user.copyWith(
         mentors: userModel.mentors,
+        mentatId: "",
+        members: [],
+        mentorId: "",
         role: user.role,
       );
     } else if (user.role?.contains(Role.mentor) == true) {
       user = user.copyWith(
         members: userModel.members,
         mentatId: userModel.mentatId,
+        mentorId: "",
+        mentors: [],
         role: user.role,
       );
     }
@@ -94,7 +92,7 @@ class AddMemberViewModel extends ChangeNotifier {
   /// Adds a new user
   Future<DataState<UserModel>> addNewUser(UserModel userModel) async {
     user = _setUser(userModel);
-
+    Log.info(user.toJson());
     final dataState = await _addNewUserUseCase(user);
     return dataState;
   }

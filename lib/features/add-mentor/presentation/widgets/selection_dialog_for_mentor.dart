@@ -1,4 +1,5 @@
 import 'package:core/extensions/media_query_extension.dart';
+import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,9 +51,9 @@ class _MentorState extends ConsumerState<SelectionDialogForMentor>
       children: [
         TabBar(
           controller: tabController,
-          tabs: const [
-            Tab(text: "Members"),
-            Tab(text: "Mentats"),
+          tabs: [
+            Tab(text: Role.member.localizedText("")),
+            Tab(text: Role.mentat.localizedText("")),
           ],
         ),
         AsyncDataBuilder(
