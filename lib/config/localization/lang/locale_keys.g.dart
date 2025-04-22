@@ -344,6 +344,11 @@ abstract class  LocaleKeys {
   static const memberDetailView_personalInfo_hobbies = 'memberDetailView.personalInfo.hobbies';
   static const memberDetailView_personalInfo = 'memberDetailView.personalInfo';
   static const memberDetailView = 'memberDetailView';
+  static const addMentor_buttonLabel_addMentor = 'addMentor.buttonLabel.addMentor';
+  static const addMentor_buttonLabel_addMentat = 'addMentor.buttonLabel.addMentat';
+  static const addMentor_buttonLabel_addMentatAndMember = 'addMentor.buttonLabel.addMentatAndMember';
+  static const addMentor_buttonLabel = 'addMentor.buttonLabel';
+  static const addMentor = 'addMentor';
   static const notFoundPage_pageTitle = 'notFoundPage.pageTitle';
   static const notFoundPage_pageNotFound = 'notFoundPage.pageNotFound';
   static const notFoundPage_goHome = 'notFoundPage.goHome';

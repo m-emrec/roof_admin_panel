@@ -232,7 +232,7 @@
     "guests": "Misafirler",
     "logout": "Çıkış Yap",
     "accountSettings": "Hesap Ayarları",
-    "managers": "Yöneticiler"
+    "managers": "Kullanıcılar"
 },
   "feedback":{
     "pageTitle": "Geri Bildirimler",
@@ -312,13 +312,13 @@
     }
 },
 "managersView":{
-    "pageTitle": "Yöneticiler",
-    "addManager": "Yönetici Ekle",
+    "pageTitle": "Kullanıcılar",
+    "addManager": "Kullanıcı Ekle",
     "addNewRole": "Yeni Rol Ekle",
-    "noManager": "Henüz yönetici yok.",
-    "updateManager":"Yöneticiyi Düzenle",
-    "deleteManager":"Yöneticiyi Sil",
-    "deleteManagerConfirmation":"Bu ({}) yöneticiyi silmek istediğinizden emin misiniz?"
+    "noManager": "Henüz kullanıcı yok.",
+    "updateManager":"Kullanıcıyı Düzenle",
+    "deleteManager":"Kullanıcıyı Sil",
+    "deleteManagerConfirmation":"({}) isimli kullanıcıyı silmek istediğinizden emin misiniz?"
 
 },
 "accountSettingView":{
@@ -391,7 +391,13 @@
         "hobbies":"Hobiler"
     }
     },
-
+"addMentor":{
+    "buttonLabel":{
+        "addMentor": "Mentör Ekle",
+        "addMentat": "Mentat Ekle",
+        "addMentatAndMember": "Mentat / Üye Ekle"
+    }
+},
 "notFoundPage":{
     "pageTitle": "404",
     "pageNotFound": "Aradığın sayfa bulunamadı.",

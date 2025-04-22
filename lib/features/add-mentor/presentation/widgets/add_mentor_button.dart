@@ -1,6 +1,8 @@
 import 'package:core/utils/models/user_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/select_users_dialog.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
@@ -54,11 +56,11 @@ class AddMentorButton extends ConsumerWidget {
 
   String get getLabel {
     if (user.isMentat) {
-      return "Add mentor";
+      return LocaleKeys.addMentor_buttonLabel_addMentor.tr();
     } else if (user.isMentor) {
-      return "Add mentat/member";
+      return LocaleKeys.addMentor_buttonLabel_addMentatAndMember.tr();
     } else {
-      return "Add mentor";
+      return LocaleKeys.addMentor_buttonLabel_addMentor.tr();
     }
   }
 }
