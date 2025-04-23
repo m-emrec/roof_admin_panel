@@ -44,6 +44,7 @@ class AddMentorButton extends ConsumerWidget {
         await CustomAlertDialog.showAlertDialog<UserModel>(
           context: context,
           content: SelectUsersDialog(user),
+          forceOpen: true,
         ).then((value) {
           if (value != null) {
             selectedUsers.value = value;

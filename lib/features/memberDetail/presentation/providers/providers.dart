@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/datasources/membership_detail_service.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/repositories/mebership_detail_repository_impl.dart';
@@ -33,6 +35,11 @@ final _editMembershipDetailUseCaseProvider =
 /// **Default** value is `false`.
 final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
   return false;
+});
+
+final mentorListProvider = StateProvider<ValueNotifier<UserModel>>((ref) {
+  return ValueNotifier<UserModel>(
+      ref.watch(membershipDetailNotifierProvider) ?? UserModel());
 });
 
 /// Provider for the [MembershipDetailNotifier].

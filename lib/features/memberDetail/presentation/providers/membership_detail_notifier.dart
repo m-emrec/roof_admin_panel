@@ -62,6 +62,8 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
   ///
   late final ValueNotifier<Role> roleController;
 
+  late final ValueNotifier<UserModel> mentorList;
+
   ///
   late final TextEditingController mentorIdController;
 
@@ -73,6 +75,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
     memberNumberController = TextEditingController(
       text: state?.memberNumber ?? '',
     );
+    mentorList = ValueNotifier(state ?? UserModel());
     membershipStartDateController = TextEditingController(
       text: state?.membershipStartDate?.toString() ?? '',
     );
@@ -104,7 +107,8 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
       memberNumber: model.memberNumber,
       role: [model.role],
     );
-
+    _setMentors();
+    Log.info(state?.toJson());
     DataState.handleDataStateBasedAction(
       await _editMembershipDetailsUseCase(model),
       onSuccess: (_) => Toast.showSuccessToast(
@@ -117,6 +121,35 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
       },
     );
     reset();
+  }
+
+  void _setMentors() {
+    if (state?.role?.contains(Role.member) == true ||
+        state?.role?.contains(Role.admin) == true) {
+      state = state?.copyWith(
+        mentorId: mentorList.value.mentorId,
+        mentatId: "",
+        members: [],
+        mentors: [],
+        role: state?.role,
+      );
+    } else if (state?.role?.contains(Role.mentat) == true) {
+      state = state?.copyWith(
+        mentors: mentorList.value.mentors,
+        mentatId: "",
+        members: [],
+        mentorId: "",
+        role: state?.role,
+      );
+    } else if (state?.role?.contains(Role.mentor) == true) {
+      state = state?.copyWith(
+        members: mentorList.value.members,
+        mentatId: mentorList.value.mentatId,
+        mentorId: "",
+        mentors: [],
+        role: state?.role,
+      );
+    }
   }
 
   /// resets the form fields to their initial values.

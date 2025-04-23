@@ -47,9 +47,10 @@ class CustomAlertDialog<T> extends StatefulWidget {
     required Widget content,
     Widget? title,
     List<Widget>? actions,
+    bool forceOpen = false,
     bool barrierDismissible = false,
   }) async {
-    if (!_isShowing) {
+    if (!_isShowing || forceOpen) {
       _isShowing = true;
       return showDialog<T>(
         barrierDismissible: barrierDismissible,
