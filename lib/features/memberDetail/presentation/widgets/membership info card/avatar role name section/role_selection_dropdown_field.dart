@@ -6,7 +6,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/product/widgets/role_selection_drop_down.dart';
 
 final class RoleSelectionDropdownField
-    extends BaseMembershipInfoField<List<Role?>> {
+    extends BaseMembershipField<List<Role?>> {
   RoleSelectionDropdownField({
     required super.value,
     required this.roleKey,

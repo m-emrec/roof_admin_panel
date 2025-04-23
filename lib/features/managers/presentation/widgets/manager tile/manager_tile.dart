@@ -9,7 +9,7 @@ import 'package:roof_admin_panel/features/managers/presentation/widgets/update_m
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animated_text_extension.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
-import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 part 'manager_tile_trailing.dart';

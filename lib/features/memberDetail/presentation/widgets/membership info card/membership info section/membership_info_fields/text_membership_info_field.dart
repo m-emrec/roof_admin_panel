@@ -5,10 +5,10 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_section.dart';
 
 /// The [TextMembershipInfoField] class is a concrete implementation of
-/// [BaseMembershipInfoField] for displaying and editing simple text-based
+/// [BaseMembershipField] for displaying and editing simple text-based
 /// membership data (e.g., member number, role).
-final class TextMembershipInfoField extends BaseMembershipInfoField<String> {
-  /// A concrete implementation of [BaseMembershipInfoField] for displaying and
+final class TextMembershipInfoField extends BaseMembershipField<String> {
+  /// A concrete implementation of [BaseMembershipField] for displaying and
   /// editing simple text-based membership data (e.g. member number,).
   ///
   /// This class supports both editable and read-only configurations via

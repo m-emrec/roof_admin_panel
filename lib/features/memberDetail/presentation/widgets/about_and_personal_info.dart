@@ -1,12 +1,16 @@
 import 'package:core/extensions/media_query_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about_section.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal%20information%20section/personal_information_section.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/personal-info-section/personal_information_section.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 
 ///
+/// This widget is responsible for displaying the about and personal information
+/// sections of the member detail dialog.
+///
+///
 class AboutAndPersonalInfo extends StatelessWidget {
-  // ignore: public_member_api_docs
+  ///
   const AboutAndPersonalInfo({super.key});
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/config/route%20config/routes/base_route_class.dart';
 import 'package:roof_admin_panel/features/guests/presentation/pages/guests_view.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 
 /// Route of the [GuestsView].
 final class GuestsRoute extends BaseRouteClass {

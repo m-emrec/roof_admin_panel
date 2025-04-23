@@ -3,7 +3,7 @@ part of '../membership_info_section.dart';
 class _MembershipInfoFieldFactory {
   _MembershipInfoFieldFactory._();
 
-  static List<BaseMembershipInfoField<dynamic>> _membershipCardFields(
+  static List<BaseMembershipField<dynamic>> _membershipCardFields(
     WidgetRef ref,
   ) {
     final member = ref.watch(membershipDetailNotifierProvider);

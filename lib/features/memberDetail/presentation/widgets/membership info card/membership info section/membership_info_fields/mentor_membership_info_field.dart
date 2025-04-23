@@ -6,8 +6,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 
-final class MentorMembershipInfoField
-    extends BaseMembershipInfoField<UserModel> {
+final class MentorMembershipInfoField extends BaseMembershipField<UserModel> {
   MentorMembershipInfoField({
     required super.value,
     required this.mentorList,

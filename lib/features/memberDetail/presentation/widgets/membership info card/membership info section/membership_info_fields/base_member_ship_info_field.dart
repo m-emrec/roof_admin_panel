@@ -1,11 +1,6 @@
-import 'package:core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_card_theme_extension.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_section.dart';
-import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
-import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 
-/// The [BaseMembershipInfoField] abstract class defines a common interface for
+/// The [BaseMembershipField] abstract class defines a common interface for
 /// displaying and editing various types of membership-related information
 /// (e.g., text, date).
 ///
@@ -18,12 +13,12 @@ import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field
 /// Subclasses must implement the [build] method, which renders the field
 /// based on whether the UI is in editing mode or view-only mode.
 
-abstract base class BaseMembershipInfoField<T> {
-  /// Constructor for the [BaseMembershipInfoField] class.
+abstract base class BaseMembershipField<T> {
+  /// Constructor for the [BaseMembershipField] class.
   /// It initializes the `label`, `value`, `controller`, and `isEditable` properties.
   /// The `isEditable` property defaults to `true`, indicating that the field
   /// is editable unless specified otherwise.
-  const BaseMembershipInfoField({
+  const BaseMembershipField({
     required this.label,
     required this.value,
     required this.controller,

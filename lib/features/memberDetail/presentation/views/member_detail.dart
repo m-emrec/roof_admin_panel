@@ -2,8 +2,9 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about%20and%20personal%20info/about_and_personal_info.dart';
+import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/about_and_personal_info.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership_info_card.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
@@ -42,7 +43,7 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomAlertDialog.withCloseIcon(
+    return CustomAlertDialog<void>.withCloseIcon(
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.9),
@@ -56,7 +57,7 @@ class _MemberDetailDialogState extends ConsumerState<MemberDetailDialog> {
                     AboutAndPersonalInfo(),
                   ],
                 ),
-              )
+              ).fadeAnimation()
             : const LoadingIndicator(),
       ).makeSelectable(),
       actions: const [],

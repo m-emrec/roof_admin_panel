@@ -11,7 +11,7 @@ import 'package:roof_admin_panel/config/route%20config/routes/main-shell-route/m
 import 'package:roof_admin_panel/features/members/presentation/pages/members_view.dart';
 import 'package:roof_admin_panel/features/view%20manager/view_manager.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 
 final class MainShellRoute extends BaseRouteClass {
   const MainShellRoute();

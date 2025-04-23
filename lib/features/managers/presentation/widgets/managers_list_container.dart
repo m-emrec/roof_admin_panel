@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/managers/presentation/providers/managers_provider.dart';
 import 'package:roof_admin_panel/features/managers/presentation/widgets/managers_list.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 
 ///

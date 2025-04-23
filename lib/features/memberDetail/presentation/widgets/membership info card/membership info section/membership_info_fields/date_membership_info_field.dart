@@ -6,10 +6,10 @@ import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions
 import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field.dart';
 
 /// The [DateMembershipInfoField] class is a concrete implementation of
-/// [BaseMembershipInfoField] for displaying and editing date-based membership
+/// [BaseMembershipField] for displaying and editing date-based membership
 /// information (e.g., membership start or end date).
-final class DateMembershipInfoField extends BaseMembershipInfoField<DateTime?> {
-  /// A concrete implementation of [BaseMembershipInfoField] for handling date-based
+final class DateMembershipInfoField extends BaseMembershipField<DateTime?> {
+  /// A concrete implementation of [BaseMembershipField] for handling date-based
   /// fields (e.g. membership start or end date).
   ///
   /// Uses a [DateField] widget for editable fields when a controller is provided.

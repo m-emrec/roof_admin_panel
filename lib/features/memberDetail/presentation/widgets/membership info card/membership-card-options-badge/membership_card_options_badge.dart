@@ -1,7 +1,7 @@
-part of 'membership_info_card.dart';
+part of "../membership_info_card.dart";
 
-class _MembershipInfoCardBadge extends ConsumerWidget {
-  const _MembershipInfoCardBadge(this.child);
+class _MembershipCardOptionBadge extends ConsumerWidget {
+  const _MembershipCardOptionBadge(this.child);
   final Widget child;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,14 +18,11 @@ class _MembershipInfoCardBadge extends ConsumerWidget {
           Permissions.canEdit,
           Permissions.canEditMembers,
         ],
-        child: isEditing
-            ? const _EditStateBadge()
-            : PopupMenuButton(
-                itemBuilder: _popMenuItemBuilder,
-
-                onSelected: (value) =>
-                    _onSelected(value, ref), // Handle the selected value
-              ),
+        child: _OptionBadgeField(
+          _popMenuItemBuilder,
+          ref,
+          (value) => _onSelected(value, ref),
+        ).build(context, isEditing: isEditing),
       ).visibleIfAllowed,
       child: child,
     );
@@ -55,37 +52,6 @@ class _MembershipInfoCardBadge extends ConsumerWidget {
           ),
         ),
       ];
-}
-
-class _EditStateBadge extends ConsumerWidget {
-  const _EditStateBadge();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      spacing: SpacingSizes.small,
-      children: [
-        InkWell(
-          onTap: () =>
-              ref.read(membershipDetailNotifierProvider.notifier).reset(),
-          child: Icon(
-            Icons.close,
-            color: AppColors.accentError[50],
-          ),
-        ),
-        InkWell(
-          onTap: () => ref
-              .read(membershipDetailNotifierProvider.notifier)
-              .editMembershipDetails()
-              .showLoading(context: context),
-          child: Icon(
-            Icons.check,
-            color: AppColors.primaryColor[50],
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 enum _Value {

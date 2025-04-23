@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/features/memberDetail/data/models/membership_de
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/views/member_detail.dart';
+import 'package:roof_admin_panel/product/utility/handlers/role_action_handler.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
@@ -108,7 +109,6 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
       role: [model.role],
     );
     _setMentors();
-    Log.info(state?.toJson());
     DataState.handleDataStateBasedAction(
       await _editMembershipDetailsUseCase(model),
       onSuccess: (_) => Toast.showSuccessToast(
@@ -124,32 +124,30 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
   }
 
   void _setMentors() {
-    if (state?.role?.contains(Role.member) == true ||
-        state?.role?.contains(Role.admin) == true) {
-      state = state?.copyWith(
+    RoleActionHandler(
+      roles: state?.role ?? [],
+      memberAction: () => state = state?.copyWith(
         mentorId: mentorList.value.mentorId,
         mentatId: "",
         members: [],
         mentors: [],
         role: state?.role,
-      );
-    } else if (state?.role?.contains(Role.mentat) == true) {
-      state = state?.copyWith(
+      ),
+      mentatAction: () => state = state?.copyWith(
         mentors: mentorList.value.mentors,
         mentatId: "",
         members: [],
         mentorId: "",
         role: state?.role,
-      );
-    } else if (state?.role?.contains(Role.mentor) == true) {
-      state = state?.copyWith(
+      ),
+      mentorAction: () => state = state?.copyWith(
         members: mentorList.value.members,
         mentatId: mentorList.value.mentatId,
         mentorId: "",
         mentors: [],
         role: state?.role,
-      );
-    }
+      ),
+    ).handle();
   }
 
   /// resets the form fields to their initial values.
@@ -200,8 +198,6 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
           _validateDates(),
       LocaleKeys.memberDetailView_membershipInfo_memberShipEndDate.tr():
           _validateDates(),
-      // LocaleKeys.memberDetailView_membershipInfo_mentor.tr():
-      //     ValidatorMethods(text: mentorIdController.text).emptyField,
     };
 
     for (final validator in validators.entries) {

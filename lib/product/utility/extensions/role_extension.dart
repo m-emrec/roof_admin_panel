@@ -15,7 +15,7 @@ import 'package:core/utils/models/user_model.dart';
 ///   // Grant admin access
 /// }
 /// ```
-extension RoleExtension on List<Role?> {
+extension RoleUtilsExtension on List<Role?> {
   /// Returns `true` if the list contains the [Role.admin] role.
   bool get isAdmin => contains(Role.admin);
 

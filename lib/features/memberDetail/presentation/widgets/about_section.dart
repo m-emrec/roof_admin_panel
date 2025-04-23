@@ -18,11 +18,13 @@ class AboutSection extends ConsumerWidget {
     return Visibility(
       visible: member?.about?.isNotEmpty ?? false,
       child: MembersDetailSectionCard(
-        child: Section(
-          title: LocaleKeys.memberDetailView_about.tr(),
-          child: Text(
-            member?.about ?? '',
-            style: context.textTheme.bodyMedium,
+        child: SingleChildScrollView(
+          child: Section(
+            title: LocaleKeys.memberDetailView_about.tr(),
+            child: Text(
+              member?.about ?? '',
+              style: context.textTheme.bodyMedium,
+            ),
           ),
         ),
       ),

@@ -10,7 +10,7 @@ class _MembershipInfo extends ConsumerWidget {
     this.field,
   );
 
-  final BaseMembershipInfoField<dynamic> field;
+  final BaseMembershipField<dynamic> field;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
