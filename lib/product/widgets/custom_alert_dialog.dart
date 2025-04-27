@@ -56,21 +56,23 @@ class CustomAlertDialog<T> extends StatefulWidget {
         barrierDismissible: barrierDismissible,
         context: context,
         builder: (context) => PopScope(
-          canPop: barrierDismissible, child: content,
-          //  CustomAlertDialog(
-          //   title: title,
-          //   content: content,
-          //   actions: actions,
-          // ),
+          canPop: barrierDismissible,
+          child: content,
         ),
       );
     }
     return Future.value();
   }
 
-  static void hideAlertDialog<T>(BuildContext context, [T? result]) {
+  static void hideAlertDialog<T>(
+    BuildContext context, {
+    bool forceClose = false,
+    T? result,
+  }) {
     if (context.mounted && _isShowing) {
-      _isShowing = false;
+      if (!forceClose) {
+        _isShowing = false;
+      }
       context.pop(result);
     }
   }
@@ -98,7 +100,7 @@ class _CustomAlertDialogState<T> extends State<CustomAlertDialog<T>> {
               child: CloseButton(
                 onPressed: () => CustomAlertDialog.hideAlertDialog<T>(
                   context,
-                  widget.result,
+                  result: widget.result,
                 ),
                 color: AppColors.accentError[70],
                 style: const ButtonStyle(

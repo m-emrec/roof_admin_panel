@@ -364,9 +364,9 @@
     }
    },
    "options":{
-    "ban":"Üyeyi Banla",
+    "ban":"Banla",
     "areYouSure":"{} isimli üyeyi banlamak istediğinden emin misin?",
-    "edit":"Üyeyi Düzenle"
+    "edit":"Düzenle"
    },
    "validationErrors":{
     "memberNumber":"Üye numarası geçersiz.",

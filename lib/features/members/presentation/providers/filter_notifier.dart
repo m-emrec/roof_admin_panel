@@ -8,7 +8,7 @@ import 'package:roof_admin_panel/features/members/presentation/strategies/filter
 import 'package:roof_admin_panel/features/members/presentation/strategies/filter%20strategies/filter_strategy.dart';
 import 'package:roof_admin_panel/features/members/presentation/strategies/filter%20strategies/range_filter_strategy.dart';
 import 'package:roof_admin_panel/features/members/presentation/strategies/filter%20strategies/string_filter_strategy.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/table-source/members_table_data_source.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 /// [MembersFilterNotifier] manages the local UI-side filtering logic for the Members table.

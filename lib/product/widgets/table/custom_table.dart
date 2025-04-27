@@ -82,11 +82,11 @@ class _CustomTableState extends State<CustomTable>
               loadMoreViewBuilder: buildLoadMore,
               controller: widget.controller,
               onCellTap: widget.onCellTap,
-
               checkboxColumnSettings: const DataGridCheckboxColumnSettings(
                 showCheckboxOnHeader: false,
               ),
               showCheckboxColumn: true,
+
               checkboxShape: theme?.checkboxShape,
               headerGridLinesVisibility: GridLinesVisibility.none,
 

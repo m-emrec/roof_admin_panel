@@ -12,7 +12,7 @@ import 'package:roof_admin_panel/features/members/domain/usecases/fetch_total_us
 import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/members_view_model.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/members_table_data_source.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/table-source/members_table_data_source.dart';
 
 final _dummyUsers = [
   UserModel(

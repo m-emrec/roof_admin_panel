@@ -22,7 +22,10 @@ class BanMemberDialog extends ConsumerWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () => CustomAlertDialog.hideAlertDialog<void>(context),
+          onPressed: () => CustomAlertDialog.hideAlertDialog<void>(
+            context,
+            forceClose: true,
+          ),
           child: Text(LocaleKeys.common_cancel.tr()),
         ),
         FilledButton(
@@ -51,6 +54,6 @@ class BanMemberDialog extends ConsumerWidget {
     final member = ref.read(membershipDetailNotifierProvider);
     if (member == null) return;
     ref.read(banMemberProvider(member));
-    CustomAlertDialog.hideAlertDialog<void>(context);
+    CustomAlertDialog.hideAlertDialog<void>(context, forceClose: true);
   }
 }

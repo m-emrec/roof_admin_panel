@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/cell_builder.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/data_grid_row_generator.dart';
-import 'package:roof_admin_panel/features/members/presentation/widgets/table/data_source/table_sorter.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/table-source/cell_builder.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/table-source/data_grid_row_generator.dart';
+import 'package:roof_admin_panel/features/members/presentation/widgets/table/table-source/table_sorter.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 /// This is the data source for the members table.

@@ -53,6 +53,9 @@ class _MembershipCardOptionBadge extends ConsumerWidget {
           value: _Value.delete,
           child: Text(
             LocaleKeys.memberDetailView_options_ban.tr(),
+            style: context.theme.textTheme.labelLarge?.copyWith(
+              color: AppColors.accentError[50],
+            ),
           ),
         ),
       ];
