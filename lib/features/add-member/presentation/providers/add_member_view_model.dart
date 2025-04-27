@@ -26,7 +26,7 @@ class AddMemberViewModel extends ChangeNotifier {
       );
 
   void init(BuildContext context) {
-    Log.debug("AddMemberViewModel initialized");
+    // Log.debug("AddMemberViewModel initialized");
     nameController = TextEditingController();
     phoneNumberController = TextEditingController();
     genderController = TextEditingController(text: Gender.female.localizedText);
@@ -47,7 +47,7 @@ class AddMemberViewModel extends ChangeNotifier {
     memberNumberController.dispose();
     memberShipStartDateController.dispose();
     memberShipDurationController.dispose();
-    Log.debug("AddMemberViewModel disposed");
+    // Log.debug("AddMemberViewModel disposed");
     super.dispose();
   }
 

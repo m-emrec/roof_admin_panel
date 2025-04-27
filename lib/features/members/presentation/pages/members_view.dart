@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/pages/add_member_button.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/pages/add_member.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter%20and%20sort/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table.dart';
@@ -31,7 +31,7 @@ class MembersView extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const AddMemberButton(),
+                  const AddMember(),
                   Expanded(
                     child: Card(
                       elevation: 5,
