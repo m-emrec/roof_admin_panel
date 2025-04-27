@@ -16,12 +16,22 @@ EditedMembershipDetail _$EditedMembershipDetailFromJson(
       membershipEndDate: FirebaseTimeParser.datetimeFromTimestamp(
           json['membershipEndDate'] as Timestamp?),
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']),
+      mentorId: json['mentorId'] as String?,
+      mentatId: json['mentatId'] as String?,
+      members:
+          (json['members'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      mentors:
+          (json['mentors'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$EditedMembershipDetailToJson(
         EditedMembershipDetail instance) =>
     <String, dynamic>{
       'uid': instance.uid,
+      'mentorId': instance.mentorId,
+      'mentatId': instance.mentatId,
+      'members': instance.members,
+      'mentors': instance.mentors,
       'role': EditedMembershipDetail._roleToJson(instance.role),
       'memberNumber':
           EditedMembershipDetail._memberNumberToJson(instance.memberNumber),

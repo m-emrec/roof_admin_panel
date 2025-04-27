@@ -3,4 +3,7 @@
 enum CloudFunctionNames {
   createNewManager,
   deleteManager,
+
+  banMember,
+  unBanMember,
 }

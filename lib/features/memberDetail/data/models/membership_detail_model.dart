@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:core/core.dart';
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/constants/firebase/time_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -27,6 +26,10 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
     required super.membershipStartDate,
     required super.membershipEndDate,
     required super.role,
+    super.mentorId,
+    super.mentatId,
+    super.members,
+    super.mentors,
   });
 
   /// a factory constructor to create an instance of [EditedMembershipDetail]
@@ -40,6 +43,10 @@ class EditedMembershipDetail extends EditedMembershipDetailEntity {
       membershipStartDate: entity.membershipStartDate,
       membershipEndDate: entity.membershipEndDate,
       role: entity.role,
+      mentorId: entity.mentorId,
+      mentatId: entity.mentatId,
+      members: entity.members,
+      mentors: entity.mentors,
     );
   }
 

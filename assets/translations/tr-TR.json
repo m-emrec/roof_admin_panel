@@ -365,7 +365,7 @@
    },
    "options":{
     "ban":"Üyeyi Banla",
-    "areYouSure":"Bu üyeyi banlamak istediğinizden emin misiniz?",
+    "areYouSure":"{} isimli üyeyi banlamak istediğinden emin misin?",
     "edit":"Üyeyi Düzenle"
    },
    "validationErrors":{

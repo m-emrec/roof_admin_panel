@@ -21,19 +21,23 @@ class _MembershipCardOptionBadge extends ConsumerWidget {
         child: _OptionBadgeField(
           _popMenuItemBuilder,
           ref,
-          (value) => _onSelected(value, ref),
+          (value) => _onSelected(value, ref, context),
         ).build(context, isEditing: isEditing),
       ).visibleIfAllowed,
       child: child,
     );
   }
 
-  void _onSelected(_Value value, WidgetRef ref) {
+  void _onSelected(_Value value, WidgetRef ref, BuildContext context) {
     switch (value) {
       case _Value.edit:
         ref.read(isEditingProvider.notifier).state = true;
       case _Value.delete:
-        break;
+        CustomAlertDialog.showAlertDialog<void>(
+          forceOpen: true,
+          context: context,
+          content: const BanMemberDialog(),
+        );
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/memberDetail/data/models/membership_detail_model.dart';
 import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_membership_details_use_case.dart';
@@ -100,7 +101,8 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
   /// This method is called when the user submits the form.
   Future<void> editMembershipDetails() async {
     if (_validateFields() == false) return;
-    final model = _createEditedMembershipDetailModel;
+    _setMentors();
+    final model = _createEditedMembershipDetailModel();
 
     state = state?.copyWith(
       membershipStartDate: model.membershipStartDate,
@@ -108,7 +110,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
       memberNumber: model.memberNumber,
       role: [model.role],
     );
-    _setMentors();
+    Log.error(model.toJson());
     DataState.handleDataStateBasedAction(
       await _editMembershipDetailsUseCase(model),
       onSuccess: (_) => Toast.showSuccessToast(
@@ -148,6 +150,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
         role: state?.role,
       ),
     ).handle();
+    Log.warning(state?.toJson());
   }
 
   /// resets the form fields to their initial values.
@@ -165,13 +168,17 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
     mentorIdController.text = state?.mentorId ?? '';
   }
 
-  EditedMembershipDetail get _createEditedMembershipDetailModel =>
+  EditedMembershipDetail _createEditedMembershipDetailModel() =>
       EditedMembershipDetail(
         uid: state?.uid ?? '',
         memberNumber: memberNumberController.text,
         membershipStartDate: DateTime.parse(membershipStartDateController.text),
         membershipEndDate: DateTime.parse(membershipEndDateController.text),
         role: roleController.value,
+        mentorId: state?.mentorId,
+        mentatId: state?.mentatId,
+        members: state?.members,
+        mentors: state?.mentors,
       );
 
   String? _validateDates() {

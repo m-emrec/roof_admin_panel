@@ -3,22 +3,9 @@ import 'package:roof_admin_panel/features/memberDetail/domain/entities/membershi
 
 abstract class MemberDetailRepository {
   Future<DataState<void>> banMember({
-    required String memberId,
+    required UserModel memberData,
   });
   Future<DataState<void>> editMembershipDetails(
     EditedMembershipDetailEntity membershipDetails,
   );
-
-  Future<DataState<void>> changeMentor({
-    required String memberId,
-    required String newMentorId,
-  });
-
-  Future<DataState<void>> changeMentat({
-    required String memberId,
-    required String newMentatId,
-  });
-
-  Future<DataState<void>> fetchMentors();
-  Future<DataState<void>> fetchMentats();
 }
