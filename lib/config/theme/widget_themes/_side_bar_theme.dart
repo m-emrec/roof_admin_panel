@@ -27,36 +27,19 @@ final class _SideBarTheme {
       SideBarThemeExtension(
         expandedWidth: 200,
         collapsedWidth: 64,
-        backgroundColor: AppColors.backgroundColor[60],
+        backgroundColor: AppColors.primaryColor[80],
         iconSize: IconSizes.small,
-        selectedItemColor: AppColors.backgroundColor[40],
+        selectedItemColor: AppColors.backgroundColor[80],
         unSelectedItemColor: Colors.transparent,
-        textStyle: ctx.textTheme.labelMedium,
-        boxShadow: const [
+        textStyle: TextStyles().textTheme.labelMedium?.copyWith(
+              color: AppColors.neutralGray500[10],
+            ),
+        selectedTextStyle: TextStyles().textTheme.labelMedium,
+        boxShadow: [
           BoxShadow(
-            color: Color(0x1915382A),
-            blurRadius: 13,
-            offset: Offset(6, 0),
-          ),
-          BoxShadow(
-            color: Color(0x1615382A),
-            blurRadius: 23,
-            offset: Offset(23, 0),
-          ),
-          BoxShadow(
-            color: Color(0x0C15382A),
-            blurRadius: 31,
-            offset: Offset(51, 0),
-          ),
-          BoxShadow(
-            color: Color(0x0215382A),
-            blurRadius: 37,
-            offset: Offset(91, 0),
-          ),
-          BoxShadow(
-            color: Color(0x0015382A),
-            blurRadius: 40,
-            offset: Offset(143, 0),
+            color: AppColors.secondaryColor[50] ?? Colors.transparent,
+            blurRadius: 2,
+            offset: const Offset(1, 0),
           ),
         ],
       );

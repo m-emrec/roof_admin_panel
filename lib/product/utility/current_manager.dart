@@ -29,12 +29,12 @@ import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart'
 ///
 /// **Note:** Calling [instance] without initializing via [init] will result
 /// in fetching the default dummy manager data.
-final class CurrentManager {
+final class CurrentUser {
   /// Private constructor to enforce singleton usage.
-  CurrentManager._(this.managerModelNotifier);
+  CurrentUser._(this.managerModelNotifier);
 
   /// Holds the singleton instance.
-  static CurrentManager? _instance;
+  static CurrentUser? _instance;
 
   /// Notifier for the current manager's data.
   /// **The reason for using a `ValueNotifier` is to allow listening to changes.**
@@ -58,14 +58,14 @@ final class CurrentManager {
     ),
   );
 
-  /// Returns the singleton instance of [CurrentManager].
+  /// Returns the singleton instance of [CurrentUser].
   ///
   /// If the instance is not initialized, it will attempt to call [init].
-  static CurrentManager get instance {
+  static CurrentUser get instance {
     if (_instance == null) {
       init();
     }
-    return _instance ?? CurrentManager._(_DUMMY_MANAGER_DATA);
+    return _instance ?? CurrentUser._(_DUMMY_MANAGER_DATA);
   }
 
   /// Initializes the singleton instance by fetching manager data from Firestore.
@@ -77,7 +77,7 @@ final class CurrentManager {
   /// await CurrentManager.init();
   /// ```
   static Future<void> init() async {
-    _instance ??= CurrentManager._(
+    _instance ??= CurrentUser._(
       ValueNotifier(ManagerModel.fromJson(await _getManagerData())),
     );
   }

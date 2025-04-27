@@ -41,24 +41,34 @@ class _ExpandedSideBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: SideBarController().isItemSelected(context, route.path)
-          ? context.theme
-                  .extension<SideBarThemeExtension>()
-                  ?.selectedItemColor ??
-              Colors.transparent
-          : context.theme
-                  .extension<SideBarThemeExtension>()
-                  ?.unSelectedItemColor ??
-              Colors.transparent,
-      child: ListTile(
-        contentPadding: const AppPadding.horizontalSSymmetric(),
-        leading: icon,
-        title: Text(
-          title,
-          style: context.theme.extension<SideBarThemeExtension>()?.textStyle,
+    final isSelected = SideBarController().isItemSelected(context, route.path);
+    return ClipRRect(
+      borderRadius: const AppBorderRadius.mediumOnly(
+        topRight: true,
+        bottomRight: true,
+      ),
+      child: ColoredBox(
+        color: isSelected
+            ? context.theme
+                    .extension<SideBarThemeExtension>()
+                    ?.selectedItemColor ??
+                Colors.transparent
+            : context.theme
+                    .extension<SideBarThemeExtension>()
+                    ?.unSelectedItemColor ??
+                Colors.transparent,
+        child: ListTile(
+          leading: icon,
+          title: Text(
+            title,
+            style: isSelected
+                ? context.theme
+                    .extension<SideBarThemeExtension>()
+                    ?.selectedTextStyle
+                : context.theme.extension<SideBarThemeExtension>()?.textStyle,
+          ),
+          onTap: () => context.goNamed(route.name),
         ),
-        onTap: () => context.goNamed(route.name),
       ),
     );
   }

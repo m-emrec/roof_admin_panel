@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/error_manager.dart';
 import 'package:core/resources/use_case.dart';
@@ -66,8 +67,9 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   Future<void> fetchNext20Users(String lastUserId) async {
     DataState.handleDataStateBasedAction(
       await _fetchNext20UsersUseCase(lastUserId),
-      onSuccess: (result) =>
-          state = AsyncData([...state.value!, ...result.resultData!]),
+      onSuccess: (result) {
+        state = AsyncData([...state.value!, ...result.resultData!]);
+      },
       onFailure: (result) => Toast.showErrorToast(
         desc: AppErrorText.errorMessageConverter(result?.errorMessage ?? ""),
       ),

@@ -16,54 +16,72 @@ enum DialogPosition {
   center,
 }
 
-class CustomAlertDialog extends StatefulWidget {
+class CustomAlertDialog<T> extends StatefulWidget {
   const CustomAlertDialog({
     super.key,
     this.content,
     this.title,
     this.actions,
-  });
+  })  : showCloseButton = false,
+        result = null;
+
+  /// Shows a [CustomAlertDialog] with a close button on the top right corner.
+  ///
+  const CustomAlertDialog.withCloseIcon({
+    super.key,
+    this.content,
+    this.title,
+    this.actions,
+    this.result,
+  }) : showCloseButton = true;
+
+  final T? result;
   final Widget? content;
   final Widget? title;
   final List<Widget>? actions;
+  final bool showCloseButton;
   static bool _isShowing = false;
 
-  static Future<void> showAlertDialog({
+  static Future<T?> showAlertDialog<T>({
     required BuildContext context,
     required Widget content,
     Widget? title,
     List<Widget>? actions,
+    bool forceOpen = false,
     bool barrierDismissible = false,
   }) async {
-    if (!_isShowing) {
+    if (!_isShowing || forceOpen) {
       _isShowing = true;
-      await showDialog<Widget>(
+      return showDialog<T>(
         barrierDismissible: barrierDismissible,
         context: context,
-        builder: (context) =>
-            PopScope(canPop: barrierDismissible, child: content
-                //  CustomAlertDialog(
-                //   title: title,
-                //   content: content,
-                //   actions: actions,
-                // ),
-                ),
+        builder: (context) => PopScope(
+          canPop: barrierDismissible,
+          child: content,
+        ),
       );
     }
+    return Future.value();
   }
 
-  static void hideAlertDialog(BuildContext context) {
+  static void hideAlertDialog<T>(
+    BuildContext context, {
+    bool forceClose = false,
+    T? result,
+  }) {
     if (context.mounted && _isShowing) {
-      _isShowing = false;
-      context.pop();
+      if (!forceClose) {
+        _isShowing = false;
+      }
+      context.pop(result);
     }
   }
 
   @override
-  State<CustomAlertDialog> createState() => _CustomAlertDialogState();
+  State<CustomAlertDialog<T>> createState() => _CustomAlertDialogState();
 }
 
-class _CustomAlertDialogState extends State<CustomAlertDialog> {
+class _CustomAlertDialogState<T> extends State<CustomAlertDialog<T>> {
   @override
   void dispose() {
     CustomAlertDialog._isShowing = false;
@@ -75,6 +93,29 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
     return AlertDialog(
       backgroundColor: AppColors.backgroundColor,
       actionsAlignment: MainAxisAlignment.end,
+      iconPadding: const AppPadding.horizontalxxSSymmetric(),
+      icon: widget.showCloseButton
+          ? Align(
+              alignment: Alignment.topRight,
+              child: CloseButton(
+                onPressed: () => CustomAlertDialog.hideAlertDialog<T>(
+                  context,
+                  result: widget.result,
+                ),
+                color: AppColors.accentError[70],
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    Colors.transparent,
+                  ),
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.zero,
+                  ),
+                ),
+              ),
+            )
+          : null,
+      actionsPadding:
+          (widget.actions?.isEmpty ?? true) ? EdgeInsets.zero : null,
       actions: widget.actions ??
           [
             TextButton(

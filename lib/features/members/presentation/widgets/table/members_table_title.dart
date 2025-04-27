@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route/add_member_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/main-shell-route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/permissions_handler.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
@@ -59,12 +59,12 @@ class MembersTableTitle extends ConsumerWidget {
         // Add member button
         ElevatedButton(
           onPressed: PermissionBasedAction(
-            () => context.pushNamed(AddMemberRoute().name),
+            () => context.goNamed(AddMemberRoute().name),
             necessaryPermissions: [
               Permissions.canEdit,
               Permissions.canEditMembers,
             ],
-          ).actionIfAllowed,
+          ).call(),
           child: Text(LocaleKeys.membersView_addMember.tr()),
         ),
       ],

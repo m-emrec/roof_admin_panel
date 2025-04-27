@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
@@ -19,6 +18,7 @@ class MembersView extends ConsumerWidget {
     return Column(
       spacing: SpacingSizes.extraSmall,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const MembersTableTitle(),
         const FilterAndSortRow(),
@@ -26,8 +26,14 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return Flexible(
-              child: MembersTable(),
+            return Expanded(
+              child: Padding(
+                padding: AppPadding.verticalMSymmetric(),
+                child: Card(
+                  color: context.theme.scaffoldBackgroundColor,
+                  child: MembersTable(),
+                ),
+              ),
             );
           },
           skeletonWidget: const _LoadingView(),

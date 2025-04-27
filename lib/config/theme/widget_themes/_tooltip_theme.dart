@@ -2,18 +2,19 @@ part of '../app_theme.dart';
 
 final class _TooltipTheme {
   _TooltipTheme._();
-  static final TooltipThemeData tooltipTheme = TooltipThemeData(
-    textStyle: TextStyles().textTheme.bodySmall,
-    decoration: BoxDecoration(
-      color: AppColors.backgroundColor[40],
-      borderRadius: const AppBorderRadius.small(),
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.backgroundColor[40] ?? Colors.black,
-          blurRadius: 8,
-          offset: const Offset(0, 4),
+  static TooltipThemeData tooltipTheme(BuildContext context) =>
+      TooltipThemeData(
+        textStyle: TextStyles().textTheme.labelLarge,
+        decoration: BoxDecoration(
+          color: AppColors.backgroundColor[50],
+          borderRadius: const AppBorderRadius.small(),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.backgroundColor[20] ?? Colors.black,
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

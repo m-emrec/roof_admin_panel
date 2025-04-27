@@ -17,16 +17,25 @@ class SideBarUserAvatar extends ConsumerWidget {
             color: AppColors.backgroundColor[30] ?? Colors.transparent,
           ),
         ),
+        color: SideBarController()
+                .isItemSelected(context, AccountSettingsRoute().path)
+            ? context.theme
+                .extension<SideBarThemeExtension>()
+                ?.selectedItemColor
+            : Colors.transparent,
       ),
+      child: InkWell(
+        onTap: () => context.goNamed(AccountSettingsRoute().name),
 
-      /// ! !! !! DO NOT MAKE [SideBarItemViewSwitcher] CONST !! !! !
-      /// Because when this widget is const it will not rebuild it self when the
-      /// [SideBarController().isExpanded] value changes.
-      /// So, it will not change the avatar when the sidebar is expanded or collapsed.
-      // ignore: prefer_const_constructors
-      child: SideBarItemViewSwitcher(
-        expandedChild: const _ExpandedSideBarUserAvatar(),
-        collapsedChild: const _CollapsedSideBarUserAvatar(),
+        /// ! !! !! DO NOT MAKE [SideBarItemViewSwitcher] CONST !! !! !
+        /// Because when this widget is const it will not rebuild it self when the
+        /// [SideBarController().isExpanded] value changes.
+        /// So, it will not change the avatar when the sidebar is expanded or collapsed.
+        // ignore: prefer_const_constructors
+        child: SideBarItemViewSwitcher(
+          expandedChild: const _ExpandedSideBarUserAvatar(),
+          collapsedChild: const _CollapsedSideBarUserAvatar(),
+        ),
       ),
     );
   }
@@ -38,28 +47,21 @@ class _ExpandedSideBarUserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: CurrentManager.instance.managerModelNotifier,
+      valueListenable: CurrentUser.instance.managerModelNotifier,
       builder: (context, user, child) => ListTile(
-        title: Text(user.name, style: context.textTheme.labelMedium),
+        onTap: () => context.goNamed(AccountSettingsRoute().name),
+        title: Text(
+          user.name,
+          style: SideBarController()
+                  .isItemSelected(context, AccountSettingsRoute().path)
+              ? context.theme
+                  .extension<SideBarThemeExtension>()
+                  ?.selectedTextStyle
+              : context.theme.extension<SideBarThemeExtension>()?.textStyle,
+        ),
         leading: Avatar(
           imageUrl: user.imageUrl,
           radius: 12,
-        ),
-        shape: Border(
-          bottom: BorderSide(
-            color: AppColors.primaryColor,
-            width: 2,
-          ),
-        ),
-        trailing: GestureDetector(
-          child: const MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: Icon(
-              Icons.settings,
-              size: 16,
-            ),
-          ),
-          onTap: () => context.goNamed(AccountSettingsRoute().name),
         ),
       ),
     );
@@ -72,10 +74,14 @@ class _CollapsedSideBarUserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: CurrentManager.instance.managerModelNotifier,
-      builder: (context, user, child) => Avatar(
-        imageUrl: user.imageUrl,
-        radius: 16,
+      valueListenable: CurrentUser.instance.managerModelNotifier,
+      builder: (context, user, child) => Padding(
+        padding: const AppPadding.horizontalxsSymmetric() +
+            const AppPadding.verticalxsSymmetric(),
+        child: Avatar(
+          imageUrl: user.imageUrl,
+          radius: 16,
+        ),
       ),
     );
   }

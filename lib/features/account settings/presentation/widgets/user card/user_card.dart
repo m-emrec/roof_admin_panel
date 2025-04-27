@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_e
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/account_setting_avatar.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/buttons_row.dart';
 import 'package:roof_admin_panel/features/account%20settings/presentation/widgets/user%20card/info_column.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:roof_admin_panel/product/widgets/responsive_builder.dart';
 
 class UserCard extends StatelessWidget {
@@ -25,7 +26,7 @@ class UserCard extends StatelessWidget {
         spacing: SpacingSizes.medium,
         children: [
           const AccountSettingAvatar(),
-          ResponsiveBuilder(
+          context.responsiveSelector(
             mobile: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

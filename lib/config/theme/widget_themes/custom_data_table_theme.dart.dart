@@ -26,7 +26,7 @@ final class _CustomDataTableTheme {
         width: 2,
       ),
     ),
-    rowHeight: 72,
+    rowHeight: 96,
     avatarRadius: 16,
 
     /// I found this value by trial and error.

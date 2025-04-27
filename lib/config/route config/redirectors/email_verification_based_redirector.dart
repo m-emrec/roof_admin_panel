@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/route%20config/base_route_redirector.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/members_route/members_route.dart';
+import 'package:roof_admin_panel/config/route%20config/routes/main-shell-route/members_route.dart';
 import 'package:roof_admin_panel/features/auth/data/services/auth_service.dart';
 
 /// Redirects the user based on email verification status.
@@ -17,7 +17,7 @@ class EmailVerificationBasedRedirector implements BaseRouteRedirector {
   FutureOr<String?> redirect(BuildContext context, GoRouterState state) async {
     final isVerified = AuthService().isEmailVerified;
     if (isVerified) {
-      return state.namedLocation(const MainRoute().route.name ?? "");
+      return state.namedLocation(MembersRoute().name ?? "");
     } else {
       return null;
     }

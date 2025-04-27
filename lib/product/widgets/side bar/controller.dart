@@ -1,3 +1,4 @@
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,6 +41,8 @@ class SideBarController {
 
   /// This method is used to check if the item is selected
   ///
-  bool isItemSelected(BuildContext context, String route) =>
-      GoRouterState.of(context).matchedLocation == route;
+  bool isItemSelected(BuildContext context, String route) {
+    // Log.debug(GoRouterState.of(context).);
+    return GoRouterState.of(context).fullPath?.contains(route) ?? false;
+  }
 }

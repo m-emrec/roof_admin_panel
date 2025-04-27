@@ -9,6 +9,7 @@ class SideBarThemeExtension extends ThemeExtension<SideBarThemeExtension> {
   final Color? unSelectedItemColor;
   final TextStyle? textStyle;
   final Size? iconSize;
+  final TextStyle? selectedTextStyle;
   SideBarThemeExtension({
     required this.expandedWidth,
     required this.collapsedWidth,
@@ -18,6 +19,7 @@ class SideBarThemeExtension extends ThemeExtension<SideBarThemeExtension> {
     this.unSelectedItemColor,
     this.textStyle,
     this.iconSize,
+    this.selectedTextStyle,
   });
 
   @override

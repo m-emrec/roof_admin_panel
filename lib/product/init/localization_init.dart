@@ -6,7 +6,10 @@ part of "../../main.dart";
 class _LocalizationInit {
   static List<Locale> supportedLocales = [
     // Locale('en', 'US'),
-    Locale(LocaleEnum.tr.languageCode, LocaleEnum.tr.region),
+    Locale(
+      LocaleEnum.tr.languageCode,
+      LocaleEnum.tr.region,
+    ),
   ];
   static String path = 'assets/translations';
   static Locale fallbackLocale =

@@ -80,20 +80,31 @@ class _DateFieldState extends State<DateField> {
   }
 
   @override
+  void initState() {
+    if (widget.controller.text.isNotEmpty) {
+      selectedDate = DateTime.parse(widget.controller.text);
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        AppIcon(Assets.icons.calendarIcon),
-        const SizedBox(width: 10),
-        TextButton(
-          onPressed: _selectDate,
-          child: Text(
-            selectedDate != null
-                ? selectedDate?.formatDate(context) ?? ""
-                : LocaleKeys.common_date_select.tr(),
-          ),
+    return TextButton.icon(
+      style: TextButton.styleFrom(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.zero,
+        visualDensity: const VisualDensity(
+          horizontal: -4,
+          vertical: -4,
         ),
-      ],
+      ),
+      onPressed: _selectDate,
+      icon: AppIcon(Assets.icons.calendarIcon),
+      label: Text(
+        selectedDate != null
+            ? selectedDate?.formatDate(context) ?? ""
+            : LocaleKeys.common_date_select.tr(),
+      ),
     );
   }
 }

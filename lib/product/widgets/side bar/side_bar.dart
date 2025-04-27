@@ -4,6 +4,7 @@ library side_bar;
 
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
+import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +13,7 @@ import 'package:roof_admin_panel/config/route%20config/routes/account_settings_r
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
+import 'package:roof_admin_panel/product/widgets/side%20bar/controller.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_control_button.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_item_view_switcher.dart';
 import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar_items_builder.dart';
@@ -44,15 +46,19 @@ class _SideBarState extends State<SideBar>
       animation: animationController,
       builder: (context, child) => child ?? const SizedBox(),
       child: Container(
+        decoration: BoxDecoration(
+          color:
+              context.theme.extension<SideBarThemeExtension>()?.backgroundColor,
+          boxShadow:
+              context.theme.extension<SideBarThemeExtension>()?.boxShadow,
+        ),
         width: animationController.value,
-        color:
-            context.theme.extension<SideBarThemeExtension>()?.backgroundColor,
         child: Column(
           spacing: SpacingSizes.extraSmall,
           children: [
             SideBarControlButton(animationController: animationController),
             Column(
-              spacing: SpacingSizes.extraSmall,
+              // spacing: SpacingSizes.extraSmall,
               children: [
                 SideBarUserAvatar(),
                 ...SideBarItemsBuilder.create(context),

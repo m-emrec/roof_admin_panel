@@ -176,6 +176,7 @@
         "pageTitle": "Üyeler",
         "memberCount": "{} Üye",
         "addMember": "Üye Ekle",
+        "seeMemberDetail": "Üye Detayını Gör",
         "filters":{
             "title": "Filtrele",
             "roleFilter": "{} Rolündekiler",
@@ -205,7 +206,8 @@
             "phoneNumber": "Telefon Numarası",
             "role": "Rol",
             "age": "Yaş",
-            "memberShipDuration": "Ne Zamandır Üye"
+            "memberShipDuration": "Ne Zamandır Üye",
+            "mentor":"Mentör"
         }
     },
     "addMember": {
@@ -230,7 +232,7 @@
     "guests": "Misafirler",
     "logout": "Çıkış Yap",
     "accountSettings": "Hesap Ayarları",
-    "managers": "Yöneticiler"
+    "managers": "Kullanıcılar"
 },
   "feedback":{
     "pageTitle": "Geri Bildirimler",
@@ -310,13 +312,13 @@
     }
 },
 "managersView":{
-    "pageTitle": "Yöneticiler",
-    "addManager": "Yönetici Ekle",
+    "pageTitle": "Kullanıcılar",
+    "addManager": "Kullanıcı Ekle",
     "addNewRole": "Yeni Rol Ekle",
-    "noManager": "Henüz yönetici yok.",
-    "updateManager":"Yöneticiyi Düzenle",
-    "deleteManager":"Yöneticiyi Sil",
-    "deleteManagerConfirmation":"Bu ({}) yöneticiyi silmek istediğinizden emin misiniz?"
+    "noManager": "Henüz kullanıcı yok.",
+    "updateManager":"Kullanıcıyı Düzenle",
+    "deleteManager":"Kullanıcıyı Sil",
+    "deleteManagerConfirmation":"({}) isimli kullanıcıyı silmek istediğinizden emin misiniz?"
 
 },
 "accountSettingView":{
@@ -341,30 +343,61 @@
     "logOut": "Çıkış Yap"
 },
 "memberDetailView":{
+    "about":"Hakkında",
+    "membershipInfo":{
     "memberNumber":"Üye Numarası",
     "memberShipStartDate":"Üyelik Başlangıç Tarihi",
     "memberShipEndDate":"Üyelik Bitiş Tarihi",
     "memberShipDuration":"Üyelik Süresi",
-    "phoneNumber":"Telefon Numarası",
-    "about":"Hakkında",
-    "birthDate":"Doğum Tarihi",
-    "gender":"Cinsiyet",
-    "livingCity":"Yaşadığı Şehir",
-    "livingTown":"Yaşadığı İlçe",
-    "workingCity":"Çalıştığı Şehir",
-    "workingTown":"Çalıştığı İlçe",
-    "occupation":"Meslek",
-    "interests":"İlgi Alanları",
-    "hobbies":"Hobiler",
-    "mentor":"Mentörü",
-    "mentat":"Mentatı",
-    "members":"Üyeleri",
-    "ban":"Üyeyi Banla",
-    "areYouSure":"Bu üyeyi banlamak istediğinizden emin misiniz?",
-    "edit":"Üyeyi Düzenle",
-    "personalInfo":"Kişisel Bilgiler"
+    "mentorshipMemberList":{
+        "seeList": "{} listesini gör",
+        "mentat":"Mentatı",
+        "members":"Üyeleri",
+        "mentors":"Mentorleri",
+        "emptyState":{
+            "noMentatForMentor": "Mentatı yok.",
+            "notMentorsForMentat": "Mentörü yok.",
+            "noMentorForMember": "Mentörü yok.",
+            "noMembersForMentor": "üyesi yok.",
+            "noMentatAndMembersForMentor": "Mentatı ve üyesi yok."
+        }
+    }
+   },
+   "options":{
+    "ban":"Banla",
+    "areYouSure":"{} isimli üyeyi banlamak istediğinden emin misin?",
+    "edit":"Düzenle"
+   },
+   "validationErrors":{
+    "memberNumber":"Üye numarası geçersiz.",
+    "startDateLaterThanEndDate":"Üyelik başlangıç tarihi, bitiş tarihinden sonra olamaz."
+   },
+   "success":{
+    "memberBanned":"Üye başarıyla banlandı.",
+    "memberUnbanned":"Üye banı kaldırıldı.",
+    "memberUpdated":"Üye bilgileri başarıyla güncellendi."
+   },
+    "personalInfo": {
+        "title":"Kişisel Bilgiler",
+        "phoneNumber":"Telefon Numarası",
+        "birthDate":"Doğum Tarihi",
+        "gender":"Cinsiyet",
+        "livingCity":"Yaşadığı Şehir",
+        "livingTown":"Yaşadığı İlçe",
+        "workingCity":"Çalıştığı Şehir",
+        "workingTown":"Çalıştığı İlçe",
+        "occupation":"Meslek",
+        "interests":"İlgi Alanları",
+        "hobbies":"Hobiler"
+    }
     },
-
+"addMentor":{
+    "buttonLabel":{
+        "addMentor": "Mentör Ekle",
+        "addMentat": "Mentat Ekle",
+        "addMentatAndMember": "Mentat / Üye Ekle"
+    }
+},
 "notFoundPage":{
     "pageTitle": "404",
     "pageNotFound": "Aradığın sayfa bulunamadı.",

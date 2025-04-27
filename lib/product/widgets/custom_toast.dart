@@ -19,31 +19,15 @@ final class Toast {
     String? title,
     String? desc,
     bool dismissible = true,
-    AlignmentGeometry alignment = Alignment.bottomCenter,
+    AlignmentGeometry alignment = Alignment.topCenter,
     EdgeInsetsGeometry? margin,
   }) =>
-      toastification.show(
-        title: title != null
-            ? Text(
-                title,
-                maxLines: 5,
-              )
-            : null,
-        description: desc != null
-            ? Text(
-                desc,
-                maxLines: 5,
-              )
-            : null,
-        alignment: alignment,
-        backgroundColor: AppColors.accentError[20],
-        borderSide: BorderSide.none,
-        dragToClose: dismissible,
-        autoCloseDuration: dismissible ? const Duration(seconds: 3) : null,
-        showProgressBar: false,
-        showIcon: false,
+      _show(
+        dismissible: dismissible,
+        backgroundColor: AppColors.accentError[10],
         foregroundColor: AppColors.accentError[100],
-        closeButtonShowType: CloseButtonShowType.none,
+        title: title,
+        desc: desc,
         margin: margin,
       );
 
@@ -52,33 +36,58 @@ final class Toast {
     String? title,
     String? desc,
     bool dismissible = true,
-    AlignmentGeometry alignment = Alignment.bottomCenter,
+    AlignmentGeometry alignment = Alignment.topCenter,
     EdgeInsetsGeometry? margin,
   }) =>
-      toastification.show(
-        title: title != null
-            ? Text(
-                title,
-                maxLines: 5,
-              )
-            : null,
-        description: desc != null
-            ? Text(
-                desc,
-                maxLines: 5,
-              )
-            : null,
-        alignment: alignment,
-        backgroundColor: AppColors.accentSuccess[20],
-        borderSide: BorderSide.none,
-        dragToClose: dismissible,
-        autoCloseDuration: dismissible ? const Duration(seconds: 3) : null,
-        showProgressBar: false,
-        showIcon: false,
+      _show(
+        dismissible: dismissible,
+        backgroundColor: AppColors.accentSuccess[10],
         foregroundColor: AppColors.accentSuccess[100],
-        closeButtonShowType: CloseButtonShowType.none,
+        title: title,
+        desc: desc,
         margin: margin,
       );
+
+  static ToastificationItem _show({
+    required bool dismissible,
+    required Color? backgroundColor,
+    required Color? foregroundColor,
+    String? title,
+    String? desc,
+    EdgeInsetsGeometry? margin,
+  }) {
+    return toastification.show(
+      boxShadow: const [
+        BoxShadow(
+          color: Colors.black12,
+          blurRadius: 10,
+          offset: Offset(0, 2),
+        ),
+      ],
+      title: title != null
+          ? Text(
+              title,
+              maxLines: 5,
+            )
+          : null,
+      description: desc != null
+          ? Text(
+              desc,
+              maxLines: 5,
+            )
+          : null,
+      alignment: Alignment.topCenter,
+      backgroundColor: backgroundColor,
+      borderSide: BorderSide.none,
+      dragToClose: dismissible,
+      autoCloseDuration: dismissible ? const Duration(seconds: 3) : null,
+      showProgressBar: false,
+      showIcon: false,
+      foregroundColor: foregroundColor,
+      closeButtonShowType: CloseButtonShowType.onHover,
+      margin: margin,
+    );
+  }
 
   /// Displays a toast notification based on the provided [DataState].
   ///
