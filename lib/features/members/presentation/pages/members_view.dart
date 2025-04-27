@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/pages/add_member_button.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter%20and%20sort/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table.dart';
@@ -27,12 +28,20 @@ class MembersView extends ConsumerWidget {
           data: (_) {
             ref.read(filterNotifierProvider);
             return Expanded(
-              child: Padding(
-                padding: AppPadding.verticalMSymmetric(),
-                child: Card(
-                  color: context.theme.scaffoldBackgroundColor,
-                  child: MembersTable(),
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const AddMemberButton(),
+                  Expanded(
+                    child: Card(
+                      elevation: 5,
+                      shadowColor: AppColors.backgroundColor[10],
+                      shape: const RoundedRectangleBorder(),
+                      color: AppColors.backgroundColor[60],
+                      child: MembersTable(),
+                    ),
+                  ),
+                ],
               ),
             );
           },

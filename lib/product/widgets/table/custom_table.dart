@@ -22,6 +22,7 @@ class CustomTable extends StatefulWidget {
     this.controller,
     this.onSelectionChanged,
     this.selectionManager,
+    this.showCheckboxColumn = true,
     super.key,
   });
 
@@ -34,6 +35,8 @@ class CustomTable extends StatefulWidget {
   ///
   /// This source is used to provide the data to the table.
   final DataGridSource source;
+
+  final bool showCheckboxColumn;
 
   /// The number of rows per page.
   final int rowsPerPage;
@@ -72,43 +75,40 @@ class _CustomTableState extends State<CustomTable>
         );
         return SfDataGridTheme(
           data: theme?.tableTheme ?? const SfDataGridThemeData(),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              border: theme?.border,
+          child: SfDataGrid(
+            rowHeight: theme?.rowHeight ?? double.nan,
+            showVerticalScrollbar: false,
+
+            loadMoreViewBuilder: buildLoadMore,
+            controller: widget.controller,
+            onCellTap: widget.onCellTap,
+            checkboxColumnSettings: const DataGridCheckboxColumnSettings(
+              showCheckboxOnHeader: false,
             ),
-            child: SfDataGrid(
-              rowHeight: theme?.rowHeight ?? double.nan,
-              showVerticalScrollbar: false,
-              loadMoreViewBuilder: buildLoadMore,
-              controller: widget.controller,
-              onCellTap: widget.onCellTap,
-              checkboxColumnSettings: const DataGridCheckboxColumnSettings(
-                showCheckboxOnHeader: false,
-              ),
-              showCheckboxColumn: true,
+            showCheckboxColumn: widget.showCheckboxColumn,
 
-              checkboxShape: theme?.checkboxShape,
-              headerGridLinesVisibility: GridLinesVisibility.none,
+            checkboxShape: theme?.checkboxShape,
+            headerGridLinesVisibility: GridLinesVisibility.none,
 
-              rowsPerPage: widget.rowsPerPage,
-              gridLinesVisibility: GridLinesVisibility.none,
-              onSelectionChanged: widget.onSelectionChanged,
-              selectionMode: SelectionMode.multiple,
-              navigationMode: GridNavigationMode.cell,
-              source: widget.source,
-              selectionManager:
-                  widget.selectionManager ?? _CustomTableSelectionManager(),
-              allowEditing: true,
+            rowsPerPage: widget.rowsPerPage,
+            gridLinesVisibility: GridLinesVisibility.none,
 
-              /// If the width of the table is less than the minimum width,
-              /// the column width mode is set to auto, otherwise it is set to fill.
-              /// This is done to prevent the table from overflowing.
-              // columnWidthMode:
-              //     constraints.maxWidth < (theme?.minTableWidth ?? 700)
-              //         ? ColumnWidthMode.auto
-              //         : ColumnWidthMode.fill,
-              columns: widget.columns,
-            ),
+            onSelectionChanged: widget.onSelectionChanged,
+            selectionMode: SelectionMode.multiple,
+            navigationMode: GridNavigationMode.cell,
+            source: widget.source,
+            selectionManager:
+                widget.selectionManager ?? _CustomTableSelectionManager(),
+            allowEditing: true,
+
+            /// If the width of the table is less than the minimum width,
+            /// the column width mode is set to auto, otherwise it is set to fill.
+            /// This is done to prevent the table from overflowing.
+            // columnWidthMode:
+            //     constraints.maxWidth < (theme?.minTableWidth ?? 700)
+            //         ? ColumnWidthMode.auto
+            //         : ColumnWidthMode.fill,
+            columns: widget.columns,
           ),
         );
       },

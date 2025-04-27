@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
+import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 
 ///
 class AddMemberViewModel extends ChangeNotifier {
@@ -11,9 +13,43 @@ class AddMemberViewModel extends ChangeNotifier {
 
   final AddNewMemberUseCase _addNewUserUseCase;
 
+  late final TextEditingController nameController;
+  late final TextEditingController phoneNumberController;
+  late final TextEditingController genderController;
+  late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final TextEditingController phoneCodeController;
+  late final TextEditingController memberNumberController;
+  late final TextEditingController memberShipStartDateController;
+  late final TextEditingController memberShipDurationController;
   ValueNotifier<UserModel> get selectedUsers => ValueNotifier(
         user,
       );
+
+  void init(BuildContext context) {
+    Log.debug("AddMemberViewModel initialized");
+    nameController = TextEditingController();
+    phoneNumberController = TextEditingController();
+    genderController = TextEditingController(text: Gender.female.localizedText);
+    phoneCodeController = TextEditingController(
+      text: ConstantValues.phoneCodes[context.locale.countryCode].toString(),
+    );
+    memberNumberController = TextEditingController();
+    memberShipStartDateController = TextEditingController();
+    memberShipDurationController = TextEditingController(text: "3");
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    phoneNumberController.dispose();
+    genderController.dispose();
+    phoneCodeController.dispose();
+    memberNumberController.dispose();
+    memberShipStartDateController.dispose();
+    memberShipDurationController.dispose();
+    Log.debug("AddMemberViewModel disposed");
+    super.dispose();
+  }
 
   /// This variable holds the user data
   ///
@@ -78,23 +114,35 @@ class AddMemberViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  UserModel _setUser(UserModel userModel) {
+  UserModel _setUser() {
     return user.copyWith(
-      name: userModel.name,
-      phoneNumber: userModel.phoneNumber,
-      gender: userModel.gender,
-      memberNumber: userModel.memberNumber,
-      membershipStartDate: userModel.membershipStartDate,
-      membershipEndDate: userModel.membershipEndDate,
+      name: nameController.text,
+      phoneNumber: phoneCodeController.text + phoneNumberController.text,
+      gender: genderController.text.fromLocalizedStringToGenderEnum(),
+      memberNumber: memberNumberController.text,
+      membershipStartDate: DateTime.parse(
+        memberShipStartDateController.text,
+      ),
+      membershipEndDate: DateTime.parse(
+        memberShipStartDateController.text,
+      ).addMonth(
+        int.parse(memberShipDurationController.text),
+      ),
     );
   }
 
   /// Adds a new user
-  Future<DataState<UserModel>> addNewUser(UserModel userModel) async {
-    user = _setUser(userModel);
-    Log.info(user.toJson());
-    final dataState = await _addNewUserUseCase(user);
-    return dataState;
+  Future<DataState<UserModel>> addNewMember() async {
+    // user = _setUser();
+    // Log.info(user.toJson());
+    if (formKey.currentState?.validate() ?? false) {
+      user = _setUser();
+      Log.info(user.toJson());
+      final dataState = await _addNewUserUseCase(user);
+    }
+    // final dataState = await _addNewUserUseCase(user);
+    return DataSuccess(user);
+    // return dataState;
   }
 }
 

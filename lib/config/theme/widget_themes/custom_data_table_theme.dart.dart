@@ -10,6 +10,7 @@ final class _CustomDataTableTheme {
       filterIcon: const Icon(Icons.filter_alt_outlined),
       sortIcon: const Icon(Icons.sort),
     ),
+
     headerTextStyle: TextStyles().textTheme.titleSmall?.copyWith(
           color: AppColors.darkTextColors[30],
           fontWeight: FontWeight.w600,

@@ -3,7 +3,6 @@ import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/sort_by_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/enums/sort_type_enum.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';

@@ -15,18 +15,14 @@ class GenderDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Section(
-      required: true,
-      title: LocaleKeys.addMember_gender.tr(),
-      child: CustomDropDownButton(
-        items: Gender.values
-            .map(
-              (e) => e.localizedText,
-            )
-            .toList(),
-        initialValue: controller.text,
-        onChanged: (value) => controller.text = value.toString(),
-      ),
+    return CustomDropDownButton(
+      items: Gender.values
+          .map(
+            (e) => e.localizedText,
+          )
+          .toList(),
+      initialValue: controller.text,
+      onChanged: (value) => controller.text = value.toString(),
     );
   }
 }

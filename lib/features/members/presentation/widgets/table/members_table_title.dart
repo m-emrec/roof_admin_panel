@@ -56,17 +56,6 @@ class MembersTableTitle extends ConsumerWidget {
             ),
           ],
         ),
-        // Add member button
-        ElevatedButton(
-          onPressed: PermissionBasedAction(
-            () => context.goNamed(AddMemberRoute().name),
-            necessaryPermissions: [
-              Permissions.canEdit,
-              Permissions.canEditMembers,
-            ],
-          ).call(),
-          child: Text(LocaleKeys.membersView_addMember.tr()),
-        ),
       ],
     );
   }

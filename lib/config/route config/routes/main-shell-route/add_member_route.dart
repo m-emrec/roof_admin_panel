@@ -18,7 +18,7 @@ final class AddMemberRoute extends BaseRouteClass {
 
   @override
   Widget Function(BuildContext context, GoRouterState state) get pageBuilder =>
-      (context, state) => const AddMemberPage();
+      (context, state) => const AddMemberTable();
 
   @override
   String get path => "/uye-ekle";
