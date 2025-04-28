@@ -23,6 +23,7 @@ class CustomTable extends StatefulWidget {
     this.onSelectionChanged,
     this.selectionManager,
     this.showCheckboxColumn = true,
+    this.headerRowHeight,
     super.key,
   });
 
@@ -43,6 +44,8 @@ class CustomTable extends StatefulWidget {
 
   /// The controller of the table.
   final DataGridController? controller;
+
+  final double? headerRowHeight;
 
   /// The callback function that is called when a cell is tapped.
   final void Function(DataGridCellTapDetails)? onCellTap;
@@ -92,7 +95,7 @@ class _CustomTableState extends State<CustomTable>
 
             rowsPerPage: widget.rowsPerPage,
             gridLinesVisibility: GridLinesVisibility.none,
-
+            headerRowHeight: widget.headerRowHeight ?? 56,
             onSelectionChanged: widget.onSelectionChanged,
             selectionMode: SelectionMode.multiple,
             navigationMode: GridNavigationMode.cell,

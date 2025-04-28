@@ -26,12 +26,11 @@ final _addNewUserUseCaseProvider = Provider<AddNewMemberUseCase>((ref) {
 /// This provider is used to show or hide the [AddMemberTable]
 /// when the add member button is clicked
 final shouldShowAddMemberTableProvider = StateProvider.autoDispose<bool>((ref) {
-  return false;
+  return true;
 });
 
 /// Table source provider for the [AddMemberTable]
-final addMemberTableProvider =
-    Provider.autoDispose<AddMemberTableSource>((ref) {
+final addMemberTableProvider = Provider<AddMemberTableSource>((ref) {
   return AddMemberTableSource(
     ref,
   );
@@ -41,5 +40,6 @@ final addMemberTableProvider =
 final addMemberProvider = ChangeNotifierProvider<AddMemberViewModel>((ref) {
   return AddMemberViewModel(
     addNewUserUseCase: ref.read(_addNewUserUseCaseProvider),
+    ref: ref,
   );
 });

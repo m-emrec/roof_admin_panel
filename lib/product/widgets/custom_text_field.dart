@@ -55,6 +55,7 @@ class CustomTextField extends TextFormField {
     this.onFieldSubmitted,
     this.unfocusOnTapOutside = false,
     this.maxLength,
+    this.inputFormatters,
   });
 
   final Color? color;
@@ -70,7 +71,7 @@ class CustomTextField extends TextFormField {
   final bool unfocusOnTapOutside;
   final int? maxLength;
   void Function(String)? onFieldSubmitted;
-
+  final List<TextInputFormatter>? inputFormatters;
   @override
   FormFieldBuilder<String> get builder => (state) {
         assert(
@@ -81,6 +82,7 @@ class CustomTextField extends TextFormField {
         return TextFormField(
           contextMenuBuilder: _CustomTextFieldUtils._contextMenuBuilder,
           cursorColor: AppColors.primaryColor,
+          inputFormatters: inputFormatters,
           onTapOutside: (event) =>
               unfocusOnTapOutside ? focusNode?.unfocus() : null,
           focusNode: focusNode,

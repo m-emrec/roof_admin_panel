@@ -223,7 +223,8 @@
         "addMentatToMentor": "Mentat Ekle",
         "addMemberToMentor": "Mentöre Üye Ekle",
         "addMentorToMentat": "Mentör Ekle",
-        "addMentorsToMentat": "Mentata Mentör Ekle"
+        "addMentorsToMentat": "Mentata Mentör Ekle",
+        "success": "Üye başarıyla eklendi."
     },
 "sidebar": {
     "members": "Üyeler",

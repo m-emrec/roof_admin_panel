@@ -206,6 +206,7 @@ abstract class  LocaleKeys {
   static const addMember_addMemberToMentor = 'addMember.addMemberToMentor';
   static const addMember_addMentorToMentat = 'addMember.addMentorToMentat';
   static const addMember_addMentorsToMentat = 'addMember.addMentorsToMentat';
+  static const addMember_success = 'addMember.success';
   static const addMember = 'addMember';
   static const sidebar_members = 'sidebar.members';
   static const sidebar_feedback = 'sidebar.feedback';

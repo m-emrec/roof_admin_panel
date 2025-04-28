@@ -1,18 +1,22 @@
 import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
 class AddMemberViewModel extends ChangeNotifier {
   ///
   AddMemberViewModel({
     required AddNewMemberUseCase addNewUserUseCase,
+    required this.ref,
   }) : _addNewUserUseCase = addNewUserUseCase;
 
   final AddNewMemberUseCase _addNewUserUseCase;
-
+  final Ref ref;
   late final TextEditingController nameController;
   late final TextEditingController phoneNumberController;
   late final TextEditingController genderController;
@@ -40,6 +44,12 @@ class AddMemberViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
+    _disposeControllers();
+    // Log.debug("AddMemberViewModel disposed");
+    super.dispose();
+  }
+
+  void _disposeControllers() {
     nameController.dispose();
     phoneNumberController.dispose();
     genderController.dispose();
@@ -47,8 +57,6 @@ class AddMemberViewModel extends ChangeNotifier {
     memberNumberController.dispose();
     memberShipStartDateController.dispose();
     memberShipDurationController.dispose();
-    // Log.debug("AddMemberViewModel disposed");
-    super.dispose();
   }
 
   /// This variable holds the user data
@@ -65,10 +73,16 @@ class AddMemberViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// This variable holds the roleBasedActionName
-  ///
-  /// This is used to set roleBasedAction
-  RoleBasedActionNames roleBasedActionName = RoleBasedActionNames.setMentorId;
+  void _reset(BuildContext context) {
+    nameController.clear();
+    phoneNumberController.clear();
+    genderController.text = Gender.female.localizedText;
+    phoneCodeController.text =
+        ConstantValues.phoneCodes[context.locale.countryCode].toString();
+    memberNumberController.clear();
+    memberShipStartDateController.clear();
+    memberShipDurationController.text = "3";
+  }
 
   /// Purpose of this method is to set
   /// mentorId, mentatId, members, mentors
@@ -132,38 +146,28 @@ class AddMemberViewModel extends ChangeNotifier {
   }
 
   /// Adds a new user
-  Future<DataState<UserModel>> addNewMember() async {
+  Future<DataState<UserModel>> addNewMember(BuildContext context) async {
     // user = _setUser();
     // Log.info(user.toJson());
-    if (formKey.currentState?.validate() ?? false) {
-      user = _setUser();
-      Log.info(user.toJson());
-      final dataState = await _addNewUserUseCase(user);
-    }
+    user = _setUser();
+    Log.info(user.toJson());
+    final dataState = await _addNewUserUseCase(user);
+    DataState.handleDataStateBasedAction(
+      dataState,
+      onSuccess: (_) {
+        Toast.showSuccessToast(
+          desc: LocaleKeys.addMember_success.tr(),
+        );
+        _reset(context);
+      },
+      onFailure: (fail) {
+        Toast.showErrorToast(
+          desc: fail?.errorMessage ?? "",
+        );
+      },
+    );
     // final dataState = await _addNewUserUseCase(user);
-    return DataSuccess(user);
+    return dataState;
     // return dataState;
   }
-}
-
-///
-/// This enum holds the action names that are used to set the roleBasedAction
-///
-/// setMentorId: This is used to set the mentorId
-/// **So, when this is selected the mentorId will be set**
-///
-/// **and the rest of the values will be null**
-///
-/// The rest are the same
-///
-/// setMentatId: This is used to set the mentatId
-///
-/// setMembers: This is used to set the members
-///
-/// setMentors: This is used to set the mentors
-enum RoleBasedActionNames {
-  setMentorId,
-  setMentatId,
-  setMembers,
-  setMentors,
 }

@@ -40,6 +40,7 @@ class AddMentorButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OutlinedButton(
+      style: OutlinedButton.styleFrom(backgroundColor: Colors.transparent),
       onPressed: () async {
         await CustomAlertDialog.showAlertDialog<UserModel>(
           context: context,

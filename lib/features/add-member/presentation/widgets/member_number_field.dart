@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
@@ -23,6 +24,9 @@ class MemberNumberField extends StatelessWidget {
         validator: (value) => ValidatorMethods(text: value).numberOnlyValidator,
         keyboardType: TextInputType.number,
         controller: controller,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+        ],
       ),
     );
   }

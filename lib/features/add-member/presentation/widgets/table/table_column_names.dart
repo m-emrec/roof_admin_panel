@@ -1,3 +1,8 @@
+// ignore_for_file: public_member_api_docs
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
+
 enum AddMemberTableColumnNames {
   memberNumber,
   name,
@@ -9,11 +14,14 @@ enum AddMemberTableColumnNames {
   membershipDuration;
 
   static final _locale = {
-    memberNumber: "Member Number",
-    name: "Name",
-    phoneNumber: "Phone Number",
-    role: "Role",
-    mentor: "Mentor",
+    memberNumber: LocaleKeys.addMember_memberNumber.tr(),
+    name: LocaleKeys.addMember_name.tr(),
+    phoneNumber: LocaleKeys.addMember_phoneNumber.tr(),
+    role: LocaleKeys.addMember_role.tr(),
+    // mentor: LocaleKeys.addMember_.tr(),
+    gender: LocaleKeys.addMember_gender.tr(),
+    membershipStartDate: LocaleKeys.addMember_memberShipStartDate.tr(),
+    membershipDuration: LocaleKeys.addMember_memberShipDuration.tr(),
   };
 
   static AddMemberTableColumnNames toTableNamesEnum(String tableName) {

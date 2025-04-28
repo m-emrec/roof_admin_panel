@@ -121,8 +121,6 @@ final class AppTheme {
         iconButtonTheme: _IconButtonTheme.iconButtonTheme,
       );
 
-  // MARK: CheckboxThemeData
-
   // MARK: Theme Extensions
   Iterable<ThemeExtension<dynamic>> get _extensions => [
         _AddProfilePictureTheme(),

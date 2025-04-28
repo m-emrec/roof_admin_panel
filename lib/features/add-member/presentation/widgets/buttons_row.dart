@@ -1,8 +1,10 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 
 class ButtonsRow extends ConsumerWidget {
   const ButtonsRow({
@@ -16,30 +18,34 @@ class ButtonsRow extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(width: 8),
           TextButton.icon(
             onPressed: () {
               ref.read(shouldShowAddMemberTableProvider.notifier).state = false;
             },
             icon: const Icon(Icons.close),
             label: Text(
-              'Close',
+              LocaleKeys.common_close.tr(),
               style: context.textTheme.labelLarge,
             ),
           ),
           TextButton.icon(
-            onPressed: () {
-              ref.read(addMemberProvider).addNewMember();
+            onPressed: () async {
+              if (ref
+                      .read(addMemberProvider)
+                      .formKey
+                      .currentState
+                      ?.validate() ??
+                  false) {
+                await ref.read(addMemberProvider).addNewMember(context);
+              }
             },
             icon: const Icon(Icons.check),
             label: Text(
-              'Add',
+              LocaleKeys.common_add.tr(),
               style: context.textTheme.labelLarge,
             ),
           ),
         ],
-      ).fadeAnimation(
-        duration: const Duration(milliseconds: 500),
       ),
     );
   }

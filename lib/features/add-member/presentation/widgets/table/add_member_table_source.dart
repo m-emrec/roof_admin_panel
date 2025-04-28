@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,23 @@ class AddMemberTableSource extends DataGridSource {
   List<DataGridRow> _dataGridRows = [];
   @override
   List<DataGridRow> get rows => _dataGridRows;
+
+  Widget _cell(Widget child) {
+    return Container(
+      // height: 50,
+      padding: const AppPadding.horizontalxsSymmetric() +
+          const AppPadding.verticalxsSymmetric(),
+      alignment: Alignment.center,
+
+      child: ColorFiltered(
+        colorFilter: ColorFilter.mode(
+          AppColors.backgroundColor[50] ?? Colors.white,
+          BlendMode.srcATop,
+        ),
+        child: child,
+      ),
+    );
+  }
 
   void generateRow() {
     final p = ref.watch(addMemberProvider);
@@ -98,11 +116,8 @@ class AddMemberTableSource extends DataGridSource {
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((dataCell) {
-        return Container(
-          height: 50,
-          padding: const EdgeInsets.all(8.0),
-          alignment: Alignment.center,
-          child: dataCell.value as Widget,
+        return _cell(
+          dataCell.value as Widget,
         );
       }).toList(),
     );
