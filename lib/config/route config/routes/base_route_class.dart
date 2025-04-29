@@ -1,8 +1,8 @@
 import 'dart:async';
-import "dart:html" as html;
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:web/web.dart' as web;
 
 /// A base class for all routes in the application.
 /// This class defines the basic structure of a route.
@@ -49,13 +49,23 @@ abstract base class BaseRouteClass {
   /// By default it is equal to [name] but can be overridden in the child class.
   String get title => name;
 
+  Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)
+      get transitionsBuilder =>
+          (context, animation, secondaryAnimation, child) {
+            return child;
+          };
+
   /// The route for the class.
   GoRoute get route => GoRoute(
         path: path,
         name: name,
         pageBuilder: (context, state) {
-          html.document.title = "Roof Network | $title";
-          return MaterialPage(child: pageBuilder(context, state));
+          web.document.title = "Roof Network | $title";
+          return CustomTransitionPage(
+            transitionDuration: Duration(seconds: 3),
+            child: pageBuilder(context, state),
+            transitionsBuilder: transitionsBuilder,
+          );
         },
         routes: routes,
         redirect: redirect,

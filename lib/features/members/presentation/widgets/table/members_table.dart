@@ -42,6 +42,7 @@ class MembersTable extends ConsumerWidget
     return hasActiveFilterButNoData(ref, tableSource)
         ? buildEmptyFilteredTableMessage(context, ref)
         : CustomTable(
+            showCheckboxColumn: false,
             controller: controller,
             selectionManager: MembersTableSelectionManager(
               ref: ref,

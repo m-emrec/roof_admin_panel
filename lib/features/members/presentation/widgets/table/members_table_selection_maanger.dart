@@ -20,7 +20,7 @@ class MembersTableSelectionManager extends RowSelectionManager {
     ///
     /// If the user taps on any other column,
     /// I want to handle the tap event in the parent widget.
-    if (rowColumnIndex.columnIndex == 2) {
+    if (rowColumnIndex.columnIndex == 1) {
       _onUserNameCellTap(
         ref,
         context,
@@ -33,7 +33,7 @@ class MembersTableSelectionManager extends RowSelectionManager {
     final table = ref.read(membersTableSourceProvider);
 
     final cell = table.effectiveRows[rowColumnIndex.rowIndex - 1]
-        .getCells()[rowColumnIndex.columnIndex - 1];
+        .getCells()[rowColumnIndex.columnIndex];
     return cell.value as T;
   }
 

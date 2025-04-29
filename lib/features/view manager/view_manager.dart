@@ -2,10 +2,10 @@ import 'package:core/extensions/media_query_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:flutter/material.dart';
+import 'package:roof_admin_panel/features/side-bar/presentation/views/side_bar.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 import 'package:roof_admin_panel/product/widgets/empty_box.dart';
-import 'package:roof_admin_panel/product/widgets/side%20bar/side_bar.dart';
 
 /// This widget contains the side bar and the main view
 ///
@@ -51,7 +51,8 @@ class _ViewManagerState extends State<ViewManager> {
               width: context.dynamicWidth(1),
               child: Row(
                 children: [
-                  const SideBar(),
+                  // const SideBar(),
+                  SideBar(),
                   Flexible(
                     child: Padding(
                       padding: const AppPadding.horizontalLSymmetric() +
