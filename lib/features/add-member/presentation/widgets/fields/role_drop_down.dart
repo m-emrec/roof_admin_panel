@@ -3,6 +3,7 @@ import 'package:core/utils/widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 
 class RoleDropDown extends ConsumerStatefulWidget {
   const RoleDropDown({super.key});
@@ -12,24 +13,12 @@ class RoleDropDown extends ConsumerStatefulWidget {
 }
 
 class _RoleDropDownState extends ConsumerState<RoleDropDown> {
-  final List<Role> selectableRoles = [];
   Role selectedRole = Role.member;
-  @override
-  void initState() {
-    for (final element in Role.values) {
-      if (element != Role.other &&
-          element != Role.guest &&
-          element != Role.approvedGuest) {
-        selectableRoles.add(element);
-      }
-    }
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return CustomDropDownButton(
-      items: selectableRoles
+      items: Role.values.getMemberRelatedRoles
           .map(
             (e) => e.localizedText(),
           )

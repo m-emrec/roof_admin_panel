@@ -11,18 +11,23 @@ import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 ///
 /// 1. [controller] : The controller to control the text field
 class MemberNumberField extends StatelessWidget {
+  const MemberNumberField({required this.controller, super.key});
   final TextEditingController controller;
-  const MemberNumberField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
+    final focusNode = FocusNode();
     return SizedBox(
       // I gave this width arbitrarily . It was looking good in the UI so I kept it
       width: 250,
       child: CustomTextField(
+        focusNode: focusNode,
+        unfocusOnTapOutside: true,
+        autovalidateMode: AutovalidateMode.disabled,
         label: LocaleKeys.addMember_memberNumber.tr(),
         validator: (value) => ValidatorMethods(text: value).numberOnlyValidator,
         keyboardType: TextInputType.number,
+        textInputAction: TextInputAction.next,
         controller: controller,
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,

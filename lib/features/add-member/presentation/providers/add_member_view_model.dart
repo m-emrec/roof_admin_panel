@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
@@ -12,25 +12,42 @@ class AddMemberViewModel extends ChangeNotifier {
   ///
   AddMemberViewModel({
     required AddNewMemberUseCase addNewUserUseCase,
-    required this.ref,
   }) : _addNewUserUseCase = addNewUserUseCase;
 
   final AddNewMemberUseCase _addNewUserUseCase;
-  final Ref ref;
+
+  ///
   late final TextEditingController nameController;
+
+  ///
   late final TextEditingController phoneNumberController;
+
+  ///
   late final TextEditingController genderController;
+
+  ///
   late final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  ///
   late final TextEditingController phoneCodeController;
+
+  ///
   late final TextEditingController memberNumberController;
+
+  ///
   late final TextEditingController memberShipStartDateController;
+
+  ///
   late final TextEditingController memberShipDurationController;
-  ValueNotifier<UserModel> get selectedUsers => ValueNotifier(
+
+  ///
+  ValueNotifier<UserModel> get mentorshipSelectedMembers => ValueNotifier(
         user,
       );
 
-  void init(BuildContext context) {
-    // Log.debug("AddMemberViewModel initialized");
+  /// This method is used to initialize the controllers
+  /// and set the initial values for the controllers
+  void initControllers(BuildContext context) {
     nameController = TextEditingController();
     phoneNumberController = TextEditingController();
     genderController = TextEditingController(text: Gender.female.localizedText);
@@ -45,7 +62,6 @@ class AddMemberViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _disposeControllers();
-    // Log.debug("AddMemberViewModel disposed");
     super.dispose();
   }
 
@@ -73,7 +89,7 @@ class AddMemberViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _reset(BuildContext context) {
+  void _resetControllers(BuildContext context) {
     nameController.clear();
     phoneNumberController.clear();
     genderController.text = Gender.female.localizedText;
@@ -96,18 +112,7 @@ class AddMemberViewModel extends ChangeNotifier {
   ///
   /// ...
   void roleBasedAction(UserModel userModel) {
-    Log.debug("RoleBasedAction: ${userModel}");
-
-    if (user.role?.contains(Role.member) == true ||
-        user.role?.contains(Role.admin) == true) {
-      user = user.copyWith(
-        mentorId: userModel.mentorId,
-        mentatId: "",
-        members: [],
-        mentors: [],
-        role: user.role,
-      );
-    } else if (user.role?.contains(Role.mentat) == true) {
+    if (user.isMentat) {
       user = user.copyWith(
         mentors: userModel.mentors,
         mentatId: "",
@@ -115,11 +120,19 @@ class AddMemberViewModel extends ChangeNotifier {
         mentorId: "",
         role: user.role,
       );
-    } else if (user.role?.contains(Role.mentor) == true) {
+    } else if (user.isMentor) {
       user = user.copyWith(
         members: userModel.members,
         mentatId: userModel.mentatId,
         mentorId: "",
+        mentors: [],
+        role: user.role,
+      );
+    } else {
+      user = user.copyWith(
+        mentorId: userModel.mentorId,
+        mentatId: "",
+        members: [],
         mentors: [],
         role: user.role,
       );
@@ -147,8 +160,6 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// Adds a new user
   Future<DataState<UserModel>> addNewMember(BuildContext context) async {
-    // user = _setUser();
-    // Log.info(user.toJson());
     user = _setUser();
     Log.info(user.toJson());
     final dataState = await _addNewUserUseCase(user);
@@ -158,11 +169,11 @@ class AddMemberViewModel extends ChangeNotifier {
         Toast.showSuccessToast(
           desc: LocaleKeys.addMember_success.tr(),
         );
-        _reset(context);
+        _resetControllers(context);
       },
       onFailure: (fail) {
         Toast.showErrorToast(
-          desc: fail?.errorMessage ?? "",
+          desc: AppErrorText.errorMessageConverter(fail?.errorMessage ?? ""),
         );
       },
     );

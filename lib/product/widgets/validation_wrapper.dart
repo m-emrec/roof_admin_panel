@@ -32,6 +32,7 @@ class ValidationWrapper<T> extends StatelessWidget {
       builder: (field) => Column(
         crossAxisAlignment:
             parentWidgetCrossAxisAlignment ?? CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           child,
           if (field.errorText == null)

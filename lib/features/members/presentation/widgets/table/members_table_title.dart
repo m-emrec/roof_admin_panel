@@ -3,12 +3,8 @@ import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
-import 'package:roof_admin_panel/config/route%20config/routes/main-shell-route/add_member_route.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
-import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
@@ -30,31 +26,25 @@ class MembersTableTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      spacing: SpacingSizes.medium,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Column(
+      spacing: SpacingSizes.extraExtraSmall,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          spacing: SpacingSizes.extraExtraSmall,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TitleWidget(
-              title: LocaleKeys.membersView_pageTitle.tr(),
+        TitleWidget(
+          title: LocaleKeys.membersView_pageTitle.tr(),
+        ),
+        // Total members count
+        AsyncDataBuilder(
+          provider: totalMembersCountProvider,
+          data: (count) => Text(
+            LocaleKeys.membersView_memberCount.tr(
+              args: [count.toString()],
             ),
-            // Total members count
-            AsyncDataBuilder(
-              provider: totalMembersCountProvider,
-              data: (count) => Text(
-                LocaleKeys.membersView_memberCount.tr(
-                  args: [count.toString()],
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: AppColors.darkTextColors[30],
                 ),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppColors.darkTextColors[30],
-                    ),
-              ),
-              skeletonType: SkeletonType.text,
-            ),
-          ],
+          ),
+          skeletonType: SkeletonType.text,
         ),
       ],
     );

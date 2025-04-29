@@ -36,3 +36,13 @@ extension UserModelRole on UserModel {
   /// Returns `true` if the list contains the [Role.member] role.
   bool get isMentat => role?.contains(Role.mentat) ?? false;
 }
+
+extension RoleListExtensions on List<Role> {
+  List<Role> get getMemberRelatedRoles {
+    return where((element) {
+      return element != Role.guest &&
+          element != Role.approvedGuest &&
+          element != Role.other;
+    }).toList();
+  }
+}

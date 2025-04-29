@@ -21,6 +21,7 @@ abstract class  LocaleKeys {
   static const errors_wrong_password = 'errors.wrong_password';
   static const errors_email_already_in_use = 'errors.email_already_in_use';
   static const errors_invalid_email = 'errors.invalid_email';
+  static const errors_phone_number_already_exists = 'errors.phone_number_already_exists';
   static const errors_operation_not_allowed = 'errors.operation_not_allowed';
   static const errors_weak_password = 'errors.weak_password';
   static const errors_provider_already_linked = 'errors.provider_already_linked';

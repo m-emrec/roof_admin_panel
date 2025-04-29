@@ -18,6 +18,7 @@
         "wrong_password": "Verilen e-posta için şifre geçersiz.",
         "email_already_in_use": "Bu e-posta adresi zaten başka bir hesap tarafından kullanılıyor.",
         "invalid_email": "E-posta adresi geçerli değil.",
+        "phone_number_already_exists": "Bu telefon numarası zaten başka bir hesapla ilişkilendirilmiş.",
         "operation_not_allowed": "Bu işlem izin verilmiyor. Yönetici ile iletişime geçin.",
         "weak_password": "Şifre en az 6 karakter uzunluğunda olmalı, en az bir büyük harf ve bir sembol içermelidir.",
         "provider_already_linked": "Bu sağlayıcı zaten kullanıcıya bağlı.",

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/pages/add_member.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/view/add_member.dart';
 import 'package:roof_admin_panel/features/members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/filter%20and%20sort/filter_and_sort_row.dart';
 import 'package:roof_admin_panel/features/members/presentation/widgets/table/members_table.dart';
@@ -23,6 +23,7 @@ class MembersView extends ConsumerWidget {
       children: [
         const MembersTableTitle(),
         const FilterAndSortRow(),
+        const AddMember(),
         AsyncDataBuilder(
           provider: membersViewModelProvider,
           data: (_) {
@@ -31,14 +32,49 @@ class MembersView extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const AddMember(),
                   Expanded(
-                    child: Card(
-                      elevation: 5,
-                      shadowColor: AppColors.backgroundColor[10],
-                      shape: const RoundedRectangleBorder(),
-                      color: AppColors.backgroundColor[60],
-                      child: MembersTable(),
+                    child: Padding(
+                      padding: const AppPadding.horizontalxsSymmetric() +
+                          const AppPadding.verticalxsSymmetric(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const AppBorderRadius.medium(),
+                          color: AppColors.backgroundColor[70],
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xF969BF98),
+                              blurRadius: 3,
+                              offset: Offset(0, 0),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color(0xD869BF98),
+                              blurRadius: 6,
+                              offset: Offset(1, 0),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color(0x7F69BF98),
+                              blurRadius: 8,
+                              offset: Offset(2, 0),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color(0x2669BF98),
+                              blurRadius: 9,
+                              offset: Offset(3, 0),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color(0x0569BF98),
+                              blurRadius: 10,
+                              offset: Offset(5, 0),
+                              spreadRadius: 0,
+                            )
+                          ],
+                        ),
+                        child: MembersTable(),
+                      ),
                     ),
                   ),
                 ],

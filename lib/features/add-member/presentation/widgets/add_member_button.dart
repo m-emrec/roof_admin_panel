@@ -20,21 +20,10 @@ class AddMemberButton extends ConsumerWidget {
       child: TextButton.icon(
         style: ButtonStyle(
           textStyle: WidgetStatePropertyAll(
-            context.textTheme.labelLarge?.copyWith(),
+            context.textTheme.labelLarge,
           ),
-          foregroundColor: WidgetStateColor.fromMap(
-            {
-              WidgetState.any: AppColors.primaryColor[50] ?? Colors.transparent,
-              WidgetState.hovered:
-                  AppColors.primaryColor[10] ?? Colors.transparent,
-            },
-          ),
-          backgroundColor: WidgetStateColor.fromMap(
-            {
-              WidgetState.any: Colors.transparent,
-              WidgetState.hovered:
-                  AppColors.primaryColor[90] ?? Colors.transparent,
-            },
+          foregroundColor: WidgetStatePropertyAll(
+            AppColors.primaryColor[50] ?? Colors.transparent,
           ),
         ),
         onPressed: PermissionBasedAction(

@@ -81,7 +81,7 @@ class _CustomTableState extends State<CustomTable>
           child: SfDataGrid(
             rowHeight: theme?.rowHeight ?? double.nan,
             showVerticalScrollbar: false,
-
+            highlightRowOnHover: false,
             loadMoreViewBuilder: buildLoadMore,
             controller: widget.controller,
             onCellTap: widget.onCellTap,
@@ -89,7 +89,6 @@ class _CustomTableState extends State<CustomTable>
               showCheckboxOnHeader: false,
             ),
             showCheckboxColumn: widget.showCheckboxColumn,
-
             checkboxShape: theme?.checkboxShape,
             headerGridLinesVisibility: GridLinesVisibility.none,
 

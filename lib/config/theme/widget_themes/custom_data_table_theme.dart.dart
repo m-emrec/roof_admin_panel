@@ -6,6 +6,7 @@ final class _CustomDataTableTheme {
   static final CustomDataTableThemeExtension theme =
       CustomDataTableThemeExtension(
     tableTheme: SfDataGridThemeData(
+      headerHoverColor: Colors.transparent,
       selectionColor: AppColors.backgroundColor[40],
       filterIcon: const Icon(Icons.filter_alt_outlined),
       sortIcon: const Icon(Icons.sort),
@@ -15,6 +16,7 @@ final class _CustomDataTableTheme {
           color: AppColors.darkTextColors[30],
           fontWeight: FontWeight.w600,
         ),
+
     rowItemTextStyle: TextStyles().textTheme.labelLarge?.copyWith(
           color: AppColors.darkTextColors[30],
         ),

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/widgets/member_number_field.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/widgets/member_ship_duration_drop_down.dart';
-import 'package:roof_admin_panel/features/add-member/presentation/widgets/role_drop_down.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/member_number_field.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/member_ship_duration_drop_down.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/role_drop_down.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/table/table_column_names.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/add_mentor_button.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
@@ -14,20 +14,113 @@ import 'package:roof_admin_panel/product/widgets/add%20user/date_selection_field
 import 'package:roof_admin_panel/product/widgets/add%20user/gender_drop_down.dart';
 import 'package:roof_admin_panel/product/widgets/custom_text_field.dart';
 import 'package:roof_admin_panel/product/widgets/text%20fields/phone_field.dart';
+import 'package:roof_admin_panel/product/widgets/validation_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class AddMemberTableSource extends DataGridSource {
   AddMemberTableSource(
     this.ref,
   ) {
-    generateRow();
+    _generateRow();
   }
 
   final Ref ref;
-  // DataGridRowGenerator({required super.users, required super.ref});
   List<DataGridRow> _dataGridRows = [];
   @override
   List<DataGridRow> get rows => _dataGridRows;
+
+  void _generateRow() {
+    final provider = ref.watch(addMemberProvider);
+    final selectedUsers = ref.watch(
+      addMemberProvider.select((p) => p.mentorshipSelectedMembers),
+    );
+    selectedUsers.addListener(() {
+      ref.read(addMemberProvider).roleBasedAction(selectedUsers.value);
+    });
+    _dataGridRows = [
+      DataGridRow(
+        cells: [
+          /// Member Number
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.memberNumber.name,
+            value: MemberNumberField(
+              controller: provider.memberNumberController,
+            ),
+          ),
+
+          /// Name
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.name.name,
+            value: CustomTextField(
+              focusNode: FocusNode(),
+              unfocusOnTapOutside: true,
+              textCapitalization: TextCapitalization.words,
+              autovalidateMode: AutovalidateMode.disabled,
+              label: LocaleKeys.addMember_name.tr(),
+              validator: (value) => ValidatorMethods(text: value).validateName,
+              controller: provider.nameController,
+              textInputAction: TextInputAction.next,
+            ),
+          ),
+
+          /// Phone Number
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.phoneNumber.name,
+            value: PhoneField(
+              autovalidateMode: AutovalidateMode.disabled,
+              controller: provider.phoneNumberController,
+              phoneCodeController: provider.phoneCodeController,
+            ),
+          ),
+
+          /// Role
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.role.name,
+            value: const RoleDropDown(),
+          ),
+
+          /// Mentor
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.mentor.name,
+            value: AddMentorButton(
+              user: ref.watch(addMemberProvider.select((p) => p.user)),
+              selectedUsers: selectedUsers,
+            ),
+          ),
+
+          /// Gender
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.gender.name,
+            value: GenderDropDown(
+              controller: provider.genderController,
+            ),
+          ),
+
+          /// Membership Start Date
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.membershipStartDate.name,
+            value: ValidationWrapper(
+              validator: (_) => ValidatorMethods(
+                text: provider.memberShipStartDateController.text,
+              ).emptyField,
+              child: DateField(
+                label: LocaleKeys.addMember_memberShipStartDate.tr(),
+                controller: provider.memberShipStartDateController,
+              ),
+            ),
+          ),
+
+          /// Membership Duration
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.membershipDuration.name,
+            value: MemberShipDurationDropDown(
+              controller: provider.memberShipDurationController,
+            ),
+          ),
+        ],
+      ),
+    ];
+  }
 
   Widget _cell(Widget child) {
     return Container(
@@ -36,80 +129,8 @@ class AddMemberTableSource extends DataGridSource {
           const AppPadding.verticalxsSymmetric(),
       alignment: Alignment.center,
 
-      child: ColorFiltered(
-        colorFilter: ColorFilter.mode(
-          AppColors.backgroundColor[50] ?? Colors.white,
-          BlendMode.srcATop,
-        ),
-        child: child,
-      ),
+      child: child,
     );
-  }
-
-  void generateRow() {
-    final p = ref.watch(addMemberProvider);
-    final selectedUsers = ref.watch(
-      addMemberProvider.select((p) => p.selectedUsers),
-    );
-    selectedUsers.addListener(() {
-      ref.read(addMemberProvider).roleBasedAction(selectedUsers.value);
-    });
-    _dataGridRows = [
-      DataGridRow(
-        cells: [
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.memberNumber.name,
-            value: MemberNumberField(
-              controller: p.memberNumberController,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.name.name,
-            value: CustomTextField(
-              label: LocaleKeys.addMember_name.tr(),
-              validator: (value) => ValidatorMethods(text: value).validateName,
-              controller: p.nameController,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.phoneNumber.name,
-            value: PhoneField(
-              controller: p.phoneNumberController,
-              phoneCodeController: p.phoneCodeController,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.role.name,
-            value: const RoleDropDown(),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.mentor.name,
-            value: AddMentorButton(
-              user: ref.watch(addMemberProvider.select((p) => p.user)),
-              selectedUsers: selectedUsers,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.gender.name,
-            value: GenderDropDown(
-              controller: p.genderController,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.membershipStartDate.name,
-            value: DateField(
-              controller: p.memberShipStartDateController,
-            ),
-          ),
-          DataGridCell(
-            columnName: AddMemberTableColumnNames.membershipDuration.name,
-            value: MemberShipDurationDropDown(
-              controller: p.memberShipDurationController,
-            ),
-          ),
-        ],
-      ),
-    ];
   }
 
   @override

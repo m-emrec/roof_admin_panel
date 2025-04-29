@@ -19,15 +19,18 @@ class MemberShipDurationDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomDropDownButton(
-      items: List.generate(
-        12,
-        (index) => "${index + 1} ${LocaleKeys.common_date_month.tr()}",
+    return Tooltip(
+      message: LocaleKeys.addMember_memberShipDuration.tr(),
+      child: CustomDropDownButton(
+        items: List.generate(
+          12,
+          (index) => "${index + 1} ${LocaleKeys.common_date_month.tr()}",
+        ),
+        initialValue: "${controller.text} ${LocaleKeys.common_date_month.tr()}",
+        onChanged: (value) {
+          controller.text = value.toString().split(" ")[0];
+        },
       ),
-      initialValue: "${controller.text} ${LocaleKeys.common_date_month.tr()}",
-      onChanged: (value) {
-        controller.text = value.toString().split(" ")[0];
-      },
     );
   }
 }

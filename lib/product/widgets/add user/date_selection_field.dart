@@ -49,9 +49,8 @@ class DateSelectionField extends StatelessWidget {
 }
 
 class DateField extends StatefulWidget {
-  const DateField({
-    required this.controller,
-  });
+  const DateField({required this.controller, this.label});
+  final String? label;
   final TextEditingController controller;
   @override
   State<DateField> createState() => _DateFieldState();
@@ -103,7 +102,7 @@ class _DateFieldState extends State<DateField> {
       label: Text(
         selectedDate != null
             ? selectedDate?.formatDate(context) ?? ""
-            : LocaleKeys.common_date_select.tr(),
+            : widget.label ?? LocaleKeys.common_date_select.tr(),
       ),
     );
   }

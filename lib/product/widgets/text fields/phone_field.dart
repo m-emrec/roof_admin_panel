@@ -26,18 +26,27 @@ class PhoneField extends StatelessWidget {
   /// 2. [phoneCodeController] : The controller to control the phone code
   ///
   ///
-  const PhoneField({
+  PhoneField({
     required this.controller,
     required this.phoneCodeController,
     super.key,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.textInputAction = TextInputAction.next,
   });
+  final TextInputAction textInputAction;
   final TextEditingController controller;
   final TextEditingController phoneCodeController;
+  final FocusNode focusNode = FocusNode();
+  final AutovalidateMode autovalidateMode;
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      autovalidateMode: autovalidateMode,
+      focusNode: focusNode,
+      textInputAction: textInputAction,
       validator: (_) => ValidatorMethods(text: controller.text).validatePhone,
       controller: controller,
+      unfocusOnTapOutside: true,
       prefixIcon: CustomDropDownButton(
         items: ConstantValues.phoneCodes.entries.map((e) {
           return "${e.key} ${e.value}";
