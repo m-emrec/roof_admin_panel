@@ -33,7 +33,7 @@ class AddMemberButton extends ConsumerWidget {
             Permissions.canEdit,
             Permissions.canEditMembers,
           ],
-        ).call(),
+        ).executeIfAuthorized(),
         icon: const Icon(Icons.add),
         label: Text(
           LocaleKeys.membersView_addMember.tr(),

@@ -47,7 +47,6 @@ class MembersDatabaseService extends FirebaseUtils
   /// This function fetches the next 20 users from the database when its needed.
   ///
   Future<List<Map<String, dynamic>>> fetchNext20Users(String lastDocId) async {
-    Log.debug("lastDocId: $lastDocId");
     final querySnapshots = await getCollectionRef(CollectionEnum.users)
         .orderBy(UserDocEnum.memberNumber.name)
         .startAfterDocument(

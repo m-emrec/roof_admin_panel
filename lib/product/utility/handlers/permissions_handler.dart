@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/current_manager.dart';
@@ -54,7 +56,7 @@ class PermissionBasedAction extends PermissionHandler {
   final VoidCallback? onPressed;
 
   /// Returns [onPressed] if the user has permission; otherwise, `null`
-  VoidCallback? call() => _hasPermission ? onPressed : null;
+  VoidCallback? executeIfAuthorized() => _hasPermission ? onPressed : null;
 }
 
 /// A permission-based widget visibility handler that conditionally
@@ -86,4 +88,43 @@ class PermissionBasedVisibility extends PermissionHandler {
   /// Otherwise, it displays a permission error message.
   Widget get visibleOrPermissionInfo =>
       _hasPermission ? child : const NoPermissionCard();
+}
+
+extension PermissionBasedVisibilityExtension on Widget {
+  Widget visibleIfAllowed(List<Permissions> necessaryPermissions) =>
+      PermissionBasedVisibility(
+        child: this,
+        necessaryPermissions: necessaryPermissions,
+      ).visibleIfAllowed;
+
+  Widget get visibleIfEditMemberAllowed => PermissionBasedVisibility(
+        child: this,
+        necessaryPermissions: [
+          Permissions.canEdit,
+          Permissions.canEditMembers,
+          Permissions.canReadMembers,
+        ],
+      ).visibleIfAllowed;
+
+  Widget visibleOrPermissionInfo(List<Permissions> necessaryPermissions) =>
+      PermissionBasedVisibility(
+        child: this,
+        necessaryPermissions: necessaryPermissions,
+      ).visibleOrPermissionInfo;
+}
+
+extension PermissionBasedActionExtension on FutureOr<void> {
+  VoidCallback? executeIfAuthorized(List<Permissions> necessaryPermissions) =>
+      PermissionBasedAction(
+        () => this,
+        necessaryPermissions: necessaryPermissions,
+      ).executeIfAuthorized();
+  VoidCallback? get executeIfAuthorizedForMembers => PermissionBasedAction(
+        () => this,
+        necessaryPermissions: [
+          Permissions.canEdit,
+          Permissions.canEditMembers,
+          Permissions.canReadMembers,
+        ],
+      ).executeIfAuthorized();
 }

@@ -22,10 +22,53 @@ class _MembersPageState extends State<MembersPage>
     tabController = TabController(
       length: views.length,
       vsync: this,
-      initialIndex: 1,
     );
     super.initState();
   }
+
+  List<Widget> get tabs => [
+        Tab(
+          child: Consumer(
+            builder: (context, ref, child) => Row(
+              spacing: SpacingSizes.extraExtraSmall,
+              children: [
+                Text(
+                  LocaleKeys.membersView_pageTitle.tr(),
+                ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  child: CircleAvatar(
+                    radius: tabController.index == 0 ? 12 : 8,
+                    backgroundColor: AppColors.backgroundColor[40],
+                    child: Text(
+                      ref
+                              .watch(totalMembersCountProvider)
+                              .whenData(
+                                (data) => data.toString(),
+                              )
+                              .value ??
+                          "",
+                      style: context.textTheme.labelSmall,
+                      textScaler: TextScaler.linear(
+                        tabController.index == 0 ? 1 : 0.5,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Tab(
+          text: LocaleKeys.bannedMemberView_pageTitle.tr(),
+        ),
+        const Tab(
+          text: "Stats",
+        ),
+        const Tab(
+          text: "Prices",
+        ),
+      ];
 
   final List<Widget> views = const [
     MembersView(),
@@ -37,69 +80,24 @@ class _MembersPageState extends State<MembersPage>
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: SpacingSizes.extraSmall,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleWidget(title: LocaleKeys.membersView_pageTitle.tr()),
-        Divider(
-          thickness: 2,
-          endIndent: context.dynamicWidth(0.75),
-        ),
         TabBar(
           indicatorAnimation: TabIndicatorAnimation.elastic,
           controller: tabController,
           onTap: (value) => setState(() {}),
-          tabs: [
-            Tab(
-              child: Consumer(
-                builder: (context, ref, child) => Row(
-                  spacing: SpacingSizes.extraExtraSmall,
-                  children: [
-                    const Text(
-                      "Members",
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      child: CircleAvatar(
-                        radius: tabController.index == 0 ? 12 : 8,
-                        backgroundColor: AppColors.backgroundColor[40],
-                        child: Text(
-                          ref
-                                  .watch(totalMembersCountProvider)
-                                  .whenData(
-                                    (data) => data.toString(),
-                                  )
-                                  .value ??
-                              "",
-                          style: context.textTheme.labelSmall,
-                          textScaler: TextScaler.linear(
-                            tabController.index == 0 ? 1 : 0.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const Tab(
-              text: "Banned Members",
-            ),
-            const Tab(
-              text: "Stats",
-            ),
-            const Tab(
-              text: "Prices",
-            ),
-          ],
+          tabs: tabs,
           unselectedLabelColor: AppColors.secondaryColor.withValues(alpha: 0.5),
           labelColor: AppColors.secondaryColor,
-          dividerHeight: 0,
           isScrollable: true,
           indicatorColor: AppColors.secondaryColor,
           tabAlignment: TabAlignment.start,
         ),
         Expanded(
           child: TabBarView(
+            clipBehavior: Clip.none,
             controller: tabController,
             children: views,
           ),

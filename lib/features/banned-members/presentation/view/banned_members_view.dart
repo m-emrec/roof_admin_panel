@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/features/banned-members/presentation/widgets/ba
 import 'package:roof_admin_panel/features/members-page/members_page.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
@@ -31,18 +32,24 @@ class BannedMembersView extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final member = data[index];
                 return ListTile(
+                  /// Image
                   leading: Avatar(
                     imageUrl: member.imageUrl,
                     radius: IconSizes.small.height,
                   ),
+
+                  /// Name
                   title: Text(member.name),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      /// Phone Number
                       Text(
                         member.phoneNumber,
                         style: context.textTheme.labelLarge,
                       ),
+
+                      /// Banned Date
                       Tooltip(
                         message: LocaleKeys.bannedMemberView_bannedDate.tr(),
                         child: Text(
@@ -54,13 +61,17 @@ class BannedMembersView extends ConsumerWidget {
                       ),
                     ],
                   ),
+
+                  /// Unban Button
                   trailing: IconButton(
                     tooltip: LocaleKeys.bannedMemberView_unBan.tr(),
                     icon: const Icon(Icons.undo_rounded),
-                    onPressed: () => ref
-                        .read(bannedMembersViewModelProvider.notifier)
-                        .unbanMember(member.uid ?? ""),
-                  ),
+                    onPressed: () {
+                      ref
+                          .read(bannedMembersViewModelProvider.notifier)
+                          .unbanMember(member.uid ?? "");
+                    }.executeIfAuthorizedForMembers,
+                  ).visibleIfEditMemberAllowed,
                 );
               },
             ),

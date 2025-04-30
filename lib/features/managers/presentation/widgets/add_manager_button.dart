@@ -26,7 +26,7 @@ class AddManagerButton extends StatelessWidget {
       onPressed: PermissionBasedAction(
         () => onTapAdd(context),
         necessaryPermissions: [Permissions.canEditManagers],
-      ).call(),
+      ).executeIfAuthorized(),
       child: Text(LocaleKeys.managersView_addManager.tr()),
     );
   }
