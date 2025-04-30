@@ -8,7 +8,12 @@ class BannedMembersService extends FirebaseUtils
     with FirestoreUtils, FirebaseCloudFunctionsUtils {
   Future<List<Map<String, dynamic>>> fetchBannedMembers() async {
     final collection = await getCollectionRef(CollectionEnum.bannedUsers);
-    final snapshot = await collection.get();
+    final snapshot = await collection
+        .orderBy(
+          "bannedDate",
+          descending: true,
+        )
+        .get();
     final bannedMembers = snapshot.docs.map((doc) => doc.data()).toList();
     return bannedMembers;
   }

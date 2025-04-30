@@ -211,6 +211,13 @@
             "mentor":"Mentör"
         }
     },
+   "bannedMemberView": {
+        "pageTitle": "Banlı Üyeler",
+        "bannedDate": "Banlanma Tarihi",
+        "unBan": "Banı Kaldır",
+        "info": "Banlanan üyelerin verileri 2 hafta boyunca sistemde tutulur. Bu sürenin sonunda tüm verileri silinir; sadece isim ve telefon numarası saklanmaya devam eder.",
+        "unbanSuccess": "Üye banı başarıyla kaldırıldı."
+    },
     "addMember": {
         "pageTitle": "Üye Ekle",
         "name": "İsim",

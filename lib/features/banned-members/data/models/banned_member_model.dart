@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/utils/constants/firebase/time_parser.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -14,17 +16,6 @@ class BannedMemberModel extends BannedMemberEntity {
     super.imageUrl,
     super.uid,
   });
-  @JsonKey(
-    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
-    toJson: FirebaseTimeParser.dateTimeToTimestamp,
-  )
-  @override
-  DateTime? get bannedDate => super.bannedDate;
-
-  factory BannedMemberModel.fromJson(Map<String, dynamic> json) =>
-      _$BannedMemberModelFromJson(json);
-  Map<String, dynamic> toJson() => _$BannedMemberModelToJson(this);
-
   factory BannedMemberModel.fromEntity(
     BannedMemberEntity entity,
   ) {
@@ -37,4 +28,14 @@ class BannedMemberModel extends BannedMemberEntity {
       uid: entity.uid,
     );
   }
+
+  factory BannedMemberModel.fromJson(Map<String, dynamic> json) =>
+      _$BannedMemberModelFromJson(json);
+  @JsonKey(
+    fromJson: FirebaseTimeParser.datetimeFromTimestamp,
+    toJson: FirebaseTimeParser.dateTimeToTimestamp,
+  )
+  @override
+  DateTime? get bannedDate => super.bannedDate;
+  Map<String, dynamic> toJson() => _$BannedMemberModelToJson(this);
 }

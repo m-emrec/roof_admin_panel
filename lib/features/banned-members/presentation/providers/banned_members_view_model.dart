@@ -7,8 +7,13 @@ import 'package:roof_admin_panel/features/banned-members/data/models/banned_memb
 import 'package:roof_admin_panel/features/banned-members/domain/usecases/fetch_banned_members_use_case.dart';
 import 'package:roof_admin_panel/features/banned-members/domain/usecases/unban_member_use_case.dart';
 
+/// ViewModel for managing the state of banned members.
+/// It extends StateNotifier to manage the state of the banned members list.
+/// It uses AsyncValue to represent the loading, success, and error states.
+/// It fetches the list of banned members and allows unbanning a member by their ID.
 class BannedMembersViewModel
     extends StateNotifier<AsyncValue<List<BannedMemberModel>>> {
+  /// Constructor for [BannedMembersViewModel].
   BannedMembersViewModel(this._fetchBannedMembersUseCase, this._unbanUseCase)
       : super(const AsyncLoading()) {
     fetchBannedMembers();
@@ -17,6 +22,7 @@ class BannedMembersViewModel
   final UnbanUseCase _unbanUseCase;
   final FetchBannedMembersUseCase _fetchBannedMembersUseCase;
 
+  /// Fetch the list of banned members.
   Future<void> fetchBannedMembers() async {
     state = const AsyncLoading();
     DataState.handleDataStateBasedAction(
@@ -34,6 +40,7 @@ class BannedMembersViewModel
     );
   }
 
+  /// Unban a member by their ID.
   Future<void> unbanMember(String memberId) async {
     state = const AsyncLoading();
     Log.debug('Unban member with ID: $memberId');

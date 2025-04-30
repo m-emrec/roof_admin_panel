@@ -4,14 +4,12 @@ import 'package:roof_admin_panel/features/banned-members/data/models/banned_memb
 import 'package:roof_admin_panel/features/banned-members/domain/entities/banned_member_entity.dart';
 import 'package:roof_admin_panel/features/banned-members/domain/repositories/banned_members_repository.dart';
 
+///
 class BannedMembersRepoImpl implements BannedMembersRepository {
+  /// Constructor for [BannedMembersRepoImpl].
   BannedMembersRepoImpl(this._bannedMembersService);
 
   final BannedMembersService _bannedMembersService;
-  @override
-  Future<DataState<void>> deletePermanently(String memberId) {
-    throw UnimplementedError();
-  }
 
   @override
   Future<DataState<List<BannedMemberEntity>>> fetchBannedMembers() async {

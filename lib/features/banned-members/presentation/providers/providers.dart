@@ -30,6 +30,8 @@ final _unbanUseCaseProvider = Provider<UnbanUseCase>((ref) {
   );
 });
 
+/// Banned members view model provider
+/// This provider is responsible for managing the state of the banned members
 final bannedMembersViewModelProvider = StateNotifierProvider<
     BannedMembersViewModel, AsyncValue<List<BannedMemberModel>>>((ref) {
   return BannedMembersViewModel(

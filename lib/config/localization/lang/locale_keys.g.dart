@@ -194,6 +194,12 @@ abstract class  LocaleKeys {
   static const membersView_tableColumnLabels_mentor = 'membersView.tableColumnLabels.mentor';
   static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
   static const membersView = 'membersView';
+  static const bannedMemberView_pageTitle = 'bannedMemberView.pageTitle';
+  static const bannedMemberView_bannedDate = 'bannedMemberView.bannedDate';
+  static const bannedMemberView_unBan = 'bannedMemberView.unBan';
+  static const bannedMemberView_info = 'bannedMemberView.info';
+  static const bannedMemberView_unbanSuccess = 'bannedMemberView.unbanSuccess';
+  static const bannedMemberView = 'bannedMemberView';
   static const addMember_pageTitle = 'addMember.pageTitle';
   static const addMember_name = 'addMember.name';
   static const addMember_phoneNumber = 'addMember.phoneNumber';
