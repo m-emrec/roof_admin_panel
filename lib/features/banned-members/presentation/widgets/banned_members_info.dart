@@ -32,9 +32,24 @@ class _BannedMembersInfoState extends State<BannedMembersInfo> {
         ),
       );
     } else {
-      return Icon(
-        Icons.info_outline_rounded,
-        color: AppColors.secondaryColor[50]?.withValues(alpha: 0.5),
+      /// I used [InkWell] here to make the icon tappable.
+      /// Because in mobile, hovering is not possible.
+      /// So, I used [InkWell] to make the icon tappable.
+      return InkWell(
+        onTap: () {
+          setState(() {
+            _isHovering = !_isHovering;
+          });
+          Future.delayed(const Duration(seconds: 3), () {
+            setState(() {
+              _isHovering = false;
+            });
+          });
+        },
+        child: Icon(
+          Icons.info_outline_rounded,
+          color: AppColors.secondaryColor[50]?.withValues(alpha: 0.5),
+        ),
       );
     }
   }

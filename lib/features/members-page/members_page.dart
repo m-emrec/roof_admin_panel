@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/features/banned-members/presentation/view/banne
 import 'package:roof_admin_panel/features/members-view/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/view/members_view.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
+import 'package:web/web.dart' as web;
 
 class MembersPage extends StatefulWidget {
   const MembersPage({super.key});
@@ -22,6 +23,9 @@ class _MembersPageState extends State<MembersPage>
     tabController = TabController(
       length: views.length,
       vsync: this,
+      initialIndex: int.parse(
+        web.window.sessionStorage.getItem("membersPageTabIndex") ?? "0",
+      ),
     );
     super.initState();
   }
@@ -87,7 +91,7 @@ class _MembersPageState extends State<MembersPage>
         TabBar(
           indicatorAnimation: TabIndicatorAnimation.elastic,
           controller: tabController,
-          onTap: (value) => setState(() {}),
+          onTap: onTabChanged,
           tabs: tabs,
           unselectedLabelColor: AppColors.secondaryColor.withValues(alpha: 0.5),
           labelColor: AppColors.secondaryColor,
@@ -104,5 +108,10 @@ class _MembersPageState extends State<MembersPage>
         ),
       ],
     );
+  }
+
+  void onTabChanged(int value) {
+    web.window.sessionStorage.setItem('membersPageTabIndex', value.toString());
+    setState(() {});
   }
 }

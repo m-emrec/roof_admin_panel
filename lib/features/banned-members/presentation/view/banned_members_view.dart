@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/banned-members/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/banned-members/presentation/widgets/banned_members_info.dart';
 import 'package:roof_admin_panel/features/members-page/members_page.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/handlers/permissions_handler.dart';
@@ -66,11 +67,15 @@ class BannedMembersView extends ConsumerWidget {
                   trailing: IconButton(
                     tooltip: LocaleKeys.bannedMemberView_unBan.tr(),
                     icon: const Icon(Icons.undo_rounded),
-                    onPressed: () {
-                      ref
+                    onPressed: PermissionBasedAction(
+                      () => ref
                           .read(bannedMembersViewModelProvider.notifier)
-                          .unbanMember(member.uid ?? "");
-                    }.executeIfAuthorizedForMembers,
+                          .unbanMember(member.uid ?? ""),
+                      necessaryPermissions: [
+                        Permissions.canEditMembers,
+                        Permissions.canEdit,
+                      ],
+                    ).executeIfAuthorized(),
                   ).visibleIfEditMemberAllowed,
                 );
               },
