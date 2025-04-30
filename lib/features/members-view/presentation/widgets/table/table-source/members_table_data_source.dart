@@ -35,7 +35,8 @@ class MembersTableDataSource extends DataGridSource
   Future<void> handleLoadMoreRows() async {
     final users = ref.read(membersViewModelProvider);
     if ((users.value?.length ?? 0) <
-        (ref.read(totalMembersCountProvider).value ?? 0)) {
+            (ref.read(totalMembersCountProvider).value ?? 0) &&
+        (users.value?.length ?? 0) > 0) {
       await ref.read(membersViewModelProvider.notifier).fetchNext20Users(
             users.value?.last.uid ?? '',
           );

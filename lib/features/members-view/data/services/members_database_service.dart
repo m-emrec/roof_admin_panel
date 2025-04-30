@@ -10,20 +10,6 @@ import 'package:core/core.dart';
 ///
 class MembersDatabaseService extends FirebaseUtils
     with FirestoreUtils, FirebaseCloudFunctionsUtils {
-  /// Add a new guest to the database.
-  ///
-  /// This function adds a new guest to the database.
-  ///
-  /// The guest is added to the [CollectionEnum.guests] collection.
-  ///
-  Future<void> addNewGuest(UserModel user) async {
-    await addDocumentToCollectionWithCustomId(
-      collection: CollectionEnum.guests,
-      docId: user.uid ?? "",
-      data: user.toJson(),
-    );
-  }
-
   /// Get the total number of users in the database.
   /// This function returns the total number of users in the database.
   ///
@@ -61,6 +47,7 @@ class MembersDatabaseService extends FirebaseUtils
   /// This function fetches the next 20 users from the database when its needed.
   ///
   Future<List<Map<String, dynamic>>> fetchNext20Users(String lastDocId) async {
+    Log.debug("lastDocId: $lastDocId");
     final querySnapshots = await getCollectionRef(CollectionEnum.users)
         .orderBy(UserDocEnum.memberNumber.name)
         .startAfterDocument(

@@ -20,13 +20,14 @@ class _MembersPageState extends State<MembersPage>
   @override
   void initState() {
     tabController = TabController(
-      length: tabs.length,
+      length: views.length,
       vsync: this,
+      initialIndex: 1,
     );
     super.initState();
   }
 
-  final List<Widget> tabs = const [
+  final List<Widget> views = const [
     MembersView(),
     BannedMembersView(),
     TitleWidget(title: "Stats"),
@@ -39,38 +40,45 @@ class _MembersPageState extends State<MembersPage>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TitleWidget(title: LocaleKeys.membersView_pageTitle.tr()),
+        Divider(
+          thickness: 2,
+          endIndent: context.dynamicWidth(0.75),
+        ),
         TabBar(
+          indicatorAnimation: TabIndicatorAnimation.elastic,
           controller: tabController,
           onTap: (value) => setState(() {}),
           tabs: [
-            Consumer(
-              builder: (context, ref, child) => Row(
-                spacing: SpacingSizes.extraExtraSmall,
-                children: [
-                  const Text(
-                    "Members",
-                  ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    child: CircleAvatar(
-                      radius: tabController.index == 0 ? 12 : 8,
-                      backgroundColor: AppColors.backgroundColor[40],
-                      child: Text(
-                        ref
-                                .watch(totalMembersCountProvider)
-                                .whenData(
-                                  (data) => data.toString(),
-                                )
-                                .value ??
-                            "",
-                        style: context.textTheme.labelSmall,
-                        textScaler: TextScaler.linear(
-                          tabController.index == 0 ? 1 : 0.5,
+            Tab(
+              child: Consumer(
+                builder: (context, ref, child) => Row(
+                  spacing: SpacingSizes.extraExtraSmall,
+                  children: [
+                    const Text(
+                      "Members",
+                    ),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      child: CircleAvatar(
+                        radius: tabController.index == 0 ? 12 : 8,
+                        backgroundColor: AppColors.backgroundColor[40],
+                        child: Text(
+                          ref
+                                  .watch(totalMembersCountProvider)
+                                  .whenData(
+                                    (data) => data.toString(),
+                                  )
+                                  .value ??
+                              "",
+                          style: context.textTheme.labelSmall,
+                          textScaler: TextScaler.linear(
+                            tabController.index == 0 ? 1 : 0.5,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Tab(
@@ -93,7 +101,7 @@ class _MembersPageState extends State<MembersPage>
         Expanded(
           child: TabBarView(
             controller: tabController,
-            children: tabs,
+            children: views,
           ),
         ),
       ],
