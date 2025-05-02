@@ -12,14 +12,16 @@ final class _FeedbackTileTheme {
           const TextStyle(),
       subTitleTextStyle:
           AppTextTheme(context).textTheme.labelLarge ?? const TextStyle(),
-      createdAtTextStyle:
-          AppTextTheme(context).textTheme.labelMedium ?? const TextStyle(),
+      createdAtTextStyle: AppTextTheme(context).textTheme.labelMedium?.copyWith(
+                color: AppColors.neutralGray500[80],
+              ) ??
+          const TextStyle(),
       userNameLabelTextStyle: AppTextTheme(context)
               .textTheme
-              .labelLarge
+              .labelMedium
               ?.copyWith(fontWeight: FontWeight.w600) ??
           const TextStyle(),
-      userImageRadius: 16,
+      userImageRadius: IconSizes.xsmall.height,
       contentTextStyle:
           AppTextTheme(context).textTheme.bodyMedium ?? const TextStyle(),
       imageSize: const Size(64, 64),

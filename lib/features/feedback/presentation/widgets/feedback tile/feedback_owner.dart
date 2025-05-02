@@ -44,16 +44,16 @@ class _FeedbackOwnerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           LocaleKeys.feedback_reportedBy.tr(),
           style: context.feedbackTileThemeExtension?.userNameLabelTextStyle,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Avatar(
+              showShadow: false,
               imageUrl: user.imageUrl,
               radius: context.feedbackTileThemeExtension?.userImageRadius,
             ),

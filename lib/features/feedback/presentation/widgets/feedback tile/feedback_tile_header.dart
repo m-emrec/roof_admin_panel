@@ -24,21 +24,15 @@ class _FeedbackTileHeader extends StatelessWidget {
               feedback.feedbackSubTitle?.name ?? "",
               style: context.feedbackTileThemeExtension?.subTitleTextStyle,
             ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          spacing: SpacingSizes.extraExtraSmall,
-          children: [
-            Text(
-              feedback.createdAt.formatDate(context),
-              style: context.feedbackTileThemeExtension?.createdAtTextStyle,
-            ),
             Visibility(
               visible: feedback.reportedUserId?.isNotEmpty ?? false,
               child: ReportedUser(
                 reportedUserId: feedback.reportedUserId ?? "",
               ),
+            ),
+            Text(
+              feedback.createdAt.formatDate(context),
+              style: context.feedbackTileThemeExtension?.createdAtTextStyle,
             ),
           ],
         ),

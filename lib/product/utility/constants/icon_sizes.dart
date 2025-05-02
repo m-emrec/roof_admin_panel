@@ -4,10 +4,13 @@ import 'dart:ui';
 /// These constants help maintain consistency across the app when defining icon dimensions.
 final class IconSizes {
   /// 4x4 size icon
-  static const Size xxsmall = Size(4, 4);
+  static const Size xxxsmall = Size(4, 4);
 
   /// 8x8 size icon
-  static const Size xsmall = Size(8, 8);
+  static const Size xxsmall = Size(8, 8);
+
+  /// 12x12 size icon
+  static const Size xsmall = Size(12, 12);
 
   /// 16x16 size icon
   static const Size small = Size(16, 16);

@@ -34,6 +34,7 @@ class FeedbackTile extends StatelessWidget {
     return Column(
       spacing: context.feedbackTileThemeExtension?.gapBetweenContentAndFooter ??
           SpacingSizes.small,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           spacing:
@@ -47,6 +48,8 @@ class FeedbackTile extends StatelessWidget {
             ),
           ],
         ),
+        FeedbackOwner(feedback.userId ?? ""),
+        _FeedbackTileImagesRow(feedback: feedback),
         _FeedbackTileFooter(feedback: feedback),
       ],
     );

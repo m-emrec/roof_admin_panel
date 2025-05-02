@@ -23,27 +23,16 @@ class ReportedUser extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(reportedUserProvider(reportedUserId)).when(
           data: (user) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              spacing: SpacingSizes.extraSmall,
+            return Row(
               children: [
-                Text(
-                  LocaleKeys.feedback_reportedUser.tr(),
-                  style: context
-                      .feedbackTileThemeExtension?.userNameLabelTextStyle,
+                Avatar(
+                  showShadow: false,
+                  imageUrl: user.imageUrl,
+                  radius: context.feedbackTileThemeExtension?.userImageRadius,
                 ),
-                Row(
-                  children: [
-                    Avatar(
-                      imageUrl: user.imageUrl,
-                      radius:
-                          context.feedbackTileThemeExtension?.userImageRadius,
-                    ),
-                    TextButton(
-                      child: Text(user.name ?? ""),
-                      onPressed: () {},
-                    ),
-                  ],
+                TextButton(
+                  child: Text(user.name ?? ""),
+                  onPressed: () {},
                 ),
               ],
             );

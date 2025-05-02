@@ -248,8 +248,8 @@
     "responseButtonLabel": "Cevapla",
     "response": "Cevap",
     "responded": "Cevaplandı",
-    "reportedUser": "Şikayet Edilen Kişi",
-    "reportedBy": "Şikayet Eden",
+    "reportedUser": "Şikayetçi Olunulan Kişi",
+    "reportedBy": "Şikayetçi",
     "noFeedback": "Henüz geri bildirim yok.",
     "noFeedbackForFilter": "Bu filtreye uygun geri bildirim yok.",
     "filter":{

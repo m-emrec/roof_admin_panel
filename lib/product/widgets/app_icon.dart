@@ -51,13 +51,13 @@ class AppIcon extends StatelessWidget {
   /// xSmall icon
   /// Size: 8x8
   const AppIcon.xsmall(this.iconPath, {super.key, this.fit = BoxFit.contain})
-      : size = IconSizes.xsmall;
+      : size = IconSizes.xxsmall;
 
   ///
   /// xxSmall icon
   /// Size: 4x4
   const AppIcon.xxsmall(this.iconPath, {super.key, this.fit = BoxFit.contain})
-      : size = IconSizes.xxsmall;
+      : size = IconSizes.xxxsmall;
 
   ///
   final String iconPath;
