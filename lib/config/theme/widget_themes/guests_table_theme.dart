@@ -3,10 +3,11 @@ part of './../app_theme.dart';
 final class _GuestsTableTheme {
   _GuestsTableTheme._();
 
-  static GuestsTableThemeExtension theme() => GuestsTableThemeExtension(
+  static GuestsTableThemeExtension theme(BuildContext context) =>
+      GuestsTableThemeExtension(
         joinedEventCountButtonStyle: _joinedEventCountButtonStyle(),
-        approveButtonStyle: _approveButtonStyle(),
-        removeButtonStyle: _removeButtonStyle(),
+        approveButtonStyle: _approveButtonStyle(context),
+        removeButtonStyle: _removeButtonStyle(context),
       );
 
   static ButtonStyle? _joinedEventCountButtonStyle() {
@@ -28,8 +29,8 @@ final class _GuestsTableTheme {
     );
   }
 
-  static ButtonStyle? _approveButtonStyle() =>
-      _TextButtonTheme.textButtonTheme.style?.copyWith(
+  static ButtonStyle? _approveButtonStyle(BuildContext context) =>
+      _TextButtonTheme.textButtonTheme(context).style?.copyWith(
         foregroundColor: WidgetStateColor.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
             return Colors.grey;
@@ -37,8 +38,8 @@ final class _GuestsTableTheme {
           return AppColors.primaryColor[70] ?? Colors.grey;
         }),
       );
-  static ButtonStyle? _removeButtonStyle() =>
-      _TextButtonTheme.textButtonTheme.style?.copyWith(
+  static ButtonStyle? _removeButtonStyle(BuildContext context) =>
+      _TextButtonTheme.textButtonTheme(context).style?.copyWith(
         foregroundColor: WidgetStateColor.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
             return Colors.grey;

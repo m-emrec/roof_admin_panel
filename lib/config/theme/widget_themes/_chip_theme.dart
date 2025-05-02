@@ -1,10 +1,11 @@
 part of '../app_theme.dart';
 
 final class _ChipTheme extends ChipThemeData {
-  _ChipTheme()
+  final BuildContext context;
+  _ChipTheme(this.context)
       : super(
           backgroundColor: AppColors.backgroundColor[60],
-          labelStyle: TextStyles().textTheme.labelLarge?.copyWith(
+          labelStyle: AppTextTheme(context).textTheme.labelLarge?.copyWith(
                 color: AppColors.darkTextColors[50],
               ),
           color: WidgetStateColor.resolveWith((states) {

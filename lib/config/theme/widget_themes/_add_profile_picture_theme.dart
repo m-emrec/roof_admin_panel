@@ -1,10 +1,11 @@
 part of "../app_theme.dart";
 
 final class _AddProfilePictureTheme extends AddProfilePictureTheme {
-  _AddProfilePictureTheme()
+  final BuildContext context;
+  _AddProfilePictureTheme(this.context)
       : super(
           addProfilePictureLabelStyle:
-              TextStyles().textTheme.labelLarge?.copyWith(
+              AppTextTheme(context).textTheme.labelLarge?.copyWith(
                     color: AppColors.primaryColor,
                   ),
           circleBackgroundColor: AppColors.backgroundColor[60],

@@ -2,11 +2,11 @@ part of "../app_theme.dart";
 
 final class _InlineTextButtonTheme {
   _InlineTextButtonTheme._();
-  static final InlineTextButtonTheme inlineTextButtonTheme =
+  static InlineTextButtonTheme inlineTextButtonTheme(BuildContext ctx) =>
       InlineTextButtonTheme(
-    style: TextStyles()
-        .textTheme
-        .labelLarge
-        ?.copyWith(color: AppColors.secondaryColor[50]),
-  );
+        style: AppTextTheme(ctx)
+            .textTheme
+            .labelLarge
+            ?.copyWith(color: AppColors.secondaryColor[50]),
+      );
 }

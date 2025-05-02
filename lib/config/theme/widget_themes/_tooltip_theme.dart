@@ -4,7 +4,7 @@ final class _TooltipTheme {
   _TooltipTheme._();
   static TooltipThemeData tooltipTheme(BuildContext context) =>
       TooltipThemeData(
-        textStyle: TextStyles().textTheme.labelLarge,
+        textStyle: AppTextTheme(context).textTheme.labelLarge,
         decoration: BoxDecoration(
           color: AppColors.backgroundColor[50],
           borderRadius: const AppBorderRadius.small(),

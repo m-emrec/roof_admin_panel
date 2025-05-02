@@ -1,11 +1,12 @@
+import 'package:core/core.dart';
 import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/border_radiuses.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
-import 'package:core/utils/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/add_profile_picture_theme.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_bottom_sheet_them.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
@@ -15,6 +16,8 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/membership_info_c
 import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_extension.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
+import 'package:roof_admin_panel/product/utility/constants/text_styles.dart';
+import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 import 'theme_extensions/inline_text_button_theme.dart';
@@ -93,27 +96,28 @@ final class AppTheme {
 
         scaffoldBackgroundColor: AppColors.backgroundColor[80],
         primaryColor: AppColors.primaryColor[50],
-        textTheme: TextStyles().textTheme,
+        textTheme: AppTextTheme(_context).textTheme,
+        fontFamily: GoogleFonts.abel().fontFamily,
 
         /// Widget Themes
         appBarTheme: _AppBarTheme(),
-        elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme,
+        elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme(_context),
         menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
         textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
         popupMenuTheme: _PopMenuTheme.popMenuTheme,
         outlinedButtonTheme: _OutlinedButtonTheme.outlinedButtonTheme,
-        textButtonTheme: _TextButtonTheme.textButtonTheme,
-        inputDecorationTheme: _InputDecorationTheme.inputDecorationTheme,
+        textButtonTheme: _TextButtonTheme.textButtonTheme(_context),
+        inputDecorationTheme:
+            _InputDecorationTheme.inputDecorationTheme(_context),
         extensions: _extensions,
         expansionTileTheme: _ExpansionTileTheme.expansionTileTheme,
         checkboxTheme: _CheckboxTheme(),
-
         progressIndicatorTheme: _ProgressIndicatorTheme.progressIndicatorTheme,
         floatingActionButtonTheme:
             _FloatingActionButtonTheme.floatingActionButtonTheme,
         datePickerTheme: _DatePickerTheme(),
         tooltipTheme: _TooltipTheme.tooltipTheme(_context),
-        chipTheme: _ChipTheme(),
+        chipTheme: _ChipTheme(_context),
         dataTableTheme: const DataTableThemeData(
           headingRowAlignment: MainAxisAlignment.start,
         ),
@@ -123,13 +127,13 @@ final class AppTheme {
 
   // MARK: Theme Extensions
   Iterable<ThemeExtension<dynamic>> get _extensions => [
-        _AddProfilePictureTheme(),
-        _InlineTextButtonTheme.inlineTextButtonTheme,
+        _AddProfilePictureTheme(_context),
+        _InlineTextButtonTheme.inlineTextButtonTheme(_context),
         _CustomBottomSheetTheme.customBottomSheetTheme,
         _SideBarTheme.sideBarTheme(_context),
-        _CustomDataTableTheme.theme,
+        _CustomDataTableTheme.theme(_context),
         _FeedbackTileTheme.feedbackTileTheme(_context),
-        _GuestsTableTheme.theme(),
+        _GuestsTableTheme.theme(_context),
         _UserCardTheme.theme(_context),
         _MembershipInfoCardTheme.theme(_context),
       ];

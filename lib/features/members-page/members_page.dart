@@ -83,6 +83,8 @@ class _MembersPageState extends State<MembersPage>
 
   @override
   Widget build(BuildContext context) {
+    Log.info(context.textTheme.titleLarge);
+    Log.debug(context.textTheme.bodyMedium);
     return Column(
       spacing: SpacingSizes.extraSmall,
       crossAxisAlignment: CrossAxisAlignment.start,

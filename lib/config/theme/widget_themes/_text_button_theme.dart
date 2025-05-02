@@ -2,10 +2,11 @@ part of "../app_theme.dart";
 
 final class _TextButtonTheme {
   _TextButtonTheme._();
-  static final TextButtonThemeData textButtonTheme = TextButtonThemeData(
-    style: TextButton.styleFrom(
-      textStyle: TextStyles().textTheme.labelMedium,
-      foregroundColor: AppColors.secondaryTextColor,
-    ),
-  );
+  static TextButtonThemeData textButtonTheme(BuildContext context) =>
+      TextButtonThemeData(
+        style: TextButton.styleFrom(
+          textStyle: AppTextTheme(context).textTheme.labelMedium,
+          foregroundColor: AppColors.secondaryTextColor,
+        ),
+      );
 }

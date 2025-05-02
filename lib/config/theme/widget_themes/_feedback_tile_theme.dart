@@ -2,21 +2,30 @@ part of '../app_theme.dart';
 
 final class _FeedbackTileTheme {
   _FeedbackTileTheme._();
-  static FeedbackTileThemeExtension feedbackTileTheme(BuildContext context) =>
-      FeedbackTileThemeExtension(
-        gapBetweenContentAndFooter: SpacingSizes.small,
-        gapBetweenHeaderAndContent: SpacingSizes.small,
-        titleTextStyle: context.textTheme.titleLarge ?? const TextStyle(),
-        subTitleTextStyle: context.textTheme.titleMedium ?? const TextStyle(),
-        createdAtTextStyle: context.textTheme.labelLarge ?? const TextStyle(),
-        userNameLabelTextStyle: context.textTheme.labelLarge
-                ?.copyWith(fontWeight: FontWeight.w600) ??
-            const TextStyle(),
-        userImageRadius: 16,
-        contentTextStyle: context.textTheme.bodyLarge ?? const TextStyle(),
-        imageSize: const Size(64, 64),
-        imageShape: const RoundedRectangleBorder(
-          borderRadius: AppBorderRadius.small(),
-        ),
-      );
+  static FeedbackTileThemeExtension feedbackTileTheme(BuildContext context) {
+    return FeedbackTileThemeExtension(
+      gapBetweenContentAndFooter: SpacingSizes.small,
+      gapBetweenHeaderAndContent: SpacingSizes.small,
+      titleTextStyle: AppTextTheme(context).textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ) ??
+          const TextStyle(),
+      subTitleTextStyle:
+          AppTextTheme(context).textTheme.labelLarge ?? const TextStyle(),
+      createdAtTextStyle:
+          AppTextTheme(context).textTheme.labelMedium ?? const TextStyle(),
+      userNameLabelTextStyle: AppTextTheme(context)
+              .textTheme
+              .labelLarge
+              ?.copyWith(fontWeight: FontWeight.w600) ??
+          const TextStyle(),
+      userImageRadius: 16,
+      contentTextStyle:
+          AppTextTheme(context).textTheme.bodyMedium ?? const TextStyle(),
+      imageSize: const Size(64, 64),
+      imageShape: const RoundedRectangleBorder(
+        borderRadius: AppBorderRadius.small(),
+      ),
+    );
+  }
 }

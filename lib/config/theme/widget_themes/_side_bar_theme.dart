@@ -31,10 +31,10 @@ final class _SideBarTheme {
         iconSize: IconSizes.small,
         selectedItemColor: AppColors.backgroundColor[80],
         unSelectedItemColor: Colors.transparent,
-        textStyle: TextStyles().textTheme.labelMedium?.copyWith(
+        textStyle: AppTextTheme(ctx).textTheme.labelMedium?.copyWith(
               color: AppColors.neutralGray100[70],
             ),
-        selectedTextStyle: TextStyles().textTheme.labelMedium,
+        selectedTextStyle: AppTextTheme(ctx).textTheme.labelMedium,
         boxShadow: [
           BoxShadow(
             color: AppColors.primaryColor[90] ?? Colors.transparent,
