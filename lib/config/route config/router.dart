@@ -41,8 +41,7 @@ final class AppRouter {
     errorPageBuilder: _PageNotFound.page,
     refreshListenable: _authChangeNotifier,
     redirect: AuthenticationBasedRedirector().redirect,
-    overridePlatformDefaultLocation: true,
-    initialLocation: InitialRoute().path,
+    initialLocation: const MainShellRoute().path,
     routes: [
       InitialRoute().route,
       const MainShellRoute().shell,

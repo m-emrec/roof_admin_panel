@@ -31,7 +31,6 @@ class FeedbackTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Log.warning(context.textTheme.titleMedium);
     return Column(
       spacing: context.feedbackTileThemeExtension?.gapBetweenContentAndFooter ??
           SpacingSizes.small,
