@@ -2,6 +2,7 @@ import 'package:core/extensions/context_extension.dart';
 import 'package:core/utils/constants/spacing_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/theme/theme_extensions/custom_data_table_extension.dart';
+import 'package:roof_admin_panel/product/utility/extensions/animated_text_extension.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 
 /// This widget displays the user avatar,name and phone number in a cell.
@@ -49,6 +50,7 @@ class TableUserAvatar extends StatelessWidget {
               style: context.theme
                   .extension<CustomDataTableThemeExtension>()
                   ?.nameTextStyle,
+              overflow: TextOverflow.visible,
             ),
             Text(
               phoneNumber,

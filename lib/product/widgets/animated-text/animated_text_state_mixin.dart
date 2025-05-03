@@ -8,7 +8,7 @@ mixin AnimatedTextStateMixin on State<AnimatedText> {
   final widgetKey = GlobalKey();
   double? boxWidth;
   final Duration _toStartDuration = Duration(milliseconds: 1000);
-  final Duration _toEndDuration = Duration(seconds: 2);
+  final Duration _toEndDuration = Duration(seconds: 3);
   @override
   void initState() {
     scrollController = ScrollController();

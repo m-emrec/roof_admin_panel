@@ -98,6 +98,11 @@ final class AppTheme {
         primaryColor: AppColors.primaryColor[50],
         textTheme: AppTextTheme(_context).textTheme,
         fontFamily: GoogleFonts.abel().fontFamily,
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: WidgetStatePropertyAll(
+            AppColors.primaryColor.withValues(alpha: 0.4),
+          ),
+        ),
 
         /// Widget Themes
         appBarTheme: _AppBarTheme(),
