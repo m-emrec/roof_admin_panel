@@ -126,7 +126,7 @@ class AppTextTheme {
         titleMedium: context.textTheme.titleMedium?.copyWith(
           fontFamily: fontFamily,
           color: AppColors.darkTextColors[70],
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
         ),
         titleSmall: context.textTheme.titleSmall?.copyWith(
           fontFamily: fontFamily,

@@ -17,7 +17,6 @@ import 'package:roof_admin_panel/config/theme/theme_extensions/side_bar_theme_ex
 import 'package:roof_admin_panel/config/theme/theme_extensions/user_card_theme_extension.dart';
 import 'package:roof_admin_panel/product/utility/constants/icon_sizes.dart';
 import 'package:roof_admin_panel/product/utility/constants/text_styles.dart';
-import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 import 'theme_extensions/inline_text_button_theme.dart';
@@ -106,8 +105,10 @@ final class AppTheme {
 
         /// Widget Themes
         appBarTheme: _AppBarTheme(),
+
         elevatedButtonTheme: _ElevatedButtonTheme.elevatedButtonTheme(_context),
         menuButtonTheme: _MenuButtonTheme.menuButtonTheme,
+
         textSelectionTheme: _TextSelectionTheme.textSelectionTheme,
         popupMenuTheme: _PopMenuTheme.popMenuTheme,
         outlinedButtonTheme: _OutlinedButtonTheme.outlinedButtonTheme,

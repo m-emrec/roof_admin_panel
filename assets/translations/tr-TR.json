@@ -407,6 +407,17 @@
         "addMentatAndMember": "Mentat / Üye Ekle"
     }
 },
+"membershipFeesView":{
+    "pageTitle": "Üyelik Ücretleri",
+    "duration": "Üyelik Süresi",
+    "fullPrice": "Tam Fiyat",
+    "studentPrice": "Öğrenci Fiyatı",
+    "discount":{
+        "student": "Öğrenci İndirimi",
+        "female": "Kadın İndirimi"
+    }
+},
+
 "notFoundPage":{
     "pageTitle": "404",
     "pageNotFound": "Aradığın sayfa bulunamadı.",

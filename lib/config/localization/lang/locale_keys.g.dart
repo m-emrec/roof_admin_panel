@@ -357,6 +357,13 @@ abstract class  LocaleKeys {
   static const addMentor_buttonLabel_addMentatAndMember = 'addMentor.buttonLabel.addMentatAndMember';
   static const addMentor_buttonLabel = 'addMentor.buttonLabel';
   static const addMentor = 'addMentor';
+  static const membershipFeesView_pageTitle = 'membershipFeesView.pageTitle';
+  static const membershipFeesView_duration = 'membershipFeesView.duration';
+  static const membershipFeesView_fullPrice = 'membershipFeesView.fullPrice';
+  static const membershipFeesView_studentPrice = 'membershipFeesView.studentPrice';
+  static const membershipFeesView_discount_student = 'membershipFeesView.discount.student';
+  static const membershipFeesView_discount = 'membershipFeesView.discount';
+  static const membershipFeesView = 'membershipFeesView';
   static const notFoundPage_pageTitle = 'notFoundPage.pageTitle';
   static const notFoundPage_pageNotFound = 'notFoundPage.pageNotFound';
   static const notFoundPage_goHome = 'notFoundPage.goHome';

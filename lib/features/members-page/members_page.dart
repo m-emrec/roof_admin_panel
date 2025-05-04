@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/banned-members/presentation/view/banned_members_view.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/view/members_view.dart';
+import 'package:roof_admin_panel/features/membership-fees/presentation/view/membership_rates_view.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 import 'package:web/web.dart' as web;
 
@@ -69,8 +70,8 @@ class _MembersPageState extends State<MembersPage>
         const Tab(
           text: "Stats",
         ),
-        const Tab(
-          text: "Prices",
+        Tab(
+          text: LocaleKeys.membershipFeesView_pageTitle.tr(),
         ),
       ];
 
@@ -78,7 +79,7 @@ class _MembersPageState extends State<MembersPage>
     MembersView(),
     BannedMembersView(),
     TitleWidget(title: "Stats"),
-    TitleWidget(title: "Prices"),
+    MembershipRatesView(),
   ];
 
   @override
