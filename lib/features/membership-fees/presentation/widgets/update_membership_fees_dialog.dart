@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/membership-fees/presentation/widgets/update_membership_fees_state_mixin.dart';
+import 'package:roof_admin_panel/product/utility/extensions/form_submit_on_key_enter_extension.dart';
 import 'package:roof_admin_panel/product/widgets/app_text_button.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
@@ -38,6 +39,8 @@ class _UpdateMembershipFeesDialogState
             ),
           ],
         ),
+      ).submitOnEnter(
+        onKeyEnter: updateMembershipFees,
       ),
       actions: [
         AppTextButton(
