@@ -7,6 +7,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/providers/me
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/avatar%20role%20name%20section/role_selection_dropdown_field.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/mentor_membership_info_field.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/title.dart';
 
 class NameAndRoleSection extends ConsumerWidget {
@@ -44,7 +45,7 @@ class NameAndRoleSection extends ConsumerWidget {
           value: ref.watch(membershipDetailNotifierProvider)?.copyWith(
                 role: [roleKey.value],
               ) ??
-              UserModel(),
+              MemberModel(),
           mentorList:
               ref.watch(membershipDetailNotifierProvider.notifier).mentorList,
         ).build(

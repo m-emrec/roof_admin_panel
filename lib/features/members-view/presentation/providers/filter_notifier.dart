@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/features/members-view/presentation/strategies/f
 import 'package:roof_admin_panel/features/members-view/presentation/strategies/filter%20strategies/range_filter_strategy.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/strategies/filter%20strategies/string_filter_strategy.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/widgets/table/table-source/members_table_data_source.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 /// [MembersFilterNotifier] manages the local UI-side filtering logic for the Members table.
@@ -32,7 +33,7 @@ class MembersFilterNotifier extends ChangeNotifier {
   }
 
   /// The full list of members shown in the table UI.
-  final List<UserModel> members;
+  final List<MemberModel> members;
 
   /// The data source that manages how member data is displayed in the table.
   final MembersTableDataSource membersTableDataSource;

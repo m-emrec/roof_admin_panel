@@ -4,15 +4,16 @@ import 'package:core/utils/logger/logger.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
-class SelectionNotifier extends StateNotifier<UserModel?> {
+class SelectionNotifier extends StateNotifier<MemberModel?> {
   SelectionNotifier(
     this.shouldSelectMentat,
   ) : super(null);
   final bool shouldSelectMentat;
   List<Role?> _roles = [];
 
-  void initializeState(UserModel user) {
+  void initializeState(MemberModel user) {
     state = user;
     _roles = user.role ?? [];
   }

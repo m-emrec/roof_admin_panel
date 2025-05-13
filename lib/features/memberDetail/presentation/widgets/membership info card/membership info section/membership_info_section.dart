@@ -16,6 +16,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/memb
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/date_membership_info_field.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/text_membership_info_field.dart';
 import 'package:roof_admin_panel/product/utility/extensions/context_responsive_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 part '_member_ship_info.dart';
 part '_membership_info_Section_text_field.dart';
 part 'membership_info_fields/_membership_info_field_factory.dart';
@@ -54,7 +55,7 @@ class _MembershipInfoGrid extends ConsumerWidget {
     required this.member,
   });
 
-  final UserModel? member;
+  final MemberModel? member;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

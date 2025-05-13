@@ -2,6 +2,7 @@ import 'package:core/resources/data_state.dart';
 import 'package:core/utils/models/feedback_model.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:roof_admin_panel/features/feedback-page/domain/entities/feedback_response_entity.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 /// An interface for the feedback repository
 abstract class FeedbackRepository {
@@ -25,8 +26,8 @@ abstract class FeedbackRepository {
 
   /// Fetches the reported user
   ///
-  Future<DataState<UserModel>> fetchReportedUser(String phoneNumber);
+  Future<DataState<MemberModel>> fetchReportedUser(String phoneNumber);
 
   /// Fetches the report owner
-  Future<DataState<UserModel>> fetchFeedbackOwner(String uid);
+  Future<DataState<MemberModel>> fetchFeedbackOwner(String uid);
 }

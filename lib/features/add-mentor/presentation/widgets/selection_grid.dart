@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/features/add-mentor/data/models/add_mentor_model.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/select_users_dialog_item.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 class SelectionGrid extends StatelessWidget {
   const SelectionGrid({
@@ -12,7 +13,7 @@ class SelectionGrid extends StatelessWidget {
     super.key,
   });
 
-  final UserModel user;
+  final MemberModel user;
   final List<AddMentorModel> data;
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,7 @@ import 'package:roof_admin_panel/features/feedback-page/domain/usecases/get_feed
 import 'package:roof_admin_panel/features/feedback-page/domain/usecases/respond_feedback_use_case.dart';
 import 'package:roof_admin_panel/features/feedback-page/presentation/providers/feedback_filter_notifier.dart';
 import 'package:roof_admin_panel/features/feedback-page/presentation/providers/feedback_view_model.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 final _feedbackDataServiceProvider = Provider<FeedbackDataService>((ref) {
   return FeedbackDataService();
@@ -60,24 +61,24 @@ final _fetchFeedbackOwnerUseCaseProvider =
 
 /// [feedbackOwnerProvider] the user data of the feedback owner
 ///
-/// It takes a [String] uid and returns a [UserModel]
+/// It takes a [String] uid and returns a [MemberModel]
 final feedbackOwnerProvider =
-    FutureProvider.family<UserModel, String>((ref, uid) async {
+    FutureProvider.family<MemberModel, String>((ref, uid) async {
   final dataState =
       await ref.read(_fetchFeedbackOwnerUseCaseProvider).call(uid);
-  if (dataState is DataSuccess) return dataState.resultData ?? UserModel();
-  return UserModel();
+  if (dataState is DataSuccess) return dataState.resultData ?? MemberModel();
+  return MemberModel();
 });
 
 /// [reportedUserProvider] provides the user data of the reported user
 ///
-/// It takes a [String] phoneNumber and returns a [UserModel]
+/// It takes a [String] phoneNumber and returns a [MemberModel]
 final reportedUserProvider =
-    FutureProvider.family<UserModel, String>((ref, phoneNumber) async {
+    FutureProvider.family<MemberModel, String>((ref, phoneNumber) async {
   final dataState =
       await ref.read(_fetchReportedUserUseCaseProvider).call(phoneNumber);
-  if (dataState is DataSuccess) return dataState.resultData ?? UserModel();
-  return UserModel();
+  if (dataState is DataSuccess) return dataState.resultData ?? MemberModel();
+  return MemberModel();
 });
 
 /// [feedbackCountProvider] provides the total count of feedbacks

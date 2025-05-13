@@ -5,6 +5,7 @@ import 'package:roof_admin_panel/features/feedback-page/data/datasources/feedbac
 import 'package:roof_admin_panel/features/feedback-page/data/models/feedback_response_model.dart';
 import 'package:roof_admin_panel/features/feedback-page/domain/entities/feedback_response_entity.dart';
 import 'package:roof_admin_panel/features/feedback-page/domain/repositories/feedback_repository.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 /// Implementation of [FeedbackRepository]
 class FeedbackRepositoryImpl implements FeedbackRepository {
@@ -56,22 +57,22 @@ class FeedbackRepositoryImpl implements FeedbackRepository {
   }
 
   @override
-  Future<DataState<UserModel>> fetchReportedUser(String phoneNumber) {
+  Future<DataState<MemberModel>> fetchReportedUser(String phoneNumber) {
     return DataState.handleDataState(
       () async {
         final user = await _service.fetchReportedUser(phoneNumber);
-        return UserModel.fromJson(user);
+        return MemberModel.fromJson(user);
       },
     );
   }
 
   @override
-  Future<DataState<UserModel>> fetchFeedbackOwner(String uid) {
+  Future<DataState<MemberModel>> fetchFeedbackOwner(String uid) {
     return DataState.handleDataState(
       () async {
         final user = await _service.fetchFeedbackOwner(uid);
 
-        return UserModel.fromJson(user ?? {});
+        return MemberModel.fromJson(user ?? {});
       },
     );
   }

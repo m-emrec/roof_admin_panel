@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/features/members-view/presentation/enums/table_
 import 'package:roof_admin_panel/features/members-view/presentation/models/table_name_field_model.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
 import 'package:roof_admin_panel/product/utility/extensions/show_click_mouse_cursor_on_widget_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_cell_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_date_item.dart';
 import 'package:roof_admin_panel/product/widgets/table/table_null_item.dart';
@@ -65,7 +66,7 @@ mixin CellBuilder {
           ),
         ).showClickMouseCursorOnWidget();
       case MemberTableNames.mentor:
-        value as UserModel;
+        value as MemberModel;
 
         return _cell(
           Padding(

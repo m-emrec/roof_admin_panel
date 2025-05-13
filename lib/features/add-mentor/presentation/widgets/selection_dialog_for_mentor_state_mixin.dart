@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/selection_dialog_for_mentor.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 mixin SelectionDialogForMentorStateMixin
     on ConsumerState<SelectionDialogForMentor> {
@@ -33,7 +34,7 @@ mixin SelectionDialogForMentorStateMixin
     _initializeSelectionNotifierState(currentUser);
   }
 
-  void _initializeSelectionNotifierState(UserModel currentUser) {
+  void _initializeSelectionNotifierState(MemberModel currentUser) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(selectionNotifierProvider.notifier).initializeState(currentUser);
     });

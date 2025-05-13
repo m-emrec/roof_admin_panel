@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/features/members-view/presentation/providers/pr
 import 'package:roof_admin_panel/features/members-view/presentation/widgets/table/table-source/cell_builder.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/widgets/table/table-source/data_grid_row_generator.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/widgets/table/table-source/table_sorter.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 /// This is the data source for the members table.
@@ -19,7 +20,7 @@ class MembersTableDataSource extends DataGridSource
   ///
   /// It also handles the data related operations like sorting, filtering, and loading more data.
   MembersTableDataSource({
-    required List<UserModel> users,
+    required List<MemberModel> users,
     required this.ref,
   }) {
     generateUserDataGridRows(users);

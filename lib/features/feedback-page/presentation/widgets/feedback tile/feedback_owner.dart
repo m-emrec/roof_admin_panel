@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/feedback-page/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/theme_extensions_extesntion.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/avatar.dart';
 import 'package:roof_admin_panel/product/widgets/custom_skeleton.dart';
 
@@ -39,7 +40,7 @@ class FeedbackOwner extends ConsumerWidget {
 
 class _FeedbackOwnerTile extends StatelessWidget {
   const _FeedbackOwnerTile(this.user);
-  final UserModel user;
+  final MemberModel user;
 
   @override
   Widget build(BuildContext context) {

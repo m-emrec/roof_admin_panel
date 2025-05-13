@@ -8,6 +8,7 @@ import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentat_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentor_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/providers/mentorship_widget_state_notifier.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 final _serviceProvider = Provider.autoDispose<MentorshipWidgetService>((ref) {
   return MentorshipWidgetService();
@@ -41,7 +42,7 @@ final _getIfMentatProvider = Provider<GetIfMentatUseCase>((ref) {
 final mentorshipStateNotifierProvider = StateNotifierProvider.family<
     MentorshipWidgetStateNotifier,
     AsyncValue<AbstractUserInfo?>,
-    UserModel>((ref, user) {
+    MemberModel>((ref, user) {
   return MentorshipWidgetStateNotifier(
     getMembersForMentorUseCase: ref.read(_getIfMentorUseCaseProvider),
     getMentorsForMentatUseCase: ref.read(_getIfMentatProvider),

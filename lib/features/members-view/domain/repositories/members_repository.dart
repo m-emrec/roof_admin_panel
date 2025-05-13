@@ -1,5 +1,6 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/utils/models/user_model.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 /// Abstract class [MembersRepository] is responsible for providing the
 /// required data from the data sources.
@@ -13,9 +14,9 @@ import 'package:core/utils/models/user_model.dart';
 /// [MembersRepository] is implemented in [MembersRepositoryImpl].
 abstract class MembersRepository {
   /// Fetch the first 20 members.
-  /// Returns [DataState<List<UserModel>>]
+  /// Returns [DataState<List<MemberModel>>]
   /// It is used to fetch the first 20 members from the data source.
-  Future<DataState<List<UserModel>>> fetchFirst20Users();
+  Future<DataState<List<MemberModel>>> fetchFirst20Users();
 
   /// Fetch the total number of members.
   /// Returns [DataState<int>]
@@ -24,9 +25,9 @@ abstract class MembersRepository {
   Future<DataState<int>> fetchTotalUsers();
 
   /// Fetch the next 20 members.
-  /// Returns [DataState<List<UserModel>>]
+  /// Returns [DataState<List<MemberModel>>]
   /// It is used to fetch the next 20 members from the data source when the load more is called.
   ///
   /// It requires the [lastUserId] of the last member fetched in the previous call.
-  Future<DataState<List<UserModel>>> fetchNext20Users(String lastUserId);
+  Future<DataState<List<MemberModel>>> fetchNext20Users(String lastUserId);
 }

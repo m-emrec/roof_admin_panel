@@ -5,6 +5,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
@@ -41,7 +42,7 @@ class AddMemberViewModel extends ChangeNotifier {
   late final TextEditingController memberShipDurationController;
 
   ///
-  ValueNotifier<UserModel> get mentorshipSelectedMembers => ValueNotifier(
+  ValueNotifier<MemberModel> get mentorshipSelectedMembers => ValueNotifier(
         user,
       );
 
@@ -78,7 +79,7 @@ class AddMemberViewModel extends ChangeNotifier {
   /// This variable holds the user data
   ///
   /// This will be used to add a new user
-  UserModel user = UserModel(
+  MemberModel user = MemberModel(
     role: [Role.member],
   );
 
@@ -111,7 +112,7 @@ class AddMemberViewModel extends ChangeNotifier {
   /// rest of the values will be null
   ///
   /// ...
-  void roleBasedAction(UserModel userModel) {
+  void roleBasedAction(MemberModel userModel) {
     if (user.isMentat) {
       user = user.copyWith(
         mentors: userModel.mentors,
@@ -141,7 +142,7 @@ class AddMemberViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  UserModel _setUser() {
+  MemberModel _setUser() {
     return user.copyWith(
       name: nameController.text,
       phoneNumber: phoneCodeController.text + phoneNumberController.text,
@@ -159,7 +160,7 @@ class AddMemberViewModel extends ChangeNotifier {
   }
 
   /// Adds a new user
-  Future<DataState<UserModel>> addNewMember(BuildContext context) async {
+  Future<DataState<MemberModel>> addNewMember(BuildContext context) async {
     user = _setUser();
     Log.info(user.toJson());
     final dataState = await _addNewUserUseCase(user);

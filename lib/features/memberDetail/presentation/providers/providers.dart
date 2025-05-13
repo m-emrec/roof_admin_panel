@@ -8,6 +8,7 @@ import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_memb
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/membership_detail_notifier.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/views/member_detail.dart'
     show MemberDetailDialog;
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 final _serviceProvider = Provider<MembershipDetailService>((ref) {
@@ -44,10 +45,10 @@ final isEditingProvider = StateProvider.autoDispose<bool>((ref) {
 });
 
 final banMemberProvider =
-    FutureProvider.autoDispose.family<void, UserModel?>((ref, user) async {
+    FutureProvider.autoDispose.family<void, MemberModel?>((ref, user) async {
   await Toast.toastDataStateMessageWrapper(
     dataState:
-        await ref.read(_banMemberUseCaseProvider).call(user ?? UserModel()),
+        await ref.read(_banMemberUseCaseProvider).call(user ?? MemberModel()),
     successMessage: 'Member banned successfully',
   );
 });
@@ -64,7 +65,7 @@ final banMemberProvider =
 /// Therefore, to ensure the state remains accessible during editing, we use
 /// a standard `StateNotifierProvider`.
 final membershipDetailNotifierProvider =
-    StateNotifierProvider.autoDispose<MembershipDetailNotifier, UserModel?>(
+    StateNotifierProvider.autoDispose<MembershipDetailNotifier, MemberModel?>(
         (ref) {
   return MembershipDetailNotifier(
     ref,

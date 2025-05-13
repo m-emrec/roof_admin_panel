@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/selection_dialog_for_mentor_state_mixin.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/selection_grid.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 
 /// A dialog used specifically when the current user has the "Mentor" role.
@@ -31,7 +32,7 @@ class SelectionDialogForMentor extends ConsumerStatefulWidget {
     super.key,
   });
 
-  final UserModel user;
+  final MemberModel user;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _MentorState();

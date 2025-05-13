@@ -6,10 +6,11 @@ import 'package:core/utils/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members-view/domain/usecases/fetch_first_20_users_use_case.dart';
 import 'package:roof_admin_panel/features/members-view/domain/usecases/fetch_next_20_users_use_case.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
-class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
+class MembersViewModel extends StateNotifier<AsyncValue<List<MemberModel>?>> {
   /// [MembersViewModel] is a StateNotifier responsible for managing the state of the members list.
   ///
   /// It communicates with use cases to fetch user data and provides it to the UI as [AsyncValue].
@@ -44,7 +45,7 @@ class MembersViewModel extends StateNotifier<AsyncValue<List<UserModel>?>> {
   ///
   /// When the user clears the filters or sort, this list will be used to
   /// display the original data.
-  // List<UserModel>? users;
+  // List<MemberModel>? users;
 
   /// This method fetches the first 20 users from the use case.
   /// It updates the state based on the result.

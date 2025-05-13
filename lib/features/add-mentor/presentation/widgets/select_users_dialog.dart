@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/select
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/selection_grid.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
@@ -37,14 +38,14 @@ class SelectUsersDialog extends ConsumerWidget {
   ///
   const SelectUsersDialog(this.user, {super.key});
 
-  final UserModel user;
+  final MemberModel user;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(selectionNotifierProvider.notifier).initializeState(user);
     });
 
-    return CustomAlertDialog<UserModel>.withCloseIcon(
+    return CustomAlertDialog<MemberModel>.withCloseIcon(
       content: SizedBox(
         width: context.dynamicWidth(0.9),
         height: context.dynamicHeight(0.8),

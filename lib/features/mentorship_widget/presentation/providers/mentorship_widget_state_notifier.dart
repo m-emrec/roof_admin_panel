@@ -9,6 +9,7 @@ import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentat_use_case.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/domain/usecases/get_if_mentor_use_case.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 /// [MentorshipWidgetStateNotifier] manages the state of the mentorship system UI.
 /// It fetches relevant user data (members, mentors, or mentats) based on the user's role.
@@ -30,11 +31,11 @@ class MentorshipWidgetStateNotifier
   final GetIfMentatUseCase _getIfMentatUseCase;
   final GetIfMemberUseCase _getIfMemberUseCase;
 
-  UserModel? _user;
+  MemberModel? _user;
 
   /// Sets the current user and initializes the state accordingly.
   /// Determines the user's role and triggers the appropriate data fetch logic.
-  void setUser(UserModel? user) {
+  void setUser(MemberModel? user) {
     _user = user;
     _init();
   }

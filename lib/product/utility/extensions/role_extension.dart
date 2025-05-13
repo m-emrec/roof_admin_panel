@@ -1,5 +1,6 @@
 import 'package:core/utils/constants/enums/roles.dart';
 import 'package:core/utils/models/user_model.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 /// An extension on [List<Role?>] that provides convenient role-checking utilities.
 ///
@@ -26,7 +27,7 @@ extension RoleUtilsExtension on List<Role?> {
   bool get isMentat => contains(Role.mentat);
 }
 
-extension UserModelRole on UserModel {
+extension UserModelRole on MemberModel {
   /// Returns `true` if the list contains the [Role.admin] role.
   bool get isAdmin => role?.contains(Role.admin) ?? false;
 

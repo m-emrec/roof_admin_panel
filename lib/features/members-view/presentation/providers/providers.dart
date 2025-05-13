@@ -13,9 +13,10 @@ import 'package:roof_admin_panel/features/members-view/presentation/enums/sort_t
 import 'package:roof_admin_panel/features/members-view/presentation/providers/filter_notifier.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/providers/members_view_model.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/widgets/table/table-source/members_table_data_source.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 final _dummyUsers = [
-  UserModel(
+  MemberModel(
     name: 'John Doe',
     phoneNumber: '1234567890',
     membershipEndDate: DateTime.now(),
@@ -23,7 +24,7 @@ final _dummyUsers = [
     birthDate: DateTime.now(),
     memberNumber: '123456',
   ),
-  UserModel(
+  MemberModel(
     name: 'John Doe',
     phoneNumber: '1234567890',
     membershipEndDate: DateTime.now(),
@@ -31,7 +32,7 @@ final _dummyUsers = [
     birthDate: DateTime.now(),
     memberNumber: '123456',
   ),
-  UserModel(
+  MemberModel(
     name: 'John Doe',
     phoneNumber: '1234567890',
     membershipEndDate: DateTime.now(),
@@ -39,7 +40,7 @@ final _dummyUsers = [
     birthDate: DateTime.now(),
     memberNumber: '123456',
   ),
-  UserModel(
+  MemberModel(
     name: 'John Doe',
     phoneNumber: '1234567890',
     membershipEndDate: DateTime.now(),
@@ -126,7 +127,7 @@ final sortDirectionProvider = StateProvider<SortDirection>((ref) {
 
 /// This provider is used to provide the [MembersViewModel] instance.
 final membersViewModelProvider =
-    StateNotifierProvider<MembersViewModel, AsyncValue<List<UserModel>?>>(
+    StateNotifierProvider<MembersViewModel, AsyncValue<List<MemberModel>?>>(
         (ref) {
   return MembersViewModel(
     ref.read(_fetchFirst20UsersUseCaseProvider),

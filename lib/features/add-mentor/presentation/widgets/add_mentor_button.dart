@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/select_users_dialog.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 
 /// A widget that displays a button for adding a mentor or other roles based on the given user's role.
@@ -31,18 +32,18 @@ class AddMentorButton extends ConsumerWidget {
     super.key,
   });
 
-  /// A nullable [UserModel] representing the user associated with this widget.
-  final UserModel user;
+  /// A nullable [MemberModel] representing the user associated with this widget.
+  final MemberModel user;
 
-  /// A [ValueNotifier] that holds the currently selected [UserModel].
+  /// A [ValueNotifier] that holds the currently selected [MemberModel].
   /// This allows for reactive updates when the selected user changes.
-  final ValueNotifier<UserModel> selectedUsers;
+  final ValueNotifier<MemberModel> selectedUsers;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(backgroundColor: Colors.transparent),
       onPressed: () async {
-        await CustomAlertDialog.showAlertDialog<UserModel>(
+        await CustomAlertDialog.showAlertDialog<MemberModel>(
           context: context,
           content: SelectUsersDialog(user),
           forceOpen: true,

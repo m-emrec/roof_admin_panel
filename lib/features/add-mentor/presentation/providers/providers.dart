@@ -12,6 +12,7 @@ import 'package:roof_admin_panel/features/add-mentor/domain/usecases/fetch_mento
 import 'package:roof_admin_panel/features/add-mentor/presentation/providers/add_mentor_users_list_notifier.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/providers/selection_notifier.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
 final _serviceProvider = Provider.autoDispose<AddMentorService>((ref) {
   return AddMentorService();
@@ -74,7 +75,7 @@ final addMentorUsersNotifierProvider = StateNotifierProvider.autoDispose.family<
 /// dialog.
 /// It uses the [SelectionNotifier] to handle the selection state.
 final selectionNotifierProvider =
-    StateNotifierProvider<SelectionNotifier, UserModel?>((ref) {
+    StateNotifierProvider<SelectionNotifier, MemberModel?>((ref) {
   return SelectionNotifier(
     ref.watch(shouldFetchMentatsProvider),
   );

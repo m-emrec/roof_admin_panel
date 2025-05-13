@@ -5,8 +5,9 @@ import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/add_me
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership%20info%20section/membership_info_fields/base_member_ship_info_field.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/views/mentorship_widget.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 
-final class MentorMembershipInfoField extends BaseMembershipField<UserModel> {
+final class MentorMembershipInfoField extends BaseMembershipField<MemberModel> {
   MentorMembershipInfoField({
     required super.value,
     required this.mentorList,
@@ -14,7 +15,7 @@ final class MentorMembershipInfoField extends BaseMembershipField<UserModel> {
     super.controller,
   }) : super(label: "", isEditable: true);
 
-  final ValueNotifier<UserModel> mentorList;
+  final ValueNotifier<MemberModel> mentorList;
   final ValueNotifier<Role> role;
   @override
   Widget editStateWidget(BuildContext context) {

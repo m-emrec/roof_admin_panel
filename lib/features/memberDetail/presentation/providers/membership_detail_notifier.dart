@@ -9,13 +9,14 @@ import 'package:roof_admin_panel/features/memberDetail/domain/usecases/edit_memb
 import 'package:roof_admin_panel/features/memberDetail/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/features/memberDetail/presentation/views/member_detail.dart';
 import 'package:roof_admin_panel/product/utility/handlers/role_action_handler.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 
 ///
 /// MembershipDetailNotifier
 /// This class is responsible for managing the state of the membership details.
-/// It extends the StateNotifier class from Riverpod and takes a UserModel as its state.
+/// It extends the StateNotifier class from Riverpod and takes a MemberModel as its state.
 /// It also takes an EditMembershipDetailsUseCase as a dependency to edit the membership details.
 ///
 /// It initializes the form key and text editing controllers for the membership details.
@@ -27,7 +28,7 @@ import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
 /// - role
 /// - mentorId
 ///
-class MembershipDetailNotifier extends StateNotifier<UserModel?> {
+class MembershipDetailNotifier extends StateNotifier<MemberModel?> {
   /// Constructor for the [MembershipDetailNotifier].
   MembershipDetailNotifier(
     this.ref, {
@@ -37,7 +38,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
 
   /// Initializes the state with the given [member] and sets up the form key and text editing controllers.
   /// This method called iin the [MemberDetailDialog] when the dialog is opened.
-  void initializeState(UserModel? member) {
+  void initializeState(MemberModel? member) {
     state = member;
     _initializeControllers();
   }
@@ -64,7 +65,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
   ///
   late final ValueNotifier<Role> roleController;
 
-  late final ValueNotifier<UserModel> mentorList;
+  late final ValueNotifier<MemberModel> mentorList;
 
   ///
   late final TextEditingController mentorIdController;
@@ -77,7 +78,7 @@ class MembershipDetailNotifier extends StateNotifier<UserModel?> {
     memberNumberController = TextEditingController(
       text: state?.memberNumber ?? '',
     );
-    mentorList = ValueNotifier(state ?? UserModel());
+    mentorList = ValueNotifier(state ?? MemberModel());
     membershipStartDateController = TextEditingController(
       text: state?.membershipStartDate?.toString() ?? '',
     );

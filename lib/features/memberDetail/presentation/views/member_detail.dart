@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/abou
 import 'package:roof_admin_panel/features/memberDetail/presentation/widgets/membership%20info%20card/membership_info_card.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
 import 'package:roof_admin_panel/product/utility/extensions/make_selectable_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_alert_dialog.dart';
 import 'package:roof_admin_panel/product/widgets/loading_indicator.dart';
 
@@ -17,7 +18,7 @@ class MemberDetailDialog extends ConsumerStatefulWidget {
   });
 
   ///
-  final UserModel? member;
+  final MemberModel? member;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>

@@ -4,6 +4,7 @@ import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/enums/table_names_enum.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/models/table_name_field_model.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 mixin DataGridRowGenerator on DataGridSource {
@@ -15,7 +16,7 @@ mixin DataGridRowGenerator on DataGridSource {
   /// Builds the data grid rows from the [users].
   ///
   /// This method is called when the data source is initialized.
-  void generateUserDataGridRows(List<UserModel> users) {
+  void generateUserDataGridRows(List<MemberModel> users) {
     _dataGridRows = users
         .map<DataGridRow>(
           (e) => DataGridRow(
@@ -40,7 +41,7 @@ mixin DataGridRowGenerator on DataGridSource {
                 columnName: MemberTableNames.role.name,
                 value: e.role?.map((e) => e?.localizedText()).toList(),
               ),
-              DataGridCell<UserModel>(
+              DataGridCell<MemberModel>(
                 columnName: MemberTableNames.mentor.name,
                 value: e,
               ),

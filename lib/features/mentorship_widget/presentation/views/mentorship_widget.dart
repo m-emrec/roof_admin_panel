@@ -11,11 +11,12 @@ import 'package:roof_admin_panel/features/mentorship_widget/presentation/provide
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/member_list/pop-up-listr/mentorship_pop_up_list.dart';
 import 'package:roof_admin_panel/features/mentorship_widget/presentation/widgets/user_mentorship_info.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
+import 'package:roof_admin_panel/product/utility/models/member_model.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/skeleton_type.dart';
 part "../widgets/mentorship_widget_empty_state.dart";
 
-/// A widget that displays mentorship-related information for a given [UserModel].
+/// A widget that displays mentorship-related information for a given [MemberModel].
 ///
 /// Depending on the role of the user (`mentor`, `mentat`, or `member`), this widget shows:
 /// - A list of mentored users if the user is a mentor or mentat.
@@ -40,7 +41,7 @@ class MentorshipWidget extends ConsumerWidget {
   const MentorshipWidget(this.user, {super.key});
 
   /// The user whose mentorship data will be displayed.
-  final UserModel user;
+  final MemberModel user;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final roles = user.role ?? [];

@@ -36,6 +36,38 @@ class MemberModel extends UserModel {
     this.membershipType,
   });
 
+  @override
+  MemberModel copyWith(
+      {String? uid,
+      String? imageUrl,
+      String? name,
+      String? about,
+      DateTime? birthDate,
+      Gender? gender,
+      City? livingCity,
+      City? workCity,
+      String? occupation,
+      List<String>? hobbies,
+      List<String>? interests,
+      String? mentorId,
+      String? mentatId,
+      List<String>? members,
+      List<Role?>? role,
+      DateTime? membershipStartDate,
+      DateTime? membershipEndDate,
+      String? phoneNumber,
+      List<String>? mentors,
+      String? memberNumber}) {
+    // TODO: implement copyWith
+    return MemberModel(
+      uid: uid ?? this.uid,
+      imageUrl: imageUrl ?? this.imageUrl,
+      name: name ?? this.name,
+      about: about ?? this.about,
+      birthDate: birthDate ?? this.birthDate,
+    );
+  }
+
   factory MemberModel.fromJson(Map<String, dynamic> json) =>
       _$MemberModelFromJson(json);
   Map<String, dynamic> toJson() => _$MemberModelToJson(this);
