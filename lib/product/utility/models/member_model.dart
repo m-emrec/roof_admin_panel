@@ -1,0 +1,46 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:core/utils/constants/enums/gender.dart';
+import 'package:core/utils/constants/enums/roles.dart';
+import 'package:core/utils/constants/firebase/time_parser.dart';
+import 'package:core/utils/models/city_model.dart';
+import 'package:core/utils/models/user_model.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'member_model.g.dart';
+
+@JsonSerializable()
+class MemberModel extends UserModel {
+  MemberModel({
+    super.about,
+    super.workCity,
+    super.birthDate,
+    super.gender,
+    super.hobbies,
+    super.interests,
+    super.imageUrl,
+    super.name,
+    super.livingCity,
+    super.memberNumber,
+    super.phoneNumber,
+    super.members,
+    super.membershipEndDate,
+    super.membershipStartDate,
+    super.mentatId,
+    super.mentorId,
+    super.mentors,
+    super.occupation,
+    super.role,
+    super.uid,
+    this.isStudent = false,
+    this.fee,
+    this.membershipType,
+  });
+
+  factory MemberModel.fromJson(Map<String, dynamic> json) =>
+      _$MemberModelFromJson(json);
+  Map<String, dynamic> toJson() => _$MemberModelToJson(this);
+
+  final bool isStudent;
+  final double? fee;
+  final Duration? membershipType;
+}
