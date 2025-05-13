@@ -27,7 +27,7 @@ class MembersView extends ConsumerWidget {
           provider: membersViewModelProvider,
           data: (_) {
             ref.read(filterNotifierProvider);
-            return MembersTable();
+            return Expanded(child: MembersTable());
           },
           skeletonWidget: const _LoadingView(),
           skeletonType: SkeletonType.single,

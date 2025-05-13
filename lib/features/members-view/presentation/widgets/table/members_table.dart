@@ -42,58 +42,56 @@ class MembersTable extends ConsumerWidget
 
     return hasActiveFilterButNoData(ref, tableSource)
         ? buildEmptyFilteredTableMessage(context, ref)
-        : Expanded(
-            child: Padding(
-              padding: const AppPadding.horizontalxsSymmetric() +
-                  const AppPadding.verticalxsSymmetric(),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const AppBorderRadius.medium(),
-                  color: AppColors.backgroundColor[70],
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0xF90D2511),
-                      blurRadius: 3,
-                      offset: Offset(0, 0),
-                      spreadRadius: 0,
-                    ),
-                    BoxShadow(
-                      color: Color(0xD80D2511),
-                      blurRadius: 6,
-                      offset: Offset(1, 0),
-                      spreadRadius: 0,
-                    ),
-                    BoxShadow(
-                      color: Color(0x7F0D2511),
-                      blurRadius: 8,
-                      offset: Offset(2, 0),
-                      spreadRadius: 0,
-                    ),
-                    BoxShadow(
-                      color: Color(0x260D2511),
-                      blurRadius: 9,
-                      offset: Offset(3, 0),
-                      spreadRadius: 0,
-                    ),
-                    BoxShadow(
-                      color: Color(0x050D2511),
-                      blurRadius: 10,
-                      offset: Offset(5, 0),
-                      spreadRadius: 0,
-                    ),
-                  ],
-                ),
-                child: CustomTable(
-                  showCheckboxColumn: false,
-                  controller: controller,
-                  selectionManager: MembersTableSelectionManager(
-                    ref: ref,
-                    context: context,
+        : Padding(
+            padding: const AppPadding.horizontalxsSymmetric() +
+                const AppPadding.verticalxsSymmetric(),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: const AppBorderRadius.medium(),
+                color: AppColors.backgroundColor[70],
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0xF90D2511),
+                    blurRadius: 3,
+                    offset: Offset(0, 0),
+                    spreadRadius: 0,
                   ),
-                  source: tableSource,
-                  rowsPerPage: 20,
-                  columns: buildColumns(context),
+                  BoxShadow(
+                    color: Color(0xD80D2511),
+                    blurRadius: 6,
+                    offset: Offset(1, 0),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x7F0D2511),
+                    blurRadius: 8,
+                    offset: Offset(2, 0),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x260D2511),
+                    blurRadius: 9,
+                    offset: Offset(3, 0),
+                    spreadRadius: 0,
+                  ),
+                  BoxShadow(
+                    color: Color(0x050D2511),
+                    blurRadius: 10,
+                    offset: Offset(5, 0),
+                    spreadRadius: 0,
+                  ),
+                ],
+              ),
+              child: CustomTable(
+                showCheckboxColumn: false,
+                controller: controller,
+                selectionManager: MembersTableSelectionManager(
+                  ref: ref,
+                  context: context,
                 ),
+                source: tableSource,
+                rowsPerPage: 20,
+                columns: buildColumns(context),
               ),
             ),
           );
