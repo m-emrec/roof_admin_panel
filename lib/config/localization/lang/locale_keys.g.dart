@@ -320,6 +320,7 @@ abstract class  LocaleKeys {
   static const memberDetailView_membershipInfo_memberShipStartDate = 'memberDetailView.membershipInfo.memberShipStartDate';
   static const memberDetailView_membershipInfo_memberShipEndDate = 'memberDetailView.membershipInfo.memberShipEndDate';
   static const memberDetailView_membershipInfo_memberShipDuration = 'memberDetailView.membershipInfo.memberShipDuration';
+  static const memberDetailView_membershipInfo_fee = 'memberDetailView.membershipInfo.fee';
   static const memberDetailView_membershipInfo_mentorshipMemberList_seeList = 'memberDetailView.membershipInfo.mentorshipMemberList.seeList';
   static const memberDetailView_membershipInfo_mentorshipMemberList_mentat = 'memberDetailView.membershipInfo.mentorshipMemberList.mentat';
   static const memberDetailView_membershipInfo_mentorshipMemberList_members = 'memberDetailView.membershipInfo.mentorshipMemberList.members';
