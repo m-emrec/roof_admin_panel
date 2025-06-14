@@ -8,20 +8,28 @@ part of 'manager_role_model.dart';
 
 ManagerRoleModel _$ManagerRoleModelFromJson(Map<String, dynamic> json) =>
     ManagerRoleModel(
-      name: json['name'] as String,
+      name: $enumDecodeNullable(_$UserRolesEnumMap, json['name']),
       id: json['id'] as String,
-      permissions: (json['permissions'] as List<dynamic>)
-          .map((e) => $enumDecode(_$PermissionsEnumMap, e))
+      permissions: (json['permissions'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$PermissionsEnumMap, e))
           .toList(),
     );
 
 Map<String, dynamic> _$ManagerRoleModelToJson(ManagerRoleModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
+      'name': _$UserRolesEnumMap[instance.name],
       'id': instance.id,
       'permissions':
-          instance.permissions.map((e) => _$PermissionsEnumMap[e]!).toList(),
+          instance.permissions?.map((e) => _$PermissionsEnumMap[e]!).toList(),
     };
+
+const _$UserRolesEnumMap = {
+  UserRoles.manager: 'manager',
+  UserRoles.user: 'user',
+  UserRoles.editor: 'editor',
+  UserRoles.viewer: 'viewer',
+  UserRoles.developer: 'developer',
+};
 
 const _$PermissionsEnumMap = {
   Permissions.canEdit: 'canEdit',

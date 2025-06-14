@@ -7,7 +7,6 @@ class InfoColumn extends StatelessWidget {
   const InfoColumn({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -29,7 +28,9 @@ class InfoColumn extends StatelessWidget {
         ),
         // role
         Text(
-          CurrentUser.instance.managerModelNotifier.value.role.name,
+          CurrentUser.instance.managerModelNotifier.value.role.name
+                  ?.toLocale() ??
+              '',
           style:
               context.theme.extension<UserCardThemeExtension>()?.roleTextStyle,
         ),

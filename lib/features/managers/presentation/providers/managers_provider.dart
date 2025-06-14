@@ -1,11 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/managers/data/datasources/managers_database_service.dart';
+import 'package:roof_admin_panel/features/managers/data/models/add_manager_model.dart';
 import 'package:roof_admin_panel/features/managers/data/repositories/managers_repository_impl.dart';
 import 'package:roof_admin_panel/features/managers/domain/repositories/managers_repository.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/add_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/delete_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/get_managers_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/update_manager_use_case.dart';
+import 'package:roof_admin_panel/features/managers/presentation/providers/add_manager_view_model.dart';
 import 'package:roof_admin_panel/features/managers/presentation/providers/managers_view_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 
@@ -41,6 +43,12 @@ final managersViewModelProvider =
     getManagersUseCase: ref.read(_getManagersUseCaseProvider),
     deleteManagerUseCase: ref.read(_deleteManagerUseCaseProvider),
     updateManagerUseCase: ref.read(_updateManagerUseCaseProvider),
-    addManagerUseCase: ref.read(_addManagerUseCaseProvider),
   );
 });
+
+final addManagerViewModelProvider =
+    AutoDisposeNotifierProvider<AddManagerViewModel, AddManagerModel>(
+  () => AddManagerViewModel(
+    _addManagerUseCaseProvider,
+  ),
+);

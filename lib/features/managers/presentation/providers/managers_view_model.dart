@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/features/managers/domain/usecases/add_manager_u
 import 'package:roof_admin_panel/features/managers/domain/usecases/delete_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/get_managers_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/update_manager_use_case.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
 import 'package:roof_admin_panel/product/widgets/custom_toast.dart';
@@ -17,9 +18,7 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
     required GetManagersUseCase getManagersUseCase,
     required DeleteManagerUseCase deleteManagerUseCase,
     required UpdateManagerUseCase updateManagerUseCase,
-    required AddManagerUseCase addManagerUseCase,
-  })  : _addManagerUseCase = addManagerUseCase,
-        _updateManagerUseCase = updateManagerUseCase,
+  })  : _updateManagerUseCase = updateManagerUseCase,
         _deleteManagerUseCase = deleteManagerUseCase,
         _getManagersUseCase = getManagersUseCase,
         super(const AsyncValue.loading()) {
@@ -29,17 +28,6 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   final GetManagersUseCase _getManagersUseCase;
   final DeleteManagerUseCase _deleteManagerUseCase;
   final UpdateManagerUseCase _updateManagerUseCase;
-  final AddManagerUseCase _addManagerUseCase;
-
-  ///
-  Future<void> addManager(AddManagerModel manager) async {
-    DataState.handleDataStateBasedAction(
-      await _addManagerUseCase(manager),
-      onSuccess: (_) => getManagers(),
-      onFailure: (error) =>
-          Toast.showErrorToast(title: error?.errorMessage ?? ""),
-    );
-  }
 
   ///
   Future<void> deleteManager(String id) async {
@@ -69,7 +57,7 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   ) async {
     final updatedManager = manager.copyWith(
       role: ManagerRoleModel(
-        name: "",
+        name: null,
         id: newRoleId,
         permissions: [],
       ),

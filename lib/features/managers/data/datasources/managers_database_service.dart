@@ -2,14 +2,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:core/utils/constants/firebase/collection_enums.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/firebase/cloud_function_names.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/firebase/database%20keys/manager_doc_keys.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/user_roles.dart';
 
 ///
 class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
   ///
   ///
   Future<void> addManager(Map<String, dynamic> managerToBeAdded) async {
+    if (managerToBeAdded[ManagerDocKeys.role.name] != UserRoles.user.name) {
+      await _getDocumentPathOfManagerRole(
+        managerToBeAdded[ManagerDocKeys.role.name].toString(),
+      ).then((value) {
+        managerToBeAdded[ManagerDocKeys.role.name] = value;
+      });
+    } else {
+      // If the role is 'user', we don't need to fetch the document path.
+
+      managerToBeAdded[ManagerDocKeys.role.name] =
+          await _createCustomManagerRole(
+        UserRoles.user.name,
+        managerToBeAdded[ManagerDocKeys.permissions.name] as List<String>,
+      );
+    }
+
     await functions
         .httpsCallable(CloudFunctionNames.createNewManager.name)
         .call<void>(
@@ -24,6 +42,37 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
         .call<void>(
       {ManagerDocKeys.uid.name: id},
     );
+  }
+
+  Future<String> _createCustomManagerRole(
+    String roleName,
+    List<String> permissions,
+  ) async {
+    final roleDoc =
+        await firestore.collection(CollectionEnum.managerRoles.name).add({
+      'name': roleName,
+      'permissions': permissions,
+    });
+
+    Log.debug('Created custom manager role: $roleName with ID: ${roleDoc.id}');
+    await roleDoc.update({
+      'id': roleDoc.id,
+    });
+    return roleDoc.path;
+  }
+
+  Future<String> _getDocumentPathOfManagerRole(String roleName) async {
+    final roleDoc = await firestore
+        .collection(CollectionEnum.managerRoles.name)
+        .where('name', isEqualTo: roleName)
+        .limit(1)
+        .get()
+        .then((snapshot) => snapshot.docs.first);
+    final roleId = roleDoc["id"];
+
+    final doc = FirebaseFirestore.instance
+        .doc('${CollectionEnum.managerRoles.name}/$roleId');
+    return doc.path;
   }
 
   ///
@@ -44,7 +93,7 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
       await _getManagerRoleData(
         managerData[ManagerDocKeys.role.name].toString(),
       ).then((value) => managerData[ManagerDocKeys.role.name] = value);
-      // managerData[ManagerDocKeys.role.name] = role;
+
       updatedManagersList.add(managerData);
     }
 

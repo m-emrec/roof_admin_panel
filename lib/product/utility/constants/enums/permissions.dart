@@ -4,31 +4,84 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 
 enum Permissions {
-  canEdit,
-  canRead,
-  canEditMembers,
-  canReadMembers,
-  canEditFeedbacks,
-  canReadFeedbacks,
-  canEditGuests,
-  canReadGuests,
-  canReadManagers,
-  canEditManagers,
+  canEdit(Permissions.canRead),
+  canRead(null),
+  canEditMembers(Permissions.canReadMembers),
+  canReadMembers(null),
+  canEditMembershipFees(Permissions.canReadMembershipFees),
+  canReadMembershipFees(null),
+  canEditBannedMembers(Permissions.canReadMembers),
+  canReadBannedMembers(null),
+  canEditFeedbacks(Permissions.canReadFeedbacks),
+  canReadFeedbacks(null),
+  canEditGuests(Permissions.canReadGuests),
+  canReadGuests(null),
+  canEditManagers(Permissions.canReadManagers),
+  canReadManagers(null),
   ;
 
-  const Permissions();
+  const Permissions(this.parent);
+  final Permissions? parent;
+
   static Map<Permissions, String> _localizations = {
-    Permissions.canEdit: LocaleKeys.permissions_canEdit.tr(),
-    Permissions.canRead: LocaleKeys.permissions_canRead.tr(),
-    Permissions.canEditMembers: LocaleKeys.permissions_canEditMembers.tr(),
-    Permissions.canReadMembers: LocaleKeys.permissions_canReadMembers.tr(),
-    Permissions.canEditFeedbacks: LocaleKeys.permissions_canEditFeedbacks.tr(),
-    Permissions.canReadFeedbacks: LocaleKeys.permissions_canReadFeedbacks.tr(),
-    Permissions.canEditGuests: LocaleKeys.permissions_canEditGuests.tr(),
-    Permissions.canReadGuests: LocaleKeys.permissions_canReadGuests.tr(),
-    Permissions.canReadManagers: LocaleKeys.permissions_canReadManagers.tr(),
-    Permissions.canEditManagers: LocaleKeys.permissions_canEditManagers.tr(),
+    Permissions.canEdit: LocaleKeys.permissions_canEdit_label.tr(),
+    Permissions.canRead: LocaleKeys.permissions_canRead_label.tr(),
+    Permissions.canEditMembers:
+        LocaleKeys.permissions_canEditMembers_label.tr(),
+    Permissions.canReadMembers:
+        LocaleKeys.permissions_canReadMembers_label.tr(),
+    Permissions.canEditFeedbacks:
+        LocaleKeys.permissions_canEditFeedbacks_label.tr(),
+    Permissions.canReadFeedbacks:
+        LocaleKeys.permissions_canReadFeedbacks_label.tr(),
+    Permissions.canEditGuests: LocaleKeys.permissions_canEditGuests_label.tr(),
+    Permissions.canReadGuests: LocaleKeys.permissions_canReadGuests_label.tr(),
+    Permissions.canReadManagers:
+        LocaleKeys.permissions_canReadManagers_label.tr(),
+    Permissions.canEditManagers:
+        LocaleKeys.permissions_canEditManagers_label.tr(),
+    Permissions.canEditMembershipFees:
+        LocaleKeys.permissions_canEditMembershipFees_label.tr(),
+    Permissions.canReadMembershipFees:
+        LocaleKeys.permissions_canReadMembershipFees_label.tr(),
+    Permissions.canEditBannedMembers:
+        LocaleKeys.permissions_canEditBannedMembers_label.tr(),
+    Permissions.canReadBannedMembers:
+        LocaleKeys.permissions_canReadBannedMembers_label.tr(),
   };
+
+  static Map<Permissions, String> _localizationDescriptions = {
+    Permissions.canEdit: LocaleKeys.permissions_canEdit_description.tr(),
+    Permissions.canRead: LocaleKeys.permissions_canRead_description.tr(),
+    Permissions.canEditMembers:
+        LocaleKeys.permissions_canEditMembers_description.tr(),
+    Permissions.canReadMembers:
+        LocaleKeys.permissions_canReadMembers_description.tr(),
+    Permissions.canEditFeedbacks:
+        LocaleKeys.permissions_canEditFeedbacks_description.tr(),
+    Permissions.canReadFeedbacks:
+        LocaleKeys.permissions_canReadFeedbacks_description.tr(),
+    Permissions.canEditGuests:
+        LocaleKeys.permissions_canEditGuests_description.tr(),
+    Permissions.canReadGuests:
+        LocaleKeys.permissions_canReadGuests_description.tr(),
+    Permissions.canReadManagers:
+        LocaleKeys.permissions_canReadManagers_description.tr(),
+    Permissions.canEditManagers:
+        LocaleKeys.permissions_canEditManagers_description.tr(),
+    Permissions.canEditMembershipFees:
+        LocaleKeys.permissions_canEditMembershipFees_description.tr(),
+    Permissions.canReadMembershipFees:
+        LocaleKeys.permissions_canReadMembershipFees_description.tr(),
+    Permissions.canEditBannedMembers:
+        LocaleKeys.permissions_canEditBannedMembers_description.tr(),
+    Permissions.canReadBannedMembers:
+        LocaleKeys.permissions_canReadBannedMembers_description.tr(),
+  };
+
+  String get description {
+    return _localizationDescriptions[this] ?? "";
+  }
 
   String toLocale() {
     assert(

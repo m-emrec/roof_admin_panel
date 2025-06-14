@@ -16,7 +16,7 @@ class ManagersRepositoryImpl implements ManagersRepository {
   @override
   Future<DataState<void>> addManager(AddManagerEntity manager) {
     return DataState.handleDataState(
-      () => _managersDatabaseService
+      () async => _managersDatabaseService
           .addManager(AddManagerModel.fromEntity(manager).toJson()),
     );
   }

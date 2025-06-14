@@ -75,19 +75,65 @@
         "dynamic_link_not_match_config": "Sağlanan dinamik bağlantı alanı, Firebase konsolundaki yapılandırılmış alanla eşleşmiyor.",
         "image_not_found": "Görüntü bulunamadı."
     },
-    "permissions":{
-        "canEdit": "Düzenleyebilir",
-        "canRead": "Görüntüleyebilir",
-        "canEditMembers": "Üyeleri Düzenleyebilir",
-        "canReadMembers": "Üyeleri Görüntüleyebilir",
-        "canEditGuests": "Misafirleri Düzenleyebilir",
-        "canReadGuests": "Misafirleri Görüntüleyebilir",
-        "canEditManagers": "Yöneticileri Düzenleyebilir",
-        "canReadManagers": "Yöneticileri Görüntüleyebilir",
-        "canEditFeedbacks": "Geri Bildirimleri Düzenleyebilir",
-        "canReadFeedbacks": "Geri Bildirimleri Görüntüleyebilir",
-        "noPermission": "Bu sayfaya erişim izniniz yok."
-    },
+   "permissions": {
+  "canEdit": {
+    "label": "Düzenleyebilir",
+    "description": "Kullanıcı, tüm içerikleri görüntüleyebilir, ekleyebilir, düzenleyebilir ve silebilir."
+  },
+  "canRead": {
+    "label": "Görüntüleyebilir",
+    "description": "Kullanıcı, içerikleri yalnızca görüntüleyebilir."
+  },
+  "canEditMembers": {
+    "label": "Üyeleri Düzenleyebilir",
+    "description": "Kullanıcı, üye bilgilerini görüntüleyebilir, ekleyebilir, güncelleyebilir ve silebilir."
+  },
+  "canReadMembers": {
+    "label": "Üyeleri Görüntüleyebilir",
+    "description": "Kullanıcı, üye bilgilerini yalnızca görüntüleyebilir."
+  },
+  "canEditGuests": {
+    "label": "Misafirleri Düzenleyebilir",
+    "description": "Kullanıcı, misafir bilgilerini görüntüleyebilir, ekleyebilir, onaylayabilir ve silebilir."
+  },
+  "canReadGuests": {
+    "label": "Misafirleri Görüntüleyebilir",
+    "description": "Kullanıcı, misafir bilgilerini yalnızca görüntüleyebilir."
+  },
+  "canEditManagers": {
+    "label": "Kullanıcıları Düzenleyebilir",
+    "description": "Kullanıcı, yönetici bilgilerini görüntüleyebilir, ekleyebilir, düzenleyebilir ve silebilir."
+  },
+  "canReadManagers": {
+    "label": "Kullanıcıları Görüntüleyebilir",
+    "description": "Kullanıcı, yönetici bilgilerini yalnızca görüntüleyebilir."
+  },
+  "canEditFeedbacks": {
+    "label": "Geri Bildirimleri Düzenleyebilir",
+    "description": "Kullanıcı, geri bildirimleri görüntüleyebilir, düzenleyebilir ve yanıtlayabilir."
+  },
+  "canReadFeedbacks": {
+    "label": "Geri Bildirimleri Görüntüleyebilir",
+    "description": "Kullanıcı, geri bildirimleri yalnızca görüntüleyebilir."
+  },
+  "canEditMembershipFees": {
+    "label": "Üyelik Ücretlerini Düzenleyebilir",
+    "description": "Kullanıcı, üyelik ücreti bilgilerini görüntüleyebilir ve düzenleyebilir."
+  },
+  "canReadMembershipFees": {
+    "label": "Üyelik Ücretlerini Görüntüleyebilir",
+    "description": "Kullanıcı, üyelik ücreti bilgilerini yalnızca görüntüleyebilir."
+  },
+  "canEditBannedMembers": {
+    "label": "Banlı Üyeleri Düzenleyebilir",
+    "description": "Kullanıcı, banlı üyeleri görüntüleyebilir, ban kaldırabilir veya üyeleri banlayabilir."
+  },
+  "canReadBannedMembers": {
+    "label": "Banlı Üyeleri Görüntüleyebilir",
+    "description": "Kullanıcı, banlı üyeleri yalnızca görüntüleyebilir."
+  },
+  "noPermission": "Bu sayfaya erişim izniniz yok."
+},
     "roles": {
         "admin": "Admin",
         "member": "Üye",
@@ -331,8 +377,9 @@
     "noManager": "Henüz kullanıcı yok.",
     "updateManager":"Kullanıcıyı Düzenle",
     "deleteManager":"Kullanıcıyı Sil",
-    "deleteManagerConfirmation":"({}) isimli kullanıcıyı silmek istediğinizden emin misiniz?"
-
+    "deleteManagerConfirmation":"({}) isimli kullanıcıyı silmek istediğinizden emin misiniz?",
+    "addPermission": "Yetki Ekle",
+    "addPermissionDescription": "Eklemek istediğiniz yetkileri listeden seçin."
 },
 "accountSettingView":{
     "pageTitle": "Hesap Ayarları",
@@ -428,5 +475,12 @@
     "pageNotFound": "Aradığın sayfa bulunamadı.",
     "goHome": "Ana Sayfaya Git",
     "goBack": "Geri Dön"
+},
+"userRoles":{
+    "manager": "Yönetici",
+    "editor": "Editör",
+    "viewer": "Görüntüleyici",
+    "user": "Kullanıcı",
+    "developer": "Geliştirici"
 }
 }

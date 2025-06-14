@@ -54,7 +54,7 @@ final class CurrentUser {
       uid: "",
       name: "",
       email: "",
-      role: ManagerRoleModel(name: "", permissions: [], id: ""),
+      role: ManagerRoleModel(name: null, permissions: [], id: ""),
     ),
   );
 

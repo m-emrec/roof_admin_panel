@@ -5,6 +5,7 @@ import 'package:core/utils/widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/managerRoles/presentation/providers/manager_roles_providers.dart';
+import 'package:roof_admin_panel/product/utility/constants/enums/user_roles.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
 import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 
@@ -23,15 +24,19 @@ class SelectRoleDropdown extends ConsumerStatefulWidget {
 
 class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
   ManagerRoleModel? selectedRole;
-  void _onChanged(dynamic value, List<ManagerRoleModel> data) {
-    selectedRole = data.firstWhere((element) => element.name == value);
-    widget.roleController.text = selectedRole?.id ?? "";
+  void _onChanged(String value, List<ManagerRoleModel> data) {
+    selectedRole = data
+        .firstWhere((element) => element.name == UserRoles.fromLocale(value));
+    widget.roleController.text = selectedRole?.name?.name ?? "";
     setState(() {});
   }
 
   void _setInitialValue(List<ManagerRoleModel> data) {
     selectedRole = data.first;
-    widget.roleController.text = selectedRole?.id ?? "";
+    widget.roleController.text = selectedRole?.name?.name ?? "";
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
+    });
   }
 
   @override
@@ -47,9 +52,9 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
               _setInitialValue(data);
             }
             return CustomDropDownButton(
-              items: data.map((e) => e.name).toList(),
-              initialValue: data.first.name,
-              onChanged: (value) => _onChanged(value, data),
+              items: data.map((e) => e.name?.toLocale()).toList(),
+              initialValue: data.first.name?.toLocale(),
+              onChanged: (value) => _onChanged(value.toString(), data),
             );
           },
         ),
@@ -57,7 +62,7 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
           triggerMode: TooltipTriggerMode.tap,
           textStyle: context.textTheme.labelLarge,
           message:
-              selectedRole?.permissions.map((e) => e.toLocale()).join("\n") ??
+              selectedRole?.permissions?.map((e) => e.toLocale()).join("\n") ??
                   "",
           child: Icon(
             Icons.help,

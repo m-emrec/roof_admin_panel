@@ -39,10 +39,10 @@ class ManagerTile extends StatelessWidget {
         children: [
           Tooltip(
             message:
-                manager.role.permissions.map((e) => e.toLocale()).join("\n"),
+                manager.role.permissions?.map((e) => e.toLocale()).join("\n"),
             textStyle: context.textTheme.labelLarge,
             child: Text(
-              manager.role.name,
+              manager.role.name?.toLocale() ?? "",
               style: context.textTheme.labelMedium
                   ?.copyWith(color: AppColors.secondaryColor[40]),
             ).animatedText,

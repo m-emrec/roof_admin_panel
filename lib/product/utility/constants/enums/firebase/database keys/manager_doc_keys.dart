@@ -6,5 +6,6 @@ enum ManagerDocKeys {
   email,
   name,
   role,
+  permissions,
   imageUrl,
 }
