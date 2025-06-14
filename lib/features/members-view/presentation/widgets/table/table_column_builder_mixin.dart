@@ -25,6 +25,7 @@ mixin _TableColumnBuilderMixin {
           case MemberTableNames.memberName:
             columnWidthMode = ColumnWidthMode.auto;
           case MemberTableNames.memberNumber:
+          case MemberTableNames.gender:
             columnWidthMode = ColumnWidthMode.fitByColumnName;
 
           case MemberTableNames.mentor:
