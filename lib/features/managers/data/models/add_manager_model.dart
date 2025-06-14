@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:roof_admin_panel/features/managers/domain/entities/add_manager_entity.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';

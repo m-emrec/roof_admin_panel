@@ -10,7 +10,7 @@ enum Permissions {
   canReadMembers(null),
   canEditMembershipFees(Permissions.canReadMembershipFees),
   canReadMembershipFees(null),
-  canEditBannedMembers(Permissions.canReadMembers),
+  canEditBannedMembers(Permissions.canReadBannedMembers),
   canReadBannedMembers(null),
   canEditFeedbacks(Permissions.canReadFeedbacks),
   canReadFeedbacks(null),
