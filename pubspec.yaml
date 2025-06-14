@@ -46,7 +46,7 @@ dependencies:
   # for toast messages -> https://pub.dev/packages/toastification
   toastification: ^2.3.0
   # for skeleton loading -> https://pub.dev/packages/skeletonizer
-  skeletonizer: ^1.4.2
+  skeletonizer: ^2.0.1
   # https://pub.dev/packages/google_fonts
   google_fonts: ^6.2.1
   # for lottie animations -> https://pub.dev/packages/lottie

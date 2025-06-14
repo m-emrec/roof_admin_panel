@@ -25,7 +25,7 @@ final _updateMembershipFeesUseCaseProvider =
   return UpdateMembershipFeesUseCase(ref.read(_repositoryProvider));
 });
 
-final viewModelProvider =
+final membershipFeesViewModelProvider =
     StateNotifierProvider<MembershipFeesViewModel, AsyncValue<MembershipFees>>(
         (ref) {
   return MembershipFeesViewModel(

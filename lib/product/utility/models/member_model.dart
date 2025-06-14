@@ -58,6 +58,9 @@ class MemberModel extends UserModel {
     String? phoneNumber,
     List<String>? mentors,
     String? memberNumber,
+    bool? isStudent,
+    double? fee,
+    int? membershipType,
   }) {
     return MemberModel(
       uid: uid ?? this.uid,
@@ -81,7 +84,7 @@ class MemberModel extends UserModel {
       membershipEndDate: membershipEndDate ?? this.membershipEndDate,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       memberNumber: memberNumber ?? this.memberNumber,
-      isStudent: isStudent,
+      isStudent: isStudent ?? this.isStudent,
       membershipType: membershipType ?? this.membershipType,
     );
   }
@@ -92,5 +95,5 @@ class MemberModel extends UserModel {
 
   final bool isStudent;
   final double? fee;
-  final Duration? membershipType;
+  final int? membershipType;
 }

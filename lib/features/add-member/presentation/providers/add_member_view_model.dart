@@ -1,8 +1,12 @@
 import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_member_use_case.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/membership-fees/data/models/membership_fees.dart';
+import 'package:roof_admin_panel/features/membership-fees/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/date_time_extensions.dart';
 import 'package:roof_admin_panel/product/utility/extensions/role_extension.dart';
 import 'package:roof_admin_panel/product/utility/models/member_model.dart';
@@ -13,12 +17,18 @@ class AddMemberViewModel extends ChangeNotifier {
   ///
   AddMemberViewModel({
     required AddNewMemberUseCase addNewUserUseCase,
+    required this.ref,
   }) : _addNewUserUseCase = addNewUserUseCase;
 
   final AddNewMemberUseCase _addNewUserUseCase;
+  final Ref ref;
 
   ///
   late final TextEditingController nameController;
+
+  late final TextEditingController feeController;
+
+  late final TextEditingController isStudent;
 
   ///
   late final TextEditingController phoneNumberController;
@@ -41,6 +51,10 @@ class AddMemberViewModel extends ChangeNotifier {
   ///
   late final TextEditingController memberShipDurationController;
 
+  int studentDiscount = 100;
+  int femaleDiscount = 100;
+  int fullPrice = 0;
+
   ///
   ValueNotifier<MemberModel> get mentorshipSelectedMembers => ValueNotifier(
         user,
@@ -48,16 +62,22 @@ class AddMemberViewModel extends ChangeNotifier {
 
   /// This method is used to initialize the controllers
   /// and set the initial values for the controllers
-  void initControllers(BuildContext context) {
+  void initControllers(BuildContext context) async {
     nameController = TextEditingController();
     phoneNumberController = TextEditingController();
     genderController = TextEditingController(text: Gender.female.localizedText);
+    genderController.addListener(configureMembershipFee);
     phoneCodeController = TextEditingController(
       text: ConstantValues.phoneCodes[context.locale.countryCode].toString(),
     );
     memberNumberController = TextEditingController();
     memberShipStartDateController = TextEditingController();
     memberShipDurationController = TextEditingController(text: "3");
+    memberShipDurationController.addListener(configureMembershipFee);
+    isStudent = TextEditingController(text: "false");
+    isStudent.addListener(configureMembershipFee);
+    feeController = TextEditingController();
+    configureMembershipFee();
   }
 
   @override
@@ -74,6 +94,8 @@ class AddMemberViewModel extends ChangeNotifier {
     memberNumberController.dispose();
     memberShipStartDateController.dispose();
     memberShipDurationController.dispose();
+    feeController.dispose();
+    isStudent.dispose();
   }
 
   /// This variable holds the user data
@@ -156,7 +178,29 @@ class AddMemberViewModel extends ChangeNotifier {
       ).addMonth(
         int.parse(memberShipDurationController.text),
       ),
+      membershipType: int.parse(memberShipDurationController.text),
+      isStudent: isStudent.text == "true",
+      fee: double.parse(feeController.text),
     );
+  }
+
+  void configureMembershipFee() async {
+    final fees = ref.read(membershipFeesViewModelProvider).valueOrNull;
+    final discounts =
+        ref.read(membershipFeesViewModelProvider).valueOrNull?.discounts ?? {};
+
+    final fullPrice = fees?.rates[memberShipDurationController.text] ?? 0;
+
+    final studentDiscount =
+        discounts[isStudent.text == "true" ? "student" : ""] ?? 0;
+    final femaleDiscount = discounts[
+            genderController.text.fromLocalizedStringToGenderEnum()?.name] ??
+        0;
+
+    final priceAfterFemale = fullPrice * (1 - femaleDiscount / 100);
+    final priceAfterStudent = priceAfterFemale * (1 - studentDiscount / 100);
+
+    feeController.text = priceAfterStudent.toStringAsFixed(2);
   }
 
   /// Adds a new user

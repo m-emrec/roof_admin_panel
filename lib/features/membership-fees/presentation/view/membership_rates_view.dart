@@ -17,7 +17,7 @@ class MembershipRatesView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AsyncDataBuilder(
-      provider: viewModelProvider,
+      provider: membershipFeesViewModelProvider,
       data: (data) {
         return Column(
           mainAxisSize: MainAxisSize.min,

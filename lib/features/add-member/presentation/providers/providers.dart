@@ -6,6 +6,7 @@ import 'package:roof_admin_panel/features/add-member/domain/usecases/add_new_mem
 import 'package:roof_admin_panel/features/add-member/presentation/providers/add_member_view_model.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/table/add_member_table.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/table/add_member_table_source.dart';
+import 'package:roof_admin_panel/features/membership-fees/presentation/providers/providers.dart';
 
 final _addMemberServiceProvider = Provider<AddMemberService>((ref) {
   return AddMemberService();
@@ -40,5 +41,6 @@ final addMemberTableProvider = Provider<AddMemberTableSource>((ref) {
 final addMemberProvider = ChangeNotifierProvider<AddMemberViewModel>((ref) {
   return AddMemberViewModel(
     addNewUserUseCase: ref.read(_addNewUserUseCaseProvider),
+    ref: ref,
   );
 });

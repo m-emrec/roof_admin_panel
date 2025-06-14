@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/fee_field.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/member_number_field.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/member_ship_duration_drop_down.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/role_drop_down.dart';
+import 'package:roof_admin_panel/features/add-member/presentation/widgets/fields/studen_status_dropdown.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/widgets/table/table_column_names.dart';
 import 'package:roof_admin_panel/features/add-mentor/presentation/widgets/add_mentor_button.dart';
 import 'package:roof_admin_panel/product/utility/validator/validator_methods.dart';
@@ -108,6 +110,18 @@ class AddMemberTableSource extends DataGridSource {
                 controller: provider.memberShipStartDateController,
               ),
             ),
+          ),
+
+          /// Fee
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.fee.name,
+            value: const FeeField(),
+          ),
+
+          ///  IS Student
+          DataGridCell(
+            columnName: AddMemberTableColumnNames.isStudent.name,
+            value: const StudentStatusDropdown(),
           ),
 
           /// Membership Duration

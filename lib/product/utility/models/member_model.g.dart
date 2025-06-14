@@ -50,9 +50,7 @@ MemberModel _$MemberModelFromJson(Map<String, dynamic> json) => MemberModel(
       uid: json['uid'] as String?,
       isStudent: json['isStudent'] as bool? ?? false,
       fee: (json['fee'] as num?)?.toDouble(),
-      membershipType: json['membershipType'] == null
-          ? null
-          : Duration(microseconds: (json['membershipType'] as num).toInt()),
+      membershipType: (json['membershipType'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$MemberModelToJson(MemberModel instance) =>
@@ -81,7 +79,7 @@ Map<String, dynamic> _$MemberModelToJson(MemberModel instance) =>
           FirebaseTimeParser.dateTimeToTimestamp(instance.membershipEndDate),
       'isStudent': instance.isStudent,
       'fee': instance.fee,
-      'membershipType': instance.membershipType?.inMicroseconds,
+      'membershipType': instance.membershipType,
     };
 
 const _$GenderEnumMap = {

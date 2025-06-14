@@ -66,7 +66,7 @@ mixin UpdateMembershipFeesStateMixin
   Future<void> updateMembershipFees() async {
     if (formKey.currentState?.validate() ?? false) {
       await ref
-          .read(viewModelProvider.notifier)
+          .read(membershipFeesViewModelProvider.notifier)
           .updateMembershipFees(
             _feeControllers.map((key, value) => MapEntry(key, value.text)),
             _discountControllers.map(
@@ -83,13 +83,21 @@ mixin UpdateMembershipFeesStateMixin
   }
 
   void _createFeeControllers() {
-    ref.read(viewModelProvider).value?.rates.forEach((key, value) {
+    ref
+        .read(membershipFeesViewModelProvider)
+        .value
+        ?.rates
+        .forEach((key, value) {
       _feeControllers[key] = TextEditingController(text: value.toString());
     });
   }
 
   void _createDiscountControllers() {
-    ref.read(viewModelProvider).value?.discounts.forEach((key, value) {
+    ref
+        .read(membershipFeesViewModelProvider)
+        .value
+        ?.discounts
+        .forEach((key, value) {
       _discountControllers[key] = TextEditingController(text: value.toString());
     });
   }

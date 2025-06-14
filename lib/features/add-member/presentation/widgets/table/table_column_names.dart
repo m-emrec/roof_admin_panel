@@ -8,7 +8,10 @@ enum AddMemberTableColumnNames {
   mentor,
   gender,
   membershipStartDate,
-  membershipDuration;
+  membershipDuration,
+  isStudent,
+  fee,
+  ;
 
   static AddMemberTableColumnNames toTableNamesEnum(String tableName) {
     switch (tableName) {
@@ -22,6 +25,10 @@ enum AddMemberTableColumnNames {
         return AddMemberTableColumnNames.role;
       case 'mentor':
         return AddMemberTableColumnNames.mentor;
+      case "isStudent":
+        return AddMemberTableColumnNames.isStudent;
+      case "fee":
+        return AddMemberTableColumnNames.fee;
       default:
         return AddMemberTableColumnNames.memberNumber;
     }

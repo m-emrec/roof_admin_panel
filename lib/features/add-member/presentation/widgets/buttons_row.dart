@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
 import 'package:roof_admin_panel/product/utility/extensions/animation_extension.dart';
+import 'package:roof_admin_panel/product/utility/extensions/future_extension.dart';
 
 class ButtonsRow extends ConsumerWidget {
   const ButtonsRow({
@@ -42,7 +43,10 @@ class _AddButton extends StatelessWidget {
       onPressed: () async {
         if (ref.read(addMemberProvider).formKey.currentState?.validate() ??
             false) {
-          await ref.read(addMemberProvider).addNewMember(context);
+          await ref
+              .read(addMemberProvider)
+              .addNewMember(context)
+              .showLoading(context: context);
           ref.invalidate(addMemberTableProvider);
         }
       },

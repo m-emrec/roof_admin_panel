@@ -19,7 +19,9 @@ mixin AddMemberColumnBuilderMixin on ConsumerState<AddMemberTable> {
             width = 300;
           case AddMemberTableColumnNames.name:
           case AddMemberTableColumnNames.membershipStartDate:
+          case AddMemberTableColumnNames.isStudent:
           case AddMemberTableColumnNames.mentor:
+          case AddMemberTableColumnNames.fee:
             width = 200;
           case AddMemberTableColumnNames.memberNumber:
           case AddMemberTableColumnNames.role:
