@@ -1,4 +1,3 @@
-import 'package:core/utils/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/members-view/presentation/enums/table_names_enum.dart';

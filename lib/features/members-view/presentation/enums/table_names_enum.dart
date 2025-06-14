@@ -11,6 +11,10 @@ enum MemberTableNames {
   age,
   membershipDuration,
   mentor,
+  fees,
+  membershipType,
+  gender,
+  livingCity,
   ;
 
   static final _locale = {
@@ -24,6 +28,11 @@ enum MemberTableNames {
     membershipDuration:
         LocaleKeys.membersView_tableColumnLabels_memberShipDuration.tr(),
     mentor: LocaleKeys.membersView_tableColumnLabels_mentor.tr(),
+    fees: LocaleKeys.membersView_tableColumnLabels_fees.tr(),
+    membershipType:
+        LocaleKeys.membersView_tableColumnLabels_membershipType.tr(),
+    gender: LocaleKeys.membersView_tableColumnLabels_gender.tr(),
+    livingCity: LocaleKeys.membersView_tableColumnLabels_livingCity.tr(),
   };
 
   static MemberTableNames toTableNamesEnum(String tableName) {
@@ -44,7 +53,15 @@ enum MemberTableNames {
         return MemberTableNames.membershipDuration;
       case 'mentor':
         return MemberTableNames.mentor;
-      default:
+      case 'fees':
+        return MemberTableNames.fees;
+      case 'membershipType':
+        return MemberTableNames.membershipType;
+      case "gender":
+        return MemberTableNames.gender;
+      case "livingCity":
+        return MemberTableNames.livingCity;
+      default: // Default case to handle unexpected values
         return MemberTableNames.memberNumber;
     }
   }

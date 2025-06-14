@@ -1,3 +1,4 @@
+import 'package:core/utils/models/city_model.dart';
 import 'package:core/utils/models/user_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
@@ -33,9 +34,17 @@ mixin DataGridRowGenerator on DataGridSource {
                   imageUrl: e.imageUrl,
                 ),
               ),
-              DataGridCell<DateTime>(
-                columnName: MemberTableNames.membershipEndDate.name,
-                value: e.membershipEndDate,
+              DataGridCell<String>(
+                columnName: MemberTableNames.gender.name,
+                value: e.gender?.localizedText ?? "-",
+              ),
+              DataGridCell<int>(
+                columnName: MemberTableNames.age.name,
+                value: e.birthDate?.getAge(),
+              ),
+              DataGridCell<City?>(
+                columnName: MemberTableNames.livingCity.name,
+                value: e.livingCity,
               ),
               DataGridCell<List<String?>>(
                 columnName: MemberTableNames.role.name,
@@ -45,14 +54,23 @@ mixin DataGridRowGenerator on DataGridSource {
                 columnName: MemberTableNames.mentor.name,
                 value: e,
               ),
-              DataGridCell<int>(
-                columnName: MemberTableNames.age.name,
-                value: e.birthDate?.getAge(),
+              DataGridCell<String>(
+                columnName: MemberTableNames.membershipType.name,
+                value:
+                    "${e.membershipType ?? "-"} ${LocaleKeys.common_date_month.tr()}",
               ),
               DataGridCell<String>(
                 columnName: MemberTableNames.membershipDuration.name,
                 value:
                     "${e.membershipStartDate?.getMembershipDuration().inDays} ${LocaleKeys.common_date_day.tr()}",
+              ),
+              DataGridCell<DateTime>(
+                columnName: MemberTableNames.membershipEndDate.name,
+                value: e.membershipEndDate,
+              ),
+              DataGridCell<String>(
+                columnName: MemberTableNames.fees.name,
+                value: "${e.fee ?? "-"} ₺",
               ),
             ],
           ),
