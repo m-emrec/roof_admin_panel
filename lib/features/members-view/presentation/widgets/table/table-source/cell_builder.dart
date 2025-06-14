@@ -1,7 +1,8 @@
 import 'package:core/utils/constants/app_colors.dart';
 import 'package:core/utils/constants/app_paddings.dart';
 import 'package:core/utils/constants/constant_values.dart';
-import 'package:core/utils/models/user_model.dart';
+import 'package:core/utils/models/city_model.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
@@ -72,6 +73,17 @@ mixin CellBuilder {
           Padding(
             padding: const AppPadding.horizontalxsSymmetric(),
             child: MentorshipWidget(value),
+          ),
+        );
+      case MemberTableNames.livingCity:
+        value as City?;
+
+        return _cell(
+          Padding(
+            padding: const AppPadding.horizontalxsSymmetric(),
+            child: TableCellItem(
+              label: "${value?.cityName}\n${value?.town}",
+            ),
           ),
         );
 

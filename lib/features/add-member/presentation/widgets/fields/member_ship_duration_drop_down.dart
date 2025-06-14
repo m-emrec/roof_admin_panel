@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/config/localization/lang/locale_keys.g.dart';
 import 'package:roof_admin_panel/features/add-member/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/features/membership-fees/presentation/providers/providers.dart';
+import 'package:roof_admin_panel/product/widgets/async%20data%20builder/async_data_builder.dart';
 
 /// This is a drop down button for membership duration
 ///
@@ -23,16 +25,21 @@ class MemberShipDurationDropDown extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Tooltip(
       message: LocaleKeys.addMember_memberShipDuration.tr(),
-      child: CustomDropDownButton(
-        items: List.generate(
-          12,
-          (index) => "${index + 1} ${LocaleKeys.common_date_month.tr()}",
+      child: AsyncDataBuilder(
+        provider: membershipFeesViewModelProvider,
+        data: (p0) => CustomDropDownButton(
+          items: p0.rates.keys
+              .map(
+                (e) => '$e ${LocaleKeys.common_date_month.tr()}',
+              )
+              .toList(),
+          initialValue:
+              "${controller.text} ${LocaleKeys.common_date_month.tr()}",
+          onChanged: (value) {
+            ref.read(addMemberProvider).memberShipDurationController.text =
+                value.toString().split(" ")[0];
+          },
         ),
-        initialValue: "${controller.text} ${LocaleKeys.common_date_month.tr()}",
-        onChanged: (value) {
-          ref.read(addMemberProvider).memberShipDurationController.text =
-              value.toString().split(" ")[0];
-        },
       ),
     );
   }

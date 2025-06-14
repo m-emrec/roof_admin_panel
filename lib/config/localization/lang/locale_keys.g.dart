@@ -192,6 +192,10 @@ abstract class  LocaleKeys {
   static const membersView_tableColumnLabels_age = 'membersView.tableColumnLabels.age';
   static const membersView_tableColumnLabels_memberShipDuration = 'membersView.tableColumnLabels.memberShipDuration';
   static const membersView_tableColumnLabels_mentor = 'membersView.tableColumnLabels.mentor';
+  static const membersView_tableColumnLabels_fees = 'membersView.tableColumnLabels.fees';
+  static const membersView_tableColumnLabels_membershipType = 'membersView.tableColumnLabels.membershipType';
+  static const membersView_tableColumnLabels_gender = 'membersView.tableColumnLabels.gender';
+  static const membersView_tableColumnLabels_livingCity = 'membersView.tableColumnLabels.livingCity';
   static const membersView_tableColumnLabels = 'membersView.tableColumnLabels';
   static const membersView = 'membersView';
   static const bannedMemberView_pageTitle = 'bannedMemberView.pageTitle';
@@ -316,6 +320,7 @@ abstract class  LocaleKeys {
   static const memberDetailView_membershipInfo_memberShipStartDate = 'memberDetailView.membershipInfo.memberShipStartDate';
   static const memberDetailView_membershipInfo_memberShipEndDate = 'memberDetailView.membershipInfo.memberShipEndDate';
   static const memberDetailView_membershipInfo_memberShipDuration = 'memberDetailView.membershipInfo.memberShipDuration';
+  static const memberDetailView_membershipInfo_fee = 'memberDetailView.membershipInfo.fee';
   static const memberDetailView_membershipInfo_mentorshipMemberList_seeList = 'memberDetailView.membershipInfo.mentorshipMemberList.seeList';
   static const memberDetailView_membershipInfo_mentorshipMemberList_mentat = 'memberDetailView.membershipInfo.mentorshipMemberList.mentat';
   static const memberDetailView_membershipInfo_mentorshipMemberList_members = 'memberDetailView.membershipInfo.mentorshipMemberList.members';

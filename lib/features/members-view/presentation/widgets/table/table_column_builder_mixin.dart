@@ -5,11 +5,15 @@ mixin _TableColumnBuilderMixin {
   final List<MemberTableNames> _tableNames = [
     MemberTableNames.memberNumber,
     MemberTableNames.memberName,
-    MemberTableNames.membershipEndDate,
+    MemberTableNames.gender,
+    MemberTableNames.age,
+    MemberTableNames.livingCity,
     MemberTableNames.role,
     MemberTableNames.mentor,
-    MemberTableNames.age,
+    MemberTableNames.membershipType,
     MemberTableNames.membershipDuration,
+    MemberTableNames.membershipEndDate,
+    MemberTableNames.fees,
   ];
 
   ///
@@ -21,6 +25,7 @@ mixin _TableColumnBuilderMixin {
           case MemberTableNames.memberName:
             columnWidthMode = ColumnWidthMode.auto;
           case MemberTableNames.memberNumber:
+          case MemberTableNames.gender:
             columnWidthMode = ColumnWidthMode.fitByColumnName;
 
           case MemberTableNames.mentor:

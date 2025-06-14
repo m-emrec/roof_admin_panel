@@ -38,6 +38,11 @@ class _MembershipInfoFieldFactory {
             ? "${DateTime.now().difference(member!.membershipStartDate!).inDays} ${LocaleKeys.common_date_day.tr()}"
             : "",
       ),
+      // Membership duration
+      TextMembershipInfoField.notEditable(
+        label: LocaleKeys.memberDetailView_membershipInfo_fee.tr(),
+        value: member?.fee != null ? "${member!.fee} ₺" : "-",
+      ),
     ];
   }
 

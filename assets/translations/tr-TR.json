@@ -208,7 +208,11 @@
             "role": "Rol",
             "age": "Yaş",
             "memberShipDuration": "Ne Zamandır Üye",
-            "mentor":"Mentör"
+            "mentor":"Mentör",
+            "fees": "Ödenen Ücret",
+            "membershipType":"Üyelik Süresi",
+            "gender":"Cinsiyet",
+            "livingCity":"Yaşadığı Şehir"
         }
     },
    "bannedMemberView": {
@@ -358,6 +362,7 @@
     "memberShipStartDate":"Üyelik Başlangıç Tarihi",
     "memberShipEndDate":"Üyelik Bitiş Tarihi",
     "memberShipDuration":"Üyelik Süresi",
+    "fee": "Ödenen Ücret",
     "mentorshipMemberList":{
         "seeList": "{} listesini gör",
         "mentat":"Mentatı",
