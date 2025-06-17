@@ -49,38 +49,42 @@ class MembersTable extends ConsumerWidget
               decoration: BoxDecoration(
                 borderRadius: const AppBorderRadius.medium(),
                 color: AppColors.backgroundColor[70],
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0xF90D2511),
-                    blurRadius: 3,
-                    offset: Offset(0, 0),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0xD80D2511),
-                    blurRadius: 6,
-                    offset: Offset(1, 0),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0x7F0D2511),
-                    blurRadius: 8,
-                    offset: Offset(2, 0),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0x260D2511),
-                    blurRadius: 9,
-                    offset: Offset(3, 0),
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0x050D2511),
-                    blurRadius: 10,
-                    offset: Offset(5, 0),
-                    spreadRadius: 0,
-                  ),
-                ],
+                border: Border.all(
+                  color: AppColors.backgroundColor[10] ?? Colors.transparent,
+                  width: 2,
+                ),
+                // boxShadow: const [
+                //   BoxShadow(
+                //     color: Color(0xF90D2511),
+                //     blurRadius: 3,
+                //     offset: Offset(0, 0),
+                //     spreadRadius: 0,
+                //   ),
+                //   BoxShadow(
+                //     color: Color(0xD80D2511),
+                //     blurRadius: 6,
+                //     offset: Offset(1, 0),
+                //     spreadRadius: 0,
+                //   ),
+                //   BoxShadow(
+                //     color: Color(0x7F0D2511),
+                //     blurRadius: 8,
+                //     offset: Offset(2, 0),
+                //     spreadRadius: 0,
+                //   ),
+                //   BoxShadow(
+                //     color: Color(0x260D2511),
+                //     blurRadius: 9,
+                //     offset: Offset(3, 0),
+                //     spreadRadius: 0,
+                //   ),
+                //   BoxShadow(
+                //     color: Color(0x050D2511),
+                //     blurRadius: 10,
+                //     offset: Offset(5, 0),
+                //     spreadRadius: 0,
+                //   ),
+                // ],
               ),
               child: CustomTable(
                 showCheckboxColumn: false,

@@ -20,9 +20,8 @@ class MembersView extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        // const MembersTableTitle(),
-        const FilterAndSortRow(),
         const AddMember(),
+        const FilterAndSortRow(),
         AsyncDataBuilder(
           provider: membersViewModelProvider,
           data: (_) {
