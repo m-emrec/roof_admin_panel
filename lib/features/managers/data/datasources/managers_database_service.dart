@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:core/resources/firebase%20utilities/firebase_utils.dart';
 import 'package:core/resources/firebase%20utilities/firestore_utils.dart';
 import 'package:core/utils/constants/firebase/collection_enums.dart';
-import 'package:core/utils/logger/logger.dart';
+
 import 'package:roof_admin_panel/product/utility/constants/enums/firebase/cloud_function_names.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/firebase/database%20keys/manager_doc_keys.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/user_roles.dart';
@@ -54,7 +54,6 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
       'permissions': permissions,
     });
 
-    Log.debug('Created custom manager role: $roleName with ID: ${roleDoc.id}');
     await roleDoc.update({
       'id': roleDoc.id,
     });
@@ -62,9 +61,13 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
   }
 
   Future<String> _getDocumentPathOfManagerRole(String roleName) async {
+    String role = roleName;
+    if (roleName.contains('/')) {
+      role = roleName.split('/').last;
+    }
     final roleDoc = await firestore
         .collection(CollectionEnum.managerRoles.name)
-        .where('name', isEqualTo: roleName)
+        .where('name', isEqualTo: role)
         .limit(1)
         .get()
         .then((snapshot) => snapshot.docs.first);
@@ -109,6 +112,18 @@ class ManagersDatabaseService extends FirebaseUtils with FirestoreUtils {
 
   ///
   Future<void> updateManager(Map<String, dynamic> updatedManager) async {
+    if (updatedManager[ManagerDocKeys.role.name] == UserRoles.user.name) {
+      updatedManager[ManagerDocKeys.role.name] = await _createCustomManagerRole(
+        UserRoles.user.name,
+        updatedManager[ManagerDocKeys.permissions.name] as List<String>,
+      );
+    } else {
+      updatedManager[ManagerDocKeys.role.name] =
+          await _getDocumentPathOfManagerRole(
+        updatedManager[ManagerDocKeys.role.name].toString(),
+      );
+    }
+
     await updateDocument(
       collection: CollectionEnum.managers,
       docId: updatedManager[ManagerDocKeys.uid.name].toString(),

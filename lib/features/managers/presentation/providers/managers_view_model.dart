@@ -1,11 +1,13 @@
 import 'package:core/resources/data_state.dart';
 import 'package:core/resources/use_case.dart';
+import 'package:core/utils/logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:roof_admin_panel/features/managers/data/models/add_manager_model.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/add_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/delete_manager_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/get_managers_use_case.dart';
 import 'package:roof_admin_panel/features/managers/domain/usecases/update_manager_use_case.dart';
+import 'package:roof_admin_panel/features/managers/presentation/providers/managers_provider.dart';
 import 'package:roof_admin_panel/product/utility/constants/enums/permissions.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_model.dart';
 import 'package:roof_admin_panel/product/utility/models/manager_role_model.dart';
@@ -54,12 +56,14 @@ class ManagersViewModel extends StateNotifier<AsyncValue<List<ManagerModel>>> {
   Future<void> editManagerRole(
     String newRoleId,
     ManagerModel manager,
+    WidgetRef ref,
   ) async {
+    final permissions = ref.watch(addManagerViewModelProvider).permissions;
     final updatedManager = manager.copyWith(
       role: ManagerRoleModel(
-        name: null,
+        name: manager.role.name,
         id: newRoleId,
-        permissions: [],
+        permissions: permissions,
       ),
     );
     DataState.handleDataStateBasedAction(

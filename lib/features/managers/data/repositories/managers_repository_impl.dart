@@ -39,8 +39,15 @@ class ManagersRepositoryImpl implements ManagersRepository {
 
   @override
   Future<DataState<void>> updateManager(ManagerModel updatedManager) {
+    final data = AddManagerModel(
+      email: updatedManager.email,
+      name: updatedManager.name,
+      role: updatedManager.role.id,
+      permissions: updatedManager.role.permissions,
+    );
     return DataState.handleDataState(
-      () => _managersDatabaseService.updateManager(updatedManager.toJson()),
+      () => _managersDatabaseService.updateManager(
+          data.toJson()..putIfAbsent("uid", () => updatedManager.uid)),
     );
   }
 }

@@ -38,6 +38,13 @@ class AddManagerViewModel extends AutoDisposeNotifier<AddManagerModel> {
     );
   }
 
+  void initializeManagerPermissions(
+    List<Permissions>? permissions,
+  ) {
+    final currentModel = state;
+    state = currentModel.copyWith(permissions: permissions ?? []);
+  }
+
   void addPermission(Permissions permission) {
     final currentModel = state;
 

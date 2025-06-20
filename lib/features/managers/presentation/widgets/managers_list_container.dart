@@ -21,6 +21,7 @@ class ManagersListContainer extends StatelessWidget {
     return PermissionBasedVisibility(
       child: Container(
         width: context.dynamicWidth(0.6),
+        constraints: BoxConstraints(maxHeight: context.dynamicHeight(0.8)),
         decoration: BoxDecoration(
           borderRadius: const AppBorderRadius.small(),
           border: Border.all(

@@ -24,6 +24,7 @@ class SelectRoleDropdown extends ConsumerStatefulWidget {
 
 class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
   ManagerRoleModel? selectedRole;
+  UserRoles? initialRole;
   void _onChanged(String value, List<ManagerRoleModel> data) {
     selectedRole = data
         .firstWhere((element) => element.name == UserRoles.fromLocale(value));
@@ -31,9 +32,24 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
     setState(() {});
   }
 
+  bool _a(List<ManagerRoleModel> data) {
+    if (widget.roleController.text.isNotEmpty) {
+      initialRole = data
+          .firstWhere(
+              (element) => element.name?.name == widget.roleController.text)
+          .name;
+      return false;
+    }
+    initialRole = data.first.name;
+    return true;
+  }
+
   void _setInitialValue(List<ManagerRoleModel> data) {
-    selectedRole = data.first;
-    widget.roleController.text = selectedRole?.name?.name ?? "";
+    _a(data);
+    if (_a(data)) {
+      selectedRole = data.first;
+      widget.roleController.text = selectedRole?.name?.name ?? "";
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {});
     });
@@ -53,7 +69,7 @@ class _SelectRoleDropdownState extends ConsumerState<SelectRoleDropdown> {
             }
             return CustomDropDownButton(
               items: data.map((e) => e.name?.toLocale()).toList(),
-              initialValue: data.first.name?.toLocale(),
+              initialValue: initialRole?.toLocale(),
               onChanged: (value) => _onChanged(value.toString(), data),
             );
           },
