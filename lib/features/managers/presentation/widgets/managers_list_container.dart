@@ -20,6 +20,7 @@ class ManagersListContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return PermissionBasedVisibility(
       child: Container(
+        clipBehavior: Clip.hardEdge,
         width: context.dynamicWidth(0.6),
         constraints: BoxConstraints(maxHeight: context.dynamicHeight(0.8)),
         decoration: BoxDecoration(

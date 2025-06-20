@@ -11,13 +11,16 @@ class ManagersList extends StatelessWidget {
   final List<ManagerModel> managers;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        ...managers.map(
-          ManagerTile.new,
-        ),
-      ],
+    return Material(
+      color: Colors.transparent,
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          ...managers.map(
+            ManagerTile.new,
+          ),
+        ],
+      ),
     );
   }
 }
